@@ -13,6 +13,9 @@ footer {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
+#listing .row {
+	margin: 0;
+}
 #plugin-box {
 	border: 1px solid light
 	min-height: 90%;
@@ -23,10 +26,20 @@ footer {
 	border-right: 1px dashed lightgray;
 }
 #infobox {
-	margin-top: 0px;
-	background: rgba(127,127,127,0.1);
+	color: ivory;
+	background: #3d6594;
 	padding: 10px;
-	font-size: 0.9em;
+	font-size: 0.85em;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#infobox a {
+	color: orange;
+	border-bottom: 1px solid orange;
+}
+#infobox #stat {
+	display: inline-block;
+	min-width: 150px;
 }
 #content {
 	margin-left: 15px;
@@ -34,13 +47,14 @@ footer {
 }
 .badge {
 	background: lightgray;
-	border-radius: 5px;
+	border-radius: 2px;
+	height: 20px;
 }
 .plugin {
 	font-size: 0.8em;
 	margin-bottom: 10px;
 }
-.plugin .row {
+.plugin .row { 
 	margin: 0;
 }
 .plugin .tag {
@@ -51,9 +65,14 @@ footer {
 	padding-left: 8px;
 	padding-right: 8px;
 }
+.plugin .description {
+	padding-bottom: 4px;
+	background: rgb(250,250,250);
+	border-radius: 2px;
+}
 .tag.compatibility {
 	background-color: rgba(127,127,127,0.3);
 }
-.plugin.effect {
-	
+.plugin .author {
+	margin-right: 10px;
 }

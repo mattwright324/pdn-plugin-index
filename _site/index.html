@@ -34,91 +34,105 @@
 		PDN Plugin Index
 	</a>
 </nav>
-		<div id="content">
-	<div id="infobox">
-		<h5>About</h5>
-		The <b>PDN Plugin Index</b> uses data collected and maintained by <a href="https://forums.getpaint.net/topic/15260-plugin-index/">Scott Sterling</a>.
-		This site aims to make the search and navigation of that data easier.
-		Without Scott, this tool could not be possible so support him and his work.
-		<br>
-		<br>
-		Using index data from revision: <strong>1 December 2017</strong>
-	</div>
+		<div id="infobox" class="d-flex flex-column">
+	<span>
+		PDN Plugin Index makes process of searching and navigating to plugins from Scott Sterling's index as easy as possible.
+		The plugin index is maintained and provided by Scott which makes this tool possible so please go support him.
+		Simply select or type the desired constraints to quickly find what you are looking for!
+	</span>
+	<span><span id="stat">Index Revision . . .</span>
+		<strong><a target="_blank" href="https://forums.getpaint.net/applications/core/interface/file/attachment.php?id=13040">1 December 2017</a></strong>
+	</span>
+	<span><span id="stat">Data from . . . . . . .</span>
+		<strong><a target="_blank" href="https://forums.getpaint.net/topic/15260-plugin-index/">Scott Sterling</a></strong>
+	</span>
+</div>
+<div id="content">
 	<div class="d-flex row">
 		<div id="sidemenu" class="d-flex flex-column col-sm-4">
 			<h5>Search Options</h5>
 			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-				<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Keywords">
+				<input type="text" class="form-control" id="keywords" placeholder="Keywords" value="">
 			</div>
 			<br>
 			<h6><b>Plugin Type</b></h6>
-			<label id="any-type"class="custom-control custom-checkbox justify-content-between">
+			<label id="any-type" class="type-box custom-control selected custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Any Type</span>
-			  <span id="count"class="badge badge-default badge-pill">0</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="effect" class="type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Effect</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="adjustment" class="type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Adjustment</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="filetype" class="type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Filetype</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="external"class="type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">External Resource</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="plugin-pack"class="type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Plugin Pack</span>
 			</label>
 			<br>
 			<h6><b>Plugin Status</b></h6>
-			<label class="custom-control custom-checkbox">
+			<label id="any-status" class="status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Any Status</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="active" class="status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Active</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="depreciated" class="status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Depreciated</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="obsolete" class="status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Obsolete</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="unsupported" class="status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Unsupported</span>
 			</label>
-			<label class="custom-control custom-checkbox">
+			<label id="built-in" class="status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Built In</span>
 			</label>
 			<br>
+			<h6><b>Release</b></h6>
+			<select id="release" class="custom-select">
+			  <option value="0" selected>Any time</option>
+			  <option value="1">Past Month</option>
+			  <option value="2">Past 6 Months</option>
+			  <option value="3">Past Year</option>
+			  <option value="4">Past 3 Years</option>
+			</select>
 		</div>
 		<div id="listing" class="d-flex flex-column col-sm-8">
-			<h5>Plugin Listing</h5>
+			<span class="row justify-content-between">
+				<h5>Plugin Listing</h5>
+				<span id="count"class="badge badge-default badge-pill">0</span>
+			</span>
 			<div id="plugin-box" class="d-flex flex-column">
 			</div>
 		</div>

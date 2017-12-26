@@ -1,0 +1,59 @@
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+body, html {
+	height: 100%;
+}
+footer {
+	background-color: rgb(230,230,230);
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+#listing {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+#plugin-box {
+	border: 1px solid light
+	min-height: 90%;
+}
+#sidemenu {
+	padding-top: 15px;
+	background: linear-gradient(to left, rgba(127,127,127,0.05), transparent);
+	border-right: 1px dashed lightgray;
+}
+#infobox {
+	margin-top: 0px;
+	background: rgba(127,127,127,0.1);
+	padding: 10px;
+	font-size: 0.9em;
+}
+#content {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.badge {
+	background: lightgray;
+	border-radius: 5px;
+}
+.plugin {
+	font-size: 0.8em;
+	margin-bottom: 10px;
+}
+.plugin .row {
+	margin: 0;
+}
+.plugin .tag {
+	color: white;
+	background-color: rgba(30,70,220,0.3);
+	border-radius: 2px;
+	margin-right: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+.tag.compatibility {
+	background-color: rgba(127,127,127,0.3);
+}
+.plugin.effect {
+	
+}

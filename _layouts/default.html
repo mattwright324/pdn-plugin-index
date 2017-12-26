@@ -7,13 +7,7 @@
 
 	<body>
 		{% include_relative nav.html %}
-		<div id="map"></div>
-		<main id="content" role="main" class="container">
-			{{ content }}
-		</main><!-- /.container -->
-		<script>
-			disableForm(true);
-		</script>
+		{{ content }}
 		
 		<footer class="footer" align=center>
 			<div class="container">
@@ -22,6 +16,5 @@
 				</span>
 			</div>
 		</footer>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGWanOEMEgdHqsxNDaa_ZXTZ6hoYQrnAI&libraries=visualization&callback=initMap"></script>
 	</body>
 </html>

@@ -73,7 +73,7 @@ window.onload = function() {
 				if(keywords == "") {
 					add = true;
 					break;
-				} else if(value.indexOf(keywords) != -1) {
+				} else if(value.toLowerCase().indexOf(keywords.toLowerCase()) != -1) {
 					add = true;
 					break;
 				}

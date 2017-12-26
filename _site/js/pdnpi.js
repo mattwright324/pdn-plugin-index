@@ -79,6 +79,20 @@ window.onload = function() {
 				}
 			};
 			
+			if(release > 0 && add) {
+				add = false;
+				let now = new Date();
+				let date = new Date(plug.release);
+				let diff = now - date;
+				if(release == 1 && diff <= (1000*60*60*24*30*6)) {
+					add = true;
+				} else if(release == 2 && diff <= (1000*60*60*24*30*12)) {
+					add = true;
+				} else if(release == 3 && diff <= (1000*60*60*24*30*12*3)) {
+					add = true;
+				}
+			}
+			
 			if(!anytype.isSelected() && add) {
 				if(plug.type == "Effect" && !effect.isSelected()) add = false;
 				if(plug.type == "Adjustment" && !adjustment.isSelected()) add = false;
@@ -125,10 +139,11 @@ window.onload = function() {
 	}).fail((err) => {
 		console.log(err);
 	});
-	$("#sidemenu input").change(function(){update = true;});
+	$("#sidemenu *").change(function(){update = true;});
 	$("#keywords").on('keyup',function(){update = true;});
 	setInterval(function() {
 		if(update) {
+			console.log("update!");
 			updateListing();
 			update = false;
 		}

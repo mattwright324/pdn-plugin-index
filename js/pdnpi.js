@@ -132,7 +132,7 @@ window.onload = function() {
 				}
 				return (ca < cb) ? -1 : (ca > cb) ? 1 : 0;
 			}).appendTo("#plugin-box");
-			lastSort = 0;
+			lastSort = order;
 		}
 		
 	}

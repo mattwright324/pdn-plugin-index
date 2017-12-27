@@ -11,7 +11,7 @@ CheckBox.prototype = {
 }
 window.onload = function() {
 	let update = true;
-	
+	let lastSort = 0;
 	let anytype = new CheckBox("#any-type");
 	let effect = new CheckBox("#effect");
 	let adjustment = new CheckBox("#adjustment");
@@ -112,6 +112,29 @@ window.onload = function() {
 			}
 		}
 		$("#count").text($("#plugin-box").find(".plugin:visible").length+" / "+index.length);
+		let order = $("#order").find(":selected").val();
+		if(lastSort != order) {
+			$("#plugin-box").find(".plugin").sort(function(a,b){
+				let ca, cb;
+				if(order == 0) {
+					ca = $(a).find("a").text();
+					cb = $(b).find("a").text();
+				} else if(order == 1) {
+					ca = new Date($(a).find(".release").text());
+					cb = new Date($(b).find(".release").text());
+					return (ca < cb) ? 1 : (ca > cb) ? -1 : 0; // Return newest first
+				} else if(order == 2) {
+					ca = $(a).find(".author").text();
+					cb = $(b).find(".author").text();
+				} else if(order == 3) {
+					ca = $(a).find(".menu").text();
+					cb = $(b).find(".menu").text();
+				}
+				return (ca < cb) ? -1 : (ca > cb) ? 1 : 0;
+			}).appendTo("#plugin-box");
+			lastSort = 0;
+		}
+		
 	}
 	$.ajax({
 		dataType: "json",
@@ -125,7 +148,7 @@ window.onload = function() {
 			$("#plugin-box").append(
 			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase().replace(" ","-")+"\">"+
 				"<div class=\"row justify-content-between\">"+
-					"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index?from=pdnpi\">"+plug.title+"</a></strong>"+
+					"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></strong>"+
 					"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>"+plug.release+"</i></span></span>"+
 					"<span class=\"text-muted author\"><strong>"+plug.author+"</strong></span>"+
 				"</div>"+

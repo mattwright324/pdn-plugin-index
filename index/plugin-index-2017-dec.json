@@ -668,9 +668,9 @@
   "status": "Active",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "Asmageddon_Inverto_pushing.dll",
-  "menu": "Effects > Asmageddon Tools Asmageddon_Inverto_pushing_Caleid"
+  "menu": "Effects > Asmageddon Tools"
 }, {
-  "title": "oscope",
+  "title": "Asmageddon_Inverto_pushing_Caleidoscope",
   "author": "Asmageddon Prince",
   "topic_id": "6845",
   "desc": "Similar to Asmageddon_Inverto_pushing with the addition of kaleidoscopic duplicates. Found in [topic=6845]Asmageddon Tools Pack[/topic]",
@@ -767,9 +767,9 @@
   "status": "Active",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "Asmageddon_Render-Border.dll",
-  "menu": "Effects > Asmageddon Tools Asmageddon_Render-Quadro"
+  "menu": "Effects > Asmageddon Tools"
 }, {
-  "title": "bumperoo",
+  "title": "Asmageddon_Render-Quadro bumperoo",
   "author": "Asmageddon Prince",
   "topic_id": "6845",
   "desc": "Greyscale distortion/patterning effect. Found in [topic=6845]Asmageddon Tools Pack[/topic]",
@@ -833,9 +833,9 @@
   "status": "Obsolete",
   "compatibility": "3.5.10 not 4.0",
   "dlls": "Asmageddon_Strange Bulger B.dll",
-  "menu": "Effects > Asmageddon Tools Asmageddon_Strange_Bulger"
+  "menu": "Effects > Asmageddon Tools"
 }, {
-  "title": "Kaleidoscope",
+  "title": "Asmageddon_Strange_Bulger Kaleidoscope",
   "author": "Asmageddon Prince",
   "topic_id": "6845",
   "desc": "Tiles image with mirroring in horizontal and vertical axes. Somewhat settings are similar to Polar Inversion type transformations. Found in [topic=6845]Asmageddon Tools Pack[/topic]",
@@ -2285,9 +2285,9 @@
   "status": "Active",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
-  "menu": "Effects > Photo CSV (comma separated values)"
+  "menu": "Effects > Photo"
 }, {
-  "title": "Filetype",
+  "title": "CSV (comma separated values) Filetype",
   "author": "Ego Eram Reputo",
   "topic_id": "31674",
   "desc": "Saves the image as a text file containing the pixel RGBA information in numeric format. Part of EER's Plugin Pack [topic = 110145]EER's Plugin Pack[/topic]",
@@ -4342,9 +4342,9 @@
   "status": "Obsolete",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "Hue_Saturation+.dll",
-  "menu": "Adjustments > Icon, Cursor, and Animated Cursor"
+  "menu": "Adjustments >"
 }, {
-  "title": "Format",
+  "title": "Icon, Cursor, and Animated Cursor Format",
   "author": "evanolds",
   "topic_id": "927",
   "desc": "Incompatible with paint.net 4. An updated version has been posted by TechnoRobbo in post #299 of the thread. Support for Icon & cursor filetypes, including animated cursors.",
@@ -4353,9 +4353,9 @@
   "status": "Depreciated",
   "compatibility": "3.5.11 not 4.0",
   "dlls": "IcoCur.dll",
-  "menu": "N/A Icon, Cursor, and Animated Cursor"
+  "menu": "N/A"
 }, {
-  "title": "Format - Updated",
+  "title": "Icon, Cursor, and Animated Cursor Format - Updated",
   "author": "TechnoRobbo",
   "topic_id": "927",
   "desc": "An updated version of the Icon, Cursor, and Animated Cursor Filetype plugin. This version adds support for Icon & cursor filetypes, including animated cursors to paint.net 4.0.9+",
@@ -5112,9 +5112,9 @@
   "status": "Active",
   "compatibility": "3.5.10",
   "dlls": "LowColor.dll",
-  "menu": "N/A MadJik' Plugin Pack (aka Magical"
+  "menu": "N/A"
 }, {
-  "title": "Plugins Megapack)",
+  "title": "MadJik' Plugin Pack (aka Magical Plugins Megapack)",
   "author": "MadJik",
   "topic_id": "7186",
   "desc": "Over 60 effects: Color Zoom Blur, Gradient Blur, Color Aberration, Expand Color, Recolor Gray, Reverse Colors, Distorting Mirror, Donut Distortion, Gravity, Kaleidoscope, Magnifier, Motion Sharpen, Oblique, Page Curl, Panelling, Polar Transformations, Seamless Texture Maker, Sine Wave, Tiles Reflection, Tube Effect, TwistZ, Water Reflection, Waves, Wet Floor Reflection, Auto Chrome Noise, Bars, Buttons, Frames, Grid Maker, Hexagonal Grid, KaleidGen, Random Lines, Random Maze1, Random Maze2, Rosaces, Shapes, Sparkles, Spiral, SpiroGraph, SpiroShapes, Splashes, Stars, Volutes, XY Coords, Majority Color, Over Liner, Star Glow, Animal Texture, Auto Chrome Grain, Color modulo, Fractal Attractor, Julia 'plus', Light Rays, Moire, Nebulous, Netwon Fractal, Perlin Texture, Radial Colors, Rainbow Twist Colors, Regular Noise, Sierpinski Triangle, Tournesol, Vibrato, Displacement, Lens Flare, Polygones.",
@@ -6542,9 +6542,9 @@
   "status": "Depreciated",
   "compatibility": "3.5.10 not 4.0",
   "dlls": "PointWarpEffect.dll",
-  "menu": "Effects > Distort Point Warp / Engorged Smudge for"
+  "menu": "Effects > Distort"
 }, {
-  "title": "PDN4",
+  "title": "Point Warp / Engorged Smudge for PDN4",
   "author": "toe_head2001",
   "topic_id": "32180",
   "desc": "A recompilation of [member=illnab]'s plugin of the same name in order to make it compatible with 4.0x. The effect warps the layer about a single point with options to control the strength, radius and direction as well as the point location.",
@@ -6553,9 +6553,9 @@
   "status": "Active",
   "compatibility": "4.0.6+",
   "dlls": "PointWarpEffect.dll",
-  "menu": "Effects > Distort Point Warp / Engorged Smudge for"
+  "menu": "Effects > Distort"
 }, {
-  "title": "PDN4",
+  "title": "Point Warp / Engorged Smudge for PDN4",
   "author": "toe_head2001",
   "topic_id": "32180",
   "desc": "A recompilation of [member=illnab]'s plugin of the same name in order to make it compatible with 4.0x. The effect warps the layer about a single point with options to control the strength, radius and direction as well as the point location.",
@@ -6960,9 +6960,9 @@
   "status": "Active",
   "compatibility": "Untested",
   "dlls": "rainball.dll",
-  "menu": "Effects > Color Radical Image Optimization Tool"
+  "menu": "Effects > Color"
 }, {
-  "title": "(RIOT)",
+  "title": "Radical Image Optimization Tool (RIOT)",
   "author": "null54",
   "topic_id": "107365",
   "desc": "Heavily optimizes then exports the current layer in a format suitable for web use.",
@@ -7499,9 +7499,9 @@
   "status": "Active",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "SaturationRGB_en.dll",
-  "menu": "Adjustments > Saturation to Alpha (formerly Switch"
+  "menu": "Adjustments >"
 }, {
-  "title": "Color to Alpha)",
+  "title": "Saturation to Alpha (formerly Switch Color to Alpha)",
   "author": "Joshua Lamusga",
   "topic_id": "27567",
   "desc": "Sets the transparency of each pixel equal to the intensity of it's color. In other words it overwrites the alpha channel with the saturation value. It makes colors with less saturation more transparent (and vice versa).",
@@ -8577,9 +8577,9 @@
   "status": "Active",
   "compatibility": "4.0+",
   "dlls": "Table.dll",
-  "menu": "Effects > Render Take screen shots and paint it in"
+  "menu": "Effects > Render"
 }, {
-  "title": "paint.net",
+  "title": "Take screen shots and paint it in paint.net",
   "author": "pamkkkkk",
   "topic_id": "11196",
   "desc": "Screen shot utility to take screen images and send them to paint.net.",

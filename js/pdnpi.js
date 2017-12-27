@@ -116,13 +116,14 @@ window.onload = function() {
 						"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>"+plug.release+"</i></span></span>"+
 						"<span class=\"text-muted author\"><strong>"+plug.author+"</strong></span>"+
 					"</div>"+
-					"<span class=\"description\">"+
+					"<span class=\"desc\">"+
 						plug.desc+
 					"</span>"+
 					"<div class=\"row\">"+
 						"<span class=\"tag type\">"+plug.type+"</span>"+
 						"<span class=\"tag status\">"+plug.status+"</span>"+
-						"<span class=\"tag compatibility\">"+plug.compatibility+"</span>"+
+						"<span class=\"tag compat\">"+plug.compatibility+"</span>"+
+						"<span class=\"tag menu\">"+plug.menu+"</span>"+
 					"</div>"+
 				"</div>"
 				);

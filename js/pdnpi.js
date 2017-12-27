@@ -60,6 +60,7 @@ window.onload = function() {
 	function updateListing() {
 		let keywords = $("#keywords").val();
 		let release = $("#release").find(":selected").val();
+		let author = $("#author").find(":selected").val();
 		let index = pdnpi.plugin_index;
 		for(let i=0; i<index.length; i++) {
 			let plug = index[i]
@@ -87,6 +88,13 @@ window.onload = function() {
 					add = true;
 				} else if(release == 3 && diff <= (1000*60*60*24*30*12*3)) {
 					add = true;
+				}
+			}
+			
+			if(author == 1 && add) {
+				a = $("#author").find(":selected").text();
+				if(plug.author != a) {
+					add = false;
 				}
 			}
 			
@@ -141,10 +149,14 @@ window.onload = function() {
 		url: './index/plugin-index-2017-dec.min.json'
 	}).done((pdnpi) =>  {
 		window["pdnpi"] = pdnpi;
+		window["authors"] = [];
 		let index = pdnpi.plugin_index;
 		for(let i=0; i<index.length; i++) {
-			let plug = index[i]
+			let plug = index[i];
 			plug["id"] = i;
+			if(authors.indexOf(plug.author) == -1) {
+				authors.push(plug.author);
+			}
 			$("#plugin-box").append(
 			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase().replace(" ","-")+"\">"+
 				"<div class=\"row justify-content-between\">"+
@@ -164,17 +176,25 @@ window.onload = function() {
 			"</div>"
 			);
 		}
+		authors.sort(function (a, b) {
+			return a.toLowerCase().localeCompare(b.toLowerCase());
+		});
+		for(let i=0; i<authors.length; i++) {
+			$("#author").append(
+			"<option value=\"1\">"+authors[i]+"</option>"
+			);
+		}
 		updateListing();
+		$("#sidemenu *").change(function(){update = true;});
+		$("#keywords").on('keyup',function(){update = true;});
+		setInterval(function() {
+			if(update) {
+				console.log("update!");
+				updateListing();
+				update = false;
+			}
+		},250);
 	}).fail((err) => {
 		console.log(err);
 	});
-	$("#sidemenu *").change(function(){update = true;});
-	$("#keywords").on('keyup',function(){update = true;});
-	setInterval(function() {
-		if(update) {
-			console.log("update!");
-			updateListing();
-			update = false;
-		}
-	},250);
 }

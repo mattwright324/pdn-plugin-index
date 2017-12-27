@@ -60,9 +60,6 @@ window.onload = function() {
 	function updateListing() {
 		let keywords = $("#keywords").val();
 		let release = $("#release").find(":selected").val();
-		
-		$("#plugin-box").empty();
-		
 		let index = pdnpi.plugin_index;
 		for(let i=0; i<index.length; i++) {
 			let plug = index[i]
@@ -73,7 +70,7 @@ window.onload = function() {
 				if(keywords == "") {
 					add = true;
 					break;
-				} else if(value.toLowerCase().indexOf(keywords.toLowerCase()) != -1) {
+				} else if(value.toString().toLowerCase().indexOf(keywords.toLowerCase()) != -1) {
 					add = true;
 					break;
 				}
@@ -109,33 +106,41 @@ window.onload = function() {
 			}
 			
 			if(add) {
-				$("#plugin-box").append(
-				"<div class=\"d-flex flex-column plugin "+plug.type.toLowerCase().replace(" ","-")+"\">"+
-					"<div class=\"row justify-content-between\">"+
-						"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index?from=pdnpi\">"+plug.title+"</a></strong>"+
-						"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>"+plug.release+"</i></span></span>"+
-						"<span class=\"text-muted author\"><strong>"+plug.author+"</strong></span>"+
-					"</div>"+
-					"<span class=\"desc\">"+
-						plug.desc+
-					"</span>"+
-					"<div class=\"row\">"+
-						"<span class=\"tag type\">"+plug.type+"</span>"+
-						"<span class=\"tag status\">"+plug.status+"</span>"+
-						"<span class=\"tag compat\">"+plug.compatibility+"</span>"+
-						"<span class=\"tag menu\">"+plug.menu+"</span>"+
-					"</div>"+
-				"</div>"
-				);
+				$("#plugin-"+plug.id).show();
+			} else {
+				$("#plugin-"+plug.id).attr("style", "display: none !important;");
 			}
 		}
-		$("#count").text($("#plugin-box").children().length+" / "+index.length);
+		$("#count").text($("#plugin-box").find(".plugin:visible").length+" / "+index.length);
 	}
 	$.ajax({
 		dataType: "json",
 		url: './index/plugin-index-2017-dec.min.json'
-	}).done((res) =>  {
-		window["pdnpi"] = res;
+	}).done((pdnpi) =>  {
+		window["pdnpi"] = pdnpi;
+		let index = pdnpi.plugin_index;
+		for(let i=0; i<index.length; i++) {
+			let plug = index[i]
+			plug["id"] = i;
+			$("#plugin-box").append(
+			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase().replace(" ","-")+"\">"+
+				"<div class=\"row justify-content-between\">"+
+					"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index?from=pdnpi\">"+plug.title+"</a></strong>"+
+					"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>"+plug.release+"</i></span></span>"+
+					"<span class=\"text-muted author\"><strong>"+plug.author+"</strong></span>"+
+				"</div>"+
+				"<span class=\"desc\">"+
+					plug.desc+
+				"</span>"+
+				"<div class=\"row\">"+
+					"<span class=\"tag type\">"+plug.type+"</span>"+
+					"<span class=\"tag status\">"+plug.status+"</span>"+
+					"<span class=\"tag compat\">"+plug.compatibility+"</span>"+
+					"<span class=\"tag menu\">"+plug.menu+"</span>"+
+				"</div>"+
+			"</div>"
+			);
+		}
 		updateListing();
 	}).fail((err) => {
 		console.log(err);

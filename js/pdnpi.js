@@ -163,10 +163,8 @@ window.onload = function() {
 			if(authors.indexOf(plug.author) == -1) {
 				authors.push(plug.author);
 			}
-			let status = plug.type.toLowerCase();
-			let type = plug.type.toLowerCase();
 			$("#plugin-box").append(
-			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+type+"\">"+
+			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase()+"\">"+
 				"<div class=\"row justify-content-between\">"+
 					"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></strong>"+
 					"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>"+plug.release+"</i></span></span>"+
@@ -176,8 +174,8 @@ window.onload = function() {
 					plug.desc+
 				"</span>"+
 				"<div class=\"row\">"+
-					"<span class=\"tag type "+type+"\">"+plug.type+"</span>"+
-					"<span class=\"tag status "+type+"\">"+plug.status+"</span>"+
+					"<span class=\"tag type\">"+plug.type+"</span>"+
+					"<span class=\"tag status\">"+plug.status+"</span>"+
 					"<span class=\"tag compat\">"+plug.compatibility+"</span>"+
 					"<span class=\"tag menu\">"+plug.menu+"</span>"+
 				"</div>"+

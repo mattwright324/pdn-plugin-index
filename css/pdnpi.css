@@ -6,7 +6,9 @@ body, html {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+}
+body {
+	padding-top: 56px;
 }
 footer {
 	background-color: rgb(230,230,230);
@@ -33,7 +35,6 @@ nav {
 	border-right: 1px dashed lightgray;
 }
 #infobox {
-	margin-top: 56px;
 	color: ivory;
 	background: #3d6594;
 	padding: 10px;

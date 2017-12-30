@@ -16,7 +16,7 @@
   "desc": "Library of algorithms used in various emulators (VirtualGB, Mame, DOSBox, SNES9x, ZSNES, etc,). Also known as Pixel Art Scaling Plugin.",
   "type": "Effect",
   "release": "03 Mar 2012",
-  "status": "Active",
+  "status": "New",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "2dImageFilter-r133.dll",
   "menu": "Effects > Tools"
@@ -82,7 +82,7 @@
   "desc": "Adds digital 'noise' to a selection. Included in the native 'Add Noise' effect. Note: forum thread no longer exists.",
   "type": "Effect",
   "release": "14 Sep 2007",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "3.5.10",
   "dlls": "N/A",
   "menu": "Effects > Noise"
@@ -489,7 +489,7 @@
   "desc": "Effect is now included in paint.net from version 3.07+",
   "type": "Effect",
   "release": "06 Feb 2007",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "Untested",
   "dlls": "Arrows.dll",
   "menu": "Effects > Render"
@@ -2469,7 +2469,7 @@
   "desc": "Enables DDS file loading & saving. Included paint.net 3.1+. Forum thread no longer exists.",
   "type": "Filetype",
   "release": "Unknown",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "3.5.10",
   "dlls": "N/A",
   "menu": "N/A"
@@ -2634,7 +2634,7 @@
   "desc": "The effects Bulge, Polar Inversion, Tile Reflection & Twist are now included paint.net as of version 2.70+",
   "type": "Effect",
   "release": "22 Mar 2006",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "Untested",
   "dlls": "N/A",
   "menu": "N/A"
@@ -3635,7 +3635,7 @@
   "desc": "Create, configure and color the Mandelbrot fractal. This effect is now Included in paint.net minus the colorization options (Effects > Render > Mandelbrot Fractal). This effect can be installed alongside the native version and found under Effects > Render > Fractal: Mandelbrot.",
   "type": "Effect",
   "release": "07 Sep 2007",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "Fractal.dll",
   "menu": "Effects > Render"
@@ -3646,7 +3646,7 @@
   "desc": "Creates copies of the base image, each shifted from the original position by a given amount. The copies are then averaged together. [topic=18811]Ed Harvey's Effects[/topic].",
   "type": "Effect",
   "release": "31 Dec 2006",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "Untested",
   "dlls": "Unknown",
   "menu": "Effects > Blurs"
@@ -3668,7 +3668,7 @@
   "desc": "This effect is now included in paint.net from version 3.07+. Forum thread no longer exists.",
   "type": "Effect",
   "release": "21 Aug 2007",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "3.5.10",
   "dlls": "N/A",
   "menu": "Effects > Distort"
@@ -3811,7 +3811,7 @@
   "desc": "Apply a glow effect to a given selection. Included paint.net 2.70+",
   "type": "Effect",
   "release": "16 Mar 2006",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "3.5.x, 4.0x",
   "dlls": "N/A",
   "menu": "Effects > Photo"
@@ -4482,7 +4482,7 @@
   "desc": "Converts image to inked sketch version. Included paint.net 3.10+",
   "type": "Effect",
   "release": "04 Apr 2007",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "3.5.10",
   "dlls": "InkSketch.dll",
   "menu": "Effects > Artistic"
@@ -6682,7 +6682,7 @@
   "desc": "Soften portraits to look more professional. Included paint.net 3.1+ as Effects > Photo > Soften Portrait (originally in Effects > Portrait).",
   "type": "Effect",
   "release": "04 Apr 2007",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "Untested",
   "dlls": "Unknown",
   "menu": "Effects > Photo"
@@ -6715,7 +6715,7 @@
   "desc": "Posterize is now built in to paint.net. Find it in the Adjustments menu.",
   "type": "Effect",
   "release": "10 Sep 2006",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "Untested",
   "dlls": "EdHarvey.Effects.dll",
   "menu": "N/A"
@@ -7232,7 +7232,7 @@
   "desc": "Reduces the noise in an image while maintaining detail. Included in paint.net v3.22+",
   "type": "Effect",
   "release": "15 Dec 2007",
-  "status": "Built In",
+  "status": "Integrated",
   "compatibility": "3.5.10",
   "dlls": "N/A",
   "menu": "N/A"

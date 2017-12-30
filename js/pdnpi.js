@@ -36,23 +36,26 @@ window.onload = function() {
 	
 	let anystatus = new CheckBox("#any-status");
 	let active = new CheckBox("#active");
+	let new_ = new CheckBox("#new");
 	let depreciated = new CheckBox("#depreciated");
 	let obsolete = new CheckBox("#obsolete");
 	let unsupported = new CheckBox("#unsupported");
-	let builtIn = new CheckBox("#built-in");
+	let integrated = new CheckBox("#integrated");
 	active.setSelected(true);
+	new_.setSelected(true);
 	depreciated.setSelected(true);
 	$("#any-status").change(function() {
 		if(anystatus.isSelected()) {
 			active.setSelected(false);
+			new_.setSelected(false);
 			depreciated.setSelected(false);
 			obsolete.setSelected(false);
 			unsupported.setSelected(false);
-			builtIn.setSelected(false);
+			integrated.setSelected(false);
 		}
 	});
-	$("#active,#depreciated,#obsolete,#unsupported,#built-in").change(function() {
-		if((active.isSelected() || depreciated.isSelected() || obsolete.isSelected() || unsupported.isSelected() || builtIn.isSelected()) && anystatus.isSelected()) {
+	$("#active,#new,#depreciated,#obsolete,#unsupported,#integrated").change(function() {
+		if((active.isSelected() || new_.isSelected() || depreciated.isSelected() || obsolete.isSelected() || unsupported.isSelected() || integrated.isSelected()) && anystatus.isSelected()) {
 			anystatus.setSelected(false);
 		}
 	});
@@ -99,18 +102,21 @@ window.onload = function() {
 			}
 			
 			if(!anytype.isSelected() && add) {
-				if(plug.type == "Effect" && !effect.isSelected()) add = false;
-				if(plug.type == "Adjustment" && !adjustment.isSelected()) add = false;
-				if(plug.type == "Filetype" && !filetype.isSelected()) add = false;
-				if(plug.type == "External Resource" && !external.isSelected()) add = false;
-				if(plug.type == "Plugin Pack" && !pluginPack.isSelected()) add = false;
+				add = false;
+				if(plug.type == "Effect" && effect.isSelected()) add = true;
+				if(plug.type == "Adjustment" && adjustment.isSelected()) add = true;
+				if(plug.type == "Filetype" && filetype.isSelected()) add = true;
+				if(plug.type == "External Resource" && external.isSelected()) add = true;
+				if(plug.type == "Plugin Pack" && pluginPack.isSelected()) add = true;
 			}
 			if(!anystatus.isSelected() && add) {
-				if(plug.status == "Active" && !active.isSelected()) add = false;
-				if(plug.status == "Depreciated" && !depreciated.isSelected()) add = false;
-				if(plug.status == "Obsolete" && !obsolete.isSelected()) add = false;
-				if(plug.status == "Unsupported" && !unsupported.isSelected()) add = false;
-				if(plug.status == "Built In" && !builtIn.isSelected()) add = false;
+				add = false;
+				if((plug.status == "Active" || plug.status == "New") && active.isSelected()) add = true;
+				if(plug.status == "New" && new_.isSelected()) add = true;
+				if(plug.status == "Depreciated" && depreciated.isSelected()) add = true;
+				if(plug.status == "Obsolete" && obsolete.isSelected()) add = true;
+				if(plug.status == "Unsupported" && unsupported.isSelected()) add = true;
+				if(plug.status == "Integrated" && integrated.isSelected()) add = true;
 			}
 			
 			if(add) {
@@ -157,8 +163,10 @@ window.onload = function() {
 			if(authors.indexOf(plug.author) == -1) {
 				authors.push(plug.author);
 			}
+			let status = plug.type.toLowerCase();
+			let type = plug.type.toLowerCase();
 			$("#plugin-box").append(
-			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase().replace(" ","-")+"\">"+
+			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+type+"\">"+
 				"<div class=\"row justify-content-between\">"+
 					"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></strong>"+
 					"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>"+plug.release+"</i></span></span>"+
@@ -168,8 +176,8 @@ window.onload = function() {
 					plug.desc+
 				"</span>"+
 				"<div class=\"row\">"+
-					"<span class=\"tag type\">"+plug.type+"</span>"+
-					"<span class=\"tag status\">"+plug.status+"</span>"+
+					"<span class=\"tag type "+type+"\">"+plug.type+"</span>"+
+					"<span class=\"tag status "+type+"\">"+plug.status+"</span>"+
 					"<span class=\"tag compat\">"+plug.compatibility+"</span>"+
 					"<span class=\"tag menu\">"+plug.menu+"</span>"+
 				"</div>"+

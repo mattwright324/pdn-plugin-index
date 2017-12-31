@@ -45,7 +45,7 @@ label	{
 	border-right: 1px dashed lightgray;
 	font-size: 90%;
 	line-height: 1.6em;
-	max-width: 20%;
+	max-width: 20% !important;
 }
 #infobox {
 	color: ivory;

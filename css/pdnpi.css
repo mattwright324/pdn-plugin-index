@@ -18,7 +18,7 @@ footer {
 nav {
 	border-top: 1px solid #a3a7a9;
 }
-h6	{
+#sidemenu > h6 {
 	margin-top: 0.75em !important;
 }
 custom-control	{ 
@@ -27,12 +27,17 @@ custom-control	{
 label	{
 	margin-bottom: 0 !important;
 }
-
+.selector {
+	padding-top: 10px;
+}
+.selector h6 {
+	margin-top: 3px;
+}
 #listing {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
-#listing .row {
+#listing .row,#sidemenu .row {
 	margin: 0;
 }
 #plugin-box {

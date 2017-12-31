@@ -26,13 +26,14 @@ nav {
 	margin: 0;
 }
 #plugin-box {
-	border: 1px solid light
+	border: 1px solid thin;
 	min-height: 90%;
 }
 #sidemenu {
 	padding-top: 15px;
 	background: linear-gradient(to left, rgba(127,127,127,0.05), transparent);
 	border-right: 1px dashed lightgray;
+	font-size: 90%
 }
 #infobox {
 	color: ivory;

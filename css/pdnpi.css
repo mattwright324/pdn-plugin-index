@@ -34,6 +34,7 @@ nav {
 	background: linear-gradient(to left, rgba(127,127,127,0.05), transparent);
 	border-right: 1px dashed lightgray;
 	font-size: 90%;
+	line-height: 1.6em;
 }
 #infobox {
 	color: ivory;

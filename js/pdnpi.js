@@ -152,7 +152,7 @@ window.onload = function() {
 	}
 	$.ajax({
 		dataType: "json",
-		url: './index/plugin-index-2017-dec.min.json'
+		url: './index/plugin-index.json'
 	}).done((pdnpi) =>  {
 		window["pdnpi"] = pdnpi;
 		window["authors"] = [];

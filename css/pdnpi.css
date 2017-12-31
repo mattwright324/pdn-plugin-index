@@ -31,7 +31,6 @@ label	{
 #listing {
 	padding-top: 15px;
 	padding-bottom: 15px;
-	max-width: 74% !important;
 }
 #listing .row {
 	margin: 0;
@@ -44,9 +43,19 @@ label	{
 	padding-top: 15px;
 	background: linear-gradient(to left, rgba(127,127,127,0.05), transparent);
 	border-right: 1px dashed lightgray;
-	font-size: 90%;
 	line-height: 1.6em;
-	max-width: 30% !important;
+}
+#sidemenu h6 {
+	padding-top: 5px;
+}
+#sidemenu .control {
+	zoom: 0.85;
+	-moz-transform: scale(0.85);
+}
+@media (min-width: 900px) {
+	#sidemenu {
+		max-width: 300px;
+	}
 }
 #infobox {
 	color: ivory;

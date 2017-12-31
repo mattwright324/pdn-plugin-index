@@ -7,7 +7,7 @@ title: Search the Paint.NET plugin index - PDNPI
 <nav style="background-color: #375476!important;" class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
 	<a class="navbar-brand" href="#">
 		<img src="img/icon.png" width="30" height="30" class="d-inline-block align-top"	/>
-		Paint.net Plugin Index
+		Paint.NET Plugin Index
 	</a>
 	<ul class="navbar-nav ml-auto">
 		<span class="navbar-text">
@@ -24,105 +24,100 @@ title: Search the Paint.NET plugin index - PDNPI
     </span>
 </div>
 <div id="content">
-	<div class="d-flex row">
+	<div class="d-flex row justify-content-center">
 		<div id="sidemenu" class="d-flex flex-column col-sm-4">
 			<h5>Search Options</h5>
-			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+			<div class="control input-group mb-2 mr-sm-2 mb-sm-0">
 				<input type="text" class="form-control" id="keywords" placeholder="Keywords" value="">
 			</div>
-			<br /><br />
 			<h6>Plugin Type</h6>
-			<label id="any-type" class="type-box custom-control selected custom-checkbox">
+			<label id="any-type" class="control type-box custom-control selected custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
-			  <span class="custom-control-description">All</span>
+			  <span class="custom-control-description">All Types</span>
 			</label>
-			<label id="effect" class="type-box custom-control custom-checkbox">
+			<label id="effect" class="control type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Effect</span>
 			</label>
-			<label id="adjustment" class="type-box custom-control custom-checkbox">
+			<label id="adjustment" class="control type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Adjustment</span>
 			</label>
-			<label id="filetype" class="type-box custom-control custom-checkbox">
+			<label id="filetype" class="control type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Filetype</span>
 			</label>
-			<label id="external"class="type-box custom-control custom-checkbox">
+			<label id="external"class="control type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">External Resource</span>
 			</label>
-			<label id="plugin-pack"class="type-box custom-control custom-checkbox">
+			<label id="plugin-pack"class="control type-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Plugin Pack</span>
 			</label>
-			<br>
 			<h6>Plugin Status</h6>
-			<label id="any-status" class="status-box custom-control custom-checkbox">
+			<label id="any-status" class="control status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
-			  <span class="custom-control-description">All</span>
+			  <span class="custom-control-description">All Statuses</span>
 			</label>
-			<label id="active" class="status-box custom-control custom-checkbox">
+			<label id="active" class="control status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Active</span>
 			</label>
-			<label id="new" class="status-box custom-control custom-checkbox">
+			<label id="new" class="control status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">New (Active)</span>
 			</label>
-			<label id="depreciated" class="status-box custom-control custom-checkbox">
+			<label id="depreciated" class="control status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Depreciated</span>
 			</label>
-			<label id="obsolete" class="status-box custom-control custom-checkbox">
+			<label id="obsolete" class="control status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Obsolete</span>
 			</label>
-			<label id="unsupported" class="status-box custom-control custom-checkbox">
+			<label id="unsupported" class="control status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Unsupported</span>
 			</label>
-			<label id="integrated" class="status-box custom-control custom-checkbox">
+			<label id="integrated" class="control status-box custom-control custom-checkbox">
 			  <input type="checkbox" class="custom-control-input">
 			  <span class="custom-control-indicator"></span>
 			  <span class="custom-control-description">Integrated</span>
 			</label>
-			<br>
+			<h6>Order</h6>
+			<select id="order" class="control custom-select">
+			  <option value="0" selected>By Title</option>
+			  <option value="1">By Release</option>
+			  <option value="2">By Author</option>
+			  <option value="3">By Menu</option>
+			</select>
+			<h6>Author</h6>
+			<select id="author" class="control custom-select">
+			  <option value="0" selected>All Authors</option>
+			</select>
 			<h6>Release</h6>
-			<select id="release" class="custom-select">
+			<select id="release" class="control custom-select">
 			  <option value="0" selected>Any Time</option>
 			  <option value="1">Past 6 Months</option>
 			  <option value="2">Past Year</option>
 			  <option value="3">Past 3 Years</option>
 			</select>
 			<br>
-			<h6>Order</h6>
-			<select id="order" class="custom-select">
-			  <option value="0" selected>By Title</option>
-			  <option value="1">By Release</option>
-			  <option value="2">By Author</option>
-			  <option value="3">By Menu</option>
-			</select>
-			<br>
-			<h6>Author</h6>
-			<select id="author" class="custom-select">
-			  <option value="0" selected>All Authors</option>
-			</select>
-			<br>
 		</div>
-		<div id="listing" class="d-flex flex-column col-sm-8">
+		<div id="listing" class="d-flex flex-column col-8 container-fluid">
 			<span class="row justify-content-between">
 				<h5>Plugin Listing</h5>
 				<span id="count"class="badge badge-default badge-pill">0</span>

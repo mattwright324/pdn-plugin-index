@@ -21,8 +21,11 @@ nav {
 
 custom-control	{ 
 	min-height: 1.4rem;
+}
+label	{
 	margin-bottom: 0.25em;
 }
+
 #listing {
 	padding-top: 15px;
 	padding-bottom: 15px;

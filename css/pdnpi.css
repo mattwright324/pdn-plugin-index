@@ -18,6 +18,10 @@ footer {
 nav {
 	border-top: 1px solid #a3a7a9;
 }
+
+label	{ 
+	margin-bottom: 0.25rem;
+}
 #listing {
 	padding-top: 15px;
 	padding-bottom: 15px;

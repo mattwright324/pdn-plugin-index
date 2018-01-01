@@ -12,6 +12,7 @@ CheckBox.prototype = {
 window.onload = function() {
 	let update = true;
 	let lastSort = 0;
+	let loading = $("#loading");
 	let anytype = new CheckBox("#any-type");
 	let effect = new CheckBox("#effect");
 	let adjustment = new CheckBox("#adjustment");
@@ -148,7 +149,7 @@ window.onload = function() {
 			}).appendTo("#plugin-box");
 			lastSort = order;
 		}
-		
+		loading.hide();
 	}
 	$.ajax({
 		dataType: "json",
@@ -191,8 +192,8 @@ window.onload = function() {
 			);
 		}
 		updateListing();
-		$("#sidemenu *").change(function(){update = true;});
-		$("#keywords").on('keyup',function(){update = true;});
+		$("#sidemenu *").change(function(){update = true;loading.show();});
+		$("#keywords").on('keyup',function(){update = true;loading.show();});
 		setInterval(function() {
 			if(update) {
 				console.log("update!");

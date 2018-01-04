@@ -145,25 +145,27 @@ label	{
 	margin-top: 1px;
 }
 .plugin .alt {
-	font-weight: 700;
+	font-weight: 500;
 }
 .plugin .tag-bar {
 	margin-top: 5px !important;
 }
 .tag {
 	cursor: default;
+	opacity: 0.6;
 }
 .tag.compat {
-	background-color: rgba(127,127,127,0.4);
+	background-color: rgb(127,127,127);
 }
 .tag.menu {
-	background-color: rgba(255,127,127,0.4);
+	background-color: rgb(255,127,127);
 }
 .tag.dll {
-    background-color: rgba(191,127,255,0.4);
+    background-color: rgb(191,127,255);
 }
 .tag:hover {
 	box-shadow: 1px 1px 3px grey;
+	opacity: 1;
 }
 
 /* Scroll to top */

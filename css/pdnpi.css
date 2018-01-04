@@ -59,7 +59,10 @@ label	{
 }
 @media (min-width: 900px) {
 	#sidemenu {
-		max-width: 300px;
+		max-width: 27%;
+	}
+	#listing {
+		min-width: 71%;
 	}
 }
 #infobox {

@@ -164,13 +164,10 @@ window.onload = function() {
 			if(authors.indexOf(plug.author) == -1) {
 				authors.push(plug.author);
             }
-
-            if (plug.alt_topic == undefined) {
-                nullalttopic = "";
-            }
-            else {
-                nullalttopic = " See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/" + plug.alt_topic + "-index\">" + " topic " + plug.alt_topic + "</a>";
-            }
+			let alt_topic = "";
+			if(plug.alt_topic) {
+				alt_topic = " <strong>See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.alt_topic+"-index\">"+" Topic "+plug.alt_topic+"</a></strong>";
+			}
 			$("#plugin-box").append(
 			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase()+"\">"+
 				"<div class=\"row justify-content-between\">"+
@@ -180,7 +177,7 @@ window.onload = function() {
 				"</div>"+
 				"<span class=\"desc\">"+
                 plug.desc +
-                nullalttopic+
+                alt_topic +
 				"</span>"+
 				"<div class=\"row\">"+
 					"<span class=\"tag type\">"+plug.type+"</span>"+

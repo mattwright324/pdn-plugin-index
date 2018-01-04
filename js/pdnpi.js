@@ -163,16 +163,24 @@ window.onload = function() {
 			plug["id"] = i;
 			if(authors.indexOf(plug.author) == -1) {
 				authors.push(plug.author);
-			}
+            }
+
+            if (plug.alt_topic == undefined) {
+                nullalttopic = "";
+            }
+            else {
+                nullalttopic = " See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/" + plug.alt_topic + "-index\">" + " topic " + plug.alt_topic + "</a>";
+            }
 			$("#plugin-box").append(
 			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase()+"\">"+
 				"<div class=\"row justify-content-between\">"+
-					"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></strong>"+
-					"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>"+plug.release+"</i></span></span>"+
-					"<span class=\"text-muted author\"><strong>"+plug.author+"</strong></span>"+
+				"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></strong>"+
+                "<span class=\"text-muted release\" style=\"margin-left:10px\"><i>" + plug.release + "</i></span></span>" +
+                "<span class=\"text-muted author\"><strong>"+plug.author+"</strong></span>"+
 				"</div>"+
 				"<span class=\"desc\">"+
-					plug.desc+
+                plug.desc +
+                nullalttopic+
 				"</span>"+
 				"<div class=\"row\">"+
 					"<span class=\"tag type\">"+plug.type+"</span>"+

@@ -113,6 +113,9 @@ label	{
 .tag.menu {
 	background-color: rgba(255,127,127,0.3);
 }
+.tag.dll {
+    background-color: rgba(191,127,255,0.3);
+}
 .plugin .author {
 	margin-right: 10px;
 }

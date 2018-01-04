@@ -178,7 +178,8 @@ window.onload = function() {
 					"<span class=\"tag type\">"+plug.type+"</span>"+
 					"<span class=\"tag status\">"+plug.status+"</span>"+
 					"<span class=\"tag compat\">"+plug.compatibility+"</span>"+
-					"<span class=\"tag menu\">"+plug.menu+"</span>"+
+                    "<span class=\"tag menu\">" + plug.menu + "</span>" +
+                    "<span class=\"tag dll\">" + plug.dlls + "</span>" +
 				"</div>"+
 			"</div>"
 			);

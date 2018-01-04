@@ -166,20 +166,22 @@ window.onload = function() {
             }
 			let alt_topic = "";
 			if(plug.alt_topic) {
-                alt_topic = " <strong>See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/" + plug.alt_topic +"-index\" title=\"Alternate Topic\">"+" Topic "+plug.alt_topic+"</a></strong>";
+				alt_topic = "See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/" + plug.alt_topic + "-index\" title=\"Alternate Topic\">"+" Topic "+plug.alt_topic+"</a>";
 			}
+			let type = plug.type.toLowerCase().replace(" ","-");
+			let status = plug.status.toLowerCase().replace(" ","-");
 			$("#plugin-box").append(
-			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase()+"\">"+
-				"<div class=\"row justify-content-between\">"+
-				"<span><strong><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></strong>"+
-                "<span class=\"text-muted release\" style=\"margin-left:10px\"><i>" + plug.release + "</i></span></span>" +
-                "<span class=\"text-muted author\"><strong>"+plug.author+"</strong></span>"+
+			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+type+" "+status+"\">"+
+				"<div id=\"title-bar\" class=\"row justify-content-between\">"+
+					"<span>"+
+						"<span class=\"title\"><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></span>"+
+						"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>" + plug.release + "</i></span>"+
+					"</span>" +
+					"<span class=\"author\">"+plug.author+"</span>"+
 				"</div>"+
-				"<span class=\"desc\">"+
-                plug.desc +
-                alt_topic +
-				"</span>"+
-				"<div class=\"row\">"+
+				"<span class=\"desc\">" + plug.desc + "</span>"+
+				"<span class=\"alt\">" + alt_topic + "</span>"+
+				"<div class=\"row tag-bar\">"+
 					"<span class=\"tag type\" title=\"Plugin Type\">"+plug.type+"</span>"+
 					"<span class=\"tag status\" title=\"Plugin Status\">"+plug.status+"</span>"+
 					"<span class=\"tag compat\" title=\"Compatibility\">"+plug.compatibility+"</span>"+

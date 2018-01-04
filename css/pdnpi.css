@@ -105,10 +105,19 @@ label	{
 	padding-left: 8px;
 	padding-right: 8px;
 }
+.plugin .tag:hover {
+    color: gray;
+}
 .plugin .desc {
 	padding: 4px;
 	background: rgb(250,250,250);
 	border-radius: 2px;
+}
+.tag.type {
+    background-color: rgba(159,180,242,0.3);
+}
+.tag.status {
+    background-color: rgba(142,192,242,0.3);
 }
 .tag.compat {
 	background-color: rgba(127,127,127,0.3);
@@ -118,6 +127,21 @@ label	{
 }
 .tag.dll {
     background-color: rgba(191,127,255,0.3);
+}
+.tag.type:hover {
+    background-color: rgba(110,144,239,0.3);
+}
+.tag.status:hover {
+    background-color: rgba(93,166,239,0.3);
+}
+.tag.compat:hover {
+    background-color: rgba(73,73,73,0.3);
+}
+.tag.menu:hover {
+    background-color: rgba(255,76,76,0.3);
+}
+.tag.dll:hover {
+    background-color: rgba(165,76,255,0.3);
 }
 .plugin .author {
 	margin-right: 10px;

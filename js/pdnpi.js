@@ -166,7 +166,7 @@ window.onload = function() {
             }
 			let alt_topic = "";
 			if(plug.alt_topic) {
-				alt_topic = " <strong>See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.alt_topic+"-index\">"+" Topic "+plug.alt_topic+"</a></strong>";
+                alt_topic = " <strong>See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/" + plug.alt_topic +"-index\" title=\"Alternate Topic\">"+" Topic "+plug.alt_topic+"</a></strong>";
 			}
 			$("#plugin-box").append(
 			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+plug.type.toLowerCase()+"\">"+
@@ -180,11 +180,11 @@ window.onload = function() {
                 alt_topic +
 				"</span>"+
 				"<div class=\"row\">"+
-					"<span class=\"tag type\">"+plug.type+"</span>"+
-					"<span class=\"tag status\">"+plug.status+"</span>"+
-					"<span class=\"tag compat\">"+plug.compatibility+"</span>"+
-                    "<span class=\"tag menu\">" + plug.menu + "</span>" +
-                    "<span class=\"tag dll\">" + plug.dlls + "</span>" +
+					"<span class=\"tag type\" title=\"Plugin Type\">"+plug.type+"</span>"+
+					"<span class=\"tag status\" title=\"Plugin Status\">"+plug.status+"</span>"+
+					"<span class=\"tag compat\" title=\"Compatibility\">"+plug.compatibility+"</span>"+
+                    "<span class=\"tag menu\" title=\"Menu Location\">" + plug.menu + "</span>" +
+                    "<span class=\"tag dll\" title=\"DLL(s)\">" + plug.dlls + "</span>" +
 				"</div>"+
 			"</div>"
 			);

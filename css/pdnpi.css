@@ -67,6 +67,17 @@ label	{
 		min-width: 71%;
 	}
 }
+#min-brand {
+	display: none;
+}
+@media (max-width: 480px) {
+	#brand-text {
+		display:none;
+	}
+	#min-brand {
+		display: inline;
+	}
+}
 #infobox {
 	color: ivory;
 	background: #3d6594;

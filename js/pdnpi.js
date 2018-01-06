@@ -177,7 +177,7 @@ window.onload = function() {
 						"<span class=\"title\"><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></span>"+
 						"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>" + plug.release + "</i></span>"+
 					"</span>" +
-                "<span class=\"author\"><a target=\"_blank\" href=\"https://forums.getpaint.net/profile/" + plug.author_id + "-" + plug.author.replace(/ /, "-")+ "\" title=\"view " + plug.author + "\'s profile\">"+plug.author+"</a></span>"+
+                "<span class=\"author\"><a target=\"_blank\" href=\"https://forums.getpaint.net/profile/" + plug.author_id + "-" + plug.author.replace(/[^\w]+/g, "-").toLowerCase()+ "\" title=\"view " + plug.author + "\'s profile\">"+plug.author+"</a></span>"+
 				"</div>"+
 				"<span class=\"desc\">" + plug.desc + "</span>"+
 				"<span class=\"alt\">" + alt_topic + "</span>"+

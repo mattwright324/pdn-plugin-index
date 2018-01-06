@@ -134,7 +134,7 @@ label	{
 	font-size: 0.9em;
 	font-weight: 200;
 }
-.plugin .author {
+.plugin .author a {
 	font-weight: 600;
 	margin-right: 10px;
 	color: rgb(60,60,60);

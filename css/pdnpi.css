@@ -149,6 +149,7 @@ label	{
 	margin-right: 5px;
 	padding-left: 8px;
 	padding-right: 8px;
+    margin-bottom: 0.25em;
 }
 .plugin .desc {
 	font-weight: 500;

@@ -180,6 +180,25 @@ label	{
 	opacity: 1;
 }
 
+/* loading indicator */
+#loading {
+	width: 30px;
+	height: 30px;
+}
+.loader {
+	border: 5px solid rgb(165,243,243);
+	border-top: 5px solid rgb(127,165,165);
+	border-right: 5px solid rgb(40,127,127);
+	border-radius: 80%;
+	width: 25px;
+	height: 25px;
+	animation: spin 1.0s linear infinite;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
 /* Scroll to top */
 #scroll {
     position:fixed;

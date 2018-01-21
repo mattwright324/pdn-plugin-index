@@ -149,7 +149,7 @@ window.onload = function() {
 			}).appendTo("#plugin-box");
 			lastSort = order;
 		}
-        loading.hide();
+        loading.fadeOut();
 	}
 	$.ajax({
 		dataType: "json",

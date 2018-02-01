@@ -65,6 +65,7 @@ window.onload = function() {
 		let keywords = $("#keywords").val();
 		let release = $("#release").find(":selected").val();
 		let author = $("#author").find(":selected").val();
+		let menu = $("#menu-list").find(":selected").val();
 		let index = pdnpi.plugin_index;
 		for(let i=0; i<index.length; i++) {
 			let plug = index[i]
@@ -98,6 +99,13 @@ window.onload = function() {
 			if(author == 1 && add) {
 				a = $("#author").find(":selected").text();
 				if(plug.author != a) {
+					add = false;
+				}
+			}
+			
+			if(menu == 1 && add) {
+				m = $("#menu-list").find(":selected").text();
+				if(plug.menu != m) {
 					add = false;
 				}
 			}
@@ -157,12 +165,16 @@ window.onload = function() {
 	}).done((pdnpi) =>  {
 		window["pdnpi"] = pdnpi;
 		window["authors"] = [];
+		window["menus"] = [];
 		let index = pdnpi.plugin_index;
 		for(let i=0; i<index.length; i++) {
 			let plug = index[i];
 			plug["id"] = i;
 			if(authors.indexOf(plug.author) == -1) {
 				authors.push(plug.author);
+            }
+			if(menus.indexOf(plug.menu) == -1) {
+				menus.push(plug.menu);
             }
 			let alt_topic = "";
 			if(plug.alt_topic) {
@@ -197,6 +209,14 @@ window.onload = function() {
 		for(let i=0; i<authors.length; i++) {
 			$("#author").append(
 			"<option value=\"1\">"+authors[i]+"</option>"
+			);
+		}
+		menus.sort(function (a, b) {
+			return a.toLowerCase().localeCompare(b.toLowerCase());
+		});
+		for(let i=0; i<menus.length; i++) {
+			$("#menu-list").append(
+			"<option value=\"1\">"+menus[i]+"</option>"
 			);
 		}
 		updateListing();

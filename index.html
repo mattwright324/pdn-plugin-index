@@ -10,7 +10,7 @@ layout: null
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="keywords" content="paint.net plugin index,paint.net plugins,paint.net plugin list,plugin search,plugin finder" />
 		<link rel="icon" href="img/icon.png">
-		<link rel="stylesheet" href="css/pdnpi.css?v=1.65" />
+		<link rel="stylesheet" href="css/pdnpi.css?v=1.66" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
@@ -137,6 +137,12 @@ layout: null
 						</select>
 					</div>
 					<div class="selector row justify-content-between">
+						<h6>Menu</h6>
+						<select id="menu-list" class="control custom-select">
+						  <option value="0" selected>All Menus</option>
+						</select>
+					</div>
+					<div class="selector row justify-content-between">
 						<h6>Release</h6>
 						<select id="release" class="control custom-select">
 						  <option value="0" selected>Any Time</option>
@@ -145,7 +151,7 @@ layout: null
 						  <option value="3">Past 3 Years</option>
 						</select>
 					</div>
-					<br>
+					<span style="margin-bottom:30px;"></span>
 				</div>
 				<div id="listing" class="d-flex flex-column col-sm-8 flex-grow">
 					<span class="row justify-content-between">

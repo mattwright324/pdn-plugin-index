@@ -65,7 +65,7 @@ $(document).ready(function() {
 		'<div id="plugin-'+id+'" class="d-flex flex-column plugin '+this.type+' '+this.status+'">'+
 			'<div id="title-bar" class="row justify-content-between">'+
 				'<span>'+
-					'<span class="title"><a target="_blank" href="https://forums.getpaint.net/topic/"+plug.topic_id+"-index">'+this.data.title+'</a></span>'+
+					'<span class="title"><a target="_blank" href="https://forums.getpaint.net/topic/'+this.data.topic_id+'-index">'+this.data.title+'</a></span>'+
 					'<span class="text-muted release" style="margin-left:10px\"><i>'+this.data.release+'</i></span>'+
 				'</span>'+
 			'<span class="author"><a target="_blank" href="https://forums.getpaint.net/profile/'+this.data.author_id+'-'+this.author_url+'" title="View '+this.data.author+'\'s profile">'+this.data.author+'</a></span>'+

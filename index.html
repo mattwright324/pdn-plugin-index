@@ -10,13 +10,13 @@ layout: null
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="keywords" content="paint.net plugin index,paint.net plugins,paint.net plugin list,plugin search,plugin finder" />
 		<link rel="icon" href="img/icon.png">
-		<link rel="stylesheet" href="css/pdnpi.css?v=1.66" />
+		<link rel="stylesheet" href="css/pdnpi.css?v=1.7" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.js" type="text/javascript"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-		<script src="js/pdnpi.js?v=1.68" type="text/javascript" ></script>
+		<script src="js/pdnpi.js?v=1.7" type="text/javascript" ></script>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100434147-4"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
@@ -40,9 +40,9 @@ layout: null
 			</ul>
 		</nav>
 		<div id="infobox" class="d-flex flex-column">
-		<span>
-				This application simplifies locating paint.net plugins by searching the Plugin Index. 
-				The app was originally built by Matthew Wright (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>) and is  
+			<span>
+				This application simplifies locating Paint.NET plugins by searching the Plugin Index. 
+				This app was originally built by Matthew Wright (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>) and is  
 				maintained by he and Scott Stringer (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>). 
 				Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the sidebar to enter search terms and filter the results.
 			</span>
@@ -105,7 +105,7 @@ layout: null
 					<label id="new" class="control status-box custom-control custom-checkbox">
 					  <input type="checkbox" class="custom-control-input">
 					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">New (Active)</span>
+					  <span class="custom-control-description">Active (New)</span>
 					</label>
 					<label id="depreciated" class="control status-box custom-control custom-checkbox">
 					  <input type="checkbox" class="custom-control-input">
@@ -157,7 +157,7 @@ layout: null
 					<span class="row justify-content-between">
 						<h5>Plugin Listing</h5>
 						<div id="loading"><div class="loader"></div></div> 
-						<span id="count" class="badge badge-default badge-pill">0</span>
+						<span id="count" class="badge badge-default badge-pill">0 / 0</span>
 					</span>
 					<div id="plugin-box" class="d-flex flex-column">
 					</div>

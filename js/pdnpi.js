@@ -9,33 +9,37 @@ CheckBox.prototype = {
 		return this.element.is(":checked");
 	}
 }
-window.onload = function() {
-	let update = true;
-	let lastSort = 0;
-    let loading = $("#loading");
-	let anytype = new CheckBox("#any-type");
+
+// CheckBox selection and deselection behavior.
+function cb(allCb, cbs) {
+	allCb.element.change(function(){
+		if(allCb.isSelected()) {
+			cbs.forEach(checkBox => checkBox.setSelected(false));
+		}
+	});
+	cbs.forEach(checkBox => checkBox.element.change(function() {
+		if(checkBox.isSelected()) {
+			allCb.setSelected(false);
+		}
+	}));
+}
+
+$(document).ready(function() {
+	let keywords = $("#keywords");
+	let release = $("#release");
+	let author = $("#author");
+	let menu = $("#menu-list");
+	
+	let anyType = new CheckBox("#any-type");
 	let effect = new CheckBox("#effect");
 	let adjustment = new CheckBox("#adjustment");
-	let filetype = new CheckBox("#filetype");
+	let fileType = new CheckBox("#filetype");
 	let external = new CheckBox("#external");
 	let pluginPack = new CheckBox("#plugin-pack");
-	anytype.setSelected(true);
-	$("#any-type").change(function() {
-		if(anytype.isSelected()) {
-			effect.setSelected(false);
-			adjustment.setSelected(false);
-			filetype.setSelected(false);
-			external.setSelected(false);
-			pluginPack.setSelected(false);
-		}
-	});
-	$("#effect,#adjustment,#filetype,#external,#plugin-pack").change(function() {
-		if((effect.isSelected() || adjustment.isSelected() || filetype.isSelected() || external.isSelected() || pluginPack.isSelected()) && anytype.isSelected()) {
-			anytype.setSelected(false);
-		}
-	});
+	anyType.setSelected(true);
+	cb(anyType, [effect,adjustment,fileType,external,pluginPack]);
 	
-	let anystatus = new CheckBox("#any-status");
+	let anyStatus = new CheckBox("#any-status");
 	let active = new CheckBox("#active");
 	let new_ = new CheckBox("#new");
 	let depreciated = new CheckBox("#depreciated");
@@ -45,206 +49,205 @@ window.onload = function() {
 	active.setSelected(true);
 	new_.setSelected(true);
 	depreciated.setSelected(true);
-	$("#any-status").change(function() {
-		if(anystatus.isSelected()) {
-			active.setSelected(false);
-			new_.setSelected(false);
-			depreciated.setSelected(false);
-			obsolete.setSelected(false);
-			unsupported.setSelected(false);
-			integrated.setSelected(false);
-		}
-	});
-	$("#active,#new,#depreciated,#obsolete,#unsupported,#integrated").change(function() {
-		if((active.isSelected() || new_.isSelected() || depreciated.isSelected() || obsolete.isSelected() || unsupported.isSelected() || integrated.isSelected()) && anystatus.isSelected()) {
-			anystatus.setSelected(false);
-		}
-	});
+	cb(anyStatus, [active,new_,depreciated,obsolete,unsupported,integrated]);
 	
-	function updateListing() {
-		let keywords = $("#keywords").val();
-		let release = $("#release").find(":selected").val();
-		let author = $("#author").find(":selected").val();
-		let menu = $("#menu-list").find(":selected").val();
-		let index = pdnpi.plugin_index;
-		for(let i=0; i<index.length; i++) {
-			let plug = index[i]
-			
-			let add = false;
-			for(key in plug) {
-				let value = plug[key];
-				if(keywords == "") {
-					add = true;
-					break;
-				} else if(value.toString().toLowerCase().indexOf(keywords.toLowerCase()) != -1) {
-					add = true;
-					break;
-				}
-			};
-			
-			if(release > 0 && add) {
-				add = false;
-				let now = new Date();
-				let date = new Date(plug.release);
-				let diff = now - date;
-				if(release == 1 && diff <= (1000*60*60*24*30*6)) {
-					add = true;
-				} else if(release == 2 && diff <= (1000*60*60*24*30*12)) {
-					add = true;
-				} else if(release == 3 && diff <= (1000*60*60*24*30*12*3)) {
-					add = true;
-				}
-			}
-			
-			if(author == 1 && add) {
-				a = $("#author").find(":selected").text();
-				if(plug.author != a) {
-					add = false;
-				}
-			}
-			
-			if(menu == 1 && add) {
-				m = $("#menu-list").find(":selected").text();
-				if(plug.menu != m) {
-					add = false;
-				}
-			}
-			
-			if(!anytype.isSelected() && add) {
-				add = false;
-				if(plug.type == "Effect" && effect.isSelected()) add = true;
-				if(plug.type == "Adjustment" && adjustment.isSelected()) add = true;
-				if(plug.type == "Filetype" && filetype.isSelected()) add = true;
-				if(plug.type == "External Resource" && external.isSelected()) add = true;
-				if(plug.type == "Plugin Pack" && pluginPack.isSelected()) add = true;
-			}
-			if(!anystatus.isSelected() && add) {
-				add = false;
-				if((plug.status == "Active" || plug.status == "New") && active.isSelected()) add = true;
-				if(plug.status == "New" && new_.isSelected()) add = true;
-				if(plug.status == "Depreciated" && depreciated.isSelected()) add = true;
-				if(plug.status == "Obsolete" && obsolete.isSelected()) add = true;
-				if(plug.status == "Unsupported" && unsupported.isSelected()) add = true;
-				if(plug.status == "Integrated" && integrated.isSelected()) add = true;
-			}
-			
-			if(add) {
-				$("#plugin-"+plug.id).show();
-			} else {
-				$("#plugin-"+plug.id).attr("style", "display: none !important;");
-			}
-		}
-		$("#count").text($("#plugin-box").find(".plugin:visible").length+" / "+index.length);
-		let order = $("#order").find(":selected").val();
-		if(lastSort != order) {
-			$("#plugin-box").find(".plugin").sort(function(a,b){
-				let ca, cb;
-				if(order == 0) {
-					ca = $(a).find("a").text();
-					cb = $(b).find("a").text();
-				} else if(order == 1) {
-					ca = new Date($(a).find(".release").text());
-					cb = new Date($(b).find(".release").text());
-					return (ca < cb) ? 1 : (ca > cb) ? -1 : 0; // Return newest first
-				} else if(order == 2) {
-					ca = $(a).find(".author").text();
-					cb = $(b).find(".author").text();
-				} else if(order == 3) {
-					ca = $(a).find(".menu").text();
-					cb = $(b).find(".menu").text();
-				}
-				return (ca < cb) ? -1 : (ca > cb) ? 1 : 0;
-			}).appendTo("#plugin-box");
-			lastSort = order;
-		}
-        loading.fadeOut();
+	let pluginBox = $("#plugin-box");
+	let loading = $("#loading");
+	
+	// Builds and controls a plugin in the listing.
+	let Plugin = function(data, id) {
+		this.data = data;
+		this.type = this.data.type.toLowerCase().replace(" ","-");
+		this.status = this.data.status.toLowerCase().replace(" ","-");
+		this.author_url = this.data.author.replace(/[^\w]+/g, "-").toLowerCase();
+		this.alt_topic = (this.data.alt_topic ? 'See also: <a target="_blank" href="https://forums.getpaint.net/topic/'+this.data.alt_topic+'-index" title="Alternate Topic"> Topic '+this.data.alt_topic+'</a>' : '');
+		this.html = 
+		'<div id="plugin-'+id+'" class="d-flex flex-column plugin '+this.type+' '+this.status+'">'+
+			'<div id="title-bar" class="row justify-content-between">'+
+				'<span>'+
+					'<span class="title"><a target="_blank" href="https://forums.getpaint.net/topic/"+plug.topic_id+"-index">'+this.data.title+'</a></span>'+
+					'<span class="text-muted release" style="margin-left:10px\"><i>'+this.data.release+'</i></span>'+
+				'</span>'+
+			'<span class="author"><a target="_blank" href="https://forums.getpaint.net/profile/'+this.data.author_id+'-'+this.author_url+'" title="View '+this.data.author+'\'s profile">'+this.data.author+'</a></span>'+
+			'</div>'+
+			'<span class="desc">'+this.data.desc+'</span>'+
+			'<span class="alt">'+this.alt_topic+'</span>'+
+			'<div class="row tag-bar">'+
+				'<span class="tag type" title="Plugin Type">'+this.data.type+'</span>'+
+				'<span class="tag status" title="Plugin Status">'+this.data.status+'</span>'+
+				'<span class="tag compat" title="Compatibility">'+this.data.compatibility+'</span>'+
+				'<span class="tag menu" title="Menu Location">'+this.data.menu+'</span>'+
+				'<span class="tag dll" title="DLL(s)">'+this.data.dlls+'</span>'+
+			'</div>'+
+		'</div>';
+		pluginBox.append(this.html);
+		this.element = $("#plugin-"+id);
 	}
+	Plugin.prototype = {
+		show: function(){this.element.show()},
+		hide: function(){this.element.attr("style", "display: none !important;")}
+	}
+	
 	$.ajax({
-		dataType: "json",
+		dataType: 'json',
 		url: './index/plugin-index.json'
 	}).done((pdnpi) =>  {
 		window["pdnpi"] = pdnpi;
-		window["authors"] = [];
-		window["menus"] = [];
-		let index = pdnpi.plugin_index;
-		for(let i=0; i<index.length; i++) {
-			let plug = index[i];
-			plug["id"] = i;
-			if(authors.indexOf(plug.author) == -1) {
-				authors.push(plug.author);
-            }
-			if(menus.indexOf(plug.menu) == -1) {
-				menus.push(plug.menu);
-            }
-			let alt_topic = "";
-			if(plug.alt_topic) {
-				alt_topic = "See also: <a target=\"_blank\" href=\"https://forums.getpaint.net/topic/" + plug.alt_topic + "-index\" title=\"Alternate Topic\">"+" Topic "+plug.alt_topic+"</a>";
+		
+		pdnpi.plugins = []; // List of all Plugin elements.
+		pdnpi.authors = []; // List of unique authors.
+		pdnpi.menus = [];   // List of unique menu locations.
+		
+		let lastSort = 0;
+		let updateListing = function() {
+			let shouldDisplay = function(plugin) {
+				let keywords = $("#keywords").val();
+				if(keywords != "") {
+					let h = true;
+					for(key in plugin.data) {
+						if(plugin.data[key].toString().toLowerCase().indexOf(keywords.toLowerCase()) != -1) {
+							h = false;
+						}
+					}
+					if(h) return false;
+				}
+				
+				let release = $("#release").find(":selected").val();
+				let now = new Date();
+				let date = new Date(plugin.data.release);
+				let diff = now - date;
+				if(release == 1 && diff > (1000*60*60*24*30*6)) {
+					return false;
+				} else if(release == 2 && diff > (1000*60*60*24*30*12)) {
+					return false;
+				} else if(release == 3 && diff > (1000*60*60*24*30*12*3)) {
+					return false;
+				}
+				
+				let author = $("#author").find(":selected").val();
+				if(author == 1) {
+					if(plugin.data.author != $("#author").find(":selected").text()) {
+						return false;
+					}
+				}
+				
+				let menu = $("#menu-list").find(":selected").val();
+				if(menu == 1) {
+					if(plugin.data.menu != $("#menu-list").find(":selected").text()) {
+						return false;
+					}
+				}
+				
+				if(!anyType.isSelected()) {
+					let h = true;
+					let type = plugin.data.type;
+					if(type == "Effect" && effect.isSelected()) h = false;
+					if(type == "Adjustment" && adjustment.isSelected()) h = false;
+					if(type == "Filetype" && fileType.isSelected()) h = false;
+					if(type == "External Resource" && external.isSelected()) h = false;
+					if(type == "Plugin Pack" && pluginPack.isSelected()) h = false;
+					if(h) return false;
+				}
+				
+				if(!anyStatus.isSelected()) {
+					let h = true;
+					let status = plugin.data.status;
+					if((status == "Active" || status == "New") && active.isSelected()) h = false;
+					if(status == "New" && new_.isSelected()) h = false;
+					if(status == "Depreciated" && depreciated.isSelected()) h = false;
+					if(status == "Obsolete" && obsolete.isSelected()) h = false;
+					if(status == "Unsupported" && unsupported.isSelected()) h = false;
+					if(status == "Integrated" && integrated.isSelected()) h = false;
+					if(h) return false;
+				}
+				return true;
 			}
-			let type = plug.type.toLowerCase().replace(" ","-");
-			let status = plug.status.toLowerCase().replace(" ","-");
-			$("#plugin-box").append(
-			"<div id=\"plugin-"+i+"\" class=\"d-flex flex-column plugin "+type+" "+status+"\">"+
-				"<div id=\"title-bar\" class=\"row justify-content-between\">"+
-					"<span>"+
-						"<span class=\"title\"><a target=\"_blank\" href=\"https://forums.getpaint.net/topic/"+plug.topic_id+"-index\">"+plug.title+"</a></span>"+
-						"<span class=\"text-muted release\" style=\"margin-left:10px\"><i>" + plug.release + "</i></span>"+
-					"</span>" +
-                "<span class=\"author\"><a target=\"_blank\" href=\"https://forums.getpaint.net/profile/" + plug.author_id + "-" + plug.author.replace(/[^\w]+/g, "-").toLowerCase()+ "\" title=\"view " + plug.author + "\'s profile\">"+plug.author+"</a></span>"+
-				"</div>"+
-				"<span class=\"desc\">" + plug.desc + "</span>"+
-				"<span class=\"alt\">" + alt_topic + "</span>"+
-				"<div class=\"row tag-bar\">"+
-					"<span class=\"tag type\" title=\"Plugin Type\">"+plug.type+"</span>"+
-					"<span class=\"tag status\" title=\"Plugin Status\">"+plug.status+"</span>"+
-					"<span class=\"tag compat\" title=\"Compatibility\">"+plug.compatibility+"</span>"+
-                    "<span class=\"tag menu\" title=\"Menu Location\">" + plug.menu + "</span>" +
-                    "<span class=\"tag dll\" title=\"DLL(s)\">" + plug.dlls + "</span>" +
-				"</div>"+
-			"</div>"
-			);
+			
+			let order = $("#order").find(":selected").val();
+			if(lastSort != order) {
+				$("#plugin-box").find(".plugin").sort(function(a,b){
+					let ca, cb;
+					if(order == 0) {
+						ca = $(a).find("a").text();
+						cb = $(b).find("a").text();
+					} else if(order == 1) {
+						ca = new Date($(a).find(".release").text());
+						cb = new Date($(b).find(".release").text());
+						return (ca < cb) ? 1 : (ca > cb) ? -1 : 0; // Return newest first
+					} else if(order == 2) {
+						ca = $(a).find(".author").text();
+						cb = $(b).find(".author").text();
+					} else if(order == 3) {
+						ca = $(a).find(".menu").text();
+						cb = $(b).find(".menu").text();
+					}
+					return (ca < cb) ? -1 : (ca > cb) ? 1 : 0;
+				}).appendTo("#plugin-box");
+				lastSort = order;
+			}
+			
+			pdnpi.plugins.forEach(plugin => {
+				if(shouldDisplay(plugin)) {
+					plugin.show();
+				} else {
+					plugin.hide();
+				}
+			});
+			
+			$("#count").text($("#plugin-box").find(".plugin:visible").length+" / "+pdnpi.plugins.length);
+			loading.fadeOut();
+			console.log("Updated listing.");
 		}
-		authors.sort(function (a, b) {
-			return a.toLowerCase().localeCompare(b.toLowerCase());
+		
+		let id = 0;
+		pdnpi.plugin_index.forEach(data => {
+			let plugin = new Plugin(data, id++);
+			if(pdnpi.authors.indexOf(plugin.data.author) == -1) {
+				pdnpi.authors.push(plugin.data.author);
+            }
+			if(pdnpi.menus.indexOf(plugin.data.menu) == -1) {
+				pdnpi.menus.push(plugin.data.menu);
+            }
+			pdnpi.plugins.push(plugin);
 		});
-		for(let i=0; i<authors.length; i++) {
-			$("#author").append(
-			"<option value=\"1\">"+authors[i]+"</option>"
-			);
-		}
-		menus.sort(function (a, b) {
+		
+		let sortAlpha = function (a, b) {
 			return a.toLowerCase().localeCompare(b.toLowerCase());
-		});
-		for(let i=0; i<menus.length; i++) {
-			$("#menu-list").append(
-			"<option value=\"1\">"+menus[i]+"</option>"
-			);
+		};
+		pdnpi.authors.sort(sortAlpha);
+		for(let i=0; i<pdnpi.authors.length; i++) {
+			$("#author").append('<option value="1">'+pdnpi.authors[i]+'</option>');
 		}
-		updateListing();
-        $("#sidemenu *").change(function(){update = true;loading.show();});
-		$("#keywords").on('keyup',function(){update = true;loading.show();});
-		setInterval(function() {
-			if(update) {
-				console.log("update!");
+		pdnpi.menus.sort(sortAlpha);
+		for(let i=0; i<pdnpi.menus.length; i++) {
+			$("#menu-list").append('<option value="1">'+pdnpi.menus[i]+'</option>');
+		}
+		
+		function cu() {
+			loading.show();
+			setTimeout(()=>{
+				console.log("Updating...");
 				updateListing();
-				update = false;
-			}
-		},250);
-	}).fail((err) => {
-		console.log(err);
+			},5);
+		}
+		
+		$("#sidemenu *").change(cu);
+		$("#keywords").on('keyup',cu);
+		cu();
+	}).fail((error) => {
+		console.log("Index file failed to load.");
 	});
-}
-
-// Scroll to top
-$(document).ready(function(){ 
-    $(window).scroll(function(){ 
-        if ($(this).scrollTop() > 100) { 
-            $('#scroll').fadeIn(); 
-        } else { 
-            $('#scroll').fadeOut(); 
-        } 
-    }); 
-    $('#scroll').click(function(){ 
-        $("html, body").animate({ scrollTop: 0 }, 600); 
-        return false; 
-    }); 
+	
+	// Scroll to top of page.
+	$(window).scroll(function(){ 
+    	if ($(this).scrollTop() > 100) { 
+			$('#scroll').fadeIn(); 
+		} else { 
+			$('#scroll').fadeOut(); 
+		} 
+	}); 
+	$('#scroll').click(function(){ 
+		$("html, body").animate({ scrollTop: 0 }, 600); 
+		return false; 
+	}); 
 });

@@ -56,8 +56,7 @@ label	{
 	padding-top: 5px;
 }
 #sidemenu .control {
-	zoom: 0.85;
-	-moz-transform: scale(0.85);
+	font-size: 0.85em;
 }
 @media (min-width: 900px) {
 	#sidemenu {
@@ -183,7 +182,7 @@ label	{
 /* loading indicator */
 #loading {
     position: absolute;
-    width: 100%;
+    width: 98%;
     height: 96%;
     background: rgba(127,127,127,0.25);
     z-index: 5;

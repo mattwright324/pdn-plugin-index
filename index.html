@@ -16,7 +16,7 @@ layout: null
 		<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script async src="js/popper.min.js" type="text/javascript"></script>
 		<script async src="js/bootstrap.min.js"  type="text/javascript"></script>
-		<script async src="js/pdnpi.js?v=1.71" type="text/javascript" ></script>
+		<script async src="js/pdnpi.js?v=2.0" type="text/javascript" ></script>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100434147-4"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
@@ -160,6 +160,34 @@ layout: null
 						<span id="count" class="badge badge-default badge-pill">0</span>
 					</span>
 					<div id="plugin-box" class="d-flex flex-column">
+					{% assign i = 0 %}
+					{% assign plugins = site.data.plugin-index.plugin_index | sort_natural: 'title' %}
+					{% for plugin in plugins %}
+						{% assign type_class = plugin.type | downcase | replace: ' ', '-' %}
+						{% assign status_class = plugin.status | downcase | replace: ' ', '-' %}
+						{% assign author_name_url = plugin.author | downcase | url_encode %}
+						<div id="plugin-{{i}}" data-id="{{plugin.topic_id}}" class="d-flex flex-column plugin {{ type_class }} {{ status_class }}">
+							<div id="title-bar" class="row justify-content-between">
+								<span>
+									<span class="title"><a target="_blank" href="https://forums.getpaint.net/topic/{{ plugin.topic_id }}-index">{{ plugin.title }}</a></span>
+									<span class="text-muted release" style="margin-left:10px\"><i>{{ plugin.release }}</i></span>
+								</span>
+							<span class="author" data-id="{{plugin.author_id}}"><a target="_blank" href="https://forums.getpaint.net/profile/{{ plugin.author_id }}-{{ author_name_url }}" title="View {{ plugin.author }}\s profile">{{ plugin.author }}</a></span>
+							</div>
+							<span class="desc">{{ plugin.desc }}</span>
+							{% if plugin.alt_topic %}
+								<span class="alt" data-id="{{plugin.alt_topic}}">See also: <a target="_blank" href="https://forums.getpaint.net/topic/{{ plugin.alt_topic }}-index" title="Alternative Topic">#{{ plugin.alt_topic }}</a></span>
+							{% endif %}
+							<div class="row tag-bar">
+								<span class="tag type" title="Plugin Type">{{ plugin.type }}</span>
+								<span class="tag status" title="Plugin Status">{{ plugin.status }}</span>
+								<span class="tag compat" title="Compatibility">{{ plugin.compatibility }}</span>
+								<span class="tag menu" title="Menu Location">{{ plugin.menu }}</span>
+								<span class="tag dll" title="DLL(s)">{{ plugin.dlls }}</span>
+							</div>
+						</div>
+						{% assign i = i | plus:1 %}
+					{% endfor %}
 					</div>
 				</div>
 			</div>

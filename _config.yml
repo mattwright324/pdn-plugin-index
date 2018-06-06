@@ -1,6 +1,2 @@
 encoding: UTF-8
-title: Pyramidref
 data_dir: index
-sass:
-    style: :compressed
-    sass_dir: _scss

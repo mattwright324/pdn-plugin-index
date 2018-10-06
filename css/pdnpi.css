@@ -23,9 +23,6 @@ nav {
 #sidemenu > h6 {
 	margin-top: 0.75em !important;
 }
-custom-control	{ 
-	min-height: 1.4em !important;
-}
 label	{
 	margin-bottom: 0 !important;
 }
@@ -103,10 +100,9 @@ label	{
 	height: 20px;
 }
 .plugin {
-	padding: 4px;
 	font-size: 0.8em;
 	border-top: 1px solid lightgray;
-	padding-bottom: 8px;
+	padding: 4px 4px 8px;
 	margin-bottom: 2px;
 }
 /* Context colors like PDF? */
@@ -234,4 +230,7 @@ label	{
     background-color:#e74c3c;
     opacity:1;filter:"alpha(opacity=100)";
     -ms-filter:"alpha(opacity=100)";
+}
+release {
+	margin-left: 10px;
 }

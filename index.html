@@ -1,22 +1,26 @@
 ---
-layout: null
+layout   : compress
+title_sm : PDNPI
+title_lg : Paint.NET Plugin Index
+subtitle : Search the Paint.NET plugin index
+revision : 1 October 2018
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Search the Paint.NET plugin index - PDNPI</title>
+		<title>{{ page.subtitle }} - {{ page.title_sm }}</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="keywords" content="paint.net plugin index,paint.net plugins,paint.net plugin list,plugin search,plugin finder" />
+		<meta name="keywords" content="paint.net plugin index,paint.net plugins,paint.net plugin list,plugin search,plugin finder,pdnpi" />
 		<link rel="icon" href="img/icon-small.png">
-		<link rel="stylesheet" href="css/pdnpi.css?v=1.66" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/pdnpi-v2.css?v={{ site.time | date_to_xmlschema }}" />
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 		<script async src="js/popper.min.js" type="text/javascript"></script>
 		<script async src="js/bootstrap.min.js"  type="text/javascript"></script>
-		<script async src="js/pdnpi.js?v=2.22" type="text/javascript" ></script>
+		<script async src="js/pdnpi-v2.js?v={{ site.time | date_to_xmlschema }}" type="text/javascript" ></script>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100434147-4"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
@@ -30,105 +34,96 @@ layout: null
 		<nav style="background-color: #375476!important;" class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
 			<a class="navbar-brand" href="#">
 				<img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top"	/>
-				<span id="brand-text">Paint.NET Plugin Index</span>
-				<span id="min-brand">PDNPI</span>
+				<span id="brand-lg">{{ page.title_lg }}</span>
+				<span id="brand-sm">{{ page.title_sm }}</span>
 			</a>
 			<ul class="navbar-nav ml-auto">
-				<span class="navbar-text">
-					<small>Revision Date: 1 October 2018</small>
-				</span>
+				<li class="navbar-text">
+					<small>Revision Date: {{ page.revision }}</small>
+				</li>
 			</ul>
 		</nav>
-		<div id="infobox" class="d-flex flex-column">
-		<span>
-				This application simplifies locating Paint.NET plugins by searching the Plugin Index. 
-				The app was originally built by Matthew Wright (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>) and is  
-				maintained by he and Scott Stringer (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>). 
-				Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the sidebar to enter search terms and filter the results.
-		</span>
-		</div>
 		<div id="content">
+			<div id="about" class="d-flex flex-column">
+				<sp>
+					This application simplifies locating Paint.NET plugins by searching the Plugin Index.
+					The app was originally built by Matthew Wright (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>) and is
+					maintained by he and Scott Stringer (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>).
+					Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the sidebar to enter search terms and filter the results.
+				</sp>
+			</div>
 			<div class="d-flex row justify-content-center">
-				<div id="sidemenu" class="d-flex flex-column col-sm-4">
-					<h5>Search Options</h5>
+				<div id="search-menu" class="d-flex flex-column col-sm-4">
+					<label class="block-title">Search Options</label>
 					<div class="control input-group mb-2 mr-sm-2 mb-sm-0">
 						<input type="text" class="form-control" id="keywords" placeholder="Keywords" value="">
 					</div>
-					<div class="selector row justify-content-between">
-						<h6>Author</h6>
+
+					<div class="selector">
+						<label class="menu-label" for="author">Author</label>
 						<select id="author" class="control custom-select">
 						  <option value="0" selected>All Authors</option>
 						</select>
 					</div>
-					<h6>Plugin Type</h6>
-					<label id="any-type" class="control type-box custom-control selected custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">All Types</span>
-					</label>
-					<label id="effect" class="control type-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Effect</span>
-					</label>
-					<label id="adjustment" class="control type-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Adjustment</span>
-					</label>
-					<label id="filetype" class="control type-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Filetype</span>
-					</label>
-					<label id="external" class="control type-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">External Resource</span>
-					</label>
-					<label id="plugin-pack" class="control type-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Plugin Pack</span>
-					</label>
-					<h6>Plugin Status</h6>
-					<label id="any-status" class="control status-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Any Status</span>
-					</label>
-					<label id="active" class="control status-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Active</span>
-					</label>
-					<label id="new" class="control status-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Active (New)</span>
-					</label>
-					<label id="depreciated" class="control status-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Depreciated</span>
-					</label>
-					<label id="obsolete" class="control status-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Obsolete</span>
-					</label>
-					<label id="unsupported" class="control status-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Unsupported</span>
-					</label>
-					<label id="integrated" class="control status-box custom-control custom-checkbox">
-					  <input type="checkbox" class="custom-control-input">
-					  <span class="custom-control-indicator"></span>
-					  <span class="custom-control-description">Integrated</span>
-					</label>
-					<div class="selector row justify-content-between">
-						<h6>Order</h6>
+
+					<label class="menu-label">Plugin Type</label>
+					<div id="all-types" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkAll">
+						<label class="custom-control-label" for="checkAll">All types</label>
+					</div>
+					<div id="effect" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkEffect">
+						<label class="custom-control-label" for="checkEffect">Effect</label>
+					</div>
+					<div id="adjustment" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkAdjustment">
+						<label class="custom-control-label" for="checkAdjustment">Adjustment</label>
+					</div>
+					<div id="filetype" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkFiletype">
+						<label class="custom-control-label" for="checkFiletype">Filetype</label>
+					</div>
+					<div id="external" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkExternal">
+						<label class="custom-control-label" for="checkExternal">External</label>
+					</div>
+					<div id="plugin-pack" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkPack">
+						<label class="custom-control-label" for="checkPack">Plugin Pack</label>
+					</div>
+
+					<label class="menu-label">Plugin Status</label>
+					<div id="any-status" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkAny">
+						<label class="custom-control-label" for="checkAny">Any Status</label>
+					</div>
+					<div id="active" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkActive">
+						<label class="custom-control-label" for="checkActive">Active</label>
+					</div>
+					<div id="active-new" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkNew">
+						<label class="custom-control-label" for="checkNew">Active (New)</label>
+					</div>
+					<div id="depreciated" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkDepreciated">
+						<label class="custom-control-label" for="checkDepreciated">Depreciated</label>
+					</div>
+					<div id="obsolete" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkObsolete">
+						<label class="custom-control-label" for="checkObsolete">Obsolete</label>
+					</div>
+					<div id="unsupported" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkUnsupported">
+						<label class="custom-control-label" for="checkUnsupported">Unsupported</label>
+					</div>
+					<div id="integrated" class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="checkIntegrated">
+						<label class="custom-control-label" for="checkIntegrated">Integrated</label>
+					</div>
+
+					<div class="selector">
+						<label class="menu-label" for="order">Order</label>
 						<select id="order" class="control custom-select">
 						  <option value="0" selected>By Title</option>
 						  <option value="1">By Release</option>
@@ -136,14 +131,14 @@ layout: null
 						  <option value="3">By Menu</option>
 						</select>
 					</div>
-					<div class="selector row justify-content-between">
-						<h6>Menu</h6>
+					<div class="selector">
+						<label class="menu-label" for="menu-list">Menu</label>
 						<select id="menu-list" class="control custom-select">
 						  <option value="0" selected>All Menus</option>
 						</select>
 					</div>
-					<div class="selector row justify-content-between">
-						<h6>Release</h6>
+					<div class="selector">
+						<label class="menu-label" for="release">Release</label>
 						<select id="release" class="control custom-select">
 						  <option value="0" selected>Any Time</option>
 						  <option value="1">Past 6 Months</option>
@@ -153,46 +148,42 @@ layout: null
 					</div>
 					<span style="margin-bottom:30px;"></span>
 				</div>
-				<div id="listing" class="d-flex flex-column col-sm-8 flex-grow">
-					<span class="row justify-content-between">
-						<h5>Plugin Listing</h5>
-						<div id="loading"><div class="loader"></div></div> 
+				<div id="listing" class="flex-column col-sm-8">
+					<div id="header">
+						<label class="block-title">Plugin Listing</label>
+						<div id="loading"><div class="loader"></div></div>
 						<span id="count" class="badge badge-default badge-pill">0</span>
-					</span>
-					<div id="plugin-box" class="d-flex flex-column">
-					{% assign i = 0 %}
+					</div>
+					<div id="plugin-box">
 					{% assign plugins = site.data.plugin-index.plugin_index | sort_natural: 'title' %}
 					{% for plugin in plugins %}
-						{% assign type_class = plugin.type | downcase | replace: ' ', '-' %}
-						{% assign status_class = plugin.status | downcase | replace: ' ', '-' %}
-						{% assign author_name_url = plugin.author | downcase | url_encode %}
-						<div id="plugin-{{i}}" data-id="{{plugin.topic_id}}" class="d-flex flex-column plugin {{ type_class }} {{ status_class }}">
-							<div id="title-bar" class="row justify-content-between">
-								<span>
-									<span class="title"><a target="_blank" href="https://forums.getpaint.net/topic/{{ plugin.topic_id }}-index">{{ plugin.title }}</a></span>
-									<span class="text-muted release" style="margin-left:10px\"><i>{{ plugin.release }}</i></span>
-								</span>
-							<span class="author" data-id="{{plugin.author_id}}"><a target="_blank" href="https://forums.getpaint.net/profile/{{ plugin.author_id }}-{{ author_name_url }}" title="View {{ plugin.author }}\s profile">{{ plugin.author }}</a></span>
+						<div data-id="{{ plugin.topic_id }}" class="plugin">
+							<div class="phead">
+								<sp>
+									<sp class="title"><a target="_blank" href="https://forums.getpaint.net/topic/{{ plugin.topic_id }}-i">{{ plugin.title }}</a></sp>
+									<sp class="release">{{ plugin.release }}</sp>
+								</sp>
+								{% assign author_name_url = plugin.author | downcase | url_encode %}
+								<span class="author" data-id="{{ plugin.author_id }}"><a target="_blank" href="https://forums.getpaint.net/profile/{{ plugin.author_id }}-{{ author_name_url }}" title="View {{ plugin.author }}'s profile">{{ plugin.author }}</a></span>
 							</div>
 							<span class="desc">{{ plugin.desc }}</span>
 							{% if plugin.alt_topic %}
-								<span class="alt" data-id="{{plugin.alt_topic}}">See also: <a target="_blank" href="https://forums.getpaint.net/topic/{{ plugin.alt_topic }}-index" title="Alternative Topic">#{{ plugin.alt_topic }}</a></span>
+								<sp class="alt" data-id="{{ plugin.alt_topic }}">See also: <a target="_blank" href="https://forums.getpaint.net/topic/{{ plugin.alt_topic }}-i" title="Alternative Topic">#{{ plugin.alt_topic }}</a></sp>
 							{% endif %}
-							<div class="row tag-bar">
-								<span class="tag type" title="Plugin Type">{{ plugin.type }}</span>
-								<span class="tag status" title="Plugin Status">{{ plugin.status }}</span>
-								<span class="tag compat" title="Compatibility">{{ plugin.compatibility }}</span>
-								<span class="tag menu" title="Menu Location">{{ plugin.menu }}</span>
-								<span class="tag dll" title="DLL(s)">{{ plugin.dlls }}</span>
+							<div class="tags">
+								<sp class="tag t" title="Plugin Type">{{ plugin.type }}</sp>
+								<sp class="tag s" title="Plugin Status">{{ plugin.status }}</sp>
+								<sp class="tag c" title="Compatibility">{{ plugin.compatibility }}</sp>
+								<sp class="tag m" title="Menu Location">{{ plugin.menu }}</sp>
+								<sp class="tag d" title="DLL(s)">{{ plugin.dlls }}</sp>
 							</div>
 						</div>
-						{% assign i = i | plus:1 %}
 					{% endfor %}
 					</div>
 				</div>
 			</div>
 		</div>
-		<footer class="footer" align=center>
+		<footer class="footer">
 			<div class="container">
 				<span class="text-muted">© 2018 Matthew Wright. <br>
 					<a target="_blank" href="https://github.com/mattwright324"><img src="https://github.com/favicon.ico" width=16px height=16px /> mattwright324</a>

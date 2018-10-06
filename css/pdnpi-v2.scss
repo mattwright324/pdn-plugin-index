@@ -1,0 +1,187 @@
+---
+---
+/* SASS Mixins */
+@mixin justify-content-between() {
+    justify-content: space-between!important;
+}
+@mixin row() {
+    display: flex!important;
+    flex-wrap: wrap!important;
+    display: -ms-flexbox!important;
+    -ms-flex-wrap: wrap!important;
+}
+@mixin flex-column() {
+    flex-direction: column!important;
+}
+@mixin d-flex() {
+    display: -ms-flexbox!important;
+    display: flex!important;
+}
+@mixin bg($color) {
+    background-color: $color;
+}
+@mixin text-muted() {
+    color: #868e96!important;
+}
+
+/* Media sizing */
+@media (min-width: 900px) {
+    #search-menu {
+        max-width: 27%;
+    }
+    #listing {
+        min-width: 71%;
+    }
+}
+@media (max-width: 540px) {
+    #brand-lg { display: none; }
+    #brand-sm { display: inline; }
+    #search-menu, #listing {
+        margin: 0 15px 15px 15px;
+    }
+}
+@media (min-width: 541px) {
+    #brand-lg { display: inline; }
+    #brand-sm { display: none; }
+}
+
+/* Page defaults */
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 56px;
+    nav {
+        border-top: 1px solid #a3a7a9;
+    }
+    footer {
+        @include bg(rgb(230,230,230));
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 0.8em;
+        text-align: center;
+    }
+    #about {
+        @include bg(#3d6594);
+        color: ivory;
+        font-size: 0.85em;
+        padding: 10px 15px;
+        a {
+            color: orange;
+            border-bottom: 1px solid orange;
+        }
+    }
+    .block-title {
+        font-size: 1.3em;
+    }
+}
+
+#loading {
+    position: absolute;
+    width: 98%;
+    height: 96%;
+    background: rgba(127,127,127,0.25);
+    z-index: 5;
+    .loader {
+        margin-top: 24%;
+        margin-left: 46%;
+        border: 12px solid rgb(165,243,255);
+        border-top: 12px solid rgb(127,165,255);
+        border-right: 12px solid rgb(40,127,255);
+        border-radius: 80%;
+        width: 85px;
+        height: 85px;
+        animation: spin 1.0s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+
+#search-menu {
+    padding-top: 15px;
+    background: linear-gradient(to left, rgba(127,127,127,0.05), transparent);
+    border-right: 1px dashed lightgray;
+    .menu-label {
+        margin-top: 3px;
+        font-size: 1.05em;
+    }
+    .selector {
+        @include row;
+        @include justify-content-between;
+        margin-top: 10px;
+    }
+    #author, #order, #menu-list, #release {
+        font-size: 0.9rem;
+    }
+    .custom-control {
+        font-size: 0.9rem;
+    }
+    select {
+        width: auto!important;
+    }
+}
+
+#listing {
+    @include d-flex;
+    padding-top: 15px;
+    #header {
+        @include row;
+        @include justify-content-between;
+        .badge {
+            background: lightgray;
+            border-radius: 2px;
+            height: 20px;
+            margin: auto 0;
+        }
+    }
+    #plugin-box {
+        @include d-flex;
+        @include flex-column;
+        /* Plugin styling */
+        .plugin {
+            @include d-flex;
+            @include flex-column;
+            border-top: 1px solid lightgray;
+            font-size: 0.8rem;
+            padding: 4px 4px 8px;
+            margin-bottom: 2px;
+            .phead {
+                @include justify-content-between;
+                @include row;
+                .title { font-size: 0.95rem; }
+                .release { @include text-muted; }
+                .author {
+                    font-weight: 600;
+                    color: black!important;
+                }
+            }
+            .tags {
+                @include row;
+                margin-top: 5px;
+                .tag {
+                    color: white;
+                    background-color: rgba(30,70,220,0.5);
+                    border-radius: 2px;
+                    margin-right: 5px;
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    margin-bottom: 0.25em;
+                    cursor: default;
+                    opacity: 0.6;
+                }
+                .tag:hover {
+                    box-shadow: 1px 1px 3px grey;
+                    opacity: 1;
+                }
+                .tag.t, .tag.s { @include bg(cornflowerblue); }
+                .tag.c { @include bg(rgb(127,127,127)); }
+                .tag.m { @include bg(rgb(255,127,127)); }
+                .tag.d { @include bg(rgb(191,127,255)); }
+            }
+        }
+        .plugin:hover {
+            background-color: rgba(127,127,127,0.1);
+        }
+    }
+}

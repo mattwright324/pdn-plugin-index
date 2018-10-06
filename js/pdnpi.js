@@ -1,6 +1,6 @@
 let CheckBox = function(id) {
 	this.element = $(id+" *");
-}
+};
 CheckBox.prototype = {
 	setSelected: function(select) {
 		this.element.prop("checked",select);
@@ -8,7 +8,7 @@ CheckBox.prototype = {
 	isSelected: function() {
 		return this.element.is(":checked");
 	}
-}
+};
 
 // CheckBox selection and deselection behavior.
 function cb(allCb, cbs) {

@@ -59,11 +59,11 @@ let pdnpi = (function() {
         if(k !== "") {
             let hide = true;
             Object.keys(data).forEach(key => {
-                if(data[key] && data[key].toString().toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+                if (data[key] && data[key].toString().toLowerCase().indexOf(k.toLowerCase()) !== -1) {
                     hide = false;
                 }
             });
-            if(hide) {
+            if (hide) {
                 console.log("FAIL K");
                 return false;
             }

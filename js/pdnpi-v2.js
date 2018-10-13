@@ -355,6 +355,9 @@ let pdnpi = (function() {
     return module;
 }());
 
+console.log(window.location);
+console.log(window.parent.location);
+
 $(document).ready(function() {
     pdnpi.init();
 });

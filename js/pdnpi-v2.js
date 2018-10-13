@@ -355,8 +355,10 @@ let pdnpi = (function() {
     return module;
 }());
 
-console.log(window.location);
-console.log(window.parent.location);
+var url = (window.location != window.parent.location)
+    ? document.referrer
+    : document.location.href;
+console.log(url);
 
 $(document).ready(function() {
     pdnpi.init();

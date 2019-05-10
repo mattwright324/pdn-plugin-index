@@ -24,7 +24,7 @@ An interactive site to quickly search and find Paint.NET plugins in the forums.
                 let iframe = document.createElement("iframe");
                 iframe.setAttribute("id", "pdnpi-iframe");
                 iframe.src = "https://mattw.io/pdn-plugin-index";
-                iframe.sandbox = "allow-scripts allow-popups allow-top-navigation-by-user-activation";
+                iframe.sandbox = "allow-scripts allow-popups";
                 
                 let pdnpi = document.getElementById("pdnpi");
                 pdnpi.appendChild(iframe);

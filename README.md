@@ -6,6 +6,7 @@ An interactive site to quickly search and find Paint.NET plugins in the forums.
 
 ## Forum Integration
 
+    <div id="pdnpi"></div>
     <style>
         #pdnpi, #pdnpi-iframe {
             margin: 0;
@@ -16,7 +17,6 @@ An interactive site to quickly search and find Paint.NET plugins in the forums.
             overflow: hidden;
         }
     </style>
-    <div id="pdnpi"></div>
     <script>
             (function() {
                 "use strict";

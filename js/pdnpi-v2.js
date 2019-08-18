@@ -95,7 +95,7 @@ let pdnpi = (function() {
             let hide = true;
             if ((data.status === "Active" || data.status === "New") && active.isSelected() ||
                 data.status === "New" && activeNew.isSelected() ||
-                data.status === "Depreciated" && depreciated.isSelected() ||
+                data.status === "deprecated" && deprecated.isSelected() ||
                 data.status === "Obsolete" && obsolete.isSelected() ||
                 data.status === "Unsupported" && unsupported.isSelected() ||
                 data.status === "Integrated" && integrated.isSelected()) {
@@ -187,7 +187,7 @@ let pdnpi = (function() {
     let keywords, author, order, menu, release;
     let sortOrder = -1, lastOrder = -1;
     let allTypes, effect, adjustment, filetype, external, pluginPack;
-    let anyStatus, active, activeNew, depreciated, obsolete, unsupported, integrated;
+    let anyStatus, active, activeNew, deprecated, obsolete, unsupported, integrated;
 
     module.init = function() {
         scroll      = $("#scroll");
@@ -233,14 +233,14 @@ let pdnpi = (function() {
         anyStatus   = new CheckBox("#any-status");
         active      = new CheckBox("#active");
         activeNew   = new CheckBox("#active-new");
-        depreciated = new CheckBox("#depreciated");
+        deprecated = new CheckBox("#deprecated");
         obsolete    = new CheckBox("#obsolete");
         unsupported = new CheckBox("#unsupported");
         integrated  = new CheckBox("#integrated");
         active.setSelected(true);
         activeNew.setSelected(true);
-        depreciated.setSelected(true);
-        cb(anyStatus, [active, activeNew, depreciated, obsolete, unsupported, integrated]);
+        
+        cb(anyStatus, [active, activeNew, deprecated, obsolete, unsupported, integrated]);
 
         /* Load plugins in page to Plugin objects */
         $.each($(".plugin"), (index, value) => {
@@ -298,7 +298,7 @@ let pdnpi = (function() {
                 return value instanceof String && types.has(value.toLowerCase());
             },
             validStatus(value) {
-                let status = new Set(["active", "new", "depreciated", "obsolete", "unsupported", "integrated"]);
+                let status = new Set(["active", "new", "deprecated", "obsolete", "unsupported", "integrated"]);
                 return value instanceof String && status.has(value.toLowerCase());
             },
             emptyString(value) {

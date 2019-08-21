@@ -95,7 +95,7 @@ let pdnpi = (function() {
             let hide = true;
             if ((data.status === "Active" || data.status === "New") && active.isSelected() ||
                 data.status === "New" && activeNew.isSelected() ||
-                data.status === "deprecated" && deprecated.isSelected() ||
+                data.status === "Deprecated" && deprecated.isSelected() ||
                 data.status === "Obsolete" && obsolete.isSelected() ||
                 data.status === "Unsupported" && unsupported.isSelected() ||
                 data.status === "Integrated" && integrated.isSelected()) {

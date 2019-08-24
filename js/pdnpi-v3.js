@@ -313,17 +313,17 @@ const pdnpi = (function () {
              * When we scroll down a bit, display the scroll button.
              * Scroll button will take us back to the top.
              */
-            /*$(window).scroll(function () {
-                if($(this).scrolltop() > 100) {
-                    scroll.fadeIn();
+            $(window).scroll(function () {
+                if($(this).scrollTop() > 100) {
+                    controls.btnScrollToTop.fadeIn();
                 } else {
-                    scroll.fadeOut();
+                    controls.btnScrollToTop.fadeOut();
                 }
             });
             controls.btnScrollToTop.click(function () {
                 $("html, body").animate({scrollTop: 0}, 600);
                 return false;
-            })*/
+            })
         },
 
         /**

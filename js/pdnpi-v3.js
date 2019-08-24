@@ -41,7 +41,7 @@ const pdnpi = (function () {
                     "<span class='desc'>" + data.desc + "</span>" +
                     (data.hasOwnProperty("alt_topic") ?
                         "<sp class='alt'>See also: " +
-                            "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.alt_topic + "' title='Alternative Topic'>" +
+                            "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.alt_topic + "-i' title='Alternative Topic'>" +
                                 "#" + data.alt_topic +
                             "</a>" +
                         "</sp>"

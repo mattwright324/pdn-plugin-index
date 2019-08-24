@@ -387,4 +387,83 @@ const pdnpi = (function () {
     internal.init();
     internal.loadIndex();
     internal.setupControls();
+
+    return {
+        dataIntegrity: function() {
+            const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
+            const statuses = new Set(["active", "new", "deprecated", "obsolete", "unsupported", "integrated"]);
+            const is = {
+                validNumber(value) {
+                    return typeof value === "number" && !isNaN(value) && value > 0;
+                },
+                validDate(value) {
+                    return value instanceof Date && !isNaN(value);
+                },
+                validType(value) {
+                    return typeof value === "string" && types.has(value.toLowerCase());
+                },
+                validStatus(value) {
+                    return typeof value === "string" && statuses.has(value.toLowerCase());
+                },
+                emptyString(value) {
+                    // Source: https://stackoverflow.com/a/36328062/2650847
+                    return typeof value === 'undefined' || !value ||
+                        value.length === 0 || value === "" || !/[^\s]/.test(value) ||
+                        /^\s*$/.test(value) || value.replace(/\s/g, "") === "";
+                }
+            };
+
+            let issueCount = 0;
+
+            function logIssue (data, value, reason) {
+                console.log(reason + " [value=" + value + "] - " + JSON.stringify(data));
+
+                issueCount++;
+            }
+
+            pluginIndex.forEach(plugin => {
+                const data = plugin.getData();
+
+                if(!is.validDate(new Date(data.release))) {
+                    logIssue(data, data.release, "INVALID DATE");
+                }
+                if(!is.validNumber(Number(data.topic_id))) {
+                    logIssue(data, data.topic_id, "INVALID TOPIC_ID");
+                }
+                if(!is.validNumber(Number(data.author_id))) {
+                    logIssue(data, data.author_id, "INVALID AUTHOR ID");
+                }
+                if(data.alt_topic && !is.validNumber(Number(data.alt_topic))) {
+                    logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
+                }
+                if(!is.validType(String(data.type))) {
+                    logIssue(data, data.type, "INVALID TYPE");
+                }
+                if(!is.validStatus(String(data.status))) {
+                    logIssue(data, data.status, "INVALID STATUS");
+                }
+                if(is.emptyString(String(data.title))) {
+                    logIssue(data, data.title, "EMPTY TITLE");
+                }
+                if(is.emptyString(String(data.author))) {
+                    logIssue(data, data.author, "EMPTY AUTHOR");
+                }
+                if(is.emptyString(String(data.desc))) {
+                    logIssue(data, data.author, "EMPTY DESC");
+                }
+                if(is.emptyString(String(data.compat))) {
+                    logIssue(data, data.compat, "EMPTY COMPAT");
+                }
+                if(is.emptyString(String(data.menu))) {
+                    logIssue(data, data.menu, "EMPTY MENU");
+                }
+                if(is.emptyString(String(data.dlls))) {
+                    logIssue(data, data.dlls, "EMPTY DLLS");
+                }
+            });
+
+            console.log("%cFound " + issueCount + " data issues", "font-weight:700;" +
+                (issueCount > 0 ? "color:red;" : "color:green"));
+        }
+    }
 }());

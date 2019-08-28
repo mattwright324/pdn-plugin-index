@@ -381,7 +381,7 @@ const pdnpi = (function () {
             }
             elements.divPluginList.html(html);
             elements.badgePluginCount.text(displayCount + " / " + pluginIndex.length);
-            elements.divLoadingOverlay.fadeOut(fadeMs);
+            elements.divLoadingOverlay.fadeOut(fadeMs * 1.75);
         }
     };
     internal.init();

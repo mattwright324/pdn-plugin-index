@@ -31,14 +31,14 @@ const pdnpi = (function () {
                             "&nbsp;" +
                             "<sp class='release'>" + data.release + "</sp>" +
                         "</sp>" +
-                        "<span class='author'>" +
+                        "<sp class='author'>" +
                             "<a target='_blank' href='https://forums.getpaint.net/profile/" + data.author_id + "-" + authorNameUrl + "' " +
-                                "title='View " + data.author + "\\'s profile'>" +
+                                "title='View " + data.author + "&apos;s profile'>" +
                                 data.author +
                             "</a>" +
-                        "</span>" +
+                        "</sp>" +
                     "</div>" +
-                    "<span class='desc'>" + data.desc + "</span>" +
+                    "<sp class='desc'>" + data.desc + "</sp>" +
                     (data.hasOwnProperty("alt_topic") ?
                         "<sp class='alt'>See also: " +
                             "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.alt_topic + "-i' title='Alternative Topic'>" +

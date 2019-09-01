@@ -6,27 +6,33 @@ An interactive site to quickly search and find Paint.NET plugins in the forums.
 
 ## Forum Integration
 
-    <div id="pdnpi"></div>
-    <style>
+```html
+<p>
+    <style type="text/css">
         #pdnpi, #pdnpi-iframe {
             margin: 0;
             padding: 0;
             border: none;
             width: 100%;
-            height: 100%;
+            height: 1200px;
             overflow: hidden;
         }
     </style>
-    <script>
-            (function() {
-                "use strict";
-                
-                let iframe = document.createElement("iframe");
-                iframe.setAttribute("id", "pdnpi-iframe");
-                iframe.src = "https://mattw.io/pdn-plugin-index";
-                iframe.sandbox = "allow-scripts allow-popups";
-                
-                let pdnpi = document.getElementById("pdnpi");
-                pdnpi.appendChild(iframe);
-            })();
-    </script>
+</p>
+<div id="pdnpi">
+	&nbsp;
+</div>
+<script>
+    (function() {
+        "use strict";
+        
+        let iframe = document.createElement("iframe");
+        iframe.setAttribute("id", "pdnpi-iframe");
+        iframe.src = "https://mattw.io/pdn-plugin-index";
+        iframe.sandbox = "allow-scripts allow-popups allow-same-origin";
+        
+        let pdnpi = document.getElementById("pdnpi");
+        pdnpi.appendChild(iframe);
+    })();
+</script>
+```

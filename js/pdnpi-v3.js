@@ -133,7 +133,8 @@ const pdnpi = (function () {
                 equalsIgnoreCase(data.status, "Deprecated") && controls.checkStatusDeprecated.is(":checked") ||
                 equalsIgnoreCase(data.status, "Obsolete") && controls.checkStatusObsolete.is(":checked") ||
                 equalsIgnoreCase(data.status, "Unsupported") && controls.checkStatusUnsupported.is(":checked") ||
-                equalsIgnoreCase(data.status, "Integrated") && controls.checkStatusIntegrated.is(":checked")) {
+                equalsIgnoreCase(data.status, "Integrated") && controls.checkStatusIntegrated.is(":checked") ||
+                equalsIgnoreCase(data.status, "Bundled") && controls.checkStatusBundled.is(":checked")) {
 
                 hide = false;
             }
@@ -215,6 +216,7 @@ const pdnpi = (function () {
             controls.checkStatusObsolete = $("#checkObsolete");
             controls.checkStatusUnsupported = $("#checkUnsupported");
             controls.checkStatusIntegrated = $("#checkIntegrated");
+            controls.checkStatusBundled = $("#checkBundled");
         },
         loadIndex: function () {
             $.ajax({
@@ -290,17 +292,19 @@ const pdnpi = (function () {
                 controls.checkStatusDeprecated,
                 controls.checkStatusObsolete,
                 controls.checkStatusUnsupported,
-                controls.checkStatusIntegrated
+                controls.checkStatusIntegrated,
+                controls.checkStatusBundled
             ]);
             controls.checkStatusActive.prop("checked", true);
             controls.checkStatusNew.prop("checked", true);
+            controls.checkStatusBundled.prop("checked", true);
 
             [controls.comboAuthors, controls.comboMenu, controls.comboRelease].forEach(control => {
 
                 control.change(internal.refreshListing);
             });
 
-            controls.comboOrder.change(function () { internal.refreshListing('order'); })
+            controls.comboOrder.change(function () { internal.refreshListing('order'); });
 
             let inputTimeout = null;
             controls.inputKeywords.on('input', function () {
@@ -391,7 +395,7 @@ const pdnpi = (function () {
     return {
         dataIntegrity: function() {
             const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
-            const statuses = new Set(["active", "new", "deprecated", "obsolete", "unsupported", "integrated"]);
+            const statuses = new Set(["active", "new", "deprecated", "obsolete", "unsupported", "integrated", "bundled"]);
             const is = {
                 validNumber(value) {
                     return typeof value === "number" && !isNaN(value) && value > 0;

@@ -57,23 +57,23 @@ const pdnpi = (function () {
         }
     };
 
-    function containsIgnoreCase (text, subString) {
+    function containsIgnoreCase(text, subString) {
         return text.toUpperCase().indexOf(subString.toUpperCase()) !== -1;
     }
 
-    function equalsIgnoreCase (a, b) {
+    function equalsIgnoreCase(a, b) {
         return String(a).toUpperCase() === String(b).toUpperCase();
     }
 
-    const Plugin = function(data) {
+    const Plugin = function (data) {
         this.data = data;
         this.html = format.dataToHtml(this.data);
     };
     Plugin.prototype = {
-        getData: function() {
+        getData: function () {
             return this.data;
         },
-        getHtml: function() {
+        getHtml: function () {
             return this.html;
         }
     };
@@ -82,7 +82,7 @@ const pdnpi = (function () {
      * Disqualifying pattern, the first option that the plugin doesn't meet
      * returns false without checking the rest.
      */
-    function shouldPluginDisplay (plugin) {
+    function shouldPluginDisplay(plugin) {
         const data = plugin.getData();
 
         const keywords = controls.inputKeywords.val();
@@ -91,7 +91,7 @@ const pdnpi = (function () {
             Object.keys(data).forEach(key => {
                 const value = data[key];
 
-                if(value && containsIgnoreCase(String(value), keywords)) {
+                if (value && containsIgnoreCase(String(value), keywords)) {
                     hide = false;
                 }
             });
@@ -126,7 +126,7 @@ const pdnpi = (function () {
             }
         }
 
-        if(!controls.checkAnyStatus.is(":checked")) {
+        if (!controls.checkAnyStatus.is(":checked")) {
             let hide = true;
             if (equalsIgnoreCase(data.status, "Active") && controls.checkStatusActive.is(":checked") ||
                 equalsIgnoreCase(data.status, "New") && controls.checkStatusNew.is(":checked") ||
@@ -145,27 +145,27 @@ const pdnpi = (function () {
         }
 
         const menu = controls.comboMenu.find(":selected").val();
-        if(menu === "1") {
+        if (menu === "1") {
             const menuText = controls.comboMenu.find(":selected").text();
 
-            if(!equalsIgnoreCase(data.menu, menuText)) {
+            if (!equalsIgnoreCase(data.menu, menuText)) {
                 return false;
             }
         }
 
         const release = controls.comboRelease.find(":selected").val();
-        if(release !== "0") {
+        if (release !== "0") {
             const now = new Date();
             const then = new Date(data.release);
             const millisDiff = now - then;
 
             /** days * hours * minutes * seconds * millis */
             const monthInMillis = 30 * 24 * 60 * 60 * 1000;
-            if(release === "1" && millisDiff > (monthInMillis * 6)) {
+            if (release === "1" && millisDiff > (monthInMillis * 6)) {
                 return false;
-            } else if(release === "2" && millisDiff > (monthInMillis * 12)) {
+            } else if (release === "2" && millisDiff > (monthInMillis * 12)) {
                 return false;
-            } else if(release === "3" && millisDiff > (monthInMillis * 12 * 3)) {
+            } else if (release === "3" && millisDiff > (monthInMillis * 12 * 3)) {
                 return false;
             }
         }
@@ -226,15 +226,15 @@ const pdnpi = (function () {
                 console.log("Successfully loaded plugin-index.json");
                 console.log(res);
 
-                for(let i=0; i < res["plugin_index"].length; i++) {
+                for (let i = 0; i < res["plugin_index"].length; i++) {
                     const plugin = new Plugin(res["plugin_index"][i]);
                     const data = plugin.getData();
 
-                    if(parsed.authors.indexOf(data.author) === -1) {
+                    if (parsed.authors.indexOf(data.author) === -1) {
                         parsed.authors.push(data.author);
                     }
 
-                    if(parsed.menus.indexOf(data.menu) === -1) {
+                    if (parsed.menus.indexOf(data.menu) === -1) {
                         parsed.menus.push(data.menu);
                     }
 
@@ -263,7 +263,7 @@ const pdnpi = (function () {
              *
              * Sub-checkboxes should deselect it's parent All/Any checkbox.
              */
-            function checkBehavior (allCheck, subChecks) {
+            function checkBehavior(allCheck, subChecks) {
                 allCheck.change(function () {
                     if (allCheck.is(":checked")) {
                         subChecks.forEach(check => check.prop("checked", false));
@@ -277,6 +277,7 @@ const pdnpi = (function () {
                     internal.refreshListing();
                 }));
             }
+
             checkBehavior(controls.checkAllTypes, [
                 controls.checkTypeEffect,
                 controls.checkTypeAdjustment,
@@ -304,7 +305,9 @@ const pdnpi = (function () {
                 control.change(internal.refreshListing);
             });
 
-            controls.comboOrder.change(function () { internal.refreshListing('order'); });
+            controls.comboOrder.change(function () {
+                internal.refreshListing('order');
+            });
 
             let inputTimeout = null;
             controls.inputKeywords.on('input', function () {
@@ -318,7 +321,7 @@ const pdnpi = (function () {
              * Scroll button will take us back to the top.
              */
             $(window).scroll(function () {
-                if($(this).scrollTop() > 100) {
+                if ($(this).scrollTop() > 100) {
                     controls.btnScrollToTop.fadeIn();
                 } else {
                     controls.btnScrollToTop.fadeOut();
@@ -344,25 +347,25 @@ const pdnpi = (function () {
 
             elements.divLoadingOverlay.fadeIn(fadeMs);
 
-            if(equalsIgnoreCase(event, "order")) {
+            if (equalsIgnoreCase(event, "order")) {
                 const order = controls.comboOrder.find(":selected").val();
 
                 pluginIndex.sort((a, b) => {
                     const dataA = a.getData();
                     const dataB = b.getData();
 
-                    if(equalsIgnoreCase(order, "title")) {
+                    if (equalsIgnoreCase(order, "title")) {
                         return alphaSort(dataA.title, dataB.title);
-                    } else if(equalsIgnoreCase(order, "release")) {
+                    } else if (equalsIgnoreCase(order, "release")) {
                         a = new Date(dataA.release);
                         b = new Date(dataB.release);
 
                         return (a < b) ? 1 : (a > b) ? -1 : 0;
-                    } else if(equalsIgnoreCase(order, "author")) {
+                    } else if (equalsIgnoreCase(order, "author")) {
                         return alphaSort(dataA.author, dataB.author);
-                    } else if(equalsIgnoreCase(order, "menu")) {
+                    } else if (equalsIgnoreCase(order, "menu")) {
                         return alphaSort(dataA.menu, dataB.menu);
-                    } else if(equalsIgnoreCase(order, "topicId")) {
+                    } else if (equalsIgnoreCase(order, "topicId")) {
                         a = Number(dataA.topic_id);
                         b = Number(dataB.topic_id);
 
@@ -373,7 +376,7 @@ const pdnpi = (function () {
 
             let html = "";
             let displayCount = 0;
-            for(let i=0; i<pluginIndex.length; i++) {
+            for (let i = 0; i < pluginIndex.length; i++) {
                 const plugin = pluginIndex[i];
 
                 const display = shouldPluginDisplay(plugin);
@@ -393,7 +396,7 @@ const pdnpi = (function () {
     internal.setupControls();
 
     return {
-        dataIntegrity: function() {
+        dataIntegrity: function () {
             const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
             const statuses = new Set(["active", "new", "deprecated", "obsolete", "unsupported", "integrated", "bundled"]);
             const is = {
@@ -419,7 +422,7 @@ const pdnpi = (function () {
 
             let issueCount = 0;
 
-            function logIssue (data, value, reason) {
+            function logIssue(data, value, reason) {
                 console.log(reason + " [value=" + value + "] - " + JSON.stringify(data));
 
                 issueCount++;
@@ -428,40 +431,40 @@ const pdnpi = (function () {
             pluginIndex.forEach(plugin => {
                 const data = plugin.getData();
 
-                if(!is.validDate(new Date(data.release))) {
+                if (!is.validDate(new Date(data.release))) {
                     logIssue(data, data.release, "INVALID DATE");
                 }
-                if(!is.validNumber(Number(data.topic_id))) {
+                if (!is.validNumber(Number(data.topic_id))) {
                     logIssue(data, data.topic_id, "INVALID TOPIC_ID");
                 }
-                if(!is.validNumber(Number(data.author_id))) {
+                if (!is.validNumber(Number(data.author_id))) {
                     logIssue(data, data.author_id, "INVALID AUTHOR ID");
                 }
-                if(data.alt_topic && !is.validNumber(Number(data.alt_topic))) {
+                if (data.alt_topic && !is.validNumber(Number(data.alt_topic))) {
                     logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
                 }
-                if(!is.validType(String(data.type))) {
+                if (!is.validType(String(data.type))) {
                     logIssue(data, data.type, "INVALID TYPE");
                 }
-                if(!is.validStatus(String(data.status))) {
+                if (!is.validStatus(String(data.status))) {
                     logIssue(data, data.status, "INVALID STATUS");
                 }
-                if(is.emptyString(String(data.title))) {
+                if (is.emptyString(String(data.title))) {
                     logIssue(data, data.title, "EMPTY TITLE");
                 }
-                if(is.emptyString(String(data.author))) {
+                if (is.emptyString(String(data.author))) {
                     logIssue(data, data.author, "EMPTY AUTHOR");
                 }
-                if(is.emptyString(String(data.desc))) {
+                if (is.emptyString(String(data.desc))) {
                     logIssue(data, data.author, "EMPTY DESC");
                 }
-                if(is.emptyString(String(data.compat))) {
+                if (is.emptyString(String(data.compat))) {
                     logIssue(data, data.compat, "EMPTY COMPAT");
                 }
-                if(is.emptyString(String(data.menu))) {
+                if (is.emptyString(String(data.menu))) {
                     logIssue(data, data.menu, "EMPTY MENU");
                 }
-                if(is.emptyString(String(data.dlls))) {
+                if (is.emptyString(String(data.dlls))) {
                     logIssue(data, data.dlls, "EMPTY DLLS");
                 }
             });

@@ -3,8 +3,12 @@ An interactive site to quickly search and find Paint.NET plugins in the forums.
 * https://forums.getpaint.net/topic/15260-plugin-index/
 * https://mattw.io/pdn-plugin-index/
 
+### Building
 
-## Forum Integration
+Refer to [BUILD.md](https://github.com/mattwright324/pdn-plugin-index/blob/master/BUILD.md)
+for instructions on how to build and run `pdn-plugin-index` from source.
+
+### Forum Integration
 
 ```html
 <p>

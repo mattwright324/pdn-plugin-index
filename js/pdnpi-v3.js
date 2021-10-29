@@ -144,6 +144,19 @@ const pdnpi = (function () {
             }
         }
 
+        if (!controls.checkAnyVersion.is(":checked")) {
+            let hide = true;
+            if (data.compatibility.match(/.*4\..*/) && controls.check4x.is(":checked") ||
+                data.compatibility.match(/.*3\.5.*/) && controls.check3x.is(":checked") ||
+                equalsIgnoreCase(data.compatibility, "Untested") && controls.checkUntested.is(":checked")) {
+                hide = false;
+            }
+
+            if (hide) {
+                return false;
+            }
+        }
+
         const menu = controls.comboMenu.find(":selected").val();
         if (menu === "1") {
             const menuText = controls.comboMenu.find(":selected").text();
@@ -217,6 +230,11 @@ const pdnpi = (function () {
             controls.checkStatusUnsupported = $("#checkUnsupported");
             controls.checkStatusIntegrated = $("#checkIntegrated");
             controls.checkStatusBundled = $("#checkBundled");
+
+            controls.checkAnyVersion = $("#checkAnyVersion");
+            controls.check4x = $("#check4x");
+            controls.check3x = $("#check3x");
+            controls.checkUntested = $("#checkUntested")
         },
         loadIndex: function () {
             $.ajax({
@@ -299,6 +317,13 @@ const pdnpi = (function () {
             controls.checkStatusActive.prop("checked", true);
             controls.checkStatusNew.prop("checked", true);
             controls.checkStatusBundled.prop("checked", true);
+
+            checkBehavior(controls.checkAnyVersion, [
+                controls.check4x,
+                controls.check3x,
+                controls.checkUntested
+            ]);
+            controls.check4x.prop("checked", true);
 
             [controls.comboAuthors, controls.comboMenu, controls.comboRelease].forEach(control => {
 
@@ -458,8 +483,8 @@ const pdnpi = (function () {
                 if (is.emptyString(String(data.desc))) {
                     logIssue(data, data.author, "EMPTY DESC");
                 }
-                if (is.emptyString(String(data.compat))) {
-                    logIssue(data, data.compat, "EMPTY COMPAT");
+                if (is.emptyString(String(data.compatibility))) {
+                    logIssue(data, data.compatibility, "EMPTY COMPAT");
                 }
                 if (is.emptyString(String(data.menu))) {
                     logIssue(data, data.menu, "EMPTY MENU");

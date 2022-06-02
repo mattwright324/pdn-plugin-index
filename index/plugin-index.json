@@ -7813,14 +7813,14 @@
       "menu": "Effects > Color"
     },
     {
-      "title": "Modify Channels v1.0.0",
+      "title": "Modify Channels v1.1.1",
       "author": "LWChris",
       "author_id": "134451",
       "topic_id": "110805",
       "desc": "Create and configure multiple channel modifications. Each modification manipulates one image channel, using one or more arguments to calculate the new value for the target channel.",
       "type": "Adjustment",
       "release": "23 Dec 2016",
-      "status": "Incompatible",
+      "status": "Active",
       "compatibility": "4.0+",
       "dlls": "ModifyChannels.dll",
       "menu": "Adjustments >"

@@ -678,7 +678,7 @@
       "desc": "Renders text along an arc. A remix of DPY's Circle Text with different UI and new math. Source code provided.",
       "type": "Effect",
       "release": "19 Apr 2022",
-      "status": "New",
+      "status": "Active",
       "compatibility": "4.3+",
       "dlls": "velc.ArcText.dll",
       "menu": "Effects > Text Formations",
@@ -1539,7 +1539,7 @@
       "compatibility": "4.0+",
       "dlls": "ObjectTools.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Bevel Plugin v1.4",
@@ -1566,7 +1566,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Bezncurve",
@@ -1674,7 +1674,7 @@
       "compatibility": "4.1+",
       "dlls": "BandWPlus.dll",
       "menu": "Effects >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Black and White+",
@@ -1793,7 +1793,7 @@
       "compatibility": "3.5.x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "BlurBlend",
@@ -1820,7 +1820,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "MemeMaker.dll",
       "menu": "Effects > Photo",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "BoltBait's Pack",
@@ -1869,8 +1869,21 @@
       "desc": "Effects: Color Balance, Hue/Saturation+, Temperature/Tint, Transparency, Flip (Horizontal or Vertical), Dream, Oil Painting+, Pastel, Gaussian Blur Plus, Fill from Clipboard, Fill from File, Bevel Object, Feather, Inner Shadow, Object Shadow, OldFeather, Outline, Paste Alpha, Switch Alpha to Gray, Switch Gray to Alpha, Combined Adjustments, Level Horizon, Remove Dust, Sharpen Landscape, Seam Carving (Horizontal/Vertical), Vignette+, Polygon/Stars, Flames, Gradients, Gird/Checkerboard, Bevel Selection, Blur Selection Edge, Feather Selection, Inner Shadow Selection, Outline Selection, Floyd-Steinberg Dithering. One palette file and 45 Shapes included. Plugin pack comes with it's own exe installer.",
       "type": "Plugin Pack",
       "release": "09 Oct 2018",
-      "status": "Active",
+      "status": "Obsolete",
       "compatibility": "4.1+",
+      "dlls": "N/A",
+      "menu": "N/A"
+    },
+    {
+      "title": "BoltBait's Plugin Pack for v4.3.10+",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "120037",
+      "desc": "Adjustments: Black and White+, Color Balance, Combined Adjustments, Hue/Saturation+, Temperature/Tint,  Transparency.Effects: Flip Horizontal, Flip Vertical. Effects > Artistic: Dream, Oil Painting+, Pastel. Effects > Blurs: Gaussian Blur Plus. Effects > Composition: Complementary Colors. Effects > Fill: Fill from Clipboard, Fill from File. Effects > Object: Bevel Object, Feather, Inner Shadow, Object Shadow, Object Shadow 3D, Outline, Paste Alpha, Switch Alpha to Gray, Switch Gray to Alpha. Effects > Photo: Combined Adjustments, Level Horizon, Meme Maker, Remove Dust, Sharpen Landscape, Seam Carving (Reduce Height & Reduce Width), Vignette+. Effects > Render: Calendar, Charts and Graphs, Dimensions, Flames, Gradients, Grid / Checkerboard, Polygon / Stars. Effects > Selection: Bevel Selection, Blur Selection Edge, Feather Selection, Inner Shadow Selection, Outline Selection. Effects > Stylize: Floyd-Steinberg Dithering. Effects > Text Formations: Creative Text Pro, Outlined / Gradient Text. One palette file and more than 50 Shapes included. Plugin pack comes with it's own exe installer.",
+      "type": "Plugin Pack",
+      "release": "20 May 2022",
+      "status": "New",
+      "compatibility": "4.3+",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -1886,7 +1899,7 @@
       "compatibility": "4.0+",
       "dlls": "SeamCarving.dll",
       "menu": "Effects > Photo",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Border / Stroke Effect",
@@ -2037,7 +2050,7 @@
       "menu": "Effects > Render"
     },
     {
-      "title": "Calendar Creator",
+      "title": "Calendar",
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "113003",
@@ -2048,7 +2061,7 @@
       "compatibility": "4.0+",
       "dlls": "Calendar.dll",
       "menu": "Effects > Render",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Callicolour",
@@ -2580,7 +2593,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "ColorBalance.dll",
       "menu": "Adjustments >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Color Balance MIX",
@@ -3091,7 +3104,7 @@
       "compatibility": "4.2+",
       "dlls": "CombinedAdjustments.dll",
       "menu": "Adjustments >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Combined Photo Adjustments",
@@ -3105,7 +3118,21 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "PhotoAdjustments.dll",
       "menu": "Effects > Photo",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
+    },
+    {
+      "title": "Complimentary Colors",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "120037",
+      "desc": "Tells which accent colors to use (keys off the Primary color). Effect uses the RYB color model for more natural matches.",
+      "type": "Effect",
+      "release": "20 May 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "ComplementaryColors.dll",
+      "menu": "Effects > Composition",
+      "alt_topic": "120037"
     },
     {
       "title": "Compo Grids",
@@ -3305,7 +3332,7 @@
       "compatibility": "4.2+",
       "dlls": "CreativeTextPro.dll",
       "menu": "Effects > Text Formations",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Cross-Processing",
@@ -3667,7 +3694,7 @@
       "compatibility": "4.0+",
       "dlls": "Dimensions.dll",
       "menu": "Effects > Render",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Directional Blur",
@@ -3923,7 +3950,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Dream.dll",
       "menu": "Effects > Artistic",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Drop Ripple",
@@ -4702,7 +4729,7 @@
       "alt_topic": "18819"
     },
     {
-      "title": "Feather Object",
+      "title": "Feather (Object)",
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "32048",
@@ -4713,7 +4740,7 @@
       "compatibility": "4.0+",
       "dlls": "ObjectTools.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Feather Plugin",
@@ -4727,7 +4754,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "ObjectFeather.dll",
       "menu": "Effects > Selection",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Feather Plugin - Old Version",
@@ -4741,7 +4768,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "OldFeather.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Feather Selection",
@@ -4755,7 +4782,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Fern Fractal",
@@ -4837,7 +4864,7 @@
       "compatibility": "4.0+",
       "dlls": "FillFromClipboard.dll",
       "menu": "Effects > Fill",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Fill from Clipboard",
@@ -4864,7 +4891,7 @@
       "compatibility": "4.0+",
       "dlls": "FillFromFile.dll",
       "menu": "Effects > Fill",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Fill from Palette",
@@ -5013,7 +5040,7 @@
       "menu": "Unknown"
     },
     {
-      "title": "Flames (aka Burninate)",
+      "title": "Flames",
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "11836",
@@ -5024,21 +5051,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Burninate.dll",
       "menu": "Effects > Render",
-      "alt_topic": "113220"
-    },
-    {
-      "title": "Flip",
-      "author": "BoltBait",
-      "author_id": "44727",
-      "topic_id": "8318",
-      "desc": "Flips the selected pixels horizontally or vertically. Found in BoltBait's Plugin Pack.",
-      "type": "Effect",
-      "release": "15 Feb 2008",
-      "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
-      "dlls": "Flip.dll",
-      "menu": "Effects >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Flip",
@@ -5052,7 +5065,21 @@
       "compatibility": "Untested",
       "dlls": "FlipPlugin.dll",
       "menu": "Effects >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
+    },
+    {
+      "title": "Flip Horizontal",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "8318",
+      "desc": "Flips the selected pixels horizontally. Found in BoltBait's Plugin Pack.",
+      "type": "Effect",
+      "release": "15 Feb 2008",
+      "status": "Active",
+      "compatibility": "3.5.x, 4.0x",
+      "dlls": "Flip.dll",
+      "menu": "Effects >",
+      "alt_topic": "120037"
     },
     {
       "title": "Flip Horizontal",
@@ -5066,7 +5093,21 @@
       "compatibility": "3.5.x",
       "dlls": "N/A",
       "menu": "N/A",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
+    },
+    {
+      "title": "Flip Vertical",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "8318",
+      "desc": "Flips the selected pixels vertically. Found in BoltBait's Plugin Pack.",
+      "type": "Effect",
+      "release": "15 Feb 2008",
+      "status": "Active",
+      "compatibility": "3.5.x, 4.0x",
+      "dlls": "Flip.dll",
+      "menu": "Effects >",
+      "alt_topic": "120037"
     },
     {
       "title": "Flood Fill Gradient",
@@ -5119,7 +5160,7 @@
       "compatibility": "4.0+",
       "dlls": "FloydSteinbergDithering.dll",
       "menu": "Effects > Stylize",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "FlySwatter",
@@ -5349,7 +5390,7 @@
       "menu": "Effects > Blurs"
     },
     {
-      "title": "Gaussian Blur+",
+      "title": "Gaussian Blur Plus",
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "4867",
@@ -5360,7 +5401,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "GaussianBlurPlus.dll",
       "menu": "Effects > Blurs",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Gears",
@@ -5702,6 +5743,20 @@
       "menu": "Effects >"
     },
     {
+      "title": "Gradients",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "1957",
+      "desc": "Render colorful HSV (rainbow) gradients.",
+      "type": "Effect",
+      "release": "09 Oct 2006",
+      "status": "Active",
+      "compatibility": "4.3+",
+      "dlls": "HSVGradients.dll",
+      "menu": "Effects > Render",
+      "alt_topic": "120037"
+    },
+    {
       "title": "Gradients Galore",
       "author": "Red Ochre",
       "author_id": "80724",
@@ -5888,7 +5943,7 @@
       "compatibility": "4.0+",
       "dlls": "GridCheckerboard.dll",
       "menu": "Effects >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Grid Warp",
@@ -6223,7 +6278,7 @@
       "compatibility": "4.0+",
       "dlls": "HueSatPlus.dll",
       "menu": "Adjustments >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Hue / Saturation+",
@@ -6499,7 +6554,7 @@
       "compatibility": "4.0+",
       "dlls": "ObjectTools.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Inner Shadow Selection",
@@ -6513,7 +6568,7 @@
       "compatibility": "4.0+",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Input to Output",
@@ -7209,7 +7264,7 @@
       "compatibility": "4.0+",
       "dlls": "LevelHorizon.dll",
       "menu": "Effects > Photo",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Light Rays",
@@ -7595,6 +7650,20 @@
       "dlls": "Plugin Melting.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
+    },
+    {
+      "title": "Meme Maker",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "110207",
+      "desc": "Creates a text overlay in the style of an internet meme.",
+      "type": "Effect",
+      "release": "16 Aug 2016",
+      "status": "Active",
+      "compatibility": "4.3+",
+      "dlls": "MemeMaker.dll",
+      "menu": "Effects > Photo",
+      "alt_topic": "120037"
     },
     {
       "title": "Metallize",
@@ -8266,7 +8335,35 @@
       "compatibility": "4.0+",
       "dlls": "ObjectTools.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
+    },
+    {
+      "title": "Object Shadow",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "32107",
+      "desc": "Replaced by Object Shadow Pro. Drop shadow effect for objects. For a code walk-through see How to Write an Effect Plugin (Part 7 - Extra Surface)",
+      "type": "Effect",
+      "release": "20 May 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "ObjectShadowOption1.dll",
+      "menu": "Effects > Object",
+      "alt_topic": "120037"
+    },
+    {
+      "title": "Object Shadow 3D",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "120037",
+      "desc": "Replaced by Object Shadow Pro. Drop shadow effect for objects. For a code walk-through see How to Write an Effect Plugin (Part 7 - Extra Surface)",
+      "type": "Effect",
+      "release": "20 May 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "ObjectShadowOption2.dll",
+      "menu": "Effects > Object",
+      "alt_topic": "120037"
     },
     {
       "title": "Object Shadow Pro v1.0",
@@ -8276,17 +8373,16 @@
       "desc": "Create various types of shadowing effects for objects (pixels surrounded by transparency). Drop shadows, modern and 3D shadowing are all supported. Replaces BoltBaits' Object Shadow in his plugin pack.",
       "type": "Effect",
       "release": "27 Apr 2020",
-      "status": "Active",
+      "status": "Deprecated",
       "compatibility": "4.2+",
       "dlls": "ObjectShadowPro.dll",
-      "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "menu": "Effects > Object"
     },
     {
       "title": "Object Tools",
       "author": "BoltBait",
       "author_id": "44727",
-      "topic_id": "32048",
+      "topic_id": "120037",
       "desc": "A mini pack of effects which work on objects (groups of pixels with surrounding transparency). Bevel Object, Feather Object, Inner Shadow, Outline Object, Found in BoltBait's Plugin Pack",
       "type": "Plugin Pack",
       "release": "21 Jul 2015",
@@ -8294,7 +8390,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "ObjectTools.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Object2color",
@@ -8377,7 +8473,7 @@
       "compatibility": "4.0+",
       "dlls": "OilPaintingPlus.dll",
       "menu": "Effects > Artistic",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Olden 1.5",
@@ -8524,7 +8620,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Outline.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Outline",
@@ -8552,7 +8648,7 @@
       "compatibility": "4.0+",
       "dlls": "ObjectTools.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Outline Object v2.6",
@@ -8589,12 +8685,26 @@
       "topic_id": "11514",
       "desc": "Outline the current selection with your choice of color and width. Found in BoltBait's Plugin Pack",
       "type": "Effect",
-      "release": "15 Feb 2008",
+      "release": "27 Aug 2008",
       "status": "Active",
       "compatibility": "3.5.x, 4.0x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
+    },
+    {
+      "title": "Outlined / Gradient text",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "111330",
+      "desc": "Renders text to the active layer with options to outline and gradient fill the text.",
+      "type": "Effect",
+      "release": "18 Feb 2018",
+      "status": "Active",
+      "compatibility": "4.3+",
+      "dlls": "OutlinedGradientText.dll",
+      "menu": "Effects > Text Formations",
+      "alt_topic": "120037"
     },
     {
       "title": "Outlined / Gradient text",
@@ -8604,7 +8714,7 @@
       "desc": "Renders text to the active layer with options to outline and gradient fill the text.",
       "type": "Effect",
       "release": "21 Feb 2018",
-      "status": "Active",
+      "status": "Deprecated",
       "compatibility": "4.0+",
       "dlls": "OutlinedGradientText.dll",
       "menu": "Effects > Text Formations"
@@ -8834,7 +8944,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "PasteAlpha.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Paste From Clipboard",
@@ -8877,7 +8987,7 @@
       "alt_topic": "12831"
     },
     {
-      "title": "Pastel/Water Color",
+      "title": "Pastel",
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "2045",
@@ -8888,7 +8998,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Pastel.dll",
       "menu": "Effects > Artistic",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "PCX Plug-In",
@@ -9541,7 +9651,7 @@
       "compatibility": "3.5.x",
       "dlls": "Polygon.dll",
       "menu": "Effects > Render",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Polygon Tool",
@@ -9920,7 +10030,7 @@
       "desc": "Automates pseudo-toning using palettes with a small number of colors (think: the palettes of retro computer games). Contains a number of dithering algorithms taken from the manual DHALF.TXT. This is the full-color dithering version of AdvDith. Source code and a large number of palettes provided.",
       "type": "Effect",
       "release": "18 Apr 2022",
-      "status": "New",
+      "status": "Active",
       "compatibility": "4.3+",
       "dlls": "QuantDith.dll",
       "menu": "Effects > Color",
@@ -10498,7 +10608,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "RemoveDust.dll",
       "menu": "Effects > Photo",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Remove Transparency",
@@ -10942,6 +11052,34 @@
       "alt_topic": "7291"
     },
     {
+      "title": "Seam Carving - Reduce height",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "34047",
+      "desc": "Reduces the height of an image without scaling (squishing) the image. Programatically, this effect calculates the line through your photograph with the least amount of changes and deletes that line shifting all pixels over to fill the gap. This is often called 'content aware resizing'.",
+      "type": "Effect",
+      "release": "27 Nov 2015",
+      "status": "Active",
+      "compatibility": "4.3+",
+      "dlls": "SeamCarving.dll",
+      "menu": "Effects > Photo",
+      "alt_topic": "120037"
+    },
+    {
+      "title": "Seam Carving - Reduce width",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "34047",
+      "desc": "Reduces the width of an image without scaling (squishing) the image. Programatically, this effect calculates the line through your photograph with the least amount of changes and deletes that line shifting all pixels over to fill the gap. This is often called 'content aware resizing'.",
+      "type": "Effect",
+      "release": "27 Nov 2015",
+      "status": "Active",
+      "compatibility": "4.3+",
+      "dlls": "SeamCarving.dll",
+      "menu": "Effects > Photo",
+      "alt_topic": "120037"
+    },
+    {
       "title": "Seamless Move",
       "author": "davidf",
       "author_id": "92495",
@@ -11036,7 +11174,7 @@
       "compatibility": "Untested",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Selection2clear",
@@ -11277,7 +11415,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Landscape.dll",
       "menu": "Effects > Photo",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Sharpen+ (Advanced Unsharp Mask)",
@@ -11495,6 +11633,19 @@
       "compatibility": "4.2+",
       "dlls": "Skew.dll",
       "menu": "Effects > Distort"
+    },
+    {
+      "title": "Slab Text",
+      "author": "VeLC",
+      "author_id": "170795",
+      "topic_id": "120010",
+      "desc": "Transforms text into a rectangular block by adjusting the font size and kerning. Source provided.",
+      "type": "Effect",
+      "release": "14 May 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "velc.SlabText.dll",
+      "menu": "Effects > Text Formations"
     },
     {
       "title": "Slight Edge Boost",
@@ -11797,6 +11948,19 @@
       "alt_topic": "7186"
     },
     {
+      "title": "Spiral Text (Spir@l Text)",
+      "author": "VeLC",
+      "author_id": "170795",
+      "topic_id": "119979",
+      "desc": "Draws text along an Archimedean spiral path. Codelab source released under license: LPGL-3.0",
+      "type": "Effect",
+      "release": "13 May 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "velc.SpiralText.dll",
+      "menu": "Effects > Text Formations"
+    },
+    {
       "title": "Spiral Text ver 1.2",
       "author": "dpy",
       "author_id": "50373",
@@ -12053,7 +12217,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Steganography.dll",
       "menu": "Effects > Steganography",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Stencil",
@@ -12278,7 +12442,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Alpha2Gray.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Switch Gray to Alpha",
@@ -12292,7 +12456,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Gray2Alpha.dll",
       "menu": "Effects > Object",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Symmetric Mandala Creator",
@@ -12400,7 +12564,7 @@
       "menu": "N/A"
     },
     {
-      "title": "Temperature / Tint Adjustment",
+      "title": "Temperature / Tint",
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "111031",
@@ -12411,7 +12575,7 @@
       "compatibility": "4.0+",
       "dlls": "Temperature.dll",
       "menu": "Adjustments >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Tessellation Combo",
@@ -13866,7 +14030,7 @@
       "menu": "Effects > Tools"
     },
     {
-      "title": "Transparency Adjustment Effect",
+      "title": "Transparency",
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "2800",
@@ -13877,7 +14041,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "Transparency.dll",
       "menu": "Adjustments >",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Transparency RGB",
@@ -14344,7 +14508,7 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "VignettePlus.dll",
       "menu": "Effects > Photo",
-      "alt_topic": "113220"
+      "alt_topic": "120037"
     },
     {
       "title": "Vignette1",

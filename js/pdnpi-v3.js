@@ -132,6 +132,7 @@ const pdnpi = (function () {
                 equalsIgnoreCase(data.status, "New") && controls.checkStatusNew.is(":checked") ||
                 equalsIgnoreCase(data.status, "Deprecated") && controls.checkStatusDeprecated.is(":checked") ||
                 equalsIgnoreCase(data.status, "Obsolete") && controls.checkStatusObsolete.is(":checked") ||
+                equalsIgnoreCase(data.status, "Incompatible") && controls.checkStatusIncompatible.is(":checked") ||
                 equalsIgnoreCase(data.status, "Unsupported") && controls.checkStatusUnsupported.is(":checked") ||
                 equalsIgnoreCase(data.status, "Integrated") && controls.checkStatusIntegrated.is(":checked") ||
                 equalsIgnoreCase(data.status, "Bundled") && controls.checkStatusBundled.is(":checked")) {
@@ -227,6 +228,7 @@ const pdnpi = (function () {
             controls.checkStatusNew = $("#checkNew");
             controls.checkStatusDeprecated = $("#checkDeprecated");
             controls.checkStatusObsolete = $("#checkObsolete");
+            controls.checkStatusIncompatible = $("#checkIncompatible");
             controls.checkStatusUnsupported = $("#checkUnsupported");
             controls.checkStatusIntegrated = $("#checkIntegrated");
             controls.checkStatusBundled = $("#checkBundled");
@@ -310,6 +312,7 @@ const pdnpi = (function () {
                 controls.checkStatusNew,
                 controls.checkStatusDeprecated,
                 controls.checkStatusObsolete,
+                controls.checkStatusIncompatible,
                 controls.checkStatusUnsupported,
                 controls.checkStatusIntegrated,
                 controls.checkStatusBundled
@@ -423,7 +426,7 @@ const pdnpi = (function () {
     return {
         dataIntegrity: function () {
             const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
-            const statuses = new Set(["active", "new", "deprecated", "obsolete", "unsupported", "integrated", "bundled"]);
+            const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
             const is = {
                 validNumber(value) {
                     return typeof value === "number" && !isNaN(value) && value > 0;

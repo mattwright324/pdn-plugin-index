@@ -741,10 +741,10 @@
       "author": "ArgusMagnus",
       "author_id": "142513",
       "topic_id": "32337",
-      "desc": "ArgusMagnus' plugin pack: Unblend, Fast Fourier Transform (FFT/IFFT), High/Low/Band Pass Filter, Edge Detect+, Barcode & App Icon Set",
+      "desc": "INCOMPATIBLE with the latest release of PDN. ArgusMagnus' plugin pack: Unblend, Fast Fourier Transform (FFT/IFFT), High/Low/Band Pass Filter, Edge Detect+, Barcode & App Icon Set",
       "type": "Plugin Pack",
       "release": "26 Sep 2015",
-      "status": "Active",
+      "status": "Incompatible",
       "compatibility": "4.1+",
       "dlls": "N/A",
       "menu": "N/A"
@@ -1607,6 +1607,19 @@
       "compatibility": "3.5.x",
       "dlls": "Bilateral.dll",
       "menu": "Effects > Blurs"
+    },
+    {
+      "title": "Bit-Plane Shuffler",
+      "author": "Reptillian",
+      "author_id": "85868",
+      "topic_id": "120576",
+      "desc": "Shuffle the images bit-planes. Has the effect of introducing a radically different palette.",
+      "type": "Effect",
+      "release": "01 Aug 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "BitplaneShuffler.dll",
+      "menu": "Effects > Stylize"
     },
     {
       "title": "Bizarro-Negation v1.0",
@@ -3249,7 +3262,7 @@
       "desc": "Apply a variable sized convolution filter to a selection or layer. Includes ability to save and load customized filters (click on Presets).",
       "type": "Effect",
       "release": "15 Sep 2015",
-      "status": "Active",
+      "status": "Incompatible",
       "compatibility": "4.0+",
       "dlls": "ArgusPaintNet.Convolution.dll & ArgusPaintNetShared.dll",
       "menu": "Effects > Advanced",
@@ -4276,7 +4289,7 @@
       "author": "ArgusMagnus",
       "author_id": "142513",
       "topic_id": "32327",
-      "desc": "Uses an edge detection algorithm to draw edges with given colors. Sets the other pixels to transparent.",
+      "desc": "Incompatible with PDN 4.3+. Uses an edge detection algorithm to draw edges with given colors. Sets the other pixels to transparent.",
       "type": "Effect",
       "release": "24 Sep 2015",
       "status": "Active",
@@ -6943,6 +6956,19 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "JPEGEffect.dll",
       "menu": "Effects > Distort"
+    },
+    {
+      "title": "JPEG XL",
+      "author": "null54",
+      "author_id": "79453",
+      "topic_id": "120716",
+      "desc": "Allows JPEG XL images to be loaded and saved using libjxl. Due to limitations in the libjxl version 0.6.1 API, EXIF and XMP metadata will not be loaded or saved. Source provided (MIT License).",
+      "type": "Filetype",
+      "release": "29 Aug 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "JpegXLFileType.dll, JpegXLFileTypeIO_ARM64.dll, JpegXLFileTypeIO_x86.dll and JpegXLFileTypeIO_x64.dll",
+      "menu": "N/A"
     },
     {
       "title": "JPEG XR",
@@ -9941,6 +9967,19 @@
       "compatibility": "3.5.x, 4.0x",
       "dlls": "PSFilterPdn.dll & PSFilterShim.exe",
       "menu": "Effects > 8bf Filter"
+    },
+    {
+      "title": "PSX TIM",
+      "author": "null54",
+      "author_id": "79453",
+      "topic_id": "120578",
+      "desc": "Allows Paint.NET to load the PSX TIM format. Supports loading the 4-bit and 8-bit, 16-bit and 24-bit formats. IN DEVELOPMENT. Source provided (MIT License).",
+      "type": "Filetype",
+      "release": "02 Aug 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "PsxTimFileType.dll",
+      "menu": "N/A"
     },
     {
       "title": "Psychedelic",
@@ -14339,7 +14378,7 @@
       "author": "ArgusMagnus",
       "author_id": "142513",
       "topic_id": "32165",
-      "desc": "Reverses 'Normal' blending using a selection and a specified color (Primary, Average or Dominant color) to create a new image. Each pixel has the minimum Alpha value which recreates the original image under 'normal' blending with the specified color.",
+      "desc": "Incompatible with PDN 4.3+. Reverses 'Normal' blending using a selection and a specified color (Primary, Average or Dominant color) to create a new image. Each pixel has the minimum Alpha value which recreates the original image under 'normal' blending with the specified color.",
       "type": "Effect",
       "release": "18 Aug 2015",
       "status": "Active",

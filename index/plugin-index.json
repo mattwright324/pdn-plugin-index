@@ -1616,7 +1616,7 @@
       "desc": "Shuffle the images bit-planes. Has the effect of introducing a radically different palette.",
       "type": "Effect",
       "release": "01 Aug 2022",
-      "status": "New",
+      "status": "Active",
       "compatibility": "4.3+",
       "dlls": "BitplaneShuffler.dll",
       "menu": "Effects > Stylize"
@@ -1820,6 +1820,19 @@
       "compatibility": "4.1+",
       "dlls": "BlurBlend.dll",
       "menu": "Effects > Blurs"
+    },
+    {
+      "title": "Bold Brushstrokes",
+      "author": "Robot Graffiti",
+      "author_id": "172535",
+      "topic_id": "121378",
+      "desc": "Reinterprets the source image as if it was composed of many overlapping brush strokes.",
+      "type": "Effect",
+      "release": "28 Nov 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "BoldBrush.dll",
+      "menu": "Effects > Artistic"
     },
     {
       "title": "BoltBait's Meme Maker",
@@ -6965,7 +6978,7 @@
       "desc": "Allows JPEG XL images to be loaded and saved using libjxl. Due to limitations in the libjxl version 0.6.1 API, EXIF and XMP metadata will not be loaded or saved. Source provided (MIT License).",
       "type": "Filetype",
       "release": "29 Aug 2022",
-      "status": "New",
+      "status": "Active",
       "compatibility": "4.3+",
       "dlls": "JpegXLFileType.dll, JpegXLFileTypeIO_ARM64.dll, JpegXLFileTypeIO_x86.dll and JpegXLFileTypeIO_x64.dll",
       "menu": "N/A"
@@ -9976,7 +9989,7 @@
       "desc": "Allows Paint.NET to load the PSX TIM format. Supports loading the 4-bit and 8-bit, 16-bit and 24-bit formats. IN DEVELOPMENT. Source provided (MIT License).",
       "type": "Filetype",
       "release": "02 Aug 2022",
-      "status": "New",
+      "status": "Active",
       "compatibility": "4.3+",
       "dlls": "PsxTimFileType.dll",
       "menu": "N/A"

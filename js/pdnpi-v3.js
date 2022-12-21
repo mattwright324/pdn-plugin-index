@@ -147,8 +147,9 @@ const pdnpi = (function () {
 
         if (!controls.checkAnyVersion.is(":checked")) {
             let hide = true;
-            if (data.compatibility.match(/.*4\..*/) && controls.check4x.is(":checked") ||
-                data.compatibility.match(/.*3\.5.*/) && controls.check3x.is(":checked") ||
+            if (data.compatibility.match(/.*5\..*/) && controls.check5x.is(":checked") ||
+                data.compatibility.match(/.*4\..*/) && controls.check4x.is(":checked") ||
+                data.compatibility.match(/.*3\.5x*/) && controls.check3x.is(":checked") ||
                 equalsIgnoreCase(data.compatibility, "Untested") && controls.checkUntested.is(":checked")) {
                 hide = false;
             }
@@ -234,6 +235,7 @@ const pdnpi = (function () {
             controls.checkStatusBundled = $("#checkBundled");
 
             controls.checkAnyVersion = $("#checkAnyVersion");
+            controls.check5x = $("#check5x");
             controls.check4x = $("#check4x");
             controls.check3x = $("#check3x");
             controls.checkUntested = $("#checkUntested")
@@ -322,10 +324,12 @@ const pdnpi = (function () {
             controls.checkStatusBundled.prop("checked", true);
 
             checkBehavior(controls.checkAnyVersion, [
+                controls.check5x,
                 controls.check4x,
                 controls.check3x,
                 controls.checkUntested
             ]);
+            // when 5.0 is released we can set that checkbox as the default.
             controls.check4x.prop("checked", true);
 
             [controls.comboAuthors, controls.comboMenu, controls.comboRelease].forEach(control => {

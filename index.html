@@ -3,7 +3,7 @@ layout   : compress
 title_sm : PDNPI
 title_lg : Paint.NET Plugin Index
 subtitle : Search the Paint.NET plugin index
-revision : 1 December 2022
+revision : 1 January 2023
 ---
 
 <!DOCTYPE html>
@@ -15,9 +15,9 @@ revision : 1 December 2022
     <meta name="description"
           content="Quickly search and find Paint.NET plugins from the forums. Search for new effects, adjustments, filetypes support, external programs, and plugin packs.">
     <link rel="icon" href="img/icon-small.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/pdnpi-v2.css?v={{ site.time | date_to_xmlschema }}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/pdnpi-v2.css?v={{ site.time | date_to_xmlschema }}" />
     <script src="js/jquery-3.6.0.min.js" type="text/javascript"></script>
     <script async src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script async src="js/pdnpi-v3.js?v={{ site.time | date_to_xmlschema }}" type="text/javascript"></script>
@@ -37,188 +37,192 @@ revision : 1 December 2022
     </script>
 </head>
 <body>
-<a href="#" id="scroll" style="display: none;"><span></span></a>
-<nav style="background-color: #375476!important;top: -1px!important;"
-     class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-    <a class="navbar-brand" href="#">
-        <img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon"/>
-        <span id="brand-lg">{{ page.title_lg }}</span>
-        <span id="brand-sm">{{ page.title_sm }}</span>
-    </a>
-    <ul class="navbar-nav ml-auto">
-        <li class="navbar-text">
-            <small>Revision Date: {{ page.revision }}</small>
-        </li>
-    </ul>
-</nav>
-<div id="about" class="col">
-    This application simplifies locating Paint.NET plugins by searching the Plugin Index.
-    The app was originally built by Matthew Wright
-    (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
-    and is maintained by he and Scott Stringer
-    (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>).
-    Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the
-    sidebar to enter search terms and filter the results.
-</div>
-<div class="container-fluid justify-content-center">
-    <div class="row">
-        <div id="search-menu" class="col-md-3" style="margin:0;">
-            <label class="block-title" for="keywords">Search Options</label>
-            <div class="control input-group mb-2 mr-sm-2 mb-sm-0">
-                <input type="text" class="form-control" id="keywords" placeholder="Keywords" value="">
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <nav style="background-color: #375476!important;top: -1px!important;"
+         class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+        <a class="navbar-brand" href="#">
+            <img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon" />
+            <span id="brand-lg">{{ page.title_lg }}</span>
+            <span id="brand-sm">{{ page.title_sm }}</span>
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="navbar-text">
+                <small>Revision Date: {{ page.revision }}</small>
+            </li>
+        </ul>
+    </nav>
+    <div id="about" class="col">
+        This application simplifies locating Paint.NET plugins by searching the Plugin Index.
+        The app was originally built by Matthew Wright
+        (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
+        and is maintained by he and Scott Stringer
+        (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>).
+        Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the
+        sidebar to enter search terms and filter the results.
+    </div>
+    <div class="container-fluid justify-content-center">
+        <div class="row">
+            <div id="search-menu" class="col-md-3" style="margin:0;">
+                <label class="block-title" for="keywords">Search Options</label>
+                <div class="control input-group mb-2 mr-sm-2 mb-sm-0">
+                    <input type="text" class="form-control" id="keywords" placeholder="Keywords" value="">
+                </div>
+
+                <div class="selector">
+                    <label class="menu-label" for="author">Author</label>
+                    <select id="author" class="control custom-select">
+                        <option value="0" selected>All Authors</option>
+                    </select>
+                </div>
+
+                <label class="menu-label">Plugin Type</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkAll">
+                    <label class="custom-control-label" for="checkAll">All Types</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkEffect">
+                    <label class="custom-control-label" for="checkEffect">Effect</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkAdjustment">
+                    <label class="custom-control-label" for="checkAdjustment">Adjustment</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkFiletype">
+                    <label class="custom-control-label" for="checkFiletype">Filetype</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkExternal">
+                    <label class="custom-control-label" for="checkExternal">External</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkPack">
+                    <label class="custom-control-label" for="checkPack">Plugin Pack</label>
+                </div>
+
+                <label class="menu-label">Plugin Status</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkAny">
+                    <label class="custom-control-label" for="checkAny">Any Status</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkActive">
+                    <label class="custom-control-label" for="checkActive">Active</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkNew">
+                    <label class="custom-control-label" for="checkNew">Active (New)</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkBundled">
+                    <label class="custom-control-label" for="checkBundled">Active (Bundled)</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkDeprecated">
+                    <label class="custom-control-label" for="checkDeprecated">Deprecated</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkObsolete">
+                    <label class="custom-control-label" for="checkObsolete">Obsolete</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkIncompatible">
+                    <label class="custom-control-label" for="checkIncompatible">Incompatible</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkUnsupported">
+                    <label class="custom-control-label" for="checkUnsupported">Unsupported</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkIntegrated">
+                    <label class="custom-control-label" for="checkIntegrated">Integrated</label>
+                </div>
+
+                <label class="menu-label">Plugin Compatibility</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkAnyVersion">
+                    <label class="custom-control-label" for="checkAnyVersion">Any Version</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="check5x">
+                    <label class="custom-control-label" for="check5x">Pre-Release (5.x)</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="check4x">
+                    <label class="custom-control-label" for="check4x">Current Version (4.x)</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="check3x">
+                    <label class="custom-control-label" for="check3x">Legacy (3.5x)</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkUntested">
+                    <label class="custom-control-label" for="checkUntested">Untested</label>
+                </div>
+
+                <div class="selector">
+                    <label class="menu-label" for="order">Order</label>
+                    <select id="order" class="control custom-select">
+                        <option value="title" selected>By Title</option>
+                        <option value="release">By Release</option>
+                        <option value="author">By Author</option>
+                        <option value="menu">By Menu</option>
+                        <option value="topicId">By Topic-Id</option>
+                    </select>
+                </div>
+                <div class="selector">
+                    <label class="menu-label" for="menu-list">Menu</label>
+                    <select id="menu-list" class="control custom-select">
+                        <option value="0" selected>All Menus</option>
+                    </select>
+                </div>
+                <div class="selector">
+                    <label class="menu-label" for="release">Release</label>
+                    <select id="release" class="control custom-select">
+                        <option value="0" selected>Any Time</option>
+                        <option value="1">Past 6 Months</option>
+                        <option value="2">Past Year</option>
+                        <option value="3">Past 3 Years</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="selector">
-                <label class="menu-label" for="author">Author</label>
-                <select id="author" class="control custom-select">
-                    <option value="0" selected>All Authors</option>
-                </select>
-            </div>
-
-            <label class="menu-label">Plugin Type</label>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkAll">
-                <label class="custom-control-label" for="checkAll">All Types</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkEffect">
-                <label class="custom-control-label" for="checkEffect">Effect</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkAdjustment">
-                <label class="custom-control-label" for="checkAdjustment">Adjustment</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkFiletype">
-                <label class="custom-control-label" for="checkFiletype">Filetype</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkExternal">
-                <label class="custom-control-label" for="checkExternal">External</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkPack">
-                <label class="custom-control-label" for="checkPack">Plugin Pack</label>
-            </div>
-
-            <label class="menu-label">Plugin Status</label>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkAny">
-                <label class="custom-control-label" for="checkAny">Any Status</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkActive">
-                <label class="custom-control-label" for="checkActive">Active</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkNew">
-                <label class="custom-control-label" for="checkNew">Active (New)</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkBundled">
-                <label class="custom-control-label" for="checkBundled">Active (Bundled)</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkDeprecated">
-                <label class="custom-control-label" for="checkDeprecated">Deprecated</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkObsolete">
-                <label class="custom-control-label" for="checkObsolete">Obsolete</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkIncompatible">
-                <label class="custom-control-label" for="checkIncompatible">Incompatible</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkUnsupported">
-                <label class="custom-control-label" for="checkUnsupported">Unsupported</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkIntegrated">
-                <label class="custom-control-label" for="checkIntegrated">Integrated</label>
-            </div>
-
-            <label class="menu-label">Plugin Compatibility</label>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkAnyVersion">
-                <label class="custom-control-label" for="checkAnyVersion">Any Version</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="check4x">
-                <label class="custom-control-label" for="check4x">Current Version (4.x)</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="check3x">
-                <label class="custom-control-label" for="check3x">Legacy (3.5.x)</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="checkUntested">
-                <label class="custom-control-label" for="checkUntested">Untested</label>
-            </div>
-
-            <div class="selector">
-                <label class="menu-label" for="order">Order</label>
-                <select id="order" class="control custom-select">
-                    <option value="title" selected>By Title</option>
-                    <option value="release">By Release</option>
-                    <option value="author">By Author</option>
-                    <option value="menu">By Menu</option>
-                    <option value="topicId">By Topic-Id</option>
-                </select>
-            </div>
-            <div class="selector">
-                <label class="menu-label" for="menu-list">Menu</label>
-                <select id="menu-list" class="control custom-select">
-                    <option value="0" selected>All Menus</option>
-                </select>
-            </div>
-            <div class="selector">
-                <label class="menu-label" for="release">Release</label>
-                <select id="release" class="control custom-select">
-                    <option value="0" selected>Any Time</option>
-                    <option value="1">Past 6 Months</option>
-                    <option value="2">Past Year</option>
-                    <option value="3">Past 3 Years</option>
-                </select>
-            </div>
-        </div>
-
-        <div id="plugins" class="col-md-9">
-            <div class="col" style="padding-right: 0;padding-left: 0;">
-                <div class="row justify-content-between">
-                    <div class="col">
-                        <label class="block-title">Plugin Listing</label>
-                        <span id="spinner" class="text-center">
+            <div id="plugins" class="col-md-9">
+                <div class="col" style="padding-right: 0;padding-left: 0;">
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <label class="block-title">Plugin Listing</label>
+                            <span id="spinner" class="text-center">
                                 <span class="spinner-border text-primary" role="status"
                                       style="width: 1.35rem; height: 1.35rem;">
                                     <span class="sr-only">Loading...</span>
                                 </span>
                             </span>
+                        </div>
+                        <div class="col-auto">
+                            <span id="count" class="badge badge-light">0 / 0</span>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <span id="count" class="badge badge-light">0 / 0</span>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div id="plugins-list" class="col">
+                    <div class="row">
+                        <div id="plugins-list" class="col">
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<footer class="footer">
-    <div class="container">
-        <span class="text-muted">
-            mattwright324 / Sigillatus | 2021 |
-            <a target="_blank" href="https://mattw.io">home</a> |
-            <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> |
-            <a target="_blank" href="https://forums.getpaint.net/topic/15260-plugin-index/">forum post</a>
-        </span>
-    </div>
-</footer>
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">
+                mattwright324 / Sigillatus | 2023 |
+                <a target="_blank" href="https://mattw.io">home</a> |
+                <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> |
+                <a target="_blank" href="https://forums.getpaint.net/topic/15260-plugin-index/">forum post</a>
+            </span>
+        </div>
+    </footer>
 </body>
 </html>

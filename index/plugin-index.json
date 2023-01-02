@@ -9,7 +9,7 @@
       "type": "Effect",
       "release": "26 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "pxEexpansion.dll",
       "menu": "Effects > Distort",
       "alt_topic": "16643"
@@ -23,7 +23,7 @@
       "type": "Effect",
       "release": "03 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "2dImageFilter-r133.dll",
       "menu": "Effects > Tools"
     },
@@ -36,7 +36,7 @@
       "type": "Effect",
       "release": "21 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Diffuse.dll, Specular.dll",
       "menu": "Effects > Stylize"
     },
@@ -49,7 +49,7 @@
       "type": "Effect",
       "release": "14 Jan 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EOEffects.dll",
       "menu": "Effects > Render",
       "alt_topic": "13003"
@@ -63,7 +63,7 @@
       "type": "Effect",
       "release": "26 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AA's_Assistant.dll",
       "menu": "Effects > Object"
     },
@@ -76,7 +76,7 @@
       "type": "Effect",
       "release": "07 Oct 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Aardvark.dll",
       "menu": "Effects > Distort"
     },
@@ -89,7 +89,7 @@
       "type": "Effect",
       "release": "18 Aug 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Add Depth.dll, Offset Shadow.dll",
       "menu": "Effects > Render"
     },
@@ -102,7 +102,7 @@
       "type": "Effect",
       "release": "14 Sep 2007",
       "status": "Integrated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "Effects > Noise"
     },
@@ -115,7 +115,7 @@
       "type": "Effect",
       "release": "08 Apr 2008",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -128,7 +128,7 @@
       "type": "Effect",
       "release": "16 Jan 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "advcolorrep.dll",
       "menu": "Effects > Color"
     },
@@ -141,7 +141,7 @@
       "type": "Effect",
       "release": "03 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "illnabPlugins.dll",
       "menu": "Effects > Photo",
       "alt_topic": "8677"
@@ -181,7 +181,7 @@
       "type": "Adjustment",
       "release": "01 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "AdvancedRotate.dll",
       "menu": "Adjustments >",
       "alt_topic": "17732"
@@ -208,7 +208,7 @@
       "type": "Plugin Pack",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -234,7 +234,7 @@
       "type": "Effect",
       "release": "19 May 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Alias.dll",
       "menu": "Effects > Object",
       "alt_topic": "11645"
@@ -248,7 +248,7 @@
       "type": "Effect",
       "release": "25 May 2007",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AlignPlugin.dll",
       "menu": "Effects >",
       "alt_topic": "8375"
@@ -275,7 +275,7 @@
       "type": "External Resource",
       "release": "10 May 2013",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "BatchProcessAutomater.exe",
       "menu": "N/A"
     },
@@ -288,7 +288,7 @@
       "type": "Filetype",
       "release": "08 Aug 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "BMP32 paint.net FileType.dll",
       "menu": "N/A"
     },
@@ -301,7 +301,7 @@
       "type": "Effect",
       "release": "03 May 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AlphaBlur.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "11619"
@@ -315,7 +315,7 @@
       "type": "Adjustment",
       "release": "01 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AlphaContrast.dll",
       "menu": "Adjustments >",
       "alt_topic": "17732"
@@ -329,7 +329,7 @@
       "type": "Effect",
       "release": "14 May 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Alpha-Displacement Mask.dll",
       "menu": "Effects >"
     },
@@ -355,7 +355,7 @@
       "type": "Adjustment",
       "release": "31 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AlphaMap2.dll",
       "menu": "Adjustments >"
     },
@@ -368,7 +368,7 @@
       "type": "Effect",
       "release": "03 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "illnabPlugins.dll",
       "menu": "Effects > Object",
       "alt_topic": "8677"
@@ -382,7 +382,7 @@
       "type": "Effect",
       "release": "23 Sep 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AlphaMask.dll",
       "menu": "Effects > Object",
       "alt_topic": "8677"
@@ -396,7 +396,7 @@
       "type": "Effect",
       "release": "26 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Alpha_to_0.dll",
       "menu": "Effects > Color",
       "alt_topic": "16643"
@@ -410,7 +410,7 @@
       "type": "Effect",
       "release": "26 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Alpha_to_255.dll",
       "menu": "Effects > Color",
       "alt_topic": "16643"
@@ -424,7 +424,7 @@
       "type": "Effect",
       "release": "19 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AlphaToDots.dll",
       "menu": "Effects > Artistic"
     },
@@ -437,7 +437,7 @@
       "type": "Effect",
       "release": "09 Apr 2009",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A",
       "alt_topic": "16195"
@@ -451,7 +451,7 @@
       "type": "Adjustment",
       "release": "16 Sep 2009",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Alpha Transform.dll",
       "menu": "Adjustments >",
       "alt_topic": "118781"
@@ -479,7 +479,7 @@
       "type": "Effect",
       "release": "17 Aug 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Alpha Threshold.dll",
       "menu": "Effects > Transparency",
       "alt_topic": "22500"
@@ -506,7 +506,7 @@
       "type": "Effect",
       "release": "27 Apr 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "AlphaMaskBrush.dll",
       "menu": "Effects > Tools"
     },
@@ -519,7 +519,7 @@
       "type": "Effect",
       "release": "12 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AlphaSpace.dll",
       "menu": "Effects >"
     },
@@ -559,7 +559,7 @@
       "type": "Effect",
       "release": "10 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Anaglyph.dll",
       "menu": "Effects > Anaglyph"
     },
@@ -599,7 +599,7 @@
       "type": "Filetype",
       "release": "01 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AnimGIF.dll",
       "menu": "N/A",
       "alt_topic": "15218"
@@ -639,7 +639,7 @@
       "type": "Effect",
       "release": "23 Aug 2007",
       "status": "Unsupported",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Anti-Alias by jsonchiu.dll",
       "menu": "Effects > Object"
     },
@@ -652,7 +652,7 @@
       "type": "Effect",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Apply Color.dll",
       "menu": "Effects > Color",
       "alt_topic": "25275"
@@ -666,7 +666,7 @@
       "type": "Effect",
       "release": "14 Aug 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Apply Texture.dll",
       "menu": "Effects > Object"
     },
@@ -798,7 +798,7 @@
       "type": "Filetype",
       "release": "03 Jul 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "AsciiArtFileType.dll",
       "menu": "N/A"
     },
@@ -824,7 +824,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Alpha works.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -838,7 +838,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Channel multiplier.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -852,7 +852,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Channel_Shift.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -866,7 +866,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Channel_Works_Plus.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -880,7 +880,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Color_Percentage_Plus.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -894,7 +894,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_From P to S.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -908,7 +908,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_From P to S Grey.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -922,7 +922,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_HSV inversion.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -936,7 +936,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Hue Channeling multiply.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -950,7 +950,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Hue Red Psychodelic.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -964,7 +964,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Image coder.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -978,7 +978,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Inverto_pushing.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -992,7 +992,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Inverto_pushing_Caleidoscope.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1006,7 +1006,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Inverto_pushing_plus.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1020,7 +1020,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Multiplo uniqua.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1034,7 +1034,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_PS Mega.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1048,7 +1048,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_PS Only.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1062,7 +1062,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Pseudo water.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1076,7 +1076,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Quadro disorter.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1090,7 +1090,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Quadro disorter B.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1104,7 +1104,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Render-Border.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1118,7 +1118,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Render-Quadro bumperoo.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1132,7 +1132,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Render-Quadro inverto.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1146,7 +1146,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Render-Quadro sharper.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1160,7 +1160,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_RGB tricks.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1174,7 +1174,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Asmageddon_Strange Bulger.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1188,7 +1188,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Asmageddon_Strange Bulger B.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1202,7 +1202,7 @@
       "type": "Effect",
       "release": "16 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Asmageddon_Strange_Bulger Kaleidoscope.dll",
       "menu": "Effects > Asmageddon Tools",
       "alt_topic": "6845"
@@ -1230,7 +1230,7 @@
       "type": "Effect",
       "release": "12 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "AutoChrome.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "7186"
@@ -1244,7 +1244,7 @@
       "type": "Effect",
       "release": "15 Jul 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "AutoChromeNoise.dll",
       "menu": "Effects > Noise",
       "alt_topic": "7186"
@@ -1258,7 +1258,7 @@
       "type": "Effect",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Vandermotten.PaintDotNetEffects.Blurs.dll &Vandermotten.PaintDotNetEffects.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "8375"
@@ -1272,7 +1272,7 @@
       "type": "Effect",
       "release": "11 Nov 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "AverageColorHSL.dll",
       "menu": "Effects > Color"
     },
@@ -1285,7 +1285,7 @@
       "type": "Effect",
       "release": "30 Nov 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AverageSelectionColor.dll",
       "menu": "Effects >"
     },
@@ -1298,7 +1298,7 @@
       "type": "Effect",
       "release": "16 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AverageEdgeBlur.dll",
       "menu": "Effects > Blurs"
     },
@@ -1403,7 +1403,7 @@
       "type": "Effect",
       "release": "06 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Barcode.dll",
       "menu": "Effects >"
     },
@@ -1416,7 +1416,7 @@
       "type": "Effect",
       "release": "16 Mar 2007",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Barcode.dll",
       "menu": "Effects >",
       "alt_topic": "26013"
@@ -1430,7 +1430,7 @@
       "type": "Effect",
       "release": "06 Jan 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Bars.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -1457,7 +1457,7 @@
       "type": "Effect",
       "release": "01 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "BasicAntialias11.dll",
       "menu": "Effects > Object"
     },
@@ -1483,7 +1483,7 @@
       "type": "Effect",
       "release": "25 Mar 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Morphologic.dll",
       "menu": "Effects > Stylize"
     },
@@ -1496,7 +1496,7 @@
       "type": "Effect",
       "release": "18 Oct 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "BasicPhotoAdjustments.dll",
       "menu": "Effects > Photo",
       "alt_topic": "11619"
@@ -1550,7 +1550,7 @@
       "type": "Effect",
       "release": "22 Aug 2007",
       "status": "Unsupported",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Bevel_v1.4.0.0.dll",
       "menu": "Effects > Render"
     },
@@ -1563,7 +1563,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
       "alt_topic": "120037"
@@ -1590,7 +1590,7 @@
       "type": "Effect",
       "release": "09 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Bidirectional Blur.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "11619"
@@ -1604,7 +1604,7 @@
       "type": "Effect",
       "release": "02 Oct 2012",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Bilateral.dll",
       "menu": "Effects > Blurs"
     },
@@ -1630,7 +1630,7 @@
       "type": "Effect",
       "release": "23 Aug 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Bizarro-Negation.dll",
       "menu": "Effects > Color"
     },
@@ -1656,7 +1656,7 @@
       "type": "Adjustment",
       "release": "02 Sep 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "BlackandAlpha+.dll",
       "menu": "Adjustments >",
       "alt_topic": "16643"
@@ -1670,7 +1670,7 @@
       "type": "Effect",
       "release": "06 Dec 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Black and White Converter.dll",
       "menu": "Effects > Photo",
       "alt_topic": "11619"
@@ -1698,7 +1698,7 @@
       "type": "Adjustment",
       "release": "26 Jan 2017",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "BlackAndWhite+.dll",
       "menu": "Adjustments >"
     },
@@ -1724,7 +1724,7 @@
       "type": "Effect",
       "release": "22 Oct 2009",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "BlendModesPlus.dll",
       "menu": "Effects > Tools"
     },
@@ -1763,7 +1763,7 @@
       "type": "Effect",
       "release": "26 Mar 2009",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "SR.dll",
       "menu": "Effects > Object"
     },
@@ -1789,7 +1789,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Incompatible",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "8043"
@@ -1803,7 +1803,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
       "alt_topic": "120037"
@@ -1826,13 +1826,27 @@
       "author": "Robot Graffiti",
       "author_id": "172535",
       "topic_id": "121378",
-      "desc": "Reinterprets the source image as if it was composed of many overlapping brush strokes.",
+      "desc": "Reinterprets the source image as if it was composed from many overlapping brush strokes.",
       "type": "Effect",
       "release": "28 Nov 2022",
-      "status": "New",
+      "status": "Active",
       "compatibility": "4.3+",
       "dlls": "BoldBrush.dll",
       "menu": "Effects > Artistic"
+    },
+    {
+      "title": "BoltBait's GPU Accelerated Plugin Pack for Paint.NET v5.0",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "121343",
+      "desc": "Adjustments: Black and White Plus, Color Balance, Combined Adjustments, Hue/Sat +, Transparency.Effects: Flip Horizontal, Flip Vertical.Effects > Artistic: Dream, Oil Paint+, Pastel.Effects > Blurs: Gaussian Blur+.Effects > Color: Complementary Colors.Effects > Fill: Fill from Clipboard, Fill from File.Effects > Object: Apply Alpha Mask, Bevel Object, Feather Object, Inner Shadow, Outline Object, Switch Alpha to Gray (Create Alpha Mask), Switch Gray to Alpha, Paste Alpha.Effects > Photo: Level Horizon/Plum Bob, Meme Maker, Photo Adjustments, Remove Dust, Seam Carving, Sharpen Landscape, Vignette Plus. Effects > Render: Calendar Creator, Chart / Graph, Dimensions, Flames, Gradients, Grid / Checkerboard, Polygon / Stars. Effects > Selection: Bevel Selection, Blur Selection Edge, Feather Selection, Inner Shadow, Outline Selection.Effects > Stylize: Floyd-Steinberg Dithering.Effects > Text Formations: Creative Text Pro, Outlined / Gradient Text.Two palette files and more than 50 Shapes included. Plugin pack comes with it's own exe installer.",
+      "type": "Plugin Pack",
+      "release": "22 Nov 2022",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "BoltBaitPackInstall60.exe",
+      "menu": "N/A",
+      "alt_topic": "120037"
     },
     {
       "title": "BoltBait's Meme Maker",
@@ -1843,7 +1857,7 @@
       "type": "Effect",
       "release": "16 Aug 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MemeMaker.dll",
       "menu": "Effects > Photo",
       "alt_topic": "120037"
@@ -1857,7 +1871,7 @@
       "type": "Plugin Pack",
       "release": "15 Feb 2008",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -1936,7 +1950,7 @@
       "type": "Effect",
       "release": "19 May 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Border.dll",
       "menu": "Effects > Render"
     },
@@ -1949,7 +1963,7 @@
       "type": "Effect",
       "release": "20 May 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Borders N' Shapes.dll",
       "menu": "Effects > Render",
       "alt_topic": "7291"
@@ -1976,7 +1990,7 @@
       "type": "Effect",
       "release": "02 Nov 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "jchunn.dll (also contains others)",
       "menu": "Effects > Render",
       "alt_topic": "8408"
@@ -1990,7 +2004,7 @@
       "type": "Effect",
       "release": "22 May 2008",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RemoveBrightDark.dll",
       "menu": "Effects > Color",
       "alt_topic": "11645"
@@ -2030,7 +2044,7 @@
       "type": "Effect",
       "release": "21 Sep 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Bullet.dll",
       "menu": "Effects > Render"
     },
@@ -2057,7 +2071,7 @@
       "type": "Effect",
       "release": "02 Nov 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Boutons.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -2098,7 +2112,7 @@
       "type": "Effect",
       "release": "30 Jul 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Callicolour.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -2111,7 +2125,7 @@
       "type": "Effect",
       "release": "12 Dec 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "kb_lens.dll",
       "menu": "Effects > Photo"
     },
@@ -2137,7 +2151,7 @@
       "type": "Effect",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Cartoonize.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "25275"
@@ -2151,7 +2165,7 @@
       "type": "Effect",
       "release": "26 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CellTexture.dll",
       "menu": "Effects > Render"
     },
@@ -2164,7 +2178,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CellMaker.dll",
       "menu": "Effects > Render",
       "alt_topic": "17292"
@@ -2178,7 +2192,7 @@
       "type": "Effect",
       "release": "12 Jun 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CellMakerRev.dll",
       "menu": "Effects > Render"
     },
@@ -2231,7 +2245,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Incompatible",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Object",
       "alt_topic": "8043"
@@ -2245,7 +2259,7 @@
       "type": "Effect",
       "release": "13 Apr 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "AdvGrey.dll",
       "menu": "Effects >",
       "alt_topic": "8677"
@@ -2272,7 +2286,7 @@
       "type": "Adjustment",
       "release": "13 Apr 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Channels.dll",
       "menu": "Adjustments >"
     },
@@ -2285,7 +2299,7 @@
       "type": "Effect",
       "release": "13 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "ChartWhiteBalance.dll",
       "menu": "Effects > Photo"
     },
@@ -2311,7 +2325,7 @@
       "type": "Effect",
       "release": "02 May 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Checkboard.dll",
       "menu": "Effects > Render"
     },
@@ -2324,7 +2338,7 @@
       "type": "Effect",
       "release": "07 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ChessFEN.dll",
       "menu": "Effects > Render",
       "alt_topic": "110145"
@@ -2351,7 +2365,7 @@
       "type": "Effect",
       "release": "12 Jun 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ChromaKeyPlugin.dll",
       "menu": "Effects > Photo"
     },
@@ -2377,7 +2391,7 @@
       "type": "Effect",
       "release": "05 Nov 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "circleFractal2.dll",
       "menu": "Effects > Render"
     },
@@ -2403,7 +2417,7 @@
       "type": "Effect",
       "release": "28 Sep 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CircleText.dll",
       "menu": "Effects > Text Formations",
       "alt_topic": "16643"
@@ -2430,7 +2444,7 @@
       "type": "Effect",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Clarifaction+.dll",
       "menu": "Effects > Photo",
       "alt_topic": "25275"
@@ -2458,7 +2472,7 @@
       "type": "Effect",
       "release": "13 Oct 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ClipDisplaceAA.dll (or ClipDisplace3_5_11.dll for pdn 3.5).",
       "menu": "Effects > Distort"
     },
@@ -2471,7 +2485,7 @@
       "type": "Effect",
       "release": "01 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ClipWarp.dll",
       "menu": "Effects > Tools"
     },
@@ -2484,7 +2498,7 @@
       "type": "Effect",
       "release": "15 Dec 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ClipWarpNew.dll",
       "menu": "Effects > Tools"
     },
@@ -2510,7 +2524,7 @@
       "type": "Effect",
       "release": "13 Sep 2006",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CloudEffect.dll",
       "menu": "Effects >"
     },
@@ -2536,7 +2550,7 @@
       "type": "Effect",
       "release": "28 May 2013",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CMY Ghost.dll",
       "menu": "Effects > Color"
     },
@@ -2549,7 +2563,7 @@
       "type": "Effect",
       "release": "11 Jan 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Cobweb.dll",
       "menu": "Effects > Artistic"
     },
@@ -2562,7 +2576,7 @@
       "type": "Effect",
       "release": "09 Oct 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CodeLab.dll",
       "menu": "Effects > Advanced"
     },
@@ -2577,6 +2591,19 @@
       "status": "Active",
       "compatibility": "4.2+",
       "dlls": "CodeLab.dll",
+      "menu": "Effects > Advanced"
+    },
+    {
+      "title": "CodeLab v6.7 for Paint.NET 5.0",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "121344",
+      "desc": "Plugin which creates plugins. Co-developed by toe_head2001. Note: Changes in Paint.NET v5.0 prevents older versions of CodeLab from running.  If you want to develop plugins in Paint.NET v5.0 you need this version of CodeLab.",
+      "type": "Effect",
+      "release": "22 Nov 2022",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "InstallCodeLab.exe",
       "menu": "Effects > Advanced"
     },
     {
@@ -2602,7 +2629,7 @@
       "type": "Adjustment",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.ColorAccent.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Adjustments >",
       "alt_topic": "8375"
@@ -2616,7 +2643,7 @@
       "type": "Adjustment",
       "release": "17 Jan 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorBalance.dll",
       "menu": "Adjustments >",
       "alt_topic": "120037"
@@ -2630,7 +2657,7 @@
       "type": "Effect",
       "release": "08 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Color Balance Mix.dll",
       "menu": "Effects > Distort"
     },
@@ -2643,7 +2670,7 @@
       "type": "Adjustment",
       "release": "17 Aug 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "dpyColorBalance.dll",
       "menu": "Adjustments >",
       "alt_topic": "16643"
@@ -2670,7 +2697,7 @@
       "type": "Effect",
       "release": "06 Jul 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorClearer.dll",
       "menu": "Effects > Color"
     },
@@ -2723,7 +2750,7 @@
       "type": "Adjustment",
       "release": "10 Aug 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Color Dimmer.dll",
       "menu": "Adjustments >"
     },
@@ -2736,7 +2763,7 @@
       "type": "Effect",
       "release": "09 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -2750,7 +2777,7 @@
       "type": "Effect",
       "release": "09 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -2764,7 +2791,7 @@
       "type": "Effect",
       "release": "21 Jul 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorHarmonies.Effect.dll, ColorHarmonies.Effect.dlc, OptionBasedLibrary vX.X.dll & OptionBasedLibrary vX.X.dlc",
       "menu": "Effects > Tools"
     },
@@ -2816,7 +2843,7 @@
       "type": "Adjustment",
       "release": "07 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Color Match.dll",
       "menu": "Adjustments >",
       "alt_topic": "7291"
@@ -2830,7 +2857,7 @@
       "type": "Effect",
       "release": "15 Nov 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": " ColorMatrix.Effect.dll, ColorMatrix.Effect.dlc, OptionBasedLibrary vX.X.dll & OptionBasedLibrary vX.X.dlc",
       "menu": "Adjustments >"
     },
@@ -2843,7 +2870,7 @@
       "type": "Adjustment",
       "release": "05 Jun 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorMixer.dll",
       "menu": "Adjustments >",
       "alt_topic": "11619"
@@ -2857,7 +2884,7 @@
       "type": "Effect",
       "release": "12 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorModulo.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -2899,7 +2926,7 @@
       "type": "Effect",
       "release": "21 Mar 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorRange_en.dll or ColorRange_ru.dll",
       "menu": "Effects > Color"
     },
@@ -2912,7 +2939,7 @@
       "type": "Effect",
       "release": "18 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "jchunn.dll (also contains others)",
       "menu": "Effects >"
     },
@@ -2925,7 +2952,7 @@
       "type": "Effect",
       "release": "14 Oct 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Replace Colors.dll",
       "menu": "Effects > Color"
     },
@@ -2938,7 +2965,7 @@
       "type": "Effect",
       "release": "18 Feb 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorSketch_en.dll or ColorSketch_ru.dll",
       "menu": "Effects > Artistic"
     },
@@ -2951,7 +2978,7 @@
       "type": "Effect",
       "release": "07 Oct 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorStretchV10.dll",
       "menu": "Effects > Color",
       "alt_topic": "10729"
@@ -2965,7 +2992,7 @@
       "type": "Effect",
       "release": "07 Oct 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorTargetV13.dll",
       "menu": "Effects > Color",
       "alt_topic": "10729"
@@ -2992,7 +3019,7 @@
       "type": "Effect",
       "release": "09 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -3006,7 +3033,7 @@
       "type": "Effect",
       "release": "28 Jun 2008",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "coltoalphaadv.dll",
       "menu": "Effects > Color",
       "alt_topic": "7767"
@@ -3020,7 +3047,7 @@
       "type": "Effect",
       "release": "16 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorToAlpha.dll",
       "menu": "Effects > Color",
       "alt_topic": "11619"
@@ -3034,7 +3061,7 @@
       "type": "Effect",
       "release": "19 May 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorTrimming.dll",
       "menu": "Effects > Color",
       "alt_topic": "11645"
@@ -3048,7 +3075,7 @@
       "type": "Effect",
       "release": "07 Nov 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ColorZoomBlur.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "7186"
@@ -3075,7 +3102,7 @@
       "type": "Effect",
       "release": "09 Nov 2013",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "ColorExchange.dll",
       "menu": "Effects > Color"
     },
@@ -3088,7 +3115,7 @@
       "type": "Adjustment",
       "release": "14 Aug 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "colourchop3.dll",
       "menu": "Adjustments >"
     },
@@ -3101,7 +3128,7 @@
       "type": "Effect",
       "release": "10 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Colour Distort.dll",
       "menu": "Effects > Distort"
     },
@@ -3141,7 +3168,7 @@
       "type": "Effect",
       "release": "19 Jan 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PhotoAdjustments.dll",
       "menu": "Effects > Photo",
       "alt_topic": "120037"
@@ -3169,7 +3196,7 @@
       "type": "Effect",
       "release": "29 Nov 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CompoGrids.dll",
       "menu": "Effects > Composition"
     },
@@ -3182,7 +3209,7 @@
       "type": "Effect",
       "release": "10 Mar 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Compotool.dll",
       "menu": "Effects > Photo",
       "alt_topic": "22500"
@@ -3196,7 +3223,7 @@
       "type": "Adjustment",
       "release": "24 Sep 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ConditionalEffects.dll",
       "menu": "Adjustments >"
     },
@@ -3209,7 +3236,7 @@
       "type": "Adjustment",
       "release": "03 Dec 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CondHSAdj.dll",
       "menu": "Adjustments >",
       "alt_topic": "13003"
@@ -3223,7 +3250,7 @@
       "type": "Effect",
       "release": "13 Jul 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "ConditionalPen.dll",
       "menu": "Effects > Tools"
     },
@@ -3236,7 +3263,7 @@
       "type": "Effect",
       "release": "21 Apr 2018",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ContentAwareFill.dll",
       "menu": "Effects > Selection"
     },
@@ -3249,7 +3276,7 @@
       "type": "Effect",
       "release": "25 Aug 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Contour.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "22500"
@@ -3263,7 +3290,7 @@
       "type": "Effect",
       "release": "16 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "ConvolutionEffect.dll",
       "menu": "Effects > Photo"
     },
@@ -3342,7 +3369,7 @@
       "type": "Effect",
       "release": "31 Aug 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CreateImageMap.dll",
       "menu": "Effects > Image Application"
     },
@@ -3369,7 +3396,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Photo",
       "alt_topic": "18811"
@@ -3410,7 +3437,7 @@
       "type": "Effect",
       "release": "22 Mar 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Cuboids.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -3423,7 +3450,7 @@
       "type": "Effect",
       "release": "11 Dec 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurlyLines.dll",
       "menu": "Effects > Render"
     },
@@ -3436,7 +3463,7 @@
       "type": "Plugin Pack",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "N/A"
     },
@@ -3449,7 +3476,7 @@
       "type": "Adjustment",
       "release": "23 Apr 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Curves+.dll",
       "menu": "Adjustments >",
       "alt_topic": "7291"
@@ -3491,7 +3518,7 @@
       "type": "Effect",
       "release": "19 May 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CustomBrushesMini.dll & CustomBrushesMini.pdb",
       "menu": "Effects > Tools",
       "alt_topic": "15218"
@@ -3505,7 +3532,7 @@
       "type": "Effect",
       "release": "04 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CustomFrame.dll",
       "menu": "Effects > Render"
     },
@@ -3518,7 +3545,7 @@
       "type": "Effect",
       "release": "06 Aug 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Texture.dll",
       "menu": "Effects > Stylize",
       "alt_topic": "15218"
@@ -3532,7 +3559,7 @@
       "type": "Effect",
       "release": "28 Apr 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "xmario_cut_color_en.dll",
       "menu": "Effects > Color"
     },
@@ -3545,7 +3572,7 @@
       "type": "Effect",
       "release": "08 Feb 2006",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CutoutEffect.dll",
       "menu": "Effects > Render",
       "alt_topic": "8677"
@@ -3586,7 +3613,7 @@
       "type": "Adjustment",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Monochromes.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Adjustments >",
       "alt_topic": "8375"
@@ -3600,7 +3627,7 @@
       "type": "Effect",
       "release": "06 Oct 2013",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CycleHSV.dll",
       "menu": "Effects > Color"
     },
@@ -3613,7 +3640,7 @@
       "type": "Filetype",
       "release": "07 Aug 2006",
       "status": "Integrated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "None",
       "menu": "N/A"
     },
@@ -3652,7 +3679,7 @@
       "type": "Effect",
       "release": "05 Mar 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "DesktopBackgroundPreview.dll",
       "menu": "Effects > Image Application"
     },
@@ -3691,7 +3718,7 @@
       "type": "Effect",
       "release": "20 Aug 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Diagonal Lines.dll",
       "menu": "Effects > Render"
     },
@@ -3731,7 +3758,7 @@
       "type": "Effect",
       "release": "14 Jan 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DirectionalBlur.dll & DirectionalBlur.pdb",
       "menu": "Effects > Blurs"
     },
@@ -3744,7 +3771,7 @@
       "type": "Effect",
       "release": "12 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Displacement.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -3758,7 +3785,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Incompatible",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Distort",
       "alt_topic": "8043"
@@ -3772,7 +3799,7 @@
       "type": "Effect",
       "release": "21 May 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DisplayColorChangeDirection.dll",
       "menu": "Effects > Stylize"
     },
@@ -3811,7 +3838,7 @@
       "type": "Effect",
       "release": "19 Jul 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DistortingMirror.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -3866,7 +3893,7 @@
       "type": "Effect",
       "release": "12 Apr 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Donut.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -3880,7 +3907,7 @@
       "type": "Effect",
       "release": "17 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Dot.dll",
       "menu": "Effects > Artistic"
     },
@@ -3906,7 +3933,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Stylize",
       "alt_topic": "8043"
@@ -3920,7 +3947,7 @@
       "type": "Plugin Pack",
       "release": "26 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -3933,7 +3960,7 @@
       "type": "Effect",
       "release": "24 Jan 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MarkupRenderer.dll",
       "menu": "Effects > Advanced",
       "alt_topic": "110145"
@@ -3960,7 +3987,7 @@
       "type": "Effect",
       "release": "13 Feb 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DragFrom.dll",
       "menu": "Effects > Tools"
     },
@@ -3973,7 +4000,7 @@
       "type": "Effect",
       "release": "19 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Dream.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "120037"
@@ -3987,7 +4014,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -4015,7 +4042,7 @@
       "type": "Effect",
       "release": "25 May 2006",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Unknown",
       "menu": "N/A",
       "alt_topic": "8375"
@@ -4042,7 +4069,7 @@
       "type": "Effect",
       "release": "13 Jun 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Dryad.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -4055,7 +4082,7 @@
       "type": "Effect",
       "release": "02 Jul 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Dull.dll",
       "menu": "Effects >"
     },
@@ -4081,7 +4108,7 @@
       "type": "Adjustment",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Duotones.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Adjustments >",
       "alt_topic": "8375"
@@ -4095,7 +4122,7 @@
       "type": "Adjustment",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Duotones.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Adjustments >",
       "alt_topic": "8375"
@@ -4148,7 +4175,7 @@
       "type": "Effect",
       "release": "25 Aug 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Earths&Greys.dll",
       "menu": "Effects > Color",
       "alt_topic": "22500"
@@ -4215,7 +4242,7 @@
       "type": "Plugin Pack",
       "release": "13 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -4228,7 +4255,7 @@
       "type": "Plugin Pack",
       "release": "05 Mar 2010",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "EdHarvey.Effects.dll",
       "menu": "N/A"
     },
@@ -4267,7 +4294,7 @@
       "type": "Plugin Pack",
       "release": "05 Apr 2010",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "EdHarvey.FastFx.dll, EdHarvey.FastFx.pdb and one of FastBlur_x64.dll or FastBlur_x86.dll",
       "menu": "Effects > FastFx"
     },
@@ -4359,7 +4386,7 @@
       "type": "Effect",
       "release": "16 Aug 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "edgemaster.dll",
       "menu": "Effects >"
     },
@@ -4385,7 +4412,7 @@
       "type": "Effect",
       "release": "28 May 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EditableText.dll & EditableText.pdb",
       "menu": "Effects > Tools",
       "alt_topic": "15218"
@@ -4399,7 +4426,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Advanced",
       "alt_topic": "8043"
@@ -4413,7 +4440,7 @@
       "type": "Effect",
       "release": "03 Jun 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Egalize.dll",
       "menu": "Effects > Photo"
     },
@@ -4452,7 +4479,7 @@
       "type": "Effect",
       "release": "21 May 2015",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EliminateWhite.dll and EliminateBlack.dll",
       "menu": "Effects >",
       "alt_topic": "32309"
@@ -4466,7 +4493,7 @@
       "type": "Effect",
       "release": "17 Sep 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EliminateDarkLight.dll",
       "menu": "Effects > Color"
     },
@@ -4519,7 +4546,7 @@
       "type": "Effect",
       "release": "13 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EngraveEmboss.dll, EngraveEmboss.ini & IniFile.dll (required).",
       "menu": "Effects > Stylize",
       "alt_topic": "6828"
@@ -4559,7 +4586,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Incompatible",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Render",
       "alt_topic": "8043"
@@ -4613,7 +4640,7 @@
       "type": "Effect",
       "release": "03 Feb 2007",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ErodeDilate_v0.2.dll",
       "menu": "Effects >"
     },
@@ -4639,7 +4666,7 @@
       "type": "Plugin Pack",
       "release": "12 Jul 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "EOEffects.dll",
       "menu": "N/A"
     },
@@ -4666,7 +4693,7 @@
       "type": "Effect",
       "release": "03 Sep 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ExtendBorder.dll",
       "menu": "Effects > Distort"
     },
@@ -4679,7 +4706,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -4693,7 +4720,7 @@
       "type": "Effect",
       "release": "10 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ExtractColor.dll",
       "menu": "Effects > Color",
       "alt_topic": "12188"
@@ -4707,7 +4734,7 @@
       "type": "Effect",
       "release": "18 Feb 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Eyeshine.dll",
       "menu": "Effects > Photo",
       "alt_topic": "11619"
@@ -4721,7 +4748,7 @@
       "type": "Effect",
       "release": "10 Apr 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Facet.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -4734,7 +4761,7 @@
       "type": "Effect",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.FadeEdge.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Effects > Photo",
       "alt_topic": "8375"
@@ -4790,7 +4817,7 @@
       "type": "Effect",
       "release": "31 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ObjectFeather.dll",
       "menu": "Effects > Selection",
       "alt_topic": "120037"
@@ -4804,7 +4831,7 @@
       "type": "Effect",
       "release": "31 Oct 2006",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "OldFeather.dll",
       "menu": "Effects > Object",
       "alt_topic": "120037"
@@ -4818,7 +4845,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
       "alt_topic": "120037"
@@ -4832,7 +4859,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Render",
       "alt_topic": "8043"
@@ -4873,7 +4900,7 @@
       "type": "Effect",
       "release": "06 Jan 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "FibonacciFill.dll",
       "menu": "Effects > Render",
       "alt_topic": "110145"
@@ -4914,7 +4941,7 @@
       "type": "Effect",
       "release": "02 May 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "FillFromClipboard_eff_render.dll",
       "menu": "Effects > Render"
     },
@@ -4955,7 +4982,7 @@
       "type": "Effect",
       "release": "20 Jan 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "phips_fill_gaps.dll",
       "menu": "Effects > Render"
     },
@@ -4968,7 +4995,7 @@
       "type": "Effect",
       "release": "11 Jun 2007",
       "status": "Unsupported",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "FilmNoir.dll",
       "menu": "Effects > Photo"
     },
@@ -4981,7 +5008,7 @@
       "type": "Effect",
       "release": "06 Jul 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Film.dll",
       "menu": "Effects > Photo",
       "alt_topic": "7291"
@@ -5008,7 +5035,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -5022,7 +5049,7 @@
       "type": "Effect",
       "release": "17 Apr 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "FindEdges.dll",
       "menu": "Effects > Artistic"
     },
@@ -5035,7 +5062,7 @@
       "type": "Effect",
       "release": "29 Jun 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TJacksonEffects.dll",
       "menu": "Effects > Render"
     },
@@ -5048,7 +5075,7 @@
       "type": "Effect",
       "release": "22 Apr 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Fire.dll",
       "menu": "Effects > Render"
     },
@@ -5061,7 +5088,7 @@
       "type": "Effect",
       "release": "06 May 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Fisheye.dll",
       "menu": "Effects > Distort"
     },
@@ -5074,7 +5101,7 @@
       "type": "Effect",
       "release": "27 Aug 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Flags.dll",
       "menu": "Unknown"
     },
@@ -5087,7 +5114,7 @@
       "type": "Effect",
       "release": "16 Sep 2008",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Burninate.dll",
       "menu": "Effects > Render",
       "alt_topic": "120037"
@@ -5115,7 +5142,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Flip.dll",
       "menu": "Effects >",
       "alt_topic": "120037"
@@ -5129,7 +5156,7 @@
       "type": "Effect",
       "release": "23 May 2006",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A",
       "alt_topic": "120037"
@@ -5143,7 +5170,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Flip.dll",
       "menu": "Effects >",
       "alt_topic": "120037"
@@ -5170,7 +5197,7 @@
       "type": "Effect",
       "release": "02 Jun 2017",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Flourish.dll",
       "menu": "Effects > Render"
     },
@@ -5210,7 +5237,7 @@
       "type": "Effect",
       "release": "12 Feb 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "FlySwatter.dll",
       "menu": "Effects > Adjustment"
     },
@@ -5223,7 +5250,7 @@
       "type": "Effect",
       "release": "21 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "jchunn.dll (also contains others)",
       "menu": "Effects > Blurs",
       "alt_topic": "8408"
@@ -5279,7 +5306,7 @@
       "type": "Effect",
       "release": "09 Jul 2007",
       "status": "Integrated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Fractal.dll",
       "menu": "Effects > Render"
     },
@@ -5319,7 +5346,7 @@
       "type": "Effect",
       "release": "28 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Frame.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -5333,7 +5360,7 @@
       "type": "Effect",
       "release": "21 Aug 2007",
       "status": "Integrated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "Effects > Distort"
     },
@@ -5346,7 +5373,7 @@
       "type": "Effect",
       "release": "14 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "FSPost.dll",
       "menu": "Effects > Color"
     },
@@ -5359,7 +5386,7 @@
       "type": "Effect",
       "release": "21 Sep 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "FurBlur.dll",
       "menu": "Effects > Blurs"
     },
@@ -5372,7 +5399,7 @@
       "type": "Effect",
       "release": "02 Dec 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "FuzzyEdgeDetect.dll",
       "menu": "Effects > Stylize"
     },
@@ -5390,6 +5417,20 @@
       "menu": "Effects > Advanced"
     },
     {
+      "title": "G'MIC for Paint.NET 5.0",
+      "author": "null54",
+      "author_id": "79453",
+      "topic_id": "121354",
+      "desc": "A wrapper to host GREYC's Magic for Image Computing (G'MIC) filters. Hundreds of filters are available. In this release support has been added for reading multiple layers.",
+      "type": "Effect",
+      "release": "23 Nov 2022",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "Gmic.dll, gmic folder (supporting file), two *.txt files.",
+      "menu": "Effects > Advanced",
+      "alt_topic": "113564"
+    },
+    {
       "title": "Gabor filter v1.0",
       "author": "zarathoustra",
       "author_id": "61505",
@@ -5398,7 +5439,7 @@
       "type": "Effect",
       "release": "22 Feb 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PdnGaborFilter.dll, BaseUtility.dll & ConvolutionKernel.dll",
       "menu": "Effects > Stylize"
     },
@@ -5437,7 +5478,7 @@
       "type": "Effect",
       "release": "07 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "GaussianBlurPlus.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "120037"
@@ -5451,7 +5492,7 @@
       "type": "Effect",
       "release": "23 Aug 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gears.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -5464,7 +5505,7 @@
       "type": "Effect",
       "release": "06 Aug 2007",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "GenTree.dll",
       "menu": "Effects > Render",
       "alt_topic": "28662"
@@ -5504,7 +5545,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -5571,7 +5612,7 @@
       "type": "Effect",
       "release": "16 Mar 2006",
       "status": "Integrated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "N/A",
       "menu": "Effects > Photo"
     },
@@ -5584,7 +5625,7 @@
       "type": "Effect",
       "release": "13 Oct 2009",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "GoogleImageSearchEffect.dll",
       "menu": "Effects > Render"
     },
@@ -5597,7 +5638,7 @@
       "type": "Effect",
       "release": "02 Nov 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gossamer.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -5680,7 +5721,7 @@
       "type": "Effect",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Gradient.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Effects > Render",
       "alt_topic": "8375"
@@ -5694,7 +5735,7 @@
       "type": "Effect",
       "release": "06 Jul 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gradient Bars.dll",
       "menu": "Effects > Render",
       "alt_topic": "7291"
@@ -5708,7 +5749,7 @@
       "type": "Effect",
       "release": "16 Apr 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gradient Blocks.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "7291"
@@ -5722,7 +5763,7 @@
       "type": "Effect",
       "release": "24 Oct 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gradient Blur.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "7186"
@@ -5736,7 +5777,7 @@
       "type": "Effect",
       "release": "06 Aug 2006",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "GradientPlugIn.dll",
       "menu": "Effects >"
     },
@@ -5763,7 +5804,7 @@
       "type": "Adjustment",
       "release": "10 Apr 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gradient Mapping.dll",
       "menu": "Adjustments >",
       "alt_topic": "7291"
@@ -5777,7 +5818,7 @@
       "type": "Effect",
       "release": "10 Sep 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gradient.dll",
       "menu": "Effects >"
     },
@@ -5804,7 +5845,7 @@
       "type": "Effect",
       "release": "17 May 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gradientsgalore.dll",
       "menu": "Effects > Render",
       "alt_topic": "22500"
@@ -5845,7 +5886,7 @@
       "type": "Adjustment",
       "release": "02 Feb 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Gralpha.dll",
       "menu": "Adjustments >"
     },
@@ -5858,7 +5899,7 @@
       "type": "Effect",
       "release": "20 Jul 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "GraphMaker.dll",
       "menu": "Effects > Render",
       "alt_topic": "4175"
@@ -5885,7 +5926,7 @@
       "type": "Effect",
       "release": "27 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gravity.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -5899,7 +5940,7 @@
       "type": "Adjustment",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Monochromes.dll &Vandermotten.PaintDotNetEffects.dll",
       "menu": "Adjustments >",
       "alt_topic": "8375"
@@ -5913,7 +5954,7 @@
       "type": "Adjustment",
       "release": "02 Jul 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "GrayScale+.dll",
       "menu": "Adjustments >"
     },
@@ -5939,7 +5980,7 @@
       "type": "Effect",
       "release": "11 Dec 2007",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -5965,7 +6006,7 @@
       "type": "Effect",
       "release": "24 May 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "GridMaker.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -5993,7 +6034,7 @@
       "type": "Effect",
       "release": "17 Sep 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Grid Warp.dll",
       "menu": "Effects > Tools",
       "alt_topic": "7291"
@@ -6007,7 +6048,7 @@
       "type": "Effect",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Grid.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Effects > Render",
       "alt_topic": "8375"
@@ -6021,7 +6062,7 @@
       "type": "Effect",
       "release": "30 Jul 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "GrimColorReaper.dll",
       "menu": "Effects > Color"
     },
@@ -6060,7 +6101,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Stylize",
       "alt_topic": "18811"
@@ -6087,7 +6128,7 @@
       "type": "Filetype",
       "release": "04 Jun 2007",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "HDPhoto.dll",
       "menu": "N/A",
       "alt_topic": "22283"
@@ -6127,7 +6168,7 @@
       "type": "Effect",
       "release": "03 Aug 2011",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Heightmap v1.3.dll",
       "menu": "Effects > Stylize"
     },
@@ -6140,7 +6181,7 @@
       "type": "Effect",
       "release": "15 May 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Helix.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -6153,7 +6194,7 @@
       "type": "Effect",
       "release": "21 Feb 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "HexaGrid.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -6181,7 +6222,7 @@
       "type": "Effect",
       "release": "09 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "HighPass.dll",
       "menu": "Effects > Photo"
     },
@@ -6194,7 +6235,7 @@
       "type": "Effect",
       "release": "06 Apr 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "highlightv2.dll",
       "menu": "Effects > Render",
       "alt_topic": "22500"
@@ -6261,7 +6302,7 @@
       "type": "Effect",
       "release": "20 May 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "HotMetalGlow.dll",
       "menu": "Effects > Color"
     },
@@ -6287,7 +6328,7 @@
       "type": "Effect",
       "release": "07 Dec 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "HsvScrambler.dll",
       "menu": "Effects > Stylize"
     },
@@ -6328,7 +6369,7 @@
       "type": "Adjustment",
       "release": "09 Jan 2008",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Hue_Saturation+.dll",
       "menu": "Adjustments >"
     },
@@ -6354,7 +6395,7 @@
       "type": "Filetype",
       "release": "23 Mar 2006",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "IcoCur.dll",
       "menu": "N/A"
     },
@@ -6406,7 +6447,7 @@
       "type": "Plugin Pack",
       "release": "03 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "illnabPlugins.dll",
       "menu": "N/A"
     },
@@ -6419,7 +6460,7 @@
       "type": "Filetype",
       "release": "10 Dec 2011",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "ImPDF.Save.FileType.dll, ImPDF.Command.exe, ImPDF.Open.FileType.dll, ImPDF.Open.FileType.dlc, OptionBasedLibrary vX.X.dll & OptionBasedLibrary vX.X.dlc",
       "menu": "N/A"
     },
@@ -6524,7 +6565,7 @@
       "type": "Effect",
       "release": "07 Sep 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ImgurUploader.dll",
       "menu": "Effects >"
     },
@@ -6537,7 +6578,7 @@
       "type": "Effect",
       "release": "17 Mar 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "IncreaseLocalContrast.dll",
       "menu": "Effects > Photo"
     },
@@ -6550,7 +6591,7 @@
       "type": "Effect",
       "release": "04 Apr 2007",
       "status": "Integrated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "InkSketch.dll",
       "menu": "Effects > Artistic"
     },
@@ -6563,7 +6604,7 @@
       "type": "Effect",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "InkSketch+.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "25275"
@@ -6618,7 +6659,7 @@
       "type": "Adjustment",
       "release": "19 May 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "InputToOutput.dll",
       "menu": "Adjustments >",
       "alt_topic": "11645"
@@ -6632,7 +6673,7 @@
       "type": "Adjustment",
       "release": "15 Jun 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "InputToOutput+.dll",
       "menu": "Adjustments >"
     },
@@ -6658,7 +6699,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -6672,7 +6713,7 @@
       "type": "Effect",
       "release": "21 Dec 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "IntenColor.dll",
       "menu": "Effects > Color"
     },
@@ -6698,7 +6739,7 @@
       "type": "Filetype",
       "release": "31 Oct 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ImIFF.FileType.dll",
       "menu": "N/A"
     },
@@ -6711,7 +6752,7 @@
       "type": "Effect",
       "release": "04 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Interlace.dll",
       "menu": "Effects >"
     },
@@ -6737,7 +6778,7 @@
       "type": "Adjustment",
       "release": "29 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "InvertAlpha.dll",
       "menu": "Adjustments >",
       "alt_topic": "11645"
@@ -6778,7 +6819,7 @@
       "type": "Adjustment",
       "release": "26 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "invert_around_primcol.dll",
       "menu": "Adjustments >"
     },
@@ -6791,7 +6832,7 @@
       "type": "Adjustment",
       "release": "08 Nov 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "invert channels.dll",
       "menu": "Adjustments >",
       "alt_topic": "16103"
@@ -6805,7 +6846,7 @@
       "type": "Effect",
       "release": "09 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -6833,7 +6874,7 @@
       "type": "Effect",
       "release": "25 Jan 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "IsolateWhiteBlack.dll",
       "menu": "Effects > Color"
     },
@@ -6860,7 +6901,7 @@
       "type": "Adjustment",
       "release": "16 Jan 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "isolate.dll",
       "menu": "Adjustments >"
     },
@@ -6925,7 +6966,7 @@
       "type": "Effect",
       "release": "27 Jun 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Jitter.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7291"
@@ -6966,7 +7007,7 @@
       "type": "Effect",
       "release": "27 Jul 2009",
       "status": "Unsupported",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "JPEGEffect.dll",
       "menu": "Effects > Distort"
     },
@@ -7019,7 +7060,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Distort",
       "alt_topic": "8043"
@@ -7033,7 +7074,7 @@
       "type": "Effect",
       "release": "07 Oct 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "KaleidoGen.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -7047,7 +7088,7 @@
       "type": "Effect",
       "release": "31 Mar 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Kaleidoscope.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -7061,7 +7102,7 @@
       "type": "Effect",
       "release": "10 Sep 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DPL KAL.dll",
       "menu": "Effects > Distort"
     },
@@ -7088,7 +7129,7 @@
       "type": "Effect",
       "release": "14 Feb 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "phips_kill_color.dll",
       "menu": "Effects > Color"
     },
@@ -7101,7 +7142,7 @@
       "type": "Effect",
       "release": "29 Jun 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Koch_Snowflake.dll",
       "menu": "Effects > Render"
     },
@@ -7114,7 +7155,7 @@
       "type": "Effect",
       "release": "06 Jan 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Trix400.dll",
       "menu": "Effects >"
     },
@@ -7166,7 +7207,7 @@
       "type": "Effect",
       "release": "04 Jul 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LaplacianPyramidFilter.dll",
       "menu": "Effects > Photo"
     },
@@ -7179,7 +7220,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Render",
       "alt_topic": "18811"
@@ -7206,7 +7247,7 @@
       "type": "Effect",
       "release": "06 Nov 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Layer Cake.dll",
       "menu": "Effects > Distort"
     },
@@ -7219,7 +7260,7 @@
       "type": "External Resource",
       "release": "05 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Layer Saver.exe",
       "menu": "N/A"
     },
@@ -7232,7 +7273,7 @@
       "type": "Adjustment",
       "release": "16 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "SubLCD.dll",
       "menu": "Adjustments >"
     },
@@ -7245,7 +7286,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -7272,7 +7313,7 @@
       "type": "Effect",
       "release": "12 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LensFlare.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -7300,7 +7341,7 @@
       "type": "Effect",
       "release": "08 Apr 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CameraTrouserFlareV3.dll",
       "menu": "Effects > Render"
     },
@@ -7327,7 +7368,7 @@
       "type": "Effect",
       "release": "15 Jun 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LightRays.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -7341,7 +7382,7 @@
       "type": "Effect",
       "release": "28 Aug 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Lightning.dll",
       "menu": "Effects > Render"
     },
@@ -7367,7 +7408,7 @@
       "type": "Effect",
       "release": "15 Mar 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LinesGrid_en.dll",
       "menu": "Effects > Render"
     },
@@ -7380,7 +7421,7 @@
       "type": "Effect",
       "release": "31 May 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Linocut_en.dll or Linocut_ru.dll",
       "menu": "Effects > Artistic"
     },
@@ -7393,7 +7434,7 @@
       "type": "Effect",
       "release": "26 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Liquify.dll",
       "menu": "Effects > Tools",
       "alt_topic": "7291"
@@ -7421,7 +7462,7 @@
       "type": "Effect",
       "release": "02 Aug 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LocalContrast.dll",
       "menu": "Effects > Photo",
       "alt_topic": "11619"
@@ -7435,7 +7476,7 @@
       "type": "Effect",
       "release": "18 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LocalNoise.dll",
       "menu": "Effects > Noise"
     },
@@ -7461,7 +7502,7 @@
       "type": "Effect",
       "release": "13 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Lomography.dll",
       "menu": "Effects > Photo"
     },
@@ -7487,7 +7528,7 @@
       "type": "Filetype",
       "release": "02 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "LowColor.dll",
       "menu": "N/A"
     },
@@ -7500,7 +7541,7 @@
       "type": "Plugin Pack",
       "release": "12 Oct 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -7513,7 +7554,7 @@
       "type": "Effect",
       "release": "27 Jul 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Magnifier.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -7527,7 +7568,7 @@
       "type": "Effect",
       "release": "05 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Majority.dll",
       "menu": "Effects > Stylize",
       "alt_topic": "7186"
@@ -7568,7 +7609,7 @@
       "type": "Effect",
       "release": "05 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MakeTransparent.dll",
       "menu": "Effects > Color"
     },
@@ -7607,7 +7648,7 @@
       "type": "Adjustment",
       "release": "26 Oct 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ManualColorCorrection.dll",
       "menu": "Adjustments >"
     },
@@ -7646,7 +7687,7 @@
       "type": "Effect",
       "release": "12 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Matrice.dll",
       "menu": "Effects > Stylize"
     },
@@ -7672,7 +7713,7 @@
       "type": "Effect",
       "release": "27 Mar 2014",
       "status": "Incompatible",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MeasureObject.dll & MeasureObject.dlc. OptionBasedLibrary vY.Y.dll & OptionBasedLibrary vY.Y.dlc",
       "menu": "Effects > Object"
     },
@@ -7685,7 +7726,7 @@
       "type": "Effect",
       "release": "04 Feb 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MeasureSelection.dll & MeasureSelection.dlc",
       "menu": "Effects > Tools"
     },
@@ -7726,7 +7767,7 @@
       "type": "Effect",
       "release": "07 Dec 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Metallize.dll",
       "menu": "Effects > Color",
       "alt_topic": "16643"
@@ -7740,7 +7781,7 @@
       "type": "Effect",
       "release": "03 Jul 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Mexican Hat Edge Detect.dll",
       "menu": "Effects > Stylize"
     },
@@ -7753,7 +7794,7 @@
       "type": "Plugin Pack",
       "release": "09 Mar 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -7779,7 +7820,7 @@
       "type": "Effect",
       "release": "11 Jun 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MirrorRotate.dll, MirrorRotate.ini & IniFile.dll (required)",
       "menu": "Effects >",
       "alt_topic": "6828"
@@ -7806,7 +7847,7 @@
       "type": "Effect",
       "release": "11 Jun 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MirrorRotateMenu.dll, MirrorRotateMenu.ini & IniFile.dll (required)",
       "menu": "Effects > Mirror",
       "alt_topic": "6828"
@@ -7820,7 +7861,7 @@
       "type": "Effect",
       "release": "14 Jan 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EOEffects.dll",
       "menu": "Effects > Mirror",
       "alt_topic": "13003"
@@ -7834,7 +7875,7 @@
       "type": "Effect",
       "release": "18 May 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Mirror.dll",
       "menu": "Adjustments >"
     },
@@ -7886,7 +7927,7 @@
       "type": "Effect",
       "release": "24 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Moire.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -7913,7 +7954,7 @@
       "type": "Adjustment",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Monochromes.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Adjustments >",
       "alt_topic": "8375"
@@ -7927,7 +7968,7 @@
       "type": "Effect",
       "release": "31 Mar 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LavEnt.Effects.Mosaic.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "14145"
@@ -7941,7 +7982,7 @@
       "type": "Effect",
       "release": "06 Jan 2009",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MosaicManiac.dll",
       "menu": "Effects > Artistic"
     },
@@ -7954,7 +7995,7 @@
       "type": "Effect",
       "release": "04 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MotionSharpen.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -7995,7 +8036,7 @@
       "type": "Effect",
       "release": "29 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MultiColorGradient.dll",
       "menu": "Effects > Render"
     },
@@ -8008,7 +8049,7 @@
       "type": "Effect",
       "release": "20 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "MultiThreshold.dll",
       "menu": "Effects > Color",
       "alt_topic": "16643"
@@ -8022,7 +8063,7 @@
       "type": "Effect",
       "release": "21 Jun 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "MultiSpline.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -8035,7 +8076,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -8062,7 +8103,7 @@
       "type": "Effect",
       "release": "12 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Nebulous.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -8090,7 +8131,7 @@
       "type": "Effect",
       "release": "23 Mar 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "NeonEdges_en.dll or NeonEdges_ru.dll",
       "menu": "Effects > Stylize"
     },
@@ -8117,7 +8158,7 @@
       "type": "Effect",
       "release": "12 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "NewtonFractal.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -8131,7 +8172,7 @@
       "type": "Effect",
       "release": "19 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DPLNightVision.dll",
       "menu": "Effects > Color"
     },
@@ -8144,7 +8185,7 @@
       "type": "Effect",
       "release": "06 Oct 2013",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "NoiseBleach.dll",
       "menu": "Effects > Color"
     },
@@ -8157,7 +8198,7 @@
       "type": "Effect",
       "release": "04 Jun 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "JPGNoiseReduction.dll",
       "menu": "Effects > Noise"
     },
@@ -8170,7 +8211,7 @@
       "type": "Effect",
       "release": "17 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "noisechoice.dll",
       "menu": "Effects > Noise",
       "alt_topic": "22500"
@@ -8184,7 +8225,7 @@
       "type": "Effect",
       "release": "31 Dec 2006",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "HeightToNormal.dll",
       "menu": "Effects >"
     },
@@ -8197,7 +8238,7 @@
       "type": "Effect",
       "release": "04 Nov 2012",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Norm_Render.dll",
       "menu": "Effects > Texture"
     },
@@ -8210,7 +8251,7 @@
       "type": "Effect",
       "release": "24 Jan 2012",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "DrPrepper.dll, Normalizer.dll & BumpChecker.dll",
       "menu": "Effects > The Normal Tools"
     },
@@ -8223,7 +8264,7 @@
       "type": "Effect",
       "release": "03 Jun 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Normalize.dll",
       "menu": "Effects > Photo"
     },
@@ -8236,7 +8277,7 @@
       "type": "Effect",
       "release": "01 Feb 2009",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "NormalMap.dll",
       "menu": "Effects > Color",
       "alt_topic": "111602"
@@ -8276,7 +8317,7 @@
       "type": "Effect",
       "release": "16 Nov 2009",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "NormalMapPlus.dll",
       "menu": "Effects > Stylize",
       "alt_topic": "111602"
@@ -8303,7 +8344,7 @@
       "type": "Effect",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.ObjectAlign.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Effects > Object Align",
       "alt_topic": "8375"
@@ -8317,7 +8358,7 @@
       "type": "Effect",
       "release": "14 Apr 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ObjectBevel.dll",
       "menu": "Effects > Object"
     },
@@ -8330,7 +8371,7 @@
       "type": "Effect",
       "release": "20 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Object2colour.dll",
       "menu": "Effects > Object",
       "alt_topic": "22500"
@@ -8344,7 +8385,7 @@
       "type": "Effect",
       "release": "29 Jan 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "InnerShadow.dll",
       "menu": "Effects > Object"
     },
@@ -8439,7 +8480,7 @@
       "type": "Plugin Pack",
       "release": "21 Jul 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ObjectTools.dll",
       "menu": "Effects > Object",
       "alt_topic": "120037"
@@ -8453,7 +8494,7 @@
       "type": "Effect",
       "release": "10 Jun 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Object2colour.dll",
       "menu": "Effects > Object",
       "alt_topic": "22500"
@@ -8467,7 +8508,7 @@
       "type": "Effect",
       "release": "30 Dec 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Oblique.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -8495,7 +8536,7 @@
       "type": "Effect",
       "release": "16 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Offset.dll",
       "menu": "Effects > Object",
       "alt_topic": "2617"
@@ -8509,7 +8550,7 @@
       "type": "Effect",
       "release": "30 Jun 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "OffsetAlternatingStripes.dll",
       "menu": "Effects > Distort"
     },
@@ -8536,7 +8577,7 @@
       "type": "Effect",
       "release": "31 Jul 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Olden.dll",
       "menu": "Effects > Photo",
       "alt_topic": "15218"
@@ -8563,7 +8604,7 @@
       "type": "Filetype",
       "release": "02 Jun 2011",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "OpenRasterFiletype.dll",
       "menu": "N/A"
     },
@@ -8576,7 +8617,7 @@
       "type": "Filetype",
       "release": "26 Sep 2012",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "OptimizedJPEG.dll & jpegtran.exe (required)",
       "menu": "N/A"
     },
@@ -8589,7 +8630,7 @@
       "type": "Filetype",
       "release": "12 Jul 2007",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "OptiPngFileType.dll & optipng.exe (required)",
       "menu": "N/A",
       "alt_topic": "22841"
@@ -8603,7 +8644,7 @@
       "type": "Filetype",
       "release": "05 Jul 2019",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "OptiPngFileType.dll & optipng.exe (required)",
       "menu": "N/A"
     },
@@ -8616,7 +8657,7 @@
       "type": "Filetype",
       "release": "10 Aug 2011",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "OptiPngFileType.dll & optipng.exe (required)",
       "menu": "N/A"
     },
@@ -8643,7 +8684,7 @@
       "type": "Effect",
       "release": "12 Jul 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "OtherFarmColorReplacer.dll",
       "menu": "Effects > Color"
     },
@@ -8669,7 +8710,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Outline.dll",
       "menu": "Effects > Object",
       "alt_topic": "120037"
@@ -8711,7 +8752,7 @@
       "type": "Effect",
       "release": "15 Jul 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Outline Object.dll",
       "menu": "Effects > Object",
       "alt_topic": "7291"
@@ -8725,7 +8766,7 @@
       "type": "Effect",
       "release": "14 May 2008",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "OutlineSelection.dll",
       "menu": "Effects > Selection",
       "alt_topic": "11514"
@@ -8739,7 +8780,7 @@
       "type": "Effect",
       "release": "27 Aug 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SelectionTools.dll",
       "menu": "Effects > Selection",
       "alt_topic": "120037"
@@ -8780,7 +8821,7 @@
       "type": "Effect",
       "release": "04 Nov 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Overblur.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "22500"
@@ -8794,7 +8835,7 @@
       "type": "Effect",
       "release": "19 Jul 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Overliner.dll",
       "menu": "Effects > Stylize",
       "alt_topic": "7186"
@@ -8821,7 +8862,7 @@
       "type": "Effect",
       "release": "25 May 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PageCurl.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -8887,7 +8928,7 @@
       "type": "External Resource",
       "release": "16 May 2008",
       "status": "Obsolete",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "paint.net Plugin Manager X.exe",
       "menu": "N/A"
     },
@@ -8927,7 +8968,7 @@
       "type": "Effect",
       "release": "07 Apr 2009",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PaletteFromImage.dll & PDNPalette.dll",
       "menu": "Effects > Tools"
     },
@@ -8940,7 +8981,7 @@
       "type": "External Resource",
       "release": "17 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Setup.exe",
       "menu": "N/A"
     },
@@ -8953,7 +8994,7 @@
       "type": "Effect",
       "release": "01 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Panelling.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -8967,7 +9008,7 @@
       "type": "Effect",
       "release": "25 Dec 2012",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PaperKaleidocycles.dll",
       "menu": "Effects > Tools"
     },
@@ -8980,7 +9021,7 @@
       "type": "Effect",
       "release": "12 Nov 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ParallelLines.Effect.dll/*.dlc, OptionBasedLibrary vX.X.dll/*.dlc",
       "menu": "Effects > Render"
     },
@@ -8993,7 +9034,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PasteAlpha.dll",
       "menu": "Effects > Object",
       "alt_topic": "120037"
@@ -9033,7 +9074,7 @@
       "type": "Effect",
       "release": "16 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PasteFill.dll",
       "menu": "Effects > Selection",
       "alt_topic": "12831"
@@ -9047,7 +9088,7 @@
       "type": "Effect",
       "release": "19 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Pastel.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "120037"
@@ -9126,7 +9167,7 @@
       "type": "Effect",
       "release": "19 Nov 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PdnFF.dll and one of ffparse_x86.dll or ffparse_x64.dll.",
       "menu": "Effects >"
     },
@@ -9139,7 +9180,7 @@
       "type": "Effect",
       "release": "04 Dec 2009",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PDNWatermark.dll",
       "menu": "Effects > Tools"
     },
@@ -9179,7 +9220,7 @@
       "type": "Effect",
       "release": "25 Jul 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PerlinTexture.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -9219,7 +9260,7 @@
       "type": "Effect",
       "release": "16 Sep 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Perspective.dll",
       "menu": "Effects > Distort",
       "alt_topic": "16643"
@@ -9246,7 +9287,7 @@
       "type": "Effect",
       "release": "28 Jun 2006",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PhotoFloodFillPlugIn.dll",
       "menu": "Effects >"
     },
@@ -9259,9 +9300,23 @@
       "type": "Filetype",
       "release": "23 Dec 2012",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "ABRFileType.dll",
       "menu": "N/A"
+    },
+    {
+      "title": "Photoshop Brush FileType for Paint.NET 5.0",
+      "author": "null54",
+      "author_id": "79453",
+      "topic_id": "121377",
+      "desc": "Load and save brushes used by Adobe® Photoshop®. Updated for PDN 5.0. Brushes sampled from image data are supported, dynamically computed brushes are ignored.",
+      "type": "Filetype",
+      "release": "28 Nov 2022",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "ABRFileType.dll & two *.txt information files.",
+      "menu": "N/A",
+      "alt_topic": "25791"
     },
     {
       "title": "Photoshop file plugin",
@@ -9286,7 +9341,7 @@
       "type": "Filetype",
       "release": "12 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PatternFileType.dll",
       "menu": "N/A"
     },
@@ -9325,7 +9380,7 @@
       "type": "Effect",
       "release": "14 Jan 2007",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EOEffects.dll",
       "menu": "Effects > Render",
       "alt_topic": "13003"
@@ -9352,7 +9407,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -9366,7 +9421,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -9380,7 +9435,7 @@
       "type": "Effect",
       "release": "27 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Pixelate+.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "7291"
@@ -9394,7 +9449,7 @@
       "type": "Effect",
       "release": "13 Apr 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PixelatedFrame.dll",
       "menu": "Effects > Render"
     },
@@ -9433,7 +9488,7 @@
       "type": "Effect",
       "release": "18 Jun 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Planetoid.dll",
       "menu": "Effects > Render",
       "alt_topic": "110145"
@@ -9447,12 +9502,12 @@
       "type": "Effect",
       "release": "18 Jul 2014",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PlugInData.dll",
       "menu": "Effects >"
     },
     {
-      "title": "Plugin Browser (updated)",
+      "title": "Plugin Browser",
       "author": "toe_head2001",
       "author_id": "46943",
       "topic_id": "110458",
@@ -9460,9 +9515,23 @@
       "type": "Effect",
       "release": "10 Oct 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PlugInData.dll",
       "menu": "Effects >"
+    },
+    {
+      "title": "Plugin Browser for Paint.NET 5.0",
+      "author": "toe_head2001",
+      "author_id": "46943",
+      "topic_id": "121352",
+      "desc": "Pre-release of the Dwarf Horde's Plugin Browser updated for Paint.NET 5.0+ (following significant rewrite by lead developer toe_head2001). Locate, search and run effects (including chaining multiple Effects) from within the Plugin Browser. Search plugins by Menu, Author, Alphabetically or by Keyword(s). Bookmark and comment your favourite plugins. Find information on plugins and see an effect preview image (where available).",
+      "type": "Effect",
+      "release": "23 Nov 2023",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "PlugInData.dll",
+      "menu": "Effects >",
+      "alt_topic": "110458"
     },
     {
       "title": "Plugin Effect Installer 1.0",
@@ -9473,7 +9542,7 @@
       "type": "External Resource",
       "release": "07 Nov 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "paint.net Effect Installer.exe",
       "menu": "N/A"
     },
@@ -9500,7 +9569,7 @@
       "type": "Effect",
       "release": "13 Aug 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PNG_Preprocessor.dll",
       "menu": "Effects > Photo"
     },
@@ -9526,7 +9595,7 @@
       "type": "Filetype",
       "release": "29 Nov 2009",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PNMPlugin.dll",
       "menu": "N/A"
     },
@@ -9539,7 +9608,7 @@
       "type": "Effect",
       "release": "09 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PointBlur.dll",
       "menu": "Effects > Blurs"
     },
@@ -9552,7 +9621,7 @@
       "type": "Effect",
       "release": "03 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "illnabPlugins.dll",
       "menu": "Effects > Distort",
       "alt_topic": "8677"
@@ -9566,7 +9635,7 @@
       "type": "Effect",
       "release": "01 Nov 2008",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "PointWarpEffect.dll",
       "menu": "Effects > Distort",
       "alt_topic": "8677"
@@ -9645,7 +9714,7 @@
       "type": "Effect",
       "release": "03 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "illnabPlugins.dll",
       "menu": "Effects > Distort",
       "alt_topic": "8677"
@@ -9659,7 +9728,7 @@
       "type": "Effect",
       "release": "16 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Polar.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -9673,7 +9742,7 @@
       "type": "Effect",
       "release": "09 Jun 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PolariodFrame.dll",
       "menu": "Effects > Render",
       "alt_topic": "110145"
@@ -9700,7 +9769,7 @@
       "type": "Effect",
       "release": "11 Nov 2006",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Polygon.dll",
       "menu": "Effects > Render",
       "alt_topic": "120037"
@@ -9714,7 +9783,7 @@
       "type": "Effect",
       "release": "17 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Polygon Tool.dll",
       "menu": "Effects > Tools"
     },
@@ -9727,7 +9796,7 @@
       "type": "Effect",
       "release": "14 Jan 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EOEffects.dll",
       "menu": "Effects > Transparency",
       "alt_topic": "13003"
@@ -9741,7 +9810,7 @@
       "type": "Effect",
       "release": "24 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Polygones.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -9768,7 +9837,7 @@
       "type": "Filetype",
       "release": "28 Feb 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ImPNM.FileType.dll",
       "menu": "N/A"
     },
@@ -9820,7 +9889,7 @@
       "type": "Effect",
       "release": "28 Oct 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Poster.dll",
       "menu": "Effects > Composition"
     },
@@ -9846,7 +9915,7 @@
       "type": "Adjustment",
       "release": "08 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PosterizeAlpha.dll",
       "menu": "Adjustments >"
     },
@@ -9859,7 +9928,7 @@
       "type": "Adjustment",
       "release": "12 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PosterizeHSV.dll",
       "menu": "Adjustments >"
     },
@@ -9872,7 +9941,7 @@
       "type": "Adjustment",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Posterize+.dll",
       "menu": "Adjustments >",
       "alt_topic": "25275"
@@ -9886,7 +9955,7 @@
       "type": "Filetype",
       "release": "16 Mar 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ImPS,EPS,AI.Open.FileType.dll & ImPS,EPS,AI.Open.FileType.dlc. OptionBasedLibrary vX.X.dll & OptionBasedLibrary vX.X.dlc",
       "menu": "N/A"
     },
@@ -9899,7 +9968,7 @@
       "type": "Effect",
       "release": "02 Sep 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PowerStretch.dll",
       "menu": "Effects > Distort"
     },
@@ -9925,7 +9994,7 @@
       "type": "Effect",
       "release": "20 Aug 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PrimColOnly.dll",
       "menu": "Effects > Color"
     },
@@ -9938,7 +10007,7 @@
       "type": "Effect",
       "release": "06 Jan 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PrintIt.Effect.dll/*.dlc, OptionBasedLibrary vX.X.dll/*.dlc",
       "menu": "Effects > Tools"
     },
@@ -9951,7 +10020,7 @@
       "type": "Effect",
       "release": "12 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PrinterPlus.dll",
       "menu": "Effects > Tools"
     },
@@ -9964,7 +10033,7 @@
       "type": "Effect",
       "release": "12 Aug 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PSEmboss.dll",
       "menu": "Effects > Stylize"
     },
@@ -9977,8 +10046,21 @@
       "type": "Effect",
       "release": "16 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "PSFilterPdn.dll & PSFilterShim.exe",
+      "menu": "Effects > 8bf Filter"
+    },
+    {
+      "title": "PSFilterPdn for Paint.NET 5.0",
+      "author": "null54",
+      "author_id": "79453",
+      "topic_id": "121353",
+      "desc": "Run (some) Photoshop Filters using paint.net 5.0.",
+      "type": "Effect",
+      "release": "23 Nov 2022",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "Licence.txt, PSFilterPdn.dll, PSFilterPdn.pdb, PSFilterShim.exe, PSFilterShim.pdb, Readme.txt",
       "menu": "Effects > 8bf Filter"
     },
     {
@@ -10003,7 +10085,7 @@
       "type": "Effect",
       "release": "25 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Psychedelic.dll",
       "menu": "Effects > Artistic"
     },
@@ -10016,7 +10098,7 @@
       "type": "Effect",
       "release": "15 Jul 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Psychocolour.dll",
       "menu": "Effects > Color",
       "alt_topic": "22500"
@@ -10030,7 +10112,7 @@
       "type": "Effect",
       "release": "09 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "BlackAndWhite.dll",
       "menu": "Effects > Color"
     },
@@ -10043,7 +10125,7 @@
       "type": "Plugin Pack",
       "release": "18 Dec 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -10082,7 +10164,7 @@
       "type": "Effect",
       "release": "14 Jan 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EOEffects.dll",
       "menu": "Effects > Distort",
       "alt_topic": "13003"
@@ -10110,7 +10192,7 @@
       "type": "Effect",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Quick Gravity.dll",
       "menu": "Effects > Distort",
       "alt_topic": "25275"
@@ -10137,7 +10219,7 @@
       "type": "Effect",
       "release": "20 Jul 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "RadialBlurDeluxe_v0.1.dll",
       "menu": "Effects > Blurs"
     },
@@ -10150,7 +10232,7 @@
       "type": "Effect",
       "release": "12 Oct 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Radialcolors.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -10164,7 +10246,7 @@
       "type": "Effect",
       "release": "14 Oct 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RadialFade.dll",
       "menu": "Effects > Render"
     },
@@ -10216,7 +10298,7 @@
       "type": "Effect",
       "release": "11 Oct 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RadiusFillCorners.dll",
       "menu": "Effects > Fill"
     },
@@ -10229,7 +10311,7 @@
       "type": "Effect",
       "release": "13 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "rainbow3.dll",
       "menu": "Effects > Artistic"
     },
@@ -10242,7 +10324,7 @@
       "type": "Effect",
       "release": "14 Aug 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "rainbow loom.dll",
       "menu": "Effects > Render",
       "alt_topic": "16103"
@@ -10256,7 +10338,7 @@
       "type": "Effect",
       "release": "12 Oct 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RainbowTwist.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -10270,7 +10352,7 @@
       "type": "Effect",
       "release": "16 Sep 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Rainbow-Splitter.dll",
       "menu": "Effects > Color"
     },
@@ -10296,7 +10378,7 @@
       "type": "Effect",
       "release": "07 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Random Effect.dll",
       "menu": "Effects >",
       "alt_topic": "7291"
@@ -10323,7 +10405,7 @@
       "type": "Effect",
       "release": "01 Aug 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Random lines.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -10337,7 +10419,7 @@
       "type": "Effect",
       "release": "23 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Random Maze1.dll & Random Maze2.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -10364,7 +10446,7 @@
       "type": "Effect",
       "release": "07 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Random Shape Fill.dll",
       "menu": "Effects > Render",
       "alt_topic": "7291"
@@ -10392,7 +10474,7 @@
       "type": "Filetype",
       "release": "08 Jan 2009",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "RAWFile.dll",
       "menu": "N/A",
       "alt_topic": "30007"
@@ -10406,7 +10488,7 @@
       "type": "Filetype",
       "release": "07 Sep 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RawFileType.dll, dcraw_emu.exe and RawFileTypeOptions.txt (paint.net/FileTypes/)",
       "menu": "N/A"
     },
@@ -10498,7 +10580,7 @@
       "type": "Effect",
       "release": "04 Nov 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "recolourchoice.dll",
       "menu": "Effects > Color",
       "alt_topic": "22500"
@@ -10551,7 +10633,7 @@
       "type": "Effect",
       "release": "25 Aug 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RedEyeQuickFix.dll",
       "menu": "Effects > Photo",
       "alt_topic": "11619"
@@ -10578,7 +10660,7 @@
       "type": "Plugin Pack",
       "release": "25 Aug 2011",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -10591,7 +10673,7 @@
       "type": "Effect",
       "release": "15 Dec 2007",
       "status": "Integrated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -10604,7 +10686,7 @@
       "type": "Effect",
       "release": "30 Nov 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "dS810.Spiegeleffekt.dll",
       "menu": "Effects > Render"
     },
@@ -10617,7 +10699,7 @@
       "type": "Effect",
       "release": "18 Apr 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RefocusingSDe.dll",
       "menu": "Effects > Photo"
     },
@@ -10670,7 +10752,7 @@
       "type": "Effect",
       "release": "15 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RemoveDust.dll",
       "menu": "Effects > Photo",
       "alt_topic": "120037"
@@ -10711,7 +10793,7 @@
       "type": "Effect",
       "release": "12 Mar 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "RenderColorWheel.dll",
       "menu": "Effects > Render"
     },
@@ -10777,7 +10859,7 @@
       "type": "Effect",
       "release": "18 Apr 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ReverseColors.dll",
       "menu": "Effects > Color",
       "alt_topic": "7186"
@@ -10804,7 +10886,7 @@
       "type": "Effect",
       "release": "01 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RGB_Remap4.dll",
       "menu": "Effects > Color",
       "alt_topic": "17732"
@@ -10818,7 +10900,7 @@
       "type": "Effect",
       "release": "24 Apr 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RGB2CMYK.dll",
       "menu": "Effects > Color Space"
     },
@@ -10870,7 +10952,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -10884,7 +10966,7 @@
       "type": "Effect",
       "release": "14 Mar 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Rosaces.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -10911,7 +10993,7 @@
       "type": "Effect",
       "release": "26 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RotateText.dll or RotateTextSUI.dll",
       "menu": "Effects > Text Formations",
       "alt_topic": "16643"
@@ -10925,7 +11007,7 @@
       "type": "Effect",
       "release": "24 Feb 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Rotate_Zoom+.dll",
       "menu": "Effects > Distort",
       "alt_topic": "16643"
@@ -10939,7 +11021,7 @@
       "type": "Effect",
       "release": "11 Apr 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "RotationBilinear.dll",
       "menu": "Effects >"
     },
@@ -10952,7 +11034,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Render",
       "alt_topic": "8043"
@@ -10966,7 +11048,7 @@
       "type": "Effect",
       "release": "31 Mar 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "LavEnt.Effects.RoundedRectangle.dll",
       "menu": "Effects > Render",
       "alt_topic": "14145"
@@ -10993,7 +11075,7 @@
       "type": "Effect",
       "release": "13 Mar 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Ruler.dll",
       "menu": "Effects > Render"
     },
@@ -11033,7 +11115,7 @@
       "type": "Effect",
       "release": "12 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Color2Alpha.dll",
       "menu": "Effects > Transparency"
     },
@@ -11059,7 +11141,7 @@
       "type": "Effect",
       "release": "25 Aug 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Scintillate.dll",
       "menu": "Effects > Stylize"
     },
@@ -11085,7 +11167,7 @@
       "type": "Effect",
       "release": "25 Feb 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ScreenPixel.dll",
       "menu": "Effects > Distort"
     },
@@ -11098,7 +11180,7 @@
       "type": "Effect",
       "release": "29 Mar 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ScreenPixel.dll",
       "menu": "Effects > Distort"
     },
@@ -11111,7 +11193,7 @@
       "type": "Effect",
       "release": "15 Nov 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Scribble.dll",
       "menu": "Effects > Artistic"
     },
@@ -11124,7 +11206,7 @@
       "type": "Effect",
       "release": "19 Sep 2007",
       "status": "Incompatible",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ScriptLab.dll",
       "menu": "Effects > Advanced",
       "alt_topic": "7291"
@@ -11166,7 +11248,7 @@
       "type": "Effect",
       "release": "11 Apr 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SeamlessMove.dll",
       "menu": "Effects > Distort",
       "alt_topic": "4591"
@@ -11180,7 +11262,7 @@
       "type": "Effect",
       "release": "15 Nov 2006",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SeamlessHelper.dll",
       "menu": "Effects >",
       "alt_topic": "4591"
@@ -11194,7 +11276,7 @@
       "type": "Effect",
       "release": "21 Jun 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SeamlessTextureMaker.dll",
       "menu": "Effects > Distort",
       "alt_topic": "2244"
@@ -11208,7 +11290,7 @@
       "type": "Effect",
       "release": "11 Dec 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "SegmentImage.dll",
       "menu": "Effects > Color"
     },
@@ -11221,7 +11303,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Stylize",
       "alt_topic": "18811"
@@ -11235,7 +11317,7 @@
       "type": "Effect",
       "release": "08 Aug 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SelectionObscure.dll",
       "menu": "Effects > Selection",
       "alt_topic": "17732"
@@ -11263,7 +11345,7 @@
       "type": "Effect",
       "release": "06 May 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "selection2clear.dll",
       "menu": "Effects > Transparency",
       "alt_topic": "22500"
@@ -11277,7 +11359,7 @@
       "type": "Effect",
       "release": "31 Jan 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SelectionInnerContour.dll & SelectionInnerContour.pdb",
       "menu": "Effects > Selection"
     },
@@ -11290,7 +11372,7 @@
       "type": "Effect",
       "release": "16 Jan 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "phips_selective_enhancer.dll",
       "menu": "Effects > Color"
     },
@@ -11303,7 +11385,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Color",
       "alt_topic": "8043"
@@ -11317,7 +11399,7 @@
       "type": "Effect",
       "release": "18 Jan 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "phips_selective_toning.dll",
       "menu": "Effects > Color"
     },
@@ -11343,7 +11425,7 @@
       "type": "Effect",
       "release": "26 Jul 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Self-Negation.dll",
       "menu": "Effects > Color"
     },
@@ -11356,7 +11438,7 @@
       "type": "Adjustment",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Monochromes.dll & Vandermotten.PaintDotNetEffects.dll",
       "menu": "Adjustments >",
       "alt_topic": "8375"
@@ -11370,7 +11452,7 @@
       "type": "Effect",
       "release": "19 Sep 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ShadiSearch2.dll",
       "menu": "Effects > Diagnostic"
     },
@@ -11383,7 +11465,7 @@
       "type": "Effect",
       "release": "22 Aug 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ShadowHighlight.dll",
       "menu": "Effects > Photo",
       "alt_topic": "11619"
@@ -11397,7 +11479,7 @@
       "type": "Effect",
       "release": "10 Jan 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ShadowEffect.dll",
       "menu": "Effects >"
     },
@@ -11410,7 +11492,7 @@
       "type": "Effect",
       "release": "21 Apr 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Shape_umabob.dll",
       "menu": "Effects >"
     },
@@ -11423,7 +11505,7 @@
       "type": "Effect",
       "release": "16 Jun 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Shape3D.dll",
       "menu": "Effects > Render"
     },
@@ -11436,7 +11518,7 @@
       "type": "Effect",
       "release": "15 Aug 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "shapegradient.dll",
       "menu": "Effects > Selection"
     },
@@ -11476,7 +11558,7 @@
       "type": "Effect",
       "release": "12 Dec 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Shapes.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -11490,7 +11572,7 @@
       "type": "Effect",
       "release": "11 Mar 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Landscape.dll",
       "menu": "Effects > Photo",
       "alt_topic": "120037"
@@ -11504,7 +11586,7 @@
       "type": "Effect",
       "release": "15 Aug 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Sharpen+.dll",
       "menu": "Effects > Photo",
       "alt_topic": "11619"
@@ -11518,7 +11600,7 @@
       "type": "Effect",
       "release": "11 Apr 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Shatters_0.55beta.dll",
       "menu": "Effects > Distort",
       "alt_topic": "14354"
@@ -11560,7 +11642,7 @@
       "type": "Effect",
       "release": "13 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Silhoette.dll",
       "menu": "Effects > Distort"
     },
@@ -11573,7 +11655,7 @@
       "type": "Effect",
       "release": "29 Jul 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "silhouetteplus.dll",
       "menu": "Effects > Color",
       "alt_topic": "11645"
@@ -11600,7 +11682,7 @@
       "type": "Plugin Pack",
       "release": "24 Jun 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -11613,7 +11695,7 @@
       "type": "Plugin Pack",
       "release": "24 Jun 2009",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -11626,7 +11708,7 @@
       "type": "Effect",
       "release": "13 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Lines.dll",
       "menu": "Effects > Render"
     },
@@ -11639,7 +11721,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Blurs",
       "alt_topic": "18811"
@@ -11653,7 +11735,7 @@
       "type": "Effect",
       "release": "10 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SimulateColorDepth.dll plus xml supporting files.",
       "menu": "Effects > Photo"
     },
@@ -11680,7 +11762,7 @@
       "type": "Effect",
       "release": "07 Dec 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SinWaves.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -11694,7 +11776,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -11747,7 +11829,7 @@
       "type": "Effect",
       "release": "22 Apr 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Slinky.dll",
       "menu": "Effects > Render"
     },
@@ -11760,7 +11842,7 @@
       "type": "Effect",
       "release": "19 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vandermotten.PaintDotNetEffects.Blurs.dll &Vandermotten.PaintDotNetEffects.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "8375"
@@ -11774,7 +11856,7 @@
       "type": "Effect",
       "release": "15 Jun 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SmartSharpen.dll",
       "menu": "Effects > Photo"
     },
@@ -11800,7 +11882,7 @@
       "type": "Effect",
       "release": "11 Dec 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Smooth.dll, Smooth.ini & IniFile.dll (required)",
       "menu": "Effects > Blurs",
       "alt_topic": "6828"
@@ -11828,7 +11910,7 @@
       "type": "Effect",
       "release": "07 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Smudge.dll",
       "menu": "Effects > Tools",
       "alt_topic": "7291"
@@ -11855,7 +11937,7 @@
       "type": "Adjustment",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Adjustments >",
       "alt_topic": "18811"
@@ -11869,7 +11951,7 @@
       "type": "Effect",
       "release": "03 Mar 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "jchunn.dll (also contains others)",
       "menu": "Effects > Blurs",
       "alt_topic": "8408"
@@ -11897,7 +11979,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -11924,7 +12006,7 @@
       "type": "Effect",
       "release": "09 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Sound wave.dll",
       "menu": "Effects > Render",
       "alt_topic": "16103"
@@ -11951,7 +12033,7 @@
       "type": "Effect",
       "release": "09 Nov 2007",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Sparkle_Glitter.dll",
       "menu": "Effects > Render",
       "alt_topic": "9293"
@@ -11965,7 +12047,7 @@
       "type": "Effect",
       "release": "09 Nov 2007",
       "status": "Obsolete",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Sparkle_Stars.dll",
       "menu": "Effects > Render",
       "alt_topic": "9293"
@@ -11979,7 +12061,7 @@
       "type": "Effect",
       "release": "04 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Sparkles.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -11993,7 +12075,7 @@
       "type": "Effect",
       "release": "21 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SpeechBubble.dll",
       "menu": "Effects > Text Formations",
       "alt_topic": "16643"
@@ -12020,7 +12102,7 @@
       "type": "Effect",
       "release": "27 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Spiral.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -12047,7 +12129,7 @@
       "type": "Effect",
       "release": "10 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SpiralText.dll",
       "menu": "Effects > Text Formations",
       "alt_topic": "16643"
@@ -12061,7 +12143,7 @@
       "type": "Effect",
       "release": "16 May 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SpiritLevel.Effect.dll & SpiritLevel.Effect.dlc",
       "menu": "Effects > Photo"
     },
@@ -12074,7 +12156,7 @@
       "type": "Effect",
       "release": "27 Jul 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SpiroGraph.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -12088,7 +12170,7 @@
       "type": "Effect",
       "release": "14 Nov 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SpiroShapes.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -12102,7 +12184,7 @@
       "type": "Effect",
       "release": "13 Apr 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Splashes.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -12116,7 +12198,7 @@
       "type": "Effect",
       "release": "27 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Splatter.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "7291"
@@ -12130,7 +12212,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Blurs",
       "alt_topic": "18811"
@@ -12157,7 +12239,7 @@
       "type": "Effect",
       "release": "21 Feb 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SpokedWheel.dll",
       "menu": "Effects > Render"
     },
@@ -12170,7 +12252,7 @@
       "type": "Effect",
       "release": "21 May 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Sponge_en.dll or Sponge_ru.dll",
       "menu": "Effects > Artistic"
     },
@@ -12223,7 +12305,7 @@
       "type": "Effect",
       "release": "11 Dec 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "squirkle.dll",
       "menu": "Effects > Render",
       "alt_topic": "22500"
@@ -12237,7 +12319,7 @@
       "type": "Effect",
       "release": "12 Jul 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "squirklewarp.dll",
       "menu": "Effects > Distort",
       "alt_topic": "22500"
@@ -12251,7 +12333,7 @@
       "type": "Effect",
       "release": "07 Nov 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "StarGlow.dll",
       "menu": "Effects > Stylize",
       "alt_topic": "7186"
@@ -12265,7 +12347,7 @@
       "type": "Effect",
       "release": "01 Apr 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Starry.dll",
       "menu": "Effects > Render"
     },
@@ -12278,7 +12360,7 @@
       "type": "Effect",
       "release": "04 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Stars.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -12292,7 +12374,7 @@
       "type": "Effect",
       "release": "07 Jun 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Steganography.dll",
       "menu": "Effects > Steganography",
       "alt_topic": "120037"
@@ -12306,7 +12388,7 @@
       "type": "Effect",
       "release": "21 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "jchunn.dll (also contains others)",
       "menu": "Effects > Artistic",
       "alt_topic": "8408"
@@ -12320,7 +12402,7 @@
       "type": "Effect",
       "release": "18 Sep 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Stencil2Eye.dll",
       "menu": "Effects > Color"
     },
@@ -12333,7 +12415,7 @@
       "type": "Effect",
       "release": "23 Mar 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "StewienFilters.dll",
       "menu": "Effects > Stewein Filters"
     },
@@ -12346,7 +12428,7 @@
       "type": "Effect",
       "release": "05 Jul 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Stickman.dll",
       "menu": "Effects > Render",
       "alt_topic": "110145"
@@ -12360,7 +12442,7 @@
       "type": "Effect",
       "release": "21 Nov 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Stipple.dll",
       "menu": "Effects > Artistic"
     },
@@ -12373,7 +12455,7 @@
       "type": "Effect",
       "release": "09 Oct 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Stitch.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7291"
@@ -12400,7 +12482,7 @@
       "type": "Effect",
       "release": "06 May 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "StrayPixelRemover.dll",
       "menu": "Effects > Misc"
     },
@@ -12413,7 +12495,7 @@
       "type": "Effect",
       "release": "30 Jul 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "StringAndPin.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -12426,7 +12508,7 @@
       "type": "Plugin Pack",
       "release": "01 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -12465,7 +12547,7 @@
       "type": "Effect",
       "release": "07 Dec 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "SubtleEffect.dll",
       "menu": "Unknown"
     },
@@ -12478,7 +12560,7 @@
       "type": "Effect",
       "release": "23 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "SubtractColor.dll",
       "menu": "Effects > Color"
     },
@@ -12517,7 +12599,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Alpha2Gray.dll",
       "menu": "Effects > Object",
       "alt_topic": "120037"
@@ -12531,7 +12613,7 @@
       "type": "Effect",
       "release": "15 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Gray2Alpha.dll",
       "menu": "Effects > Object",
       "alt_topic": "120037"
@@ -12597,7 +12679,7 @@
       "type": "Effect",
       "release": "07 Oct 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TargetPanelV10.dll",
       "menu": "Effects > Color",
       "alt_topic": "10729"
@@ -12664,7 +12746,7 @@
       "type": "Plugin Pack",
       "release": "16 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Offset.dll & PasteFill.dll",
       "menu": "N/A"
     },
@@ -12703,7 +12785,7 @@
       "type": "Effect",
       "release": "19 Nov 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "TextPro.dll",
       "menu": "Effects >"
     },
@@ -12729,7 +12811,7 @@
       "type": "Effect",
       "release": "26 Aug 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TextWindow.dll",
       "menu": "Effects > Text Formations"
     },
@@ -12742,7 +12824,7 @@
       "type": "Effect",
       "release": "21 Aug 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Textplus.dll",
       "menu": "Effects > Text Formations"
     },
@@ -12755,7 +12837,7 @@
       "type": "Effect",
       "release": "24 Jun 2009",
       "status": "Deprecated",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Texture.dll",
       "menu": "Effects > Stylize"
     },
@@ -12807,7 +12889,7 @@
       "type": "Effect",
       "release": "27 Jun 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TextureShader.dll",
       "menu": "Effects > Distort"
     },
@@ -12833,7 +12915,7 @@
       "type": "Effect",
       "release": "23 Mar 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Texturize.dll",
       "menu": "Effects > Artistic"
     },
@@ -12846,7 +12928,7 @@
       "type": "Effect",
       "release": "12 Aug 2008",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ThatOtherApp.dll",
       "menu": "Effects > Tools",
       "alt_topic": "116253"
@@ -12873,7 +12955,7 @@
       "type": "Effect",
       "release": "23 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ThermalHeatMapEffect.dll",
       "menu": "Effects > Distort"
     },
@@ -12912,7 +12994,7 @@
       "type": "Effect",
       "release": "09 Oct 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -12953,7 +13035,7 @@
       "type": "Effect",
       "release": "22 Nov 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "TileFillFromClipboard.dll",
       "menu": "Effects > Fill"
     },
@@ -12966,7 +13048,7 @@
       "type": "Effect",
       "release": "31 Jan 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "CurtisBlack.Effects.dll, CurtisBlack.Resources.dll & CurtisBlack.Common.dll",
       "menu": "Effects > Distort",
       "alt_topic": "8043"
@@ -12993,7 +13075,7 @@
       "type": "Effect",
       "release": "10 Aug 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Tiles.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -13021,7 +13103,7 @@
       "type": "Plugin Pack",
       "release": "03 Nov 2009",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -13034,7 +13116,7 @@
       "type": "Effect",
       "release": "09 Oct 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Tint-Splitter.dll",
       "menu": "Effects > Color"
     },
@@ -13086,7 +13168,7 @@
       "type": "Plugin Pack",
       "release": "14 Nov 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "N/A",
       "menu": "N/A"
     },
@@ -13125,7 +13207,7 @@
       "type": "Effect",
       "release": "07 Oct 2017",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TGAngle.dll",
       "menu": "Effects > Stylize"
     },
@@ -13138,7 +13220,7 @@
       "type": "Effect",
       "release": "23 Jul 2017",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TGMagnitude.dll",
       "menu": "Effects > Stylize"
     },
@@ -13151,7 +13233,7 @@
       "type": "Effect",
       "release": "28 Aug 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TOON.dll",
       "menu": "Effects >"
     },
@@ -13164,7 +13246,7 @@
       "type": "Effect",
       "release": "07 Mar 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Toon Shader.dll",
       "menu": "Effects > Artistic"
     },
@@ -13191,7 +13273,7 @@
       "type": "Effect",
       "release": "18 Aug 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsAlphaCutter.dll",
       "menu": "Effects > Object"
     },
@@ -13204,7 +13286,7 @@
       "type": "Adjustment",
       "release": "09 Mar 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsAlphaMapper.dll",
       "menu": "Adjustments >"
     },
@@ -13217,7 +13299,7 @@
       "type": "Effect",
       "release": "21 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsBWPhoto.dll",
       "menu": "Effects > Color"
     },
@@ -13230,7 +13312,7 @@
       "type": "Effect",
       "release": "24 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsBokeh.dll",
       "menu": "Effects > Photo"
     },
@@ -13243,7 +13325,7 @@
       "type": "Effect",
       "release": "01 May 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsBrushStrokes.dll",
       "menu": "Effects > Artistic"
     },
@@ -13256,7 +13338,7 @@
       "type": "Effect",
       "release": "07 May 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsCloudControl.dll",
       "menu": "Effects > Render"
     },
@@ -13269,7 +13351,7 @@
       "type": "Effect",
       "release": "28 Jul 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsColorReducer.dll",
       "menu": "Effects > Color"
     },
@@ -13282,7 +13364,7 @@
       "type": "Effect",
       "release": "16 Jan 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsIsopleth.dll",
       "menu": "Effects > Artistic"
     },
@@ -13295,7 +13377,7 @@
       "type": "Effect",
       "release": "07 Sep 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TR'sColorizerHMS.dll",
       "menu": "Effects > Color"
     },
@@ -13308,7 +13390,7 @@
       "type": "Effect",
       "release": "30 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsColorFiller.dll",
       "menu": "Effects > Color"
     },
@@ -13321,7 +13403,7 @@
       "type": "Effect",
       "release": "08 Jan 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsCoquin.dll",
       "menu": "Effects > Color"
     },
@@ -13334,7 +13416,7 @@
       "type": "Effect",
       "release": "06 Mar 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsCroquis.dll",
       "menu": "Effects > Artistic"
     },
@@ -13347,7 +13429,7 @@
       "type": "Effect",
       "release": "01 Feb 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsCustomPaletteMatch.dll",
       "menu": "Effects > Color"
     },
@@ -13360,7 +13442,7 @@
       "type": "Effect",
       "release": "18 Sep 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsCustomRandomFill.dll",
       "menu": "Effects > Render"
     },
@@ -13373,7 +13455,7 @@
       "type": "Effect",
       "release": "06 Aug 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DispMap.dll",
       "menu": "Effects > Distort"
     },
@@ -13386,7 +13468,7 @@
       "type": "Effect",
       "release": "27 Jun 2013",
       "status": "Deprecated",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "DistortThis.dll",
       "menu": "Effects > Distort"
     },
@@ -13412,7 +13494,7 @@
       "type": "Effect",
       "release": "27 Sep 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsDoodleMatic.dll",
       "menu": "Effects > Artistic"
     },
@@ -13425,7 +13507,7 @@
       "type": "Effect",
       "release": "25 Mar 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsDrumSkin.dll",
       "menu": "Effects > Distort"
     },
@@ -13438,7 +13520,7 @@
       "type": "Effect",
       "release": "27 May 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdgeFader.dll",
       "menu": "Effects > Object"
     },
@@ -13451,7 +13533,7 @@
       "type": "Effect",
       "release": "09 Jun 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsExportSelection.dll",
       "menu": "Effects > Selection"
     },
@@ -13464,7 +13546,7 @@
       "type": "Effect",
       "release": "02 Aug 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsFilaments.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -13477,7 +13559,7 @@
       "type": "Effect",
       "release": "14 Aug 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsFilmStock.dll",
       "menu": "Effects > Photo"
     },
@@ -13503,7 +13585,7 @@
       "type": "Effect",
       "release": "31 Dec 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsFireWorks.dll",
       "menu": "Effects > Render"
     },
@@ -13516,7 +13598,7 @@
       "type": "Effect",
       "release": "11 May 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsFreeWarp.dll",
       "menu": "Effects > Distort"
     },
@@ -13529,7 +13611,7 @@
       "type": "Effect",
       "release": "01 Dec 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsFuego.dll",
       "menu": "Effects > Render"
     },
@@ -13542,7 +13624,7 @@
       "type": "Effect",
       "release": "05 Jun 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsGlassVignette.dll",
       "menu": "Effects > Distort"
     },
@@ -13555,7 +13637,7 @@
       "type": "Effect",
       "release": "07 Aug 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsHalfTone.dll",
       "menu": "Effects > Stylize"
     },
@@ -13568,7 +13650,7 @@
       "type": "Effect",
       "release": "27 Mar 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsHDRish.dll",
       "menu": "Effects > Color"
     },
@@ -13581,7 +13663,7 @@
       "type": "Effect",
       "release": "10 Apr 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsIntenseFilteration.dll",
       "menu": "Effects > Color"
     },
@@ -13607,7 +13689,7 @@
       "type": "Effect",
       "release": "03 Jan 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsIPollock.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -13620,7 +13702,7 @@
       "type": "Effect",
       "release": "01 Jun 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsKaboom.dll",
       "menu": "Effects > Noise"
     },
@@ -13646,7 +13728,7 @@
       "type": "Effect",
       "release": "04 Jun 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "KlumpNoiz.dll",
       "menu": "Effects > Noise"
     },
@@ -13685,7 +13767,7 @@
       "type": "Effect",
       "release": "23 Mar 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsPanoPDN.dll & TRPANOVIEW.exe",
       "menu": "Effects > Photo"
     },
@@ -13698,7 +13780,7 @@
       "type": "Effect",
       "release": "20 Oct 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsPasteFrame.dll",
       "menu": "Effects > Selection"
     },
@@ -13711,7 +13793,7 @@
       "type": "Effect",
       "release": "27 Apr 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsPasteWarp.dll",
       "menu": "Effects > Selection"
     },
@@ -13724,7 +13806,7 @@
       "type": "Effect",
       "release": "09 Mar 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsPixelPuller.dll",
       "menu": "Effects > Distort"
     },
@@ -13737,7 +13819,7 @@
       "type": "Effect",
       "release": "26 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TR's Pixel Push.dll",
       "menu": "Effects > Distort"
     },
@@ -13750,7 +13832,7 @@
       "type": "Effect",
       "release": "16 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsPixelSharp.dll",
       "menu": "Effects > Photo"
     },
@@ -13763,7 +13845,7 @@
       "type": "Effect",
       "release": "18 Apr 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsPlasmatix.dll",
       "menu": "Effects > Render"
     },
@@ -13776,7 +13858,7 @@
       "type": "Effect",
       "release": "26 Jul 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsRetouch.dll",
       "menu": "Effects > Photo"
     },
@@ -13789,7 +13871,7 @@
       "type": "Effect",
       "release": "22 Dec 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsPSnap.dll",
       "menu": "Effects > Object"
     },
@@ -13815,7 +13897,7 @@
       "type": "Effect",
       "release": "05 Jun 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsRadialExtruder.dll",
       "menu": "Effects > Distort"
     },
@@ -13828,7 +13910,7 @@
       "type": "Effect",
       "release": "02 Mar 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ReverseFisheye.dll",
       "menu": "Effects > Distort"
     },
@@ -13841,7 +13923,7 @@
       "type": "Effect",
       "release": "30 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRs Scatter.dll",
       "menu": "Effects > Noise"
     },
@@ -13854,7 +13936,7 @@
       "type": "Effect",
       "release": "25 May 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsSelfeez.dll",
       "menu": "Effects > Photo"
     },
@@ -13867,7 +13949,7 @@
       "type": "Effect",
       "release": "31 Aug 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsSmudger.dll",
       "menu": "Effects > Distort"
     },
@@ -13893,7 +13975,7 @@
       "type": "Effect",
       "release": "26 Mar 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsSphereCuber.dll",
       "menu": "Effects > Photo"
     },
@@ -13906,7 +13988,7 @@
       "type": "Effect",
       "release": "25 Nov 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsSplineMaster.dll",
       "menu": "Effects > Render"
     },
@@ -13919,7 +14001,7 @@
       "type": "Effect",
       "release": "07 Jan 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsStarFilter.dll",
       "menu": "Effects > Photo",
       "alt_topic": "19363"
@@ -13933,7 +14015,7 @@
       "type": "Effect",
       "release": "08 May 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsStr8Edge.dll",
       "menu": "Effects > Object"
     },
@@ -13946,7 +14028,7 @@
       "type": "Effect",
       "release": "31 May 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsStrangeAttractor.dll",
       "menu": "Effects > Render"
     },
@@ -13959,7 +14041,7 @@
       "type": "Effect",
       "release": "08 Jan 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsStrobeMotion.dll",
       "menu": "Effects > Render"
     },
@@ -13972,7 +14054,7 @@
       "type": "Effect",
       "release": "07 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsTeslaCoil.dll",
       "menu": "Effects > Render"
     },
@@ -13985,7 +14067,7 @@
       "type": "Effect",
       "release": "16 Oct 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsThirdDimension.dll",
       "menu": "Effects > Render"
     },
@@ -13998,7 +14080,7 @@
       "type": "Effect",
       "release": "07 Dec 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsTiledPixels.dll",
       "menu": "Effects > Stylize"
     },
@@ -14011,7 +14093,7 @@
       "type": "Effect",
       "release": "28 Jul 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsTiltShift.dll",
       "menu": "Effects > Blurs"
     },
@@ -14024,7 +14106,7 @@
       "type": "Effect",
       "release": "23 Jun 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsTreeMaker.dll",
       "menu": "Effects > Iterative Lines"
     },
@@ -14037,7 +14119,7 @@
       "type": "Effect",
       "release": "30 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TRsZigZag.dll",
       "menu": "Effects > Distort"
     },
@@ -14063,7 +14145,7 @@
       "type": "Effect",
       "release": "16 Apr 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Trail.dll",
       "menu": "Effects > Object",
       "alt_topic": "7291"
@@ -14077,7 +14159,7 @@
       "type": "Effect",
       "release": "09 Aug 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "trail3d.dll",
       "menu": "Effects > Object"
     },
@@ -14103,7 +14185,7 @@
       "type": "Effect",
       "release": "07 Jul 2008",
       "status": "Unsupported",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Transitional Brush.dll",
       "menu": "Effects > Tools"
     },
@@ -14116,7 +14198,7 @@
       "type": "Adjustment",
       "release": "29 Jan 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Transparency.dll",
       "menu": "Adjustments >",
       "alt_topic": "120037"
@@ -14169,7 +14251,7 @@
       "type": "Effect",
       "release": "06 Aug 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TreeGen.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -14183,7 +14265,7 @@
       "type": "Effect",
       "release": "23 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "TriangularGradient.dll",
       "menu": "Effects > Render"
     },
@@ -14209,7 +14291,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Blurs",
       "alt_topic": "18811"
@@ -14236,7 +14318,7 @@
       "type": "Effect",
       "release": "04 May 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TubeOblique.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -14250,7 +14332,7 @@
       "type": "Effect",
       "release": "11 Sep 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TurbulentLines.dll & TurbulentCircles.dll",
       "menu": "Effects > Render"
     },
@@ -14289,7 +14371,7 @@
       "type": "Effect",
       "release": "25 Aug 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Tweakedges.dll",
       "menu": "Effects > Artistic"
     },
@@ -14302,7 +14384,7 @@
       "type": "Effect",
       "release": "27 Jun 2011",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Tweaktrans2.dll",
       "menu": "Effects > Transparency"
     },
@@ -14315,7 +14397,7 @@
       "type": "Effect",
       "release": "16 Apr 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Twist.dll",
       "menu": "Effects > Tools",
       "alt_topic": "7291"
@@ -14329,7 +14411,7 @@
       "type": "Effect",
       "release": "26 Sep 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TwistZ.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -14343,7 +14425,7 @@
       "type": "Adjustment",
       "release": "30 Jul 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "TwoToneThreshold.dll",
       "menu": "Adjustments >"
     },
@@ -14382,7 +14464,7 @@
       "type": "Effect",
       "release": "28 Oct 2013",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "UnAlpha-v01.dll",
       "menu": "Effects > Color"
     },
@@ -14409,7 +14491,7 @@
       "type": "Effect",
       "release": "03 May 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Unblend.dll",
       "menu": "Effects >"
     },
@@ -14422,7 +14504,7 @@
       "type": "Effect",
       "release": "17 Nov 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "UnselectedRectangleKeeper.dll",
       "menu": "Effects > Selection"
     },
@@ -14435,7 +14517,7 @@
       "type": "Effect",
       "release": "22 Feb 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "UnsharpMask.dll",
       "menu": "Effects > Photo"
     },
@@ -14448,7 +14530,7 @@
       "type": "Effect",
       "release": "23 Dec 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ImageShackUpload.dll, ImageShackUpload.pdb & SBCommon.dll",
       "menu": "Effects > Tools"
     },
@@ -14461,7 +14543,7 @@
       "type": "Effect",
       "release": "29 Nov 2016",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "VanishPoint.dll",
       "menu": "Effects > Composition"
     },
@@ -14500,7 +14582,7 @@
       "type": "Effect",
       "release": "02 Aug 2008",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "jchunn.dll (also contains others)",
       "menu": "Effects > Render",
       "alt_topic": "8408"
@@ -14528,7 +14610,7 @@
       "type": "Effect",
       "release": "09 Mar 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vibration.dll",
       "menu": "Effects > Distort",
       "alt_topic": "25275"
@@ -14542,7 +14624,7 @@
       "type": "Effect",
       "release": "19 Apr 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vibrato.dll",
       "menu": "Effects > Texture",
       "alt_topic": "7186"
@@ -14569,7 +14651,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Photo",
       "alt_topic": "18811"
@@ -14583,7 +14665,7 @@
       "type": "Effect",
       "release": "29 May 2014",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "VignettePlus.dll",
       "menu": "Effects > Photo",
       "alt_topic": "120037"
@@ -14597,7 +14679,7 @@
       "type": "Effect",
       "release": "01 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Vignette1.dll",
       "menu": "Effects > Artistic",
       "alt_topic": "17732"
@@ -14625,7 +14707,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -14639,7 +14721,7 @@
       "type": "Effect",
       "release": "04 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Volutes.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
@@ -14671,6 +14753,19 @@
       "menu": "N/A"
     },
     {
+      "title": "Wall of Text",
+      "author": "Robot Graffiti",
+      "author_id": "172535",
+      "topic_id": "121504",
+      "desc": "Fits text into a rectangle to create a word-wall (a solid block of words). The plugin automatically adjusts the size of each line to fit into the selection bounds or the layer.",
+      "type": "Effect",
+      "release": "17 Dec 2022",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "WallOfText.dll",
+      "menu": "Effects > Text Formations"
+    },
+    {
       "title": "Water Reflection",
       "author": "MadJik",
       "author_id": "45895",
@@ -14679,7 +14774,7 @@
       "type": "Effect",
       "release": "23 Dec 2006",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "WaterReflection.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7185"
@@ -14693,7 +14788,7 @@
       "type": "Effect",
       "release": "25 Oct 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "WaveText.dll or WaveTextSUI.dll",
       "menu": "Effects > Text Formations",
       "alt_topic": "16643"
@@ -14707,7 +14802,7 @@
       "type": "Effect",
       "release": "03 Jul 2011",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "HaarTransform.dll",
       "menu": "Effects > Fun"
     },
@@ -14720,7 +14815,7 @@
       "type": "Effect",
       "release": "14 Apr 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Waves.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -14734,7 +14829,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Render",
       "alt_topic": "18811"
@@ -14774,7 +14869,7 @@
       "type": "Effect",
       "release": "12 Oct 2007",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "WetFloor.dll",
       "menu": "Effects > Distort",
       "alt_topic": "7186"
@@ -14788,7 +14883,7 @@
       "type": "Effect",
       "release": "04 Dec 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "WhatIsIt.Effect.dll & WhatIsIt.Effect.dlc",
       "menu": "Effects > Tools"
     },
@@ -14801,7 +14896,7 @@
       "type": "Effect",
       "release": "07 Jul 2008",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "WhichSymbolRedux.dll",
       "menu": "Effects > Render",
       "alt_topic": "110145"
@@ -14815,7 +14910,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Color",
       "alt_topic": "18811"
@@ -14829,7 +14924,7 @@
       "type": "Adjustment",
       "release": "31 Jan 2012",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "Whitepoint.dll",
       "menu": "Adjustments >"
     },
@@ -14855,7 +14950,7 @@
       "type": "Filetype",
       "release": "23 Feb 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ImEMF,WMF.FileType.dll, *.dlc, OptionBasedLibrary vX.X.dll & *.dlc",
       "menu": "N/A"
     },
@@ -14881,7 +14976,7 @@
       "type": "Effect",
       "release": "05 Mar 2010",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "EdHarvey.Effects.dll & EdHarvey.Effects.pdb",
       "menu": "Effects > Distort",
       "alt_topic": "18811"
@@ -14908,7 +15003,7 @@
       "type": "Filetype",
       "release": "26 Jun 2013",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Delta.Wsq.dll, PdnWsq.dll and one of nbis32.dll or nbis64.dll",
       "menu": "N/A"
     },
@@ -14921,7 +15016,7 @@
       "type": "Effect",
       "release": "02 Jul 2009",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "X Rainbow bars.dll",
       "menu": "Effects > Render",
       "alt_topic": "16103"
@@ -15014,7 +15109,7 @@
       "type": "Effect",
       "release": "05 Feb 2007",
       "status": "Active",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "Shape_umabob.dll",
       "menu": "Effects >"
     },
@@ -15027,7 +15122,7 @@
       "type": "Filetype",
       "release": "07 Sep 2015",
       "status": "Active",
-      "compatibility": "3.5.x, 4.0x",
+      "compatibility": "3.5x, 4.0x",
       "dlls": "ImZIP.FileType.dll & ImZIP.FileType.dlc",
       "menu": "N/A"
     },
@@ -15053,7 +15148,7 @@
       "type": "Effect",
       "release": "26 Feb 2007",
       "status": "Incompatible",
-      "compatibility": "3.5.x",
+      "compatibility": "3.5x",
       "dlls": "ZoomBlurDeluxe_v0.2.dll",
       "menu": "Effects > Blurs",
       "alt_topic": "32178"

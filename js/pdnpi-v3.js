@@ -330,6 +330,8 @@ const pdnpi = (function () {
                 controls.checkUntested
             ]);
             // when 5.0 is released we can set that checkbox as the default.
+            controls.check5x.prop("checked", true);
+            // include all 4.x plugins for the first few months....
             controls.check4x.prop("checked", true);
 
             [controls.comboAuthors, controls.comboMenu, controls.comboRelease].forEach(control => {

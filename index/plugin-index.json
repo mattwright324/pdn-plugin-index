@@ -1351,7 +1351,7 @@
       "type": "Filetype",
       "release": "04 Oct 2020",
       "status": "Active",
-      "compatibility": "4.2+",
+      "compatibility": "5.0+",
       "dlls": "AvifFileType.dll, AvifNative_x86.dll and AvifNative_x64.dll",
       "menu": "N/A"
     },
@@ -1839,7 +1839,7 @@
       "author": "BoltBait",
       "author_id": "44727",
       "topic_id": "121343",
-      "desc": "Adjustments: Black and White Plus, Color Balance, Combined Adjustments, Hue/Sat +, Transparency.Effects: Flip Horizontal, Flip Vertical.Effects > Artistic: Dream, Oil Paint+, Pastel.Effects > Blurs: Gaussian Blur+.Effects > Color: Complementary Colors.Effects > Fill: Fill from Clipboard, Fill from File.Effects > Object: Apply Alpha Mask, Bevel Object, Feather Object, Inner Shadow, Outline Object, Switch Alpha to Gray (Create Alpha Mask), Switch Gray to Alpha, Paste Alpha.Effects > Photo: Level Horizon/Plum Bob, Meme Maker, Photo Adjustments, Remove Dust, Seam Carving, Sharpen Landscape, Vignette Plus. Effects > Render: Calendar Creator, Chart / Graph, Dimensions, Flames, Gradients, Grid / Checkerboard, Polygon / Stars. Effects > Selection: Bevel Selection, Blur Selection Edge, Feather Selection, Inner Shadow, Outline Selection.Effects > Stylize: Floyd-Steinberg Dithering.Effects > Text Formations: Creative Text Pro, Outlined / Gradient Text.Two palette files and more than 50 Shapes included. Plugin pack comes with it's own exe installer.",
+      "desc": "Adjustments: Black and White Plus, Color Balance, Combined Adjustments, Hue/Sat +, Transparency.Effects: Flip Horizontal, Flip Vertical.Effects > Artistic: Dream, Oil Paint+, Pastel.Effects > Blurs: Gaussian Blur+.Effects > Color: Complementary Colors.Effects > Fill: Fill from Clipboard, Fill from File.Effects > Object: Apply Alpha Mask, Bevel Object, Feather Object, Inner Shadow, Outline Object, Switch Alpha to Gray (Create Alpha Mask), Switch Gray to Alpha, Paste Alpha.Effects > Photo: Level Horizon/Plum Bob, Meme Maker, Photo Adjustments, Remove Dust, Seam Carving, Sharpen Classic, Sharpen Landscape, Vignette Plus. Effects > Render: Calendar Creator, Chart / Graph, Dimensions, Flames, Gradients, Grid / Checkerboard, Polygon / Stars. Effects > Selection: Bevel Selection, Blur Selection Edge, Feather Selection, Inner Shadow, Outline Selection.Effects > Stylize: Floyd-Steinberg Dithering.Effects > Text Formations: Creative Text Pro, Outlined / Gradient Text.Two palette files and more than 50 Shapes included. Plugin pack comes with it's own exe installer.",
       "type": "Plugin Pack",
       "release": "22 Nov 2022",
       "status": "Active",
@@ -3653,7 +3653,7 @@
       "type": "Filetype",
       "release": "09 Mar 2017",
       "status": "Bundled",
-      "compatibility": "4.0+",
+      "compatibility": "5.0+",
       "dlls": "DdsFileTypePlus.dll, and one of DdsFileTypePlusIO_x64.dll or DdsFileTypePlusIO_x86.dll",
       "menu": "N/A"
     },
@@ -4389,6 +4389,20 @@
       "compatibility": "4.2+",
       "dlls": "Edge Shader.dll",
       "menu": "Effects > Object"
+    },
+    {
+      "title": "EdgeDetectClassic",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "121795",
+      "desc": "BoltBait's classic Edge Detect effect (aka the pre PDN 5.0 version). Source code provided. Can also be found in BoltBait's GPU Plugin Pack.",
+      "type": "Effect",
+      "release": "25 Jan 2023",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "EdgeDetectClassic.dll",
+      "menu": "Effects > Stylize",
+      "alt_topic": "121343"
     },
     {
       "title": "Edgemaster",
@@ -5421,12 +5435,12 @@
       "author": "null54",
       "author_id": "79453",
       "topic_id": "113564",
-      "desc": "A wrapper to host GREYC's Magic for Image Computing (G'MIC) filters. Hundreds of filters are available.",
+      "desc": "A wrapper to host GREYC's Magic for Image Computing (G'MIC) filters. Hundreds of filters are available. Updated for PDN 5.0+ 12 Jan 2023.",
       "type": "Effect",
       "release": "16 Dec 2018",
       "status": "Active",
-      "compatibility": "4.0+",
-      "dlls": "Gmic.dll",
+      "compatibility": "5.0+",
+      "dlls": "Gmic.dll, gmic folder (supporting file), two *.txt files.",
       "menu": "Effects > Advanced"
     },
     {
@@ -5437,7 +5451,7 @@
       "desc": "A wrapper to host GREYC's Magic for Image Computing (G'MIC) filters. Hundreds of filters are available. In this release support has been added for reading multiple layers.",
       "type": "Effect",
       "release": "23 Nov 2022",
-      "status": "Active",
+      "status": "Obsolete",
       "compatibility": "5.0+",
       "dlls": "Gmic.dll, gmic folder (supporting file), two *.txt files.",
       "menu": "Effects > Advanced",
@@ -5508,6 +5522,20 @@
       "compatibility": "3.5x, 4.0x",
       "dlls": "Gears.dll",
       "menu": "Effects > Iterative Lines"
+    },
+    {
+      "title": "Generate 96 Colors",
+      "author": "MadJik",
+      "author_id": "45895",
+      "topic_id": "112529",
+      "desc": "Generates an image with exactly 96 colors (suitable for creating a PDN palette). Huge range of colorization options. Colors can be exported PDN palettes. Can be found in MadJik's Plugin Pack",
+      "type": "Effect",
+      "release": "03 Mar 2018",
+      "status": "New",
+      "compatibility": "4.3+",
+      "dlls": "Gen96Colors.dll",
+      "menu": "Effects > Tools",
+      "alt_topic": "7186"
     },
     {
       "title": "GenTree",
@@ -9309,12 +9337,12 @@
       "author": "null54",
       "author_id": "79453",
       "topic_id": "25792",
-      "desc": "Load and save brushes used by Adobe® Photoshop®. Brushes sampled from image data are supported, dynamically computed brushes are ignored.",
+      "desc": "Load and save brushes used by Adobe® Photoshop®. Updated for PDN 5.0. Brushes sampled from image data are supported, dynamically computed brushes are ignored.",
       "type": "Filetype",
       "release": "23 Dec 2012",
       "status": "Active",
-      "compatibility": "3.5x",
-      "dlls": "ABRFileType.dll",
+      "compatibility": "5.0+",
+      "dlls": "ABRFileType.dll & two *.txt information files.",
       "menu": "N/A"
     },
     {
@@ -9325,7 +9353,7 @@
       "desc": "Load and save brushes used by Adobe® Photoshop®. Updated for PDN 5.0. Brushes sampled from image data are supported, dynamically computed brushes are ignored.",
       "type": "Filetype",
       "release": "28 Nov 2022",
-      "status": "Active",
+      "status": "Obsolete",
       "compatibility": "5.0+",
       "dlls": "ABRFileType.dll & two *.txt information files.",
       "menu": "N/A",
@@ -10055,12 +10083,12 @@
       "author": "null54",
       "author_id": "79453",
       "topic_id": "20622",
-      "desc": "Run (some) Photoshop Filters using paint.net.",
+      "desc": "Run (some) Photoshop Filters using paint.net. Updated fpr PDN 5.0+ 12 Jan 2023.",
       "type": "Effect",
       "release": "16 Dec 2010",
       "status": "Active",
-      "compatibility": "3.5x, 4.0x",
-      "dlls": "PSFilterPdn.dll & PSFilterShim.exe",
+      "compatibility": "5.0+",
+      "dlls": "Licence.txt, PSFilterPdn.dll, PSFilterPdn.pdb, PSFilterShim.exe, PSFilterShim.pdb, Readme.txt",
       "menu": "Effects > 8bf Filter"
     },
     {
@@ -10071,7 +10099,7 @@
       "desc": "Run (some) Photoshop Filters using paint.net 5.0.",
       "type": "Effect",
       "release": "23 Nov 2022",
-      "status": "Active",
+      "status": "Obsolete",
       "compatibility": "5.0+",
       "dlls": "Licence.txt, PSFilterPdn.dll, PSFilterPdn.pdb, PSFilterShim.exe, PSFilterShim.pdb, Readme.txt",
       "menu": "Effects > 8bf Filter"
@@ -11575,6 +11603,20 @@
       "dlls": "Shapes.dll",
       "menu": "Effects > Render",
       "alt_topic": "7186"
+    },
+    {
+      "title": "Sharpen Classic",
+      "author": "BoltBait",
+      "author_id": "44727",
+      "topic_id": "121713",
+      "desc": "BoltBait's classic Sharpen effect (aka the pre PDN 5.0 version). Source code provided. Can also be found in BoltBait's GPU Plugin Pack.",
+      "type": "Effect",
+      "release": "17 Jan 2023",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "SharpenClassic.dll",
+      "menu": "Effects > Photo",
+      "alt_topic": "121343"
     },
     {
       "title": "Sharpen Landscape (aka Landscape)",
@@ -14933,7 +14975,7 @@
       "author": "Lord Crc",
       "author_id": "88518",
       "topic_id": "24041",
-      "desc": "Color correction, based off of a neutral point in the image.",
+      "desc": "Color correction, based off of a neutral point in the image. Source code available. Recompiled Feb 2023 by forum member BDP.",
       "type": "Adjustment",
       "release": "31 Jan 2012",
       "status": "Active",

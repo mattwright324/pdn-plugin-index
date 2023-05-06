@@ -4293,7 +4293,7 @@
       "desc": "5.0x version of the Ed Harvey Effects package. Effects: Simplify, Splinter, True Blur, Color Filter, Color Channel Flip/Rotate, Color Tint, Extract Channel, Filtered Black and White, Invert Intensity, Single Hue, Solarize, Threshold, Vitrious, White Balance, Drop Ripple, Glass Blocks, InsideOut, Lens, MultiView, Pixelate (Hexagonal), Pixelate (Cairo Pentagonal), Ripple, Wobble, Cross-Processing, Vignette, Lattice, Halftone, Seismograph, Soft Saturation.",
       "type": "Plugin Pack",
       "release": "26 Dec 2022",
-      "status": "New",
+      "status": "Active",
       "compatibility": "5.0+",
       "dlls": "EdHarvey.Edffects.dll / .pdb",
       "menu": "N/A"
@@ -4398,7 +4398,7 @@
       "desc": "BoltBait's classic Edge Detect effect (aka the pre PDN 5.0 version). Source code provided. Can also be found in BoltBait's GPU Plugin Pack.",
       "type": "Effect",
       "release": "25 Jan 2023",
-      "status": "New",
+      "status": "Active",
       "compatibility": "5.0+",
       "dlls": "EdgeDetectClassic.dll",
       "menu": "Effects > Stylize",
@@ -5531,7 +5531,7 @@
       "desc": "Generates an image with exactly 96 colors (suitable for creating a PDN palette). Huge range of colorization options. Colors can be exported PDN palettes. Can be found in MadJik's Plugin Pack",
       "type": "Effect",
       "release": "03 Mar 2018",
-      "status": "New",
+      "status": "Active",
       "compatibility": "4.3+",
       "dlls": "Gen96Colors.dll",
       "menu": "Effects > Tools",
@@ -10534,16 +10534,16 @@
       "menu": "N/A"
     },
     {
-      "title": "RAWFile LAB",
+      "title": "RawLab",
       "author": "operamint",
       "author_id": "143669",
       "topic_id": "109057",
-      "desc": "A dcraw based RAWFile plugin with an advanced GUI. Requires 64-bit dcraw.exe to be downloaded, renamed and placed in Filetypes folder.",
+      "desc": "A dcraw_emu based RAWFile plugin with an advanced GUI. Unzip and place DLL and supporting file folder in Filetypes folder. Source code provided.",
       "type": "Filetype",
       "release": "06 May 2016",
-      "status": "Incompatible",
-      "compatibility": "4.0+",
-      "dlls": "RAWFile.dll, RAWFileLAB.exe and dcraw64.exe",
+      "status": "Active",
+      "compatibility": "5.0+",
+      "dlls": "RAWLabType.dll and RawLab folder with eight supporting files.",
       "menu": "N/A"
     },
     {
@@ -11612,7 +11612,7 @@
       "desc": "BoltBait's classic Sharpen effect (aka the pre PDN 5.0 version). Source code provided. Can also be found in BoltBait's GPU Plugin Pack.",
       "type": "Effect",
       "release": "17 Jan 2023",
-      "status": "New",
+      "status": "Active",
       "compatibility": "5.0+",
       "dlls": "SharpenClassic.dll",
       "menu": "Effects > Photo",
@@ -11941,6 +11941,19 @@
       "dlls": "Smooth.dll, Smooth.ini & IniFile.dll (required)",
       "menu": "Effects > Blurs",
       "alt_topic": "6828"
+    },
+    {
+      "title": "Smooth Julia Fractal",
+      "author": "Pascal",
+      "author_id": "160256",
+      "topic_id": "122427",
+      "desc": "Render any fractal from the Julia set (in grayscale). Makes use of normalized iteration counting to blend smoothly between shades. Increasing Iterations and Quality will result in a high quality fractal. CodeLab source code provided.",
+      "type": "Effect",
+      "release": "23 Apr 2023",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "smoothfractal.dll",
+      "menu": "Effects > Render"
     },
     {
       "title": "Smooth Noise",

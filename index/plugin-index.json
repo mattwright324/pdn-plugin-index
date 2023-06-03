@@ -9440,6 +9440,19 @@
       "menu": "Effects > Render"
     },
     {
+      "title": "Pixel Sort",
+      "author": "Pascal",
+      "author_id": "160256",
+      "topic_id": "122526",
+      "desc": "Distort an image by sorting pixels using a number of options like horizontal or vertical strips, HSV values or Color Channels. CodeLab source provided.",
+      "type": "Effect",
+      "release": "16 May 2023",
+      "status": "New",
+      "compatibility": "5.0+",
+      "dlls": "PixelSort.dll",
+      "menu": "Effects > Distort"
+    },
+    {
       "title": "Pixelate (Cairo Pentagonal)",
       "author": "Ed Harvey",
       "author_id": "45714",
@@ -11950,7 +11963,7 @@
       "desc": "Render any fractal from the Julia set (in grayscale). Makes use of normalized iteration counting to blend smoothly between shades. Increasing Iterations and Quality will result in a high quality fractal. CodeLab source code provided.",
       "type": "Effect",
       "release": "23 Apr 2023",
-      "status": "New",
+      "status": "Active",
       "compatibility": "5.0+",
       "dlls": "smoothfractal.dll",
       "menu": "Effects > Render"

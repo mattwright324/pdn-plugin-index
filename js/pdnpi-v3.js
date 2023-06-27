@@ -343,6 +343,11 @@ const pdnpi = (function () {
                 internal.refreshListing('order');
             });
 
+            const urlKeywords = new URL(window.location).searchParams.get('s')?.trim();
+            if (urlKeywords) {
+                controls.inputKeywords.val(urlKeywords);
+            }
+
             let inputTimeout = null;
             controls.inputKeywords.on('input', function () {
                 clearTimeout(inputTimeout);

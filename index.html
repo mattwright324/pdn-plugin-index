@@ -186,6 +186,13 @@ revision : 1 July 2023
                         <option value="3">Past 3 Years</option>
                     </select>
                 </div>
+                <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>
+                <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;">
+                    <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                        <div class="toast-body">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="plugins" class="col-md-9">

@@ -32,7 +32,7 @@ for instructions on how to build and run `pdn-plugin-index` from source.
         
         let iframe = document.createElement("iframe");
         iframe.setAttribute("id", "pdnpi-iframe");
-        iframe.src = "https://mattw.io/pdn-plugin-index";
+        iframe.src = "https://mattw.io/pdn-plugin-index" + window.location.search;
         iframe.sandbox = "allow-scripts allow-popups allow-same-origin";
         
         let pdnpi = document.getElementById("pdnpi");

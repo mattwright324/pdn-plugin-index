@@ -536,7 +536,11 @@ const pdnpi = (function () {
             params.append(searchParamKeys.menu, controls.comboMenu.find(":selected").text());
             params.append(searchParamKeys.release, controls.comboRelease.val());
 
-            return window.location.origin + window.location.pathname + '?' + params.toString();
+            const hostUrl = window !== window.parent
+                ? 'https://forums.getpaint.net/PluginIndex'
+                : window.location.origin + window.location.pathname;
+
+            return hostUrl + '?' + params.toString();
         },
         /**
          * Update's what is displayed in the listing based on search criteria.

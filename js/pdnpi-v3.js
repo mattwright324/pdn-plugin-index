@@ -394,7 +394,8 @@ const pdnpi = (function () {
                         $('#copiedToast .toast-body').text('Permalink copied to the clipboard.');
                         $('#copiedToast').toast('show');
                     },
-                    () => {
+                    (failure) => {
+                        console.error(failure);
                         $('#copiedToast .toast-body').text('Error copying Permalink to the clipboard.');
                         $('#copiedToast').toast('show');
                     }

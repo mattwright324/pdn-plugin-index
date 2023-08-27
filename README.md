@@ -29,14 +29,20 @@ for instructions on how to build and run `pdn-plugin-index` from source.
 <script>
     (function() {
         "use strict";
-        
+
         let iframe = document.createElement("iframe");
         iframe.setAttribute("id", "pdnpi-iframe");
-        iframe.src = "https://mattw.io/pdn-plugin-index";
+        iframe.allow = "clipboard-write";
+        iframe.src = "https://mattw.io/pdn-plugin-index" + window.location.search;
         iframe.sandbox = "allow-scripts allow-popups allow-same-origin";
-        
+
         let pdnpi = document.getElementById("pdnpi");
         pdnpi.appendChild(iframe);
+
+        const params = new URL(window.location).searchParams;
+        if (params.size > 0 && !params.has("do")) {
+            pdnpi.scrollIntoView(true);
+        }
     })();
 </script>
 ```

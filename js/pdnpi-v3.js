@@ -85,38 +85,31 @@ const pdnpi = (function () {
     function shouldPluginDisplay(plugin) {
         const data = plugin.getData();
 
-        const keywords = controls.inputKeywords.val();
-        if (keywords && keywords !== "") {
-            let hide = true;
-            Object.keys(data).forEach(key => {
-                const value = data[key];
-
-                if (value && containsIgnoreCase(String(value), keywords)) {
-                    hide = false;
-                }
-            });
+        const keywords = controls.inputKeywords.value;
+        if (keywords) {
+            const hide = !Object.values(data).some(value => value && containsIgnoreCase(String(value), keywords));
 
             if (hide) {
                 return false;
             }
         }
 
-        const author = controls.comboAuthors.find(":selected").val();
-        if (author !== "0") {
-            const authorName = controls.comboAuthors.find(":selected").text();
+        const authorIndex = controls.comboAuthors.selectedIndex;
+        if (authorIndex > 0) {
+            const authorName = controls.comboAuthors.options[authorIndex].text;
 
             if (data.author !== authorName) {
                 return false;
             }
         }
 
-        if (!controls.checkAllTypes.is(":checked")) {
+        if (!controls.checkAllTypes.checked) {
             let hide = true;
-            if (equalsIgnoreCase(data.type, "Effect") && controls.checkTypeEffect.is(":checked") ||
-                equalsIgnoreCase(data.type, "Adjustment") && controls.checkTypeAdjustment.is(":checked") ||
-                equalsIgnoreCase(data.type, "Filetype") && controls.checkTypeFiletype.is(":checked") ||
-                equalsIgnoreCase(data.type, "External Resource") && controls.checkTypeExternal.is(":checked") ||
-                equalsIgnoreCase(data.type, "Plugin Pack") && controls.checkTypePluginPack.is(":checked")) {
+            if (equalsIgnoreCase(data.type, "Effect") && controls.checkTypeEffect.checked ||
+                equalsIgnoreCase(data.type, "Adjustment") && controls.checkTypeAdjustment.checked ||
+                equalsIgnoreCase(data.type, "Filetype") && controls.checkTypeFiletype.checked ||
+                equalsIgnoreCase(data.type, "External Resource") && controls.checkTypeExternal.checked ||
+                equalsIgnoreCase(data.type, "Plugin Pack") && controls.checkTypePluginPack.checked) {
 
                 hide = false;
             }
@@ -126,16 +119,16 @@ const pdnpi = (function () {
             }
         }
 
-        if (!controls.checkAnyStatus.is(":checked")) {
+        if (!controls.checkAnyStatus.checked) {
             let hide = true;
-            if (equalsIgnoreCase(data.status, "Active") && controls.checkStatusActive.is(":checked") ||
-                equalsIgnoreCase(data.status, "New") && controls.checkStatusNew.is(":checked") ||
-                equalsIgnoreCase(data.status, "Deprecated") && controls.checkStatusDeprecated.is(":checked") ||
-                equalsIgnoreCase(data.status, "Obsolete") && controls.checkStatusObsolete.is(":checked") ||
-                equalsIgnoreCase(data.status, "Incompatible") && controls.checkStatusIncompatible.is(":checked") ||
-                equalsIgnoreCase(data.status, "Unsupported") && controls.checkStatusUnsupported.is(":checked") ||
-                equalsIgnoreCase(data.status, "Integrated") && controls.checkStatusIntegrated.is(":checked") ||
-                equalsIgnoreCase(data.status, "Bundled") && controls.checkStatusBundled.is(":checked")) {
+            if (equalsIgnoreCase(data.status, "Active") && controls.checkStatusActive.checked ||
+                equalsIgnoreCase(data.status, "New") && controls.checkStatusNew.checked ||
+                equalsIgnoreCase(data.status, "Deprecated") && controls.checkStatusDeprecated.checked ||
+                equalsIgnoreCase(data.status, "Obsolete") && controls.checkStatusObsolete.checked ||
+                equalsIgnoreCase(data.status, "Incompatible") && controls.checkStatusIncompatible.checked ||
+                equalsIgnoreCase(data.status, "Unsupported") && controls.checkStatusUnsupported.checked ||
+                equalsIgnoreCase(data.status, "Integrated") && controls.checkStatusIntegrated.checked ||
+                equalsIgnoreCase(data.status, "Bundled") && controls.checkStatusBundled.checked) {
 
                 hide = false;
             }
@@ -145,12 +138,12 @@ const pdnpi = (function () {
             }
         }
 
-        if (!controls.checkAnyVersion.is(":checked")) {
+        if (!controls.checkAnyVersion.checked) {
             let hide = true;
-            if (data.compatibility.match(/.*5\..*/) && controls.check5x.is(":checked") ||
-                data.compatibility.match(/.*4\..*/) && controls.check4x.is(":checked") ||
-                data.compatibility.match(/.*3\.5x*/) && controls.check3x.is(":checked") ||
-                equalsIgnoreCase(data.compatibility, "Untested") && controls.checkUntested.is(":checked")) {
+            if (data.compatibility.match(/.*5\..*/) && controls.check5x.checked ||
+                data.compatibility.match(/.*4\..*/) && controls.check4x.checked ||
+                data.compatibility.match(/.*3\.5x*/) && controls.check3x.checked ||
+                equalsIgnoreCase(data.compatibility, "Untested") && controls.checkUntested.checked) {
                 hide = false;
             }
 
@@ -159,28 +152,28 @@ const pdnpi = (function () {
             }
         }
 
-        const menu = controls.comboMenu.find(":selected").val();
-        if (menu !== "0") {
-            const menuText = controls.comboMenu.find(":selected").text();
+        const menuIndex = controls.comboMenu.selectedIndex;
+        if (menuIndex > 0) {
+            const menuText = controls.comboMenu.options[menuIndex].text;
 
             if (!equalsIgnoreCase(data.menu, menuText)) {
                 return false;
             }
         }
 
-        const release = controls.comboRelease.find(":selected").val();
-        if (release !== "0") {
+        const releaseIndex = controls.comboRelease.selectedIndex;
+        if (releaseIndex > 0) {
             const now = new Date();
             const then = new Date(data.release);
             const millisDiff = now - then;
 
             /** days * hours * minutes * seconds * millis */
             const monthInMillis = 30 * 24 * 60 * 60 * 1000;
-            if (release === "1" && millisDiff > (monthInMillis * 6)) {
+            if (releaseIndex === 1 && millisDiff > (monthInMillis * 6)) {
                 return false;
-            } else if (release === "2" && millisDiff > (monthInMillis * 12)) {
+            } else if (releaseIndex === 2 && millisDiff > (monthInMillis * 12)) {
                 return false;
-            } else if (release === "3" && millisDiff > (monthInMillis * 12 * 3)) {
+            } else if (releaseIndex === 3 && millisDiff > (monthInMillis * 12 * 3)) {
                 return false;
             }
         }
@@ -243,44 +236,45 @@ const pdnpi = (function () {
         init: function () {
             console.log("Initializing");
 
-            elements.badgePluginCount = $("#count");
+            elements.badgePluginCount = document.querySelector("#count");
             elements.divLoadingOverlay = $("#spinner");
-            elements.divPluginList = $("#plugins-list");
-            controls.btnScrollToTop = $("#scroll");
+            elements.divPluginList = document.querySelector("#plugins-list");
+            controls.btnScrollToTop = document.querySelector("#scroll");
 
-            controls.inputKeywords = $("#keywords");
-            controls.comboAuthors = $("#author");
-            controls.comboOrder = $("#order");
-            controls.comboMenu = $("#menu-list");
-            controls.comboRelease = $("#release");
+            controls.inputKeywords = document.querySelector("#keywords");
+            controls.comboAuthors = document.querySelector("#author");
+            controls.comboOrder = document.querySelector("#order");
+            controls.comboMenu = document.querySelector("#menu-list");
+            controls.comboRelease = document.querySelector("#release");
 
-            controls.checkAllTypes = $("#checkAll");
-            controls.checkTypeEffect = $("#checkEffect");
-            controls.checkTypeAdjustment = $("#checkAdjustment");
-            controls.checkTypeFiletype = $("#checkFiletype");
-            controls.checkTypeExternal = $("#checkExternal");
-            controls.checkTypePluginPack = $("#checkPack");
+            controls.checkAllTypes = document.querySelector("#checkAll");
+            controls.checkTypeEffect = document.querySelector("#checkEffect");
+            controls.checkTypeAdjustment = document.querySelector("#checkAdjustment");
+            controls.checkTypeFiletype = document.querySelector("#checkFiletype");
+            controls.checkTypeExternal = document.querySelector("#checkExternal");
+            controls.checkTypePluginPack = document.querySelector("#checkPack");
 
-            controls.checkAnyStatus = $("#checkAny");
-            controls.checkStatusActive = $("#checkActive");
-            controls.checkStatusNew = $("#checkNew");
-            controls.checkStatusDeprecated = $("#checkDeprecated");
-            controls.checkStatusObsolete = $("#checkObsolete");
-            controls.checkStatusIncompatible = $("#checkIncompatible");
-            controls.checkStatusUnsupported = $("#checkUnsupported");
-            controls.checkStatusIntegrated = $("#checkIntegrated");
-            controls.checkStatusBundled = $("#checkBundled");
+            controls.checkAnyStatus = document.querySelector("#checkAny");
+            controls.checkStatusActive = document.querySelector("#checkActive");
+            controls.checkStatusNew = document.querySelector("#checkNew");
+            controls.checkStatusDeprecated = document.querySelector("#checkDeprecated");
+            controls.checkStatusObsolete = document.querySelector("#checkObsolete");
+            controls.checkStatusIncompatible = document.querySelector("#checkIncompatible");
+            controls.checkStatusUnsupported = document.querySelector("#checkUnsupported");
+            controls.checkStatusIntegrated = document.querySelector("#checkIntegrated");
+            controls.checkStatusBundled = document.querySelector("#checkBundled");
 
-            controls.checkAnyVersion = $("#checkAnyVersion");
-            controls.check5x = $("#check5x");
-            controls.check4x = $("#check4x");
-            controls.check3x = $("#check3x");
-            controls.checkUntested = $("#checkUntested")
+            controls.checkAnyVersion = document.querySelector("#checkAnyVersion");
+            controls.check5x = document.querySelector("#check5x");
+            controls.check4x = document.querySelector("#check4x");
+            controls.check3x = document.querySelector("#check3x");
+            controls.checkUntested = document.querySelector("#checkUntested");
         },
         loadIndex: function () {
-            $.ajax({
-                dataType: "json",
-                url: "index/plugin-index.json"
+            fetch(
+                "index/plugin-index.json"
+            ).then(response => {
+                return response.json();
             }).then(function (res) {
                 console.log("Successfully loaded plugin-index.json");
                 console.log(res);
@@ -300,17 +294,23 @@ const pdnpi = (function () {
                     pluginIndex.push(plugin);
                 }
 
-                parsed.authors.sort(alphaSort);
-                parsed.authors.forEach((name, index) =>
-                    controls.comboAuthors.append(`<option value="${index + 1}">${name}</option>`));
+                const authorOptions = parsed.authors
+                    .sort(alphaSort)
+                    .map((name, index) => `<option value="${index + 1}">${name}</option>`)
+                    .join("");
 
-                parsed.menus.sort(alphaSort);
-                parsed.menus.forEach((menu, index) =>
-                    controls.comboMenu.append(`<option value="${index + 1}">${menu}</option>`));
+                controls.comboAuthors.insertAdjacentHTML("beforeend", authorOptions);
+
+                const menuOptions = parsed.menus
+                    .sort(alphaSort)
+                    .map((menu, index) => `<option value="${index + 1}">${menu}</option>`)
+                    .join("");
+
+                controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
 
                 internal.useSearchParams();
                 internal.refreshListing();
-            }).fail(function (err) {
+            }).catch(function (err) {
                 console.error("Failed to load plugin-index.json");
                 console.error(err);
             });
@@ -324,15 +324,15 @@ const pdnpi = (function () {
              * Sub-checkboxes should deselect it's parent All/Any checkbox.
              */
             function checkBehavior(allCheck, subChecks) {
-                allCheck.change(function () {
-                    if (allCheck.is(":checked")) {
-                        subChecks.forEach(check => check.prop("checked", false));
+                allCheck.addEventListener("change", function () {
+                    if (allCheck.checked) {
+                        subChecks.forEach(check => check.checked = false);
                     }
                     internal.refreshListing();
                 });
-                subChecks.forEach(check => check.change(function () {
-                    if (check.is(":checked")) {
-                        allCheck.prop("checked", false);
+                subChecks.forEach(check => check.addEventListener("change", function () {
+                    if (check.checked) {
+                        allCheck.checked = false;
                     }
                     internal.refreshListing();
                 }));
@@ -345,7 +345,7 @@ const pdnpi = (function () {
                 controls.checkTypeExternal,
                 controls.checkTypePluginPack
             ]);
-            controls.checkAllTypes.prop("checked", true);
+            controls.checkAllTypes.checked = true;
 
             checkBehavior(controls.checkAnyStatus, [
                 controls.checkStatusActive,
@@ -357,9 +357,9 @@ const pdnpi = (function () {
                 controls.checkStatusIntegrated,
                 controls.checkStatusBundled
             ]);
-            controls.checkStatusActive.prop("checked", true);
-            controls.checkStatusNew.prop("checked", true);
-            controls.checkStatusBundled.prop("checked", true);
+            controls.checkStatusActive.checked = true;
+            controls.checkStatusNew.checked = true;
+            controls.checkStatusBundled.checked = true;
 
             checkBehavior(controls.checkAnyVersion, [
                 controls.check5x,
@@ -368,35 +368,35 @@ const pdnpi = (function () {
                 controls.checkUntested
             ]);
             // when 5.0 is released we can set that checkbox as the default.
-            controls.check5x.prop("checked", true);
+            controls.check5x.checked = true;
             // include all 4.x plugins for the first few months....
-            controls.check4x.prop("checked", true);
+            controls.check4x.checked = true;
 
             [controls.comboAuthors, controls.comboMenu, controls.comboRelease].forEach(control => {
 
-                control.change(internal.refreshListing);
+                control.addEventListener("change", () => internal.refreshListing());
             });
 
-            controls.comboOrder.change(function () {
+            controls.comboOrder.addEventListener("change", function () {
                 internal.refreshListing('order');
             });
 
             let inputTimeout = null;
-            controls.inputKeywords.on('input', function () {
+            controls.inputKeywords.addEventListener('input', function () {
                 clearTimeout(inputTimeout);
 
                 inputTimeout = setTimeout(internal.refreshListing, 200);
             });
 
-            $('#permalink-button').on('click', () => {
+            document.querySelector('#permalink-button').addEventListener('click', () => {
                 navigator.clipboard.writeText(internal.buildPermalink()).then(
                     () => {
-                        $('#copiedToast .toast-body').text('Permalink copied to the clipboard.');
+                        document.querySelector('#copiedToast .toast-body').textContent = 'Permalink copied to the clipboard.';
                         $('#copiedToast').toast('show');
                     },
                     (failure) => {
                         console.error(failure);
-                        $('#copiedToast .toast-body').text('Error copying Permalink to the clipboard.');
+                        document.querySelector('#copiedToast .toast-body').textContent = 'Error copying Permalink to the clipboard.';
                         $('#copiedToast').toast('show');
                     }
                   );
@@ -406,16 +406,20 @@ const pdnpi = (function () {
              * When we scroll down a bit, display the scroll button.
              * Scroll button will take us back to the top.
              */
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 100) {
-                    controls.btnScrollToTop.fadeIn();
+            window.addEventListener("scroll", function () {
+                if (document.documentElement.scrollTop > 100) {
+                    $(controls.btnScrollToTop).fadeIn();
                 } else {
-                    controls.btnScrollToTop.fadeOut();
+                    $(controls.btnScrollToTop).fadeOut();
                 }
             });
-            controls.btnScrollToTop.click(function () {
-                $("html, body").animate({scrollTop: 0}, 600);
-                return false;
+            controls.btnScrollToTop.addEventListener("click", (e) => {
+                e.preventDefault();
+                document.documentElement.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
+                });
             })
         },
         useSearchParams: function () {
@@ -427,115 +431,115 @@ const pdnpi = (function () {
 
             const foundKeywords = allFoundParams.get(searchParamKeys.keywords)?.trim();
             if (foundKeywords) {
-                controls.inputKeywords.val(foundKeywords);
+                controls.inputKeywords.value = foundKeywords;
             }
 
             const foundAuthor = allFoundParams.get(searchParamKeys.author)?.trim();
             if (foundAuthor) {
-                const authorIndex = controls.comboAuthors.children(`option:contains('${foundAuthor}')`).first().val();
-                if (authorIndex) {
-                    controls.comboAuthors.val(authorIndex);
+                const authorIndex = Array.from(controls.comboAuthors.options).findIndex(x => x.text == foundAuthor);
+                if (authorIndex >= 0) {
+                    controls.comboAuthors.selectedIndex = authorIndex;
                 }
             }
 
             const foundType = allFoundParams.get(searchParamKeys.type)?.trim();
             if (foundType) {
                 const typeFlags = Number.parseInt(foundType) || 0;
-                controls.checkAllTypes.prop('checked', typeFlags == 0);
-                controls.checkTypeEffect.prop('checked', hasFlag(typeFlags, pluginTypes.effect));
-                controls.checkTypeAdjustment.prop('checked', hasFlag(typeFlags, pluginTypes.adjustment));
-                controls.checkTypeFiletype.prop('checked', hasFlag(typeFlags, pluginTypes.filetype));
-                controls.checkTypeExternal.prop('checked', hasFlag(typeFlags, pluginTypes.external));
-                controls.checkTypePluginPack.prop('checked', hasFlag(typeFlags, pluginTypes.pluginPack));
+                controls.checkAllTypes.checked = (typeFlags == 0);
+                controls.checkTypeEffect.checked = hasFlag(typeFlags, pluginTypes.effect);
+                controls.checkTypeAdjustment.checked = hasFlag(typeFlags, pluginTypes.adjustment);
+                controls.checkTypeFiletype.checked = hasFlag(typeFlags, pluginTypes.filetype);
+                controls.checkTypeExternal.checked = hasFlag(typeFlags, pluginTypes.external);
+                controls.checkTypePluginPack.checked = hasFlag(typeFlags, pluginTypes.pluginPack);
             }
 
             const foundStatus = allFoundParams.get(searchParamKeys.status)?.trim();
             if (foundStatus) {
                 const statusFlags = Number.parseInt(foundStatus) || 0;
-                controls.checkAnyStatus.prop('checked', statusFlags == 0);
-                controls.checkStatusActive.prop('checked', hasFlag(statusFlags, pluginStatuses.active));
-                controls.checkStatusNew.prop('checked', hasFlag(statusFlags, pluginStatuses.new));
-                controls.checkStatusBundled.prop('checked', hasFlag(statusFlags, pluginStatuses.bundled));
-                controls.checkStatusDeprecated.prop('checked', hasFlag(statusFlags, pluginStatuses.deprecated));
-                controls.checkStatusObsolete.prop('checked', hasFlag(statusFlags, pluginStatuses.obsolete));
-                controls.checkStatusIncompatible.prop('checked', hasFlag(statusFlags, pluginStatuses.incompatible));
-                controls.checkStatusUnsupported.prop('checked', hasFlag(statusFlags, pluginStatuses.unsupported));
-                controls.checkStatusIntegrated.prop('checked', hasFlag(statusFlags, pluginStatuses.integrated));
+                controls.checkAnyStatus.checked = (statusFlags == 0);
+                controls.checkStatusActive.checked = hasFlag(statusFlags, pluginStatuses.active);
+                controls.checkStatusNew.checked = hasFlag(statusFlags, pluginStatuses.new);
+                controls.checkStatusBundled.checked = hasFlag(statusFlags, pluginStatuses.bundled);
+                controls.checkStatusDeprecated.checked = hasFlag(statusFlags, pluginStatuses.deprecated);
+                controls.checkStatusObsolete.checked = hasFlag(statusFlags, pluginStatuses.obsolete);
+                controls.checkStatusIncompatible.checked = hasFlag(statusFlags, pluginStatuses.incompatible);
+                controls.checkStatusUnsupported.checked = hasFlag(statusFlags, pluginStatuses.unsupported);
+                controls.checkStatusIntegrated.checked = hasFlag(statusFlags, pluginStatuses.integrated);
             }
 
             const foundCompat = allFoundParams.get(searchParamKeys.compat)?.trim();
             if (foundCompat) {
                 const compatFlags = Number.parseInt(foundCompat) || 0;
-                controls.checkAnyVersion.prop('checked', compatFlags == 0);
-                controls.check5x.prop('checked', hasFlag(compatFlags, pluginCompatibilities.ver5x));
-                controls.check4x.prop('checked', hasFlag(compatFlags, pluginCompatibilities.ver4x));
-                controls.check3x.prop('checked', hasFlag(compatFlags, pluginCompatibilities.ver3x));
-                controls.checkUntested.prop('checked', hasFlag(compatFlags, pluginCompatibilities.untested));
+                controls.checkAnyVersion.checked = (compatFlags == 0);
+                controls.check5x.checked = hasFlag(compatFlags, pluginCompatibilities.ver5x);
+                controls.check4x.checked = hasFlag(compatFlags, pluginCompatibilities.ver4x);
+                controls.check3x.checked = hasFlag(compatFlags, pluginCompatibilities.ver3x);
+                controls.checkUntested.checked = hasFlag(compatFlags, pluginCompatibilities.untested);
             }
 
             const foundOrder = allFoundParams.get(searchParamKeys.order)?.trim();
             if (foundOrder) {
-                const orderVal = controls.comboOrder.children(`option[value=${foundOrder}]`).first().val();
-                if (orderVal) {
-                    controls.comboOrder.val(orderVal);
+                const orderIndex = Array.from(controls.comboOrder.options).findIndex(x => x.text == foundOrder);
+                if (orderIndex >= 0) {
+                    controls.comboOrder.selectedIndex = orderIndex;
                 }
             }
 
             const foundMenu = allFoundParams.get(searchParamKeys.menu)?.trim();
             if (foundMenu) {
-                const menuIndex = controls.comboMenu.children(`option:contains('${foundMenu}')`).first().val();
-                if (menuIndex) {
-                    controls.comboMenu.val(menuIndex);
+                const menuIndex = Array.from(controls.comboMenu.options).findIndex(x => x.text == foundMenu);
+                if (menuIndex >= 0) {
+                    controls.comboMenu.selectedIndex = menuIndex;
                 }
             }
 
             const foundRelease = allFoundParams.get(searchParamKeys.release)?.trim();
             if (foundRelease) {
-                const releaseVal = controls.comboRelease.children(`option[value=${foundRelease}]`).first().val();
-                if (releaseVal) {
-                    controls.comboRelease.val(releaseVal);
+                const releaseIndex = Array.from(controls.comboRelease.options).findIndex(x => x.value == foundRelease);
+                if (releaseIndex >= 0) {
+                    controls.comboRelease.selectedIndex = releaseIndex;
                 }
             }
         },
         buildPermalink: function () {
             const params  = new URLSearchParams();
 
-            const currentKeywords = controls.inputKeywords.val().trim();
+            const currentKeywords = controls.inputKeywords.value.trim();
             if (currentKeywords) {
                 params.append(searchParamKeys.keywords, currentKeywords);
             }
 
-            params.append(searchParamKeys.author, controls.comboAuthors.find(":selected").text());
+            params.append(searchParamKeys.author, controls.comboAuthors.options[controls.comboAuthors.selectedIndex].text);
 
             let typeFlags = 0;
-            if (controls.checkTypeEffect.is(":checked")) typeFlags |= pluginTypes.effect;
-            if (controls.checkTypeAdjustment.is(":checked")) typeFlags |= pluginTypes.adjustment;
-            if (controls.checkTypeFiletype.is(":checked")) typeFlags |= pluginTypes.filetype;
-            if (controls.checkTypeExternal.is(":checked")) typeFlags |= pluginTypes.external;
-            if (controls.checkTypePluginPack.is(":checked")) typeFlags |= pluginTypes.pluginPack;
+            if (controls.checkTypeEffect.checked) typeFlags |= pluginTypes.effect;
+            if (controls.checkTypeAdjustment.checked) typeFlags |= pluginTypes.adjustment;
+            if (controls.checkTypeFiletype.checked) typeFlags |= pluginTypes.filetype;
+            if (controls.checkTypeExternal.checked) typeFlags |= pluginTypes.external;
+            if (controls.checkTypePluginPack.checked) typeFlags |= pluginTypes.pluginPack;
             params.append(searchParamKeys.type, typeFlags);
 
             let statusFlags = 0;
-            if (controls.checkStatusActive.is(":checked")) statusFlags |= pluginStatuses.active;
-            if (controls.checkStatusNew.is(":checked")) statusFlags |= pluginStatuses.new;
-            if (controls.checkStatusBundled.is(":checked")) statusFlags |= pluginStatuses.bundled;
-            if (controls.checkStatusDeprecated.is(":checked")) statusFlags |= pluginStatuses.deprecated;
-            if (controls.checkStatusObsolete.is(":checked")) statusFlags |= pluginStatuses.obsolete;
-            if (controls.checkStatusIncompatible.is(":checked")) statusFlags |= pluginStatuses.incompatible;
-            if (controls.checkStatusUnsupported.is(":checked")) statusFlags |= pluginStatuses.unsupported;
-            if (controls.checkStatusIntegrated.is(":checked")) statusFlags |= pluginStatuses.integrated;
+            if (controls.checkStatusActive.checked) statusFlags |= pluginStatuses.active;
+            if (controls.checkStatusNew.checked) statusFlags |= pluginStatuses.new;
+            if (controls.checkStatusBundled.checked) statusFlags |= pluginStatuses.bundled;
+            if (controls.checkStatusDeprecated.checked) statusFlags |= pluginStatuses.deprecated;
+            if (controls.checkStatusObsolete.checked) statusFlags |= pluginStatuses.obsolete;
+            if (controls.checkStatusIncompatible.checked) statusFlags |= pluginStatuses.incompatible;
+            if (controls.checkStatusUnsupported.checked) statusFlags |= pluginStatuses.unsupported;
+            if (controls.checkStatusIntegrated.checked) statusFlags |= pluginStatuses.integrated;
             params.append(searchParamKeys.status, statusFlags);
 
             let compatFlags = 0;
-            if (controls.check5x.is(":checked")) compatFlags |= pluginCompatibilities.ver5x;
-            if (controls.check4x.is(":checked")) compatFlags |= pluginCompatibilities.ver4x;
-            if (controls.check3x.is(":checked")) compatFlags |= pluginCompatibilities.ver3x;
-            if (controls.checkUntested.is(":checked")) compatFlags |= pluginCompatibilities.untested;
+            if (controls.check5x.checked) compatFlags |= pluginCompatibilities.ver5x;
+            if (controls.check4x.checked) compatFlags |= pluginCompatibilities.ver4x;
+            if (controls.check3x.checked) compatFlags |= pluginCompatibilities.ver3x;
+            if (controls.checkUntested.checked) compatFlags |= pluginCompatibilities.untested;
             params.append(searchParamKeys.compat, compatFlags);
 
-            params.append(searchParamKeys.order, controls.comboOrder.val());
-            params.append(searchParamKeys.menu, controls.comboMenu.find(":selected").text());
-            params.append(searchParamKeys.release, controls.comboRelease.val());
+            params.append(searchParamKeys.order, controls.comboOrder.value);
+            params.append(searchParamKeys.menu, controls.comboMenu.options[controls.comboMenu.selectedIndex].text);
+            params.append(searchParamKeys.release, controls.comboRelease.value);
 
             const hostUrl = window !== window.parent
                 ? 'https://forums.getpaint.net/PluginIndex'
@@ -558,7 +562,7 @@ const pdnpi = (function () {
             elements.divLoadingOverlay.fadeIn(fadeMs);
 
             if (equalsIgnoreCase(event, "order")) {
-                const order = controls.comboOrder.find(":selected").val();
+                const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
 
                 pluginIndex.sort((a, b) => {
                     const dataA = a.getData();
@@ -596,8 +600,9 @@ const pdnpi = (function () {
                     displayCount++;
                 }
             }
-            elements.divPluginList.html(html);
-            elements.badgePluginCount.text(displayCount + " / " + pluginIndex.length);
+            elements.divPluginList.replaceChildren();
+            elements.divPluginList.insertAdjacentHTML("afterbegin", html);
+            elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;
             elements.divLoadingOverlay.fadeOut(fadeMs * 1.75);
         }
     };

@@ -9,8 +9,6 @@
 @mixin row() {
   display: flex !important;
   flex-wrap: wrap !important;
-  display: -ms-flexbox !important;
-  -ms-flex-wrap: wrap !important;
 }
 
 @mixin flex-column() {
@@ -18,7 +16,6 @@
 }
 
 @mixin d-flex() {
-  display: -ms-flexbox !important;
   display: flex !important;
 }
 
@@ -64,6 +61,14 @@
 body {
   font-family: 'Open Sans', sans-serif;
   padding-top: 56px;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 
   nav {
     border-top: 1px solid #a3a7a9;
@@ -132,7 +137,6 @@ body {
   background-color: #e74c3c;
   opacity: 1;
   filter: "alpha(opacity=100)";
-  -ms-filter: "alpha(opacity=100)";
 }
 
 #search-menu {

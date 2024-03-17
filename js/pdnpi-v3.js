@@ -237,7 +237,7 @@ const pdnpi = (function () {
             console.log("Initializing");
 
             elements.badgePluginCount = document.querySelector("#count");
-            elements.divLoadingOverlay = $("#spinner");
+            //elements.divLoadingOverlay = $("#spinner");
             elements.divPluginList = document.querySelector("#plugins-list");
             controls.btnScrollToTop = document.querySelector("#scroll");
 
@@ -391,15 +391,19 @@ const pdnpi = (function () {
             document.querySelector('#permalink-button').addEventListener('click', () => {
                 navigator.clipboard.writeText(internal.buildPermalink()).then(
                     () => {
-                        document.querySelector('#copiedToast .toast-body').textContent = 'Permalink copied to the clipboard.';
-                        $('#copiedToast').toast('show');
+                        return 'Permalink copied to the clipboard.';
                     },
                     (failure) => {
                         console.error(failure);
-                        document.querySelector('#copiedToast .toast-body').textContent = 'Error copying Permalink to the clipboard.';
-                        $('#copiedToast').toast('show');
+                        return 'Error copying Permalink to the clipboard.';
                     }
-                  );
+                  )
+                  .then(x => {
+                    document.querySelector('#copiedToast .toast-body').textContent = x;
+
+                    const toastNode = document.querySelector('#copiedToast');
+                    bootstrap.Toast.getOrCreateInstance(toastNode).show();
+                  });
             });
 
             /**
@@ -408,9 +412,9 @@ const pdnpi = (function () {
              */
             window.addEventListener("scroll", function () {
                 if (document.documentElement.scrollTop > 100) {
-                    $(controls.btnScrollToTop).fadeIn();
+                    controls.btnScrollToTop.classList.add("show");
                 } else {
-                    $(controls.btnScrollToTop).fadeOut();
+                    controls.btnScrollToTop.classList.remove("show");
                 }
             });
             controls.btnScrollToTop.addEventListener("click", (e) => {
@@ -557,9 +561,9 @@ const pdnpi = (function () {
         refreshListing: function (event) {
             console.log("Refreshing the plugin list...");
 
-            const fadeMs = 150;
+            //const fadeMs = 150;
 
-            elements.divLoadingOverlay.fadeIn(fadeMs);
+            //elements.divLoadingOverlay.fadeIn(fadeMs);
 
             if (equalsIgnoreCase(event, "order")) {
                 const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
@@ -603,7 +607,7 @@ const pdnpi = (function () {
             elements.divPluginList.replaceChildren();
             elements.divPluginList.insertAdjacentHTML("afterbegin", html);
             elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;
-            elements.divLoadingOverlay.fadeOut(fadeMs * 1.75);
+            //elements.divLoadingOverlay.fadeOut(fadeMs * 1.75);
         }
     };
     internal.init();

@@ -34,7 +34,7 @@ for instructions on how to build and run `pdn-plugin-index` from source.
         iframe.setAttribute("id", "pdnpi-iframe");
         iframe.allow = "clipboard-write";
         iframe.src = "https://mattw.io/pdn-plugin-index" + window.location.search;
-        iframe.sandbox = "allow-scripts allow-popups allow-same-origin";
+        iframe.sandbox = "allow-scripts allow-popups allow-popups-to-escape-sandbox allow-same-origin";
 
         let pdnpi = document.getElementById("pdnpi");
         pdnpi.appendChild(iframe);

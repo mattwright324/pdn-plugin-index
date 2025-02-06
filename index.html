@@ -151,23 +151,23 @@ revision : 1 January 2025
                     <label class="form-check-label" for="checkUntested">Untested</label>
                 </div>
 
-                <div class="selector">
+                <!-- <div class="selector">
                     <label class="form-label" for="order">Order</label>
                     <select id="order" class="form-select">
-                        <option value="title" selected>By Title</option>
-                        <option value="release">By Release</option>
+                        <option value="release" selected>By Release</option>
+                        <option value="title">By Title</option>                       
                         <option value="author">By Author</option>
                         <option value="menu">By Menu</option>
                         <option value="topicId">By Topic-Id</option>
-                    </select>
-                </div>
+                    </select> 
+                </div> -->
                 <div class="selector">
                     <label class="form-label" for="menu-list">Menu</label>
                     <select id="menu-list" class="form-select">
                         <option value="0" selected>All Menus</option>
                     </select>
                 </div>
-                <div class="selector">
+                <!-- <div class="selector">
                     <label class="form-label" for="release">Release</label>
                     <select id="release" class="form-select">
                         <option value="0" selected>Any Time</option>
@@ -175,7 +175,7 @@ revision : 1 January 2025
                         <option value="2">Past Year</option>
                         <option value="3">Past 3 Years</option>
                     </select>
-                </div>
+                </div> -->
                 <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>
                 <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;">
                     <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
@@ -187,19 +187,30 @@ revision : 1 January 2025
 
             <div id="plugins" class="col-md-9">
                 <div class="col" style="padding-right: 0;padding-left: 0;">
-                    <div class="row justify-content-between">
+                    <div class="row align-items-center">
                         <div class="col">
                             <label class="form-label block-title">Plugin Listing</label>
-                            <!--
-                            <span id="spinner" class="text-center">
-                                <span class="spinner-border text-primary" role="status"
-                                      style="width: 1.35rem; height: 1.35rem;">
-                                    <span class="visually-hidden">Loading...</span>
-                                </span>
-                            </span>
-                            -->
                         </div>
-                        <div class="col-auto">
+                        <div class="col-auto ms-auto d-flex align-items-center gap-3">
+                            <div class="selector">
+                                <label class="form-label" for="order">Order</label>
+                                <select id="order" class="form-select">
+                                    <option value="release" selected>By Release</option>
+                                    <option value="title">By Title</option>                       
+                                    <option value="author">By Author</option>
+                                    <option value="menu">By Menu</option>
+                                    <option value="topicId">By Topic-Id</option>
+                                </select>
+                            </div>
+                            <div class="selector">
+                                <label class="form-label" for="release">Release</label>
+                                <select id="release" class="form-select">
+                                    <option value="0" selected>Any Time</option>
+                                    <option value="1">Past 6 Months</option>
+                                    <option value="2">Past Year</option>
+                                    <option value="3">Past 3 Years</option>
+                                </select>
+                            </div>
                             <span id="count" class="badge bg-secondary">0 / 0</span>
                         </div>
                     </div>

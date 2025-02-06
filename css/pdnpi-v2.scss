@@ -266,6 +266,22 @@ body {
   background-color: rgba(127, 127, 127, 0.1);
 }
 
+.selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  label {
+    white-space: nowrap;
+    margin: 0;
+  }
+  
+  select {
+    min-width: 120px;
+    font-size: 0.9rem;
+  }
+}
+
 .footer {
   padding-bottom: 2.5%;
   padding-top: 2.5%;

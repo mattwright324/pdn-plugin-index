@@ -1,5 +1,5 @@
 ---
-layout   : compress
+layout : compress
 title_sm : PDNPI
 title_lg : Paint.NET Plugin Index
 subtitle : Search the Paint.NET plugin index
@@ -8,12 +8,13 @@ revision : 1 January 2025
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>{{ page.subtitle }} - {{ page.title_sm }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-          content="Quickly search and find Paint.NET plugins from the forums. Search for new effects, adjustments, filetypes support, external programs, and plugin packs.">
+        content="Quickly search and find Paint.NET plugins from the forums. Search for new effects, adjustments, filetypes support, external programs, and plugin packs.">
     <link rel="icon" href="img/icon-small.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -24,21 +25,22 @@ revision : 1 January 2025
     <!-- Analytics -->
     <script defer data-domain="mattw.io" src="https://plausible.io/js/plausible.js"></script>
 </head>
+
 <body>
     <a href="#" id="scroll" class="fade"><span></span></a>
     <nav style="background-color: #375476!important;top: -1px!important;"
-         class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+        class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon" />
-            <span id="brand-lg">{{ page.title_lg }}</span>
-            <span id="brand-sm">{{ page.title_sm }}</span>
-        </a>
-        <ul class="navbar-nav ms-auto">
-            <li class="navbar-text">
-                <small>Revision Date: {{ page.revision }}</small>
-            </li>
-        </ul>
+            <a class="navbar-brand" href="#">
+                <img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon" />
+                <span id="brand-lg">{{ page.title_lg }}</span>
+                <span id="brand-sm">{{ page.title_sm }}</span>
+            </a>
+            <ul class="navbar-nav ms-auto">
+                <li class="navbar-text">
+                    <small>Revision Date: {{ page.revision }}</small>
+                </li>
+            </ul>
         </div>
     </nav>
     <div id="about" class="col">
@@ -178,7 +180,8 @@ revision : 1 January 2025
                 </div> -->
                 <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>
                 <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;">
-                    <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+                    <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+                        data-bs-delay="2000">
                         <div class="toast-body">
                         </div>
                     </div>
@@ -193,23 +196,24 @@ revision : 1 January 2025
                         </div>
                         <div class="col-auto ms-auto d-flex align-items-center gap-3">
                             <div class="selector">
-                                <label class="form-label" for="order">Order</label>
-                                <select id="order" class="form-select">
-                                    <option value="release" selected>By Release</option>
-                                    <option value="title">By Title</option>                       
-                                    <option value="author">By Author</option>
-                                    <option value="menu">By Menu</option>
-                                    <option value="topicId">By Topic-Id</option>
+                                <label class="form-label" for="order">Order by</label>
+                                <select id="order" class="form-select form-select-sm">
+                                    <option value="release_new" selected>Newest</option>
+                                    <option value="release_old">Oldest</option>
+                                    <option value="title">Title</option>
+                                    <option value="author">Author</option>
+                                    <option value="menu">Menu</option>
+                                    <!-- <option value="topicId">By Topic-Id</option>--> 
                                 </select>
                             </div>
-                            <div class="selector">
-                                <label class="form-label" for="release">Release</label>
-                                <select id="release" class="form-select">
-                                    <option value="0" >Any Time</option>
+                           <div class="selector">
+                               <!-- <label class="form-label" for="release">&nbsp;</label>
+                                <select id="release" class="form-select-sm">
+                                    <option value="0">Any Time</option>
                                     <option value="1" selected>Past 6 Months</option>
                                     <option value="2">Past Year</option>
                                     <option value="3">Past 3 Years</option>
-                                </select>
+                                </select> -->
                             </div>
                             <span id="count" class="badge bg-secondary">0 / 0</span>
                         </div>
@@ -235,4 +239,5 @@ revision : 1 January 2025
         </div>
     </footer>
 </body>
+
 </html>

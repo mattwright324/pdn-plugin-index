@@ -21,38 +21,38 @@ const pdnpi = (function () {
 
             return "" +
                 "<div class='plugin'>" +
-                    "<div class='phead'>" +
-                        "<sp>" +
-                            "<sp class='title'>" +
-                                "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.topic_id + "-i'>" +
-                                    data.title +
-                                "</a>" +
-                            "</sp>" +
-                            "&nbsp;" +
-                            "<sp class='release'>" + data.release + "</sp>" +
-                        "</sp>" +
-                        "<sp class='author'>" +
-                            "<a target='_blank' href='https://forums.getpaint.net/profile/" + data.author_id + "-" + authorNameUrl + "' " +
-                                "title='View " + data.author + "&apos;s profile'>" +
-                                data.author +
-                            "</a>" +
-                        "</sp>" +
-                    "</div>" +
-                    "<sp class='desc'>" + data.desc + "</sp>" +
-                    (data.hasOwnProperty("alt_topic") ?
-                        "<sp class='alt'>See also: " +
-                            "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.alt_topic + "-i' title='Alternative Topic'>" +
-                                "#" + data.alt_topic +
-                            "</a>" +
-                        "</sp>"
+                "<div class='phead'>" +
+                "<sp>" +
+                "<sp class='title'>" +
+                "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.topic_id + "-i'>" +
+                data.title +
+                "</a>" +
+                "</sp>" +
+                "&nbsp;" +
+                "<sp class='release'>" + data.release + "</sp>" +
+                "</sp>" +
+                "<sp class='author'>" +
+                "<a target='_blank' href='https://forums.getpaint.net/profile/" + data.author_id + "-" + authorNameUrl + "' " +
+                "title='View " + data.author + "&apos;s profile'>" +
+                data.author +
+                "</a>" +
+                "</sp>" +
+                "</div>" +
+                "<sp class='desc'>" + data.desc + "</sp>" +
+                (data.hasOwnProperty("alt_topic") ?
+                    "<sp class='alt'>See also: " +
+                    "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.alt_topic + "-i' title='Alternative Topic'>" +
+                    "#" + data.alt_topic +
+                    "</a>" +
+                    "</sp>"
                     : "") +
-                    "<div class='tags'>" +
-                        "<sp class='tag t' title='Plugin Type'>" + data.type + "</sp>" +
-                        "<sp class='tag s' title='Plugin Status'>" + data.status + "</sp>" +
-                        "<sp class='tag c' title='Compatibility'>" + data.compatibility + "</sp>" +
-                        "<sp class='tag m' title='Menu Location'>" + data.menu + "</sp>" +
-                        "<sp class='tag d' title='DLLs'>" + data.dlls + "</sp>" +
-                    "</div>" +
+                "<div class='tags'>" +
+                "<sp class='tag t' title='Plugin Type'>" + data.type + "</sp>" +
+                "<sp class='tag s' title='Plugin Status'>" + data.status + "</sp>" +
+                "<sp class='tag c' title='Compatibility'>" + data.compatibility + "</sp>" +
+                "<sp class='tag m' title='Menu Location'>" + data.menu + "</sp>" +
+                "<sp class='tag d' title='DLLs'>" + data.dlls + "</sp>" +
+                "</div>" +
                 "</div>";
         }
     };
@@ -161,22 +161,22 @@ const pdnpi = (function () {
             }
         }
 
-        const releaseIndex = controls.comboRelease.selectedIndex;
-        if (releaseIndex > 0) {
-            const now = new Date();
-            const then = new Date(data.release);
-            const millisDiff = now - then;
-
-            /** days * hours * minutes * seconds * millis */
-            const monthInMillis = 30 * 24 * 60 * 60 * 1000;
-            if (releaseIndex === 1 && millisDiff > (monthInMillis * 6)) {
-                return false;
-            } else if (releaseIndex === 2 && millisDiff > (monthInMillis * 12)) {
-                return false;
-            } else if (releaseIndex === 3 && millisDiff > (monthInMillis * 12 * 3)) {
-                return false;
-            }
-        }
+        /*         const releaseIndex = controls.comboRelease.selectedIndex;
+                if (releaseIndex > 0) {
+                    const now = new Date();
+                    const then = new Date(data.release);
+                    const millisDiff = now - then;
+        */
+        /** days * hours * minutes * seconds * millis */
+        /*            const monthInMillis = 30 * 24 * 60 * 60 * 1000;
+                    if (releaseIndex === 1 && millisDiff > (monthInMillis * 6)) {
+                        return false;
+                    } else if (releaseIndex === 2 && millisDiff > (monthInMillis * 12)) {
+                        return false;
+                    } else if (releaseIndex === 3 && millisDiff > (monthInMillis * 12 * 3)) {
+                        return false;
+                    }
+                } */
 
         return true;
     }
@@ -229,7 +229,7 @@ const pdnpi = (function () {
         compat: 'compat',
         order: 'order',
         menu: 'menu',
-        release: 'release'
+        //release: 'release'
     }
 
     const internal = {
@@ -245,7 +245,7 @@ const pdnpi = (function () {
             controls.comboAuthors = document.querySelector("#author");
             controls.comboOrder = document.querySelector("#order");
             controls.comboMenu = document.querySelector("#menu-list");
-            controls.comboRelease = document.querySelector("#release");
+            //controls.comboRelease = document.querySelector("#release");
 
             controls.checkAllTypes = document.querySelector("#checkAll");
             controls.checkTypeEffect = document.querySelector("#checkEffect");
@@ -294,6 +294,15 @@ const pdnpi = (function () {
                     pluginIndex.push(plugin);
                 }
 
+                // Default listing : Sort by newest release date
+                pluginIndex.sort((a, b) => {
+                    const dataA = a.getData();
+                    const dataB = b.getData();
+                    const dateA = new Date(dataA.release);
+                    const dateB = new Date(dataB.release);
+                    return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0;
+                });
+
                 const authorOptions = parsed.authors
                     .sort(alphaSort)
                     .map((name, index) => `<option value="${index + 1}">${name}</option>`)
@@ -310,6 +319,7 @@ const pdnpi = (function () {
 
                 internal.useSearchParams();
                 internal.refreshListing();
+
             }).catch(function (err) {
                 console.error("Failed to load plugin-index.json");
                 console.error(err);
@@ -372,7 +382,7 @@ const pdnpi = (function () {
             // include all 4.x plugins for the first few months....
             controls.check4x.checked = true;
 
-            [controls.comboAuthors, controls.comboMenu, controls.comboRelease].forEach(control => {
+            [controls.comboAuthors, controls.comboMenu].forEach(control => {
 
                 control.addEventListener("change", () => internal.refreshListing());
             });
@@ -397,13 +407,13 @@ const pdnpi = (function () {
                         console.error(failure);
                         return 'Error copying Permalink to the clipboard.';
                     }
-                  )
-                  .then(x => {
-                    document.querySelector('#copiedToast .toast-body').textContent = x;
+                )
+                    .then(x => {
+                        document.querySelector('#copiedToast .toast-body').textContent = x;
 
-                    const toastNode = document.querySelector('#copiedToast');
-                    bootstrap.Toast.getOrCreateInstance(toastNode).show();
-                  });
+                        const toastNode = document.querySelector('#copiedToast');
+                        bootstrap.Toast.getOrCreateInstance(toastNode).show();
+                    });
             });
 
             /**
@@ -427,7 +437,7 @@ const pdnpi = (function () {
             })
         },
         useSearchParams: function () {
-            function hasFlag (num, flag) {
+            function hasFlag(num, flag) {
                 return (num & flag) == flag;
             }
 
@@ -497,16 +507,16 @@ const pdnpi = (function () {
                 }
             }
 
-            const foundRelease = allFoundParams.get(searchParamKeys.release)?.trim();
-            if (foundRelease) {
-                const releaseIndex = Array.from(controls.comboRelease.options).findIndex(x => x.value == foundRelease);
-                if (releaseIndex >= 0) {
-                    controls.comboRelease.selectedIndex = releaseIndex;
-                }
-            }
+            /*             const foundRelease = allFoundParams.get(searchParamKeys.release)?.trim();
+                        if (foundRelease) {
+                            const releaseIndex = Array.from(controls.comboRelease.options).findIndex(x => x.value == foundRelease);
+                            if (releaseIndex >= 0) {
+                                controls.comboRelease.selectedIndex = releaseIndex;
+                            }
+                        } */
         },
         buildPermalink: function () {
-            const params  = new URLSearchParams();
+            const params = new URLSearchParams();
 
             const currentKeywords = controls.inputKeywords.value.trim();
             if (currentKeywords) {
@@ -543,7 +553,7 @@ const pdnpi = (function () {
 
             params.append(searchParamKeys.order, controls.comboOrder.value);
             params.append(searchParamKeys.menu, controls.comboMenu.options[controls.comboMenu.selectedIndex].text);
-            params.append(searchParamKeys.release, controls.comboRelease.value);
+            //params.append(searchParamKeys.release, controls.comboRelease.value);
 
             const hostUrl = window !== window.parent
                 ? 'https://forums.getpaint.net/PluginIndex'
@@ -572,23 +582,28 @@ const pdnpi = (function () {
                     const dataA = a.getData();
                     const dataB = b.getData();
 
-                    if (equalsIgnoreCase(order, "title")) {
-                        return alphaSort(dataA.title, dataB.title);
-                    } else if (equalsIgnoreCase(order, "release")) {
+                    if (equalsIgnoreCase(order, "release_new")) {
+                        // order by newest first
                         a = new Date(dataA.release);
                         b = new Date(dataB.release);
-
                         return (a < b) ? 1 : (a > b) ? -1 : 0;
+                    } else if (equalsIgnoreCase(order, "release_old")) {
+                        // order by oldest first
+                        a = new Date(dataA.release);
+                        b = new Date(dataB.release);
+                        return (a > b) ? 1 : (a < b) ? -1 : 0;
+                    } else if (equalsIgnoreCase(order, "title")) {
+                        return alphaSort(dataA.title, dataB.title);
                     } else if (equalsIgnoreCase(order, "author")) {
                         return alphaSort(dataA.author, dataB.author);
                     } else if (equalsIgnoreCase(order, "menu")) {
                         return alphaSort(dataA.menu, dataB.menu);
-                    } else if (equalsIgnoreCase(order, "topicId")) {
+                    } /* else if (equalsIgnoreCase(order, "topicId")) {
                         a = Number(dataA.topic_id);
                         b = Number(dataB.topic_id);
 
                         return (a < b) ? -1 : (a > b) ? 1 : 0;
-                    }
+                    } */
                 });
             }
 

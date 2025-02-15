@@ -19,41 +19,36 @@ const pdnpi = (function () {
         dataToHtml: function (data) {
             const authorNameUrl = encodeURI(data.author.toLowerCase());
 
-            return "" +
-                "<div class='plugin'>" +
-                "<div class='phead'>" +
-                "<sp>" +
-                "<sp class='title'>" +
-                "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.topic_id + "-i'>" +
-                data.title +
-                "</a>" +
-                "</sp>" +
-                "&nbsp;" +
-                "<sp class='release'>" + data.release + "</sp>" +
-                "</sp>" +
-                "<sp class='author'>" +
-                "<a target='_blank' href='https://forums.getpaint.net/profile/" + data.author_id + "-" + authorNameUrl + "' " +
-                "title='View " + data.author + "&apos;s profile'>" +
-                data.author +
-                "</a>" +
-                "</sp>" +
-                "</div>" +
-                "<sp class='desc'>" + data.desc + "</sp>" +
-                (data.hasOwnProperty("alt_topic") ?
-                    "<sp class='alt'>See also: " +
-                    "<a target='_blank' href='https://forums.getpaint.net/topic/" + data.alt_topic + "-i' title='Alternative Topic'>" +
-                    "#" + data.alt_topic +
-                    "</a>" +
-                    "</sp>"
-                    : "") +
-                "<div class='tags'>" +
-                "<sp class='tag t' title='Plugin Type'>" + data.type + "</sp>" +
-                "<sp class='tag s' title='Plugin Status'>" + data.status + "</sp>" +
-                "<sp class='tag c' title='Compatibility'>" + data.compatibility + "</sp>" +
-                "<sp class='tag m' title='Menu Location'>" + data.menu + "</sp>" +
-                "<sp class='tag d' title='DLLs'>" + data.dlls + "</sp>" +
-                "</div>" +
-                "</div>";
+            let altLink = ''
+            if (data.hasOwnProperty('alt_topic')) {
+                altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}">
+                                #${data.alt_topic}
+                           </a></sp>`
+            }
+
+            return `<div class='plugin'>
+                        <div class="phead">
+                            <sp>
+                                <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-i">
+                                    ${data.title}
+                                </a></sp>&nbsp;<sp class="release">${data.release}</sp>
+                            </sp>
+                            <sp class="author">
+                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
+                                    ${data.author}
+                                </a>
+                            </sp>
+                        </div>
+                        <sp class="desc">${data.desc}</sp>
+                        ${altLink}
+                        <div class="tags">
+                            <sp class="tag t" title="Plugin Type">${data.type}</sp>
+                            <sp class="tag s" title="Plugin Status">${data.status}</sp>
+                            <sp class="tag c" title="Compatibility">${data.compatibility}</sp>
+                            <sp class="tag m" title="Menu Location">${data.menu}</sp>
+                            <sp class="tag d" title="DLLs">${data.dlls}</sp>
+                        </div>
+                    </div>`.split("\n").map(s => s.trim()).join("\n");
         }
     };
 

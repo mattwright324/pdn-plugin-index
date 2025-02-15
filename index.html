@@ -3,7 +3,7 @@ layout : compress
 title_sm : PDNPI
 title_lg : Paint.NET Plugin Index
 subtitle : Search the Paint.NET plugin index
-revision : 1 January 2025
+revision : 15 February 2025
 ---
 
 <!DOCTYPE html>
@@ -152,32 +152,13 @@ revision : 1 January 2025
                     <input type="checkbox" class="form-check-input" id="checkUntested">
                     <label class="form-check-label" for="checkUntested">Untested</label>
                 </div>
-
-                <!-- <div class="selector">
-                    <label class="form-label" for="order">Order</label>
-                    <select id="order" class="form-select">
-                        <option value="release" selected>By Release</option>
-                        <option value="title">By Title</option>                       
-                        <option value="author">By Author</option>
-                        <option value="menu">By Menu</option>
-                        <option value="topicId">By Topic-Id</option>
-                    </select> 
-                </div> -->
                 <div class="selector">
                     <label class="form-label" for="menu-list">Menu</label>
                     <select id="menu-list" class="form-select">
                         <option value="0" selected>All Menus</option>
                     </select>
                 </div>
-                <!-- <div class="selector">
-                    <label class="form-label" for="release">Release</label>
-                    <select id="release" class="form-select">
-                        <option value="0" selected>Any Time</option>
-                        <option value="1">Past 6 Months</option>
-                        <option value="2">Past Year</option>
-                        <option value="3">Past 3 Years</option>
-                    </select>
-                </div> -->
+
                 <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>
                 <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;">
                     <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
@@ -203,17 +184,10 @@ revision : 1 January 2025
                                     <option value="title">Title</option>
                                     <option value="author">Author</option>
                                     <option value="menu">Menu</option>
-                                    <!-- <option value="topicId">By Topic-Id</option>--> 
                                 </select>
                             </div>
                            <div class="selector">
-                               <!-- <label class="form-label" for="release">&nbsp;</label>
-                                <select id="release" class="form-select-sm">
-                                    <option value="0">Any Time</option>
-                                    <option value="1" selected>Past 6 Months</option>
-                                    <option value="2">Past Year</option>
-                                    <option value="3">Past 3 Years</option>
-                                </select> -->
+                            <!-- empty selector to assist layout-->
                             </div>
                             <span id="count" class="badge bg-secondary">0 / 0</span>
                         </div>

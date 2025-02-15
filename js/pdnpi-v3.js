@@ -160,24 +160,6 @@ const pdnpi = (function () {
                 return false;
             }
         }
-
-        /*         const releaseIndex = controls.comboRelease.selectedIndex;
-                if (releaseIndex > 0) {
-                    const now = new Date();
-                    const then = new Date(data.release);
-                    const millisDiff = now - then;
-        */
-        /** days * hours * minutes * seconds * millis */
-        /*            const monthInMillis = 30 * 24 * 60 * 60 * 1000;
-                    if (releaseIndex === 1 && millisDiff > (monthInMillis * 6)) {
-                        return false;
-                    } else if (releaseIndex === 2 && millisDiff > (monthInMillis * 12)) {
-                        return false;
-                    } else if (releaseIndex === 3 && millisDiff > (monthInMillis * 12 * 3)) {
-                        return false;
-                    }
-                } */
-
         return true;
     }
 
@@ -229,7 +211,6 @@ const pdnpi = (function () {
         compat: 'compat',
         order: 'order',
         menu: 'menu',
-        //release: 'release'
     }
 
     const internal = {
@@ -237,7 +218,6 @@ const pdnpi = (function () {
             console.log("Initializing");
 
             elements.badgePluginCount = document.querySelector("#count");
-            //elements.divLoadingOverlay = $("#spinner");
             elements.divPluginList = document.querySelector("#plugins-list");
             controls.btnScrollToTop = document.querySelector("#scroll");
 
@@ -245,7 +225,6 @@ const pdnpi = (function () {
             controls.comboAuthors = document.querySelector("#author");
             controls.comboOrder = document.querySelector("#order");
             controls.comboMenu = document.querySelector("#menu-list");
-            //controls.comboRelease = document.querySelector("#release");
 
             controls.checkAllTypes = document.querySelector("#checkAll");
             controls.checkTypeEffect = document.querySelector("#checkEffect");
@@ -506,14 +485,6 @@ const pdnpi = (function () {
                     controls.comboMenu.selectedIndex = menuIndex;
                 }
             }
-
-            /*             const foundRelease = allFoundParams.get(searchParamKeys.release)?.trim();
-                        if (foundRelease) {
-                            const releaseIndex = Array.from(controls.comboRelease.options).findIndex(x => x.value == foundRelease);
-                            if (releaseIndex >= 0) {
-                                controls.comboRelease.selectedIndex = releaseIndex;
-                            }
-                        } */
         },
         buildPermalink: function () {
             const params = new URLSearchParams();
@@ -553,7 +524,6 @@ const pdnpi = (function () {
 
             params.append(searchParamKeys.order, controls.comboOrder.value);
             params.append(searchParamKeys.menu, controls.comboMenu.options[controls.comboMenu.selectedIndex].text);
-            //params.append(searchParamKeys.release, controls.comboRelease.value);
 
             const hostUrl = window !== window.parent
                 ? 'https://forums.getpaint.net/PluginIndex'
@@ -598,12 +568,7 @@ const pdnpi = (function () {
                         return alphaSort(dataA.author, dataB.author);
                     } else if (equalsIgnoreCase(order, "menu")) {
                         return alphaSort(dataA.menu, dataB.menu);
-                    } /* else if (equalsIgnoreCase(order, "topicId")) {
-                        a = Number(dataA.topic_id);
-                        b = Number(dataB.topic_id);
-
-                        return (a < b) ? -1 : (a > b) ? 1 : 0;
-                    } */
+                    }
                 });
             }
 

@@ -21,7 +21,7 @@ const pdnpi = (function () {
 
             let altLink = ''
             if (data.hasOwnProperty('alt_topic')) {
-                altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}">
+                altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}-i">
                                 #${data.alt_topic}
                            </a></sp>`
             }

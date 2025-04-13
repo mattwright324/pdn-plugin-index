@@ -80,7 +80,7 @@ const pdnpi = (function () {
     function shouldPluginDisplay(plugin) {
         const data = plugin.getData();
 
-        const keywords = controls.inputKeywords.value;
+        const keywords = controls.inputKeywords.value.trim();
         if (keywords) {
             const hide = !Object.values(data).some(value => value && containsIgnoreCase(String(value), keywords));
 

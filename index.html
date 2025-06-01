@@ -59,6 +59,19 @@ revision : 1 June 2025
                 <div class="control input-group mb-2 me-sm-2 mb-sm-0">
                     <input type="text" class="form-control" id="keywords" placeholder="Keywords" value="">
                 </div>
+                
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="keywordMatch" id="checkExactMatch" checked>
+                    <label class="form-check-label" for="checkExactMatch">Exact match</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="keywordMatch" id="checkAnyKeywords">
+                    <label class="form-check-label" for="checkAnyKeywords">Any keyword</label>
+                </div>
+                <div class="form-check form-check-inline mb-3">
+                    <input type="radio" class="form-check-input" name="keywordMatch" id="checkAllKeywords">
+                    <label class="form-check-label" for="checkAllKeywords">All keywords (any order)</label>
+                </div>
 
                 <div class="selector">
                     <label class="form-label" for="author">Author</label>

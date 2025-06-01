@@ -79,16 +79,35 @@ const pdnpi = (function () {
      */
     function shouldPluginDisplay(plugin) {
         const data = plugin.getData();
+        const dataValues = Object.values(data)
+            .filter(v => v)
+            .map(v => String(v).toUpperCase());
 
+        // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
         if (keywords) {
-            const hide = !Object.values(data).some(value => value && containsIgnoreCase(String(value), keywords));
-
-            if (hide) {
-                return false;
+            const upperKeywords = keywords.toUpperCase();
+            
+            // Exact match - look for complete string
+            if (controls.checkExactMatch.checked) {
+                if (!dataValues.some(val => val.includes(upperKeywords))) {
+                    return false;
+                }
+            }
+            // Any/All keywords - split on spaces and check each
+            else {
+                const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
+                if (keywordArray.length > 0) {
+                    const matchFunc = controls.checkAllKeywords.checked ? 'every' : 'some';
+                    const matches = keywordArray[matchFunc](keyword =>
+                        dataValues.some(val => val.includes(keyword))
+                    );
+                    if (!matches) return false;
+                }
             }
         }
 
+        // Continue with other checks
         const authorIndex = controls.comboAuthors.selectedIndex;
         if (authorIndex > 0) {
             const authorName = controls.comboAuthors.options[authorIndex].text;
@@ -217,6 +236,10 @@ const pdnpi = (function () {
             controls.btnScrollToTop = document.querySelector("#scroll");
 
             controls.inputKeywords = document.querySelector("#keywords");
+            controls.checkExactMatch = document.querySelector("#checkExactMatch");
+            controls.checkAnyKeywords = document.querySelector("#checkAnyKeywords");
+            controls.checkAllKeywords = document.querySelector("#checkAllKeywords");
+            
             controls.comboAuthors = document.querySelector("#author");
             controls.comboOrder = document.querySelector("#order");
             controls.comboMenu = document.querySelector("#menu-list");
@@ -301,6 +324,11 @@ const pdnpi = (function () {
         },
         setupControls: function () {
             console.log("Setting up controls...");
+
+            // Add change handlers for keyword match radio buttons
+            [controls.checkExactMatch, controls.checkAnyKeywords, controls.checkAllKeywords].forEach(radio => {
+                radio.addEventListener('change', () => internal.refreshListing());
+            });
 
             /**
              * All/Any checkbox should deselect it's encompassing sub-checkboxes.

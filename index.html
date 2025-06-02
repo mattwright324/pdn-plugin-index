@@ -73,8 +73,8 @@ revision : 1 June 2025
                     <label class="form-check-label" for="checkAllKeywords">All keywords (any order)</label>
                 </div>
 
+                <label class="form-label">Author</label>
                 <div class="selector">
-                    <label class="form-label" for="author">Author</label>
                     <select id="author" class="form-select">
                         <option value="0" selected>All Authors</option>
                     </select>
@@ -107,68 +107,41 @@ revision : 1 June 2025
                 </div>
 
                 <label class="form-label">Plugin Status</label>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkAny">
-                    <label class="form-check-label" for="checkAny">Any Status</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusNew">
+                    <label class="form-check-label" for="checkStatusNew" title="Plugins released since the last edition">New</label>
                 </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkActive">
-                    <label class="form-check-label" for="checkActive">Active</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusActive" checked>
+                    <label class="form-check-label" for="checkStatusActive" title="includes New and Bundled">Active</label>
                 </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkNew">
-                    <label class="form-check-label" for="checkNew">Active (New)</label>
-                </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkBundled">
-                    <label class="form-check-label" for="checkBundled">Active (Bundled)</label>
-                </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkDeprecated">
-                    <label class="form-check-label" for="checkDeprecated">Deprecated</label>
-                </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkObsolete">
-                    <label class="form-check-label" for="checkObsolete">Obsolete</label>
-                </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkIncompatible">
-                    <label class="form-check-label" for="checkIncompatible">Incompatible</label>
-                </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkUnsupported">
-                    <label class="form-check-label" for="checkUnsupported">Unsupported</label>
-                </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkIntegrated">
-                    <label class="form-check-label" for="checkIntegrated">Integrated</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusInactive">
+                    <label class="form-check-label" for="checkStatusInactive" title="Obsolete, Deprecated, Incompatible, Integrated & Unsupported">Inactive</label>
                 </div>
 
                 <label class="form-label">Plugin Compatibility</label>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkAnyVersion">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="versionMatch" id="checkAnyVersion" checked>
                     <label class="form-check-label" for="checkAnyVersion">Any Version</label>
                 </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="check5x">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="versionMatch" id="check5x" >
                     <label class="form-check-label" for="check5x">Current Version (5.x)</label>
                 </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="check4x">
-                    <label class="form-check-label" for="check4x">Legacy (4.x)</label>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="versionMatch" id="check4x">
+                    <label class="form-check-label" for="check4x">Legacy Versions (3.5x & 4.x)</label>
                 </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="check3x">
-                    <label class="form-check-label" for="check3x">Legacy (3.5x)</label>
-                </div>
-                <div class=form-check>
-                    <input type="checkbox" class="form-check-input" id="checkUntested">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="versionMatch" id="checkUntested">
                     <label class="form-check-label" for="checkUntested">Untested</label>
                 </div>
+                
                 <div class="selector">
                     <label class="form-label" for="menu-list">Menu</label>
                     <select id="menu-list" class="form-select">
-                        <option value="0" selected>All Menus</option>
+                        <option value="0" selected>Any Menu</option>
                     </select>
                 </div>
 

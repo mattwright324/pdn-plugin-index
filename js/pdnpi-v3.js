@@ -73,6 +73,17 @@ const pdnpi = (function () {
         }
     };
 
+    const PluginStatus = {
+        New: "New",
+        Active: "Active",
+        Bundled: "Bundled",
+        Deprecated: "Deprecated",
+        Obsolete: "Obsolete",
+        Incompatible: "Incompatible",
+        Unsupported: "Unsupported",
+        Integrated: "Integrated"
+    };
+
     /**
      * Disqualifying pattern, the first option that the plugin doesn't meet
      * returns false without checking the rest.
@@ -133,38 +144,34 @@ const pdnpi = (function () {
             }
         }
 
-        if (!controls.checkAnyStatus.checked) {
-            let hide = true;
-            if (equalsIgnoreCase(data.status, "Active") && controls.checkStatusActive.checked ||
-                equalsIgnoreCase(data.status, "New") && controls.checkStatusNew.checked ||
-                equalsIgnoreCase(data.status, "Deprecated") && controls.checkStatusDeprecated.checked ||
-                equalsIgnoreCase(data.status, "Obsolete") && controls.checkStatusObsolete.checked ||
-                equalsIgnoreCase(data.status, "Incompatible") && controls.checkStatusIncompatible.checked ||
-                equalsIgnoreCase(data.status, "Unsupported") && controls.checkStatusUnsupported.checked ||
-                equalsIgnoreCase(data.status, "Integrated") && controls.checkStatusIntegrated.checked ||
-                equalsIgnoreCase(data.status, "Bundled") && controls.checkStatusBundled.checked) {
-
-                hide = false;
+        // Check plugin status - case insensitive comparison
+        if (controls.checkStatusNew.checked) {
+            if (!equalsIgnoreCase(data.status, "New")) {
+                return false;
             }
-
-            if (hide) {
+        } else if (controls.checkStatusActive.checked) {
+            // Show if New, Active or Bundled 
+            const activeStatuses = ["New", "Active", "Bundled"];
+            if (!activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
+                return false;
+            }
+        } else if (controls.checkStatusInactive.checked) {
+            // Show if status is anything except New, Active or Bundled
+            const activeStatuses = ["New", "Active", "Bundled"];
+            if (activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
                 return false;
             }
         }
 
-        if (!controls.checkAnyVersion.checked) {
-            let hide = true;
-            if (data.compatibility.match(/.*5\..*/) && controls.check5x.checked ||
-                data.compatibility.match(/.*4\..*/) && controls.check4x.checked ||
-                data.compatibility.match(/.*3\.5x*/) && controls.check3x.checked ||
-                equalsIgnoreCase(data.compatibility, "Untested") && controls.checkUntested.checked) {
-                hide = false;
-            }
-
-            if (hide) {
-                return false;
-            }
+        // Check version compatibility based on selected radio button
+        if (controls.check5x.checked) {
+            if (!data.compatibility.match(/.*5\..*/)) return false;
+        } else if (controls.check4x.checked) {
+            if (!data.compatibility.match(/.*[34]\..*/)) return false;
+        } else if (controls.checkUntested.checked) {
+            if (!equalsIgnoreCase(data.compatibility, "Untested")) return false;
         }
+        // If checkAnyVersion is checked, show all versions
 
         const menuIndex = controls.comboMenu.selectedIndex;
         if (menuIndex > 0) {
@@ -252,14 +259,15 @@ const pdnpi = (function () {
             controls.checkTypePluginPack = document.querySelector("#checkPack");
 
             controls.checkAnyStatus = document.querySelector("#checkAny");
-            controls.checkStatusActive = document.querySelector("#checkActive");
-            controls.checkStatusNew = document.querySelector("#checkNew");
-            controls.checkStatusDeprecated = document.querySelector("#checkDeprecated");
-            controls.checkStatusObsolete = document.querySelector("#checkObsolete");
+            controls.checkStatusActive = document.querySelector("#checkStatusActive");
+            controls.checkStatusNew = document.querySelector("#checkStatusNew");
+            controls.checkStatusInactive = document.querySelector("#checkStatusInactive");
+            controls.checkStatusDeprecated = document.querySelector("#checkStatusDeprecated");
+            controls.checkStatusObsolete = document.querySelector("#checkStatusObsolete");
             controls.checkStatusIncompatible = document.querySelector("#checkIncompatible");
             controls.checkStatusUnsupported = document.querySelector("#checkUnsupported");
-            controls.checkStatusIntegrated = document.querySelector("#checkIntegrated");
-            controls.checkStatusBundled = document.querySelector("#checkBundled");
+            controls.checkStatusIntegrated = document.querySelector("#checkStatusIntegrated");
+            controls.checkStatusBundled = document.querySelector("#checkStatusBundled");
 
             controls.checkAnyVersion = document.querySelector("#checkAnyVersion");
             controls.check5x = document.querySelector("#check5x");
@@ -324,9 +332,21 @@ const pdnpi = (function () {
         },
         setupControls: function () {
             console.log("Setting up controls...");
-
-            // Add change handlers for keyword match radio buttons
+            
+            // Add change handlers for keyword match radio buttons and input
             [controls.checkExactMatch, controls.checkAnyKeywords, controls.checkAllKeywords].forEach(radio => {
+                radio.addEventListener('change', () => {
+                    controls.inputKeywords.dispatchEvent(new Event('input')); // Trigger refresh
+                });
+            });
+
+            // Remove old checkbox behavior for version controls, they're radio buttons now
+            [controls.checkAnyVersion, controls.check5x, controls.check4x, controls.checkUntested].forEach(radio => {
+                radio.addEventListener('change', () => internal.refreshListing());
+            });
+
+            // Add change handlers for status radio buttons 
+            [controls.checkStatusNew, controls.checkStatusActive, controls.checkStatusInactive].forEach(radio => {
                 radio.addEventListener('change', () => internal.refreshListing());
             });
 
@@ -373,16 +393,9 @@ const pdnpi = (function () {
             controls.checkStatusNew.checked = true;
             controls.checkStatusBundled.checked = true;
 
-            checkBehavior(controls.checkAnyVersion, [
-                controls.check5x,
-                controls.check4x,
-                controls.check3x,
-                controls.checkUntested
-            ]);
-            // when 5.0 is released we can set that checkbox as the default.
-            controls.check5x.checked = true;
-            // include all 4.x plugins for the first few months....
-            controls.check4x.checked = true;
+            // Remove version controls from checkbox behavior
+            controls.checkAnyVersion.checked = false;
+            controls.check5x.checked = true; // Set default to Current Version
 
             [controls.comboAuthors, controls.comboMenu].forEach(control => {
 
@@ -391,13 +404,6 @@ const pdnpi = (function () {
 
             controls.comboOrder.addEventListener("change", function () {
                 internal.refreshListing('order');
-            });
-
-            let inputTimeout = null;
-            controls.inputKeywords.addEventListener('input', function () {
-                clearTimeout(inputTimeout);
-
-                inputTimeout = setTimeout(internal.refreshListing, 200);
             });
 
             document.querySelector('#permalink-button').addEventListener('click', () => {

@@ -136,6 +136,12 @@ body {
   background: linear-gradient(to left, rgba(127, 127, 127, 0.05), transparent);
   border-right: 1px dashed lightgray;
 
+  .form-label {
+    margin-top: 1.25rem;  // Add more padding above labels
+    margin-bottom: 0;
+    font-size: 1.05em;
+  }
+
   .menu-label {
     margin-top: 3px;
     font-size: 1.05em;
@@ -144,7 +150,6 @@ body {
   .selector {
     @include row;
     @include justify-content-between;
-    margin-top: 10px;
   }
 
   #author, #order, #menu-list, #release {

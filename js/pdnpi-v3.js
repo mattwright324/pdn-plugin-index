@@ -299,6 +299,24 @@ const pdnpi = (function () {
         setupControls: function () {
             console.log("Setting up controls...");
             
+            // Add missing checkBehavior function
+            function checkBehavior(allCheck, subChecks) {
+                allCheck.addEventListener("change", function () {
+                    subChecks.forEach(check => {
+                        check.checked = !allCheck.checked;
+                    });
+                    internal.refreshListing();
+                });
+                subChecks.forEach(check => check.addEventListener("change", function () {
+                    if (check.checked) {
+                        allCheck.checked = false;
+                    } else if (subChecks.every(c => !c.checked)) {
+                        allCheck.checked = true;
+                    }
+                    internal.refreshListing();
+                }));
+            }
+
             // Keyword search controls
             const debouncedRefresh = debounce(() => internal.refreshListing(), 150);
             controls.inputKeywords.addEventListener('input', debouncedRefresh);

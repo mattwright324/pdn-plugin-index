@@ -1,11 +1,6 @@
 /**
  * Paint.NET Plugin Index
- *
  * https://github.com/mattwright324/pdn-plugin-index
- *
- * @requires $ jquery for dom manipulation
- * @requires bootstrap uses css style classes
- * @author mattwright324
  */
 const pdnpi = (function () {
     'use strict';
@@ -52,10 +47,6 @@ const pdnpi = (function () {
         }
     };
 
-    function containsIgnoreCase(text, subString) {
-        return text.toUpperCase().indexOf(subString.toUpperCase()) !== -1;
-    }
-
     function equalsIgnoreCase(a, b) {
         return String(a).toUpperCase() === String(b).toUpperCase();
     }
@@ -73,47 +64,36 @@ const pdnpi = (function () {
         }
     };
 
-    const PluginStatus = {
-        New: "New",
-        Active: "Active",
-        Bundled: "Bundled",
-        Deprecated: "Deprecated",
-        Obsolete: "Obsolete",
-        Incompatible: "Incompatible",
-        Unsupported: "Unsupported",
-        Integrated: "Integrated"
-    };
-
     /**
      * Disqualifying pattern, the first option that the plugin doesn't meet
      * returns false without checking the rest.
      */
     function shouldPluginDisplay(plugin) {
         const data = plugin.getData();
-        const dataValues = Object.values(data)
-            .filter(v => v)
-            .map(v => String(v).toUpperCase());
 
         // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
         if (keywords) {
             const upperKeywords = keywords.toUpperCase();
+            const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu'];
+            const searchTexts = searchableFields.map(field => String(data[field]).toUpperCase());
             
-            // Exact match - look for complete string
+            // Exact match
             if (controls.checkExactMatch.checked) {
-                if (!dataValues.some(val => val.includes(upperKeywords))) {
+                if (!searchTexts.some(text => text.includes(upperKeywords))) {
                     return false;
                 }
             }
-            // Any/All keywords - split on spaces and check each
+            // Any/All keywords
             else {
                 const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
                 if (keywordArray.length > 0) {
                     const matchFunc = controls.checkAllKeywords.checked ? 'every' : 'some';
-                    const matches = keywordArray[matchFunc](keyword =>
-                        dataValues.some(val => val.includes(keyword))
-                    );
-                    if (!matches) return false;
+                    if (!keywordArray[matchFunc](keyword => 
+                        searchTexts.some(text => text.includes(keyword))
+                    )) {
+                        return false;
+                    }
                 }
             }
         }
@@ -163,16 +143,6 @@ const pdnpi = (function () {
             }
         }
 
-        // Check version compatibility based on selected radio button
-        if (controls.check5x.checked) {
-            if (!data.compatibility.match(/.*5\..*/)) return false;
-        } else if (controls.check4x.checked) {
-            if (!data.compatibility.match(/.*[34]\..*/)) return false;
-        } else if (controls.checkUntested.checked) {
-            if (!equalsIgnoreCase(data.compatibility, "Untested")) return false;
-        }
-        // If checkAnyVersion is checked, show all versions
-
         const menuIndex = controls.comboMenu.selectedIndex;
         if (menuIndex > 0) {
             const menuText = controls.comboMenu.options[menuIndex].text;
@@ -206,75 +176,71 @@ const pdnpi = (function () {
         pluginPack: 16
     };
 
-    const pluginStatuses = {
-        active: 1,
-        new: 2,
-        bundled: 4,
-        deprecated: 8,
-        obsolete: 16,
-        incompatible: 32,
-        unsupported: 64,
-        integrated: 128
-    };
-
-    const pluginCompatibilities = {
-        ver5x: 1,
-        ver4x: 2,
-        ver3x: 4,
-        untested: 8
-    };
-
     const searchParamKeys = {
         keywords: 'keywords',
         author: 'author',
-        type: 'type',
+        type: 'type', 
         status: 'status',
-        compat: 'compat',
         order: 'order',
-        menu: 'menu',
+        menu: 'menu'
+    };
+
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
+    function hasFlag(num, flag) {
+        return (num & flag) === flag;
     }
 
     const internal = {
         init: function () {
-            console.log("Initializing");
+            try {
+                console.log("Initializing");
+                // Core elements
+                elements.badgePluginCount = document.querySelector("#count");
+                elements.divPluginList = document.querySelector("#plugins-list");
+                controls.btnScrollToTop = document.querySelector("#scroll");
 
-            elements.badgePluginCount = document.querySelector("#count");
-            elements.divPluginList = document.querySelector("#plugins-list");
-            controls.btnScrollToTop = document.querySelector("#scroll");
+                // Search controls
+                controls.inputKeywords = document.querySelector("#keywords");
+                controls.checkExactMatch = document.querySelector("#checkExactMatch");
+                controls.checkAnyKeywords = document.querySelector("#checkAnyKeywords");
+                controls.checkAllKeywords = document.querySelector("#checkAllKeywords");
+                
+                // Dropdowns
+                controls.comboAuthors = document.querySelector("#author");
+                controls.comboOrder = document.querySelector("#order");
+                controls.comboMenu = document.querySelector("#menu-list");
 
-            controls.inputKeywords = document.querySelector("#keywords");
-            controls.checkExactMatch = document.querySelector("#checkExactMatch");
-            controls.checkAnyKeywords = document.querySelector("#checkAnyKeywords");
-            controls.checkAllKeywords = document.querySelector("#checkAllKeywords");
-            
-            controls.comboAuthors = document.querySelector("#author");
-            controls.comboOrder = document.querySelector("#order");
-            controls.comboMenu = document.querySelector("#menu-list");
+                // Plugin type checkboxes
+                controls.checkAllTypes = document.querySelector("#checkAll");
+                controls.checkTypeEffect = document.querySelector("#checkEffect");
+                controls.checkTypeAdjustment = document.querySelector("#checkAdjustment");
+                controls.checkTypeFiletype = document.querySelector("#checkFiletype");
+                controls.checkTypeExternal = document.querySelector("#checkExternal");
+                controls.checkTypePluginPack = document.querySelector("#checkPack");
 
-            controls.checkAllTypes = document.querySelector("#checkAll");
-            controls.checkTypeEffect = document.querySelector("#checkEffect");
-            controls.checkTypeAdjustment = document.querySelector("#checkAdjustment");
-            controls.checkTypeFiletype = document.querySelector("#checkFiletype");
-            controls.checkTypeExternal = document.querySelector("#checkExternal");
-            controls.checkTypePluginPack = document.querySelector("#checkPack");
+                // Status radio buttons
+                controls.checkStatusNew = document.querySelector("#checkStatusNew");
+                controls.checkStatusActive = document.querySelector("#checkStatusActive");
+                controls.checkStatusInactive = document.querySelector("#checkStatusInactive");
 
-            controls.checkAnyStatus = document.querySelector("#checkAny");
-            controls.checkStatusActive = document.querySelector("#checkStatusActive");
-            controls.checkStatusNew = document.querySelector("#checkStatusNew");
-            controls.checkStatusInactive = document.querySelector("#checkStatusInactive");
-            controls.checkStatusDeprecated = document.querySelector("#checkStatusDeprecated");
-            controls.checkStatusObsolete = document.querySelector("#checkStatusObsolete");
-            controls.checkStatusIncompatible = document.querySelector("#checkIncompatible");
-            controls.checkStatusUnsupported = document.querySelector("#checkUnsupported");
-            controls.checkStatusIntegrated = document.querySelector("#checkStatusIntegrated");
-            controls.checkStatusBundled = document.querySelector("#checkStatusBundled");
-
-            controls.checkAnyVersion = document.querySelector("#checkAnyVersion");
-            controls.check5x = document.querySelector("#check5x");
-            controls.check4x = document.querySelector("#check4x");
-            controls.check3x = document.querySelector("#check3x");
-            controls.checkUntested = document.querySelector("#checkUntested");
+                // Set default values
+                controls.checkAllTypes.checked = true;
+                controls.checkStatusActive.checked = true;
+                controls.checkExactMatch.checked = true;
+                
+            } catch (err) {
+                console.error("Initialization failed:", err);
+                throw err;
+            }
         },
+
         loadIndex: function () {
             fetch(
                 "index/plugin-index.json"
@@ -333,43 +299,17 @@ const pdnpi = (function () {
         setupControls: function () {
             console.log("Setting up controls...");
             
-            // Add change handlers for keyword match radio buttons and input
-            [controls.checkExactMatch, controls.checkAnyKeywords, controls.checkAllKeywords].forEach(radio => {
-                radio.addEventListener('change', () => {
-                    controls.inputKeywords.dispatchEvent(new Event('input')); // Trigger refresh
-                });
-            });
+            // Keyword search controls
+            const debouncedRefresh = debounce(() => internal.refreshListing(), 150);
+            controls.inputKeywords.addEventListener('input', debouncedRefresh);
+            [controls.checkExactMatch, controls.checkAnyKeywords, controls.checkAllKeywords]
+                .forEach(radio => radio.addEventListener('change', debouncedRefresh));
 
-            // Remove old checkbox behavior for version controls, they're radio buttons now
-            [controls.checkAnyVersion, controls.check5x, controls.check4x, controls.checkUntested].forEach(radio => {
-                radio.addEventListener('change', () => internal.refreshListing());
-            });
+            // Status radio buttons
+            [controls.checkStatusNew, controls.checkStatusActive, controls.checkStatusInactive]
+                .forEach(radio => radio.addEventListener('change', () => internal.refreshListing()));
 
-            // Add change handlers for status radio buttons 
-            [controls.checkStatusNew, controls.checkStatusActive, controls.checkStatusInactive].forEach(radio => {
-                radio.addEventListener('change', () => internal.refreshListing());
-            });
-
-            /**
-             * All/Any checkbox should deselect it's encompassing sub-checkboxes.
-             *
-             * Sub-checkboxes should deselect it's parent All/Any checkbox.
-             */
-            function checkBehavior(allCheck, subChecks) {
-                allCheck.addEventListener("change", function () {
-                    if (allCheck.checked) {
-                        subChecks.forEach(check => check.checked = false);
-                    }
-                    internal.refreshListing();
-                });
-                subChecks.forEach(check => check.addEventListener("change", function () {
-                    if (check.checked) {
-                        allCheck.checked = false;
-                    }
-                    internal.refreshListing();
-                }));
-            }
-
+            // Plugin type checkboxes
             checkBehavior(controls.checkAllTypes, [
                 controls.checkTypeEffect,
                 controls.checkTypeAdjustment,
@@ -379,23 +319,8 @@ const pdnpi = (function () {
             ]);
             controls.checkAllTypes.checked = true;
 
-            checkBehavior(controls.checkAnyStatus, [
-                controls.checkStatusActive,
-                controls.checkStatusNew,
-                controls.checkStatusDeprecated,
-                controls.checkStatusObsolete,
-                controls.checkStatusIncompatible,
-                controls.checkStatusUnsupported,
-                controls.checkStatusIntegrated,
-                controls.checkStatusBundled
-            ]);
+            // Set default active status
             controls.checkStatusActive.checked = true;
-            controls.checkStatusNew.checked = true;
-            controls.checkStatusBundled.checked = true;
-
-            // Remove version controls from checkbox behavior
-            controls.checkAnyVersion.checked = false;
-            controls.check5x.checked = true; // Set default to Current Version
 
             [controls.comboAuthors, controls.comboMenu].forEach(control => {
 
@@ -445,26 +370,27 @@ const pdnpi = (function () {
             })
         },
         useSearchParams: function () {
-            function hasFlag(num, flag) {
-                return (num & flag) == flag;
-            }
-
             const allFoundParams = new URL(window.location).searchParams;
+            const params = Object.entries(searchParamKeys)
+                .filter(([_, key]) => allFoundParams.has(key))
+                .reduce((acc, [name, key]) => {
+                    acc[name] = allFoundParams.get(key)?.trim();
+                    return acc;
+                }, {});
 
-            const foundKeywords = allFoundParams.get(searchParamKeys.keywords)?.trim();
-            if (foundKeywords) {
-                controls.inputKeywords.value = foundKeywords;
+            if (params.keywords) {
+                controls.inputKeywords.value = params.keywords;
             }
-
-            const foundAuthor = allFoundParams.get(searchParamKeys.author)?.trim();
-            if (foundAuthor) {
-                const authorIndex = Array.from(controls.comboAuthors.options).findIndex(x => x.text == foundAuthor);
+            
+            if (params.author) {
+                const authorIndex = Array.from(controls.comboAuthors.options)
+                    .findIndex(x => x.text === params.author);
                 if (authorIndex >= 0) {
                     controls.comboAuthors.selectedIndex = authorIndex;
                 }
             }
 
-            const foundType = allFoundParams.get(searchParamKeys.type)?.trim();
+            const foundType = params.type;
             if (foundType) {
                 const typeFlags = Number.parseInt(foundType) || 0;
                 controls.checkAllTypes.checked = (typeFlags == 0);
@@ -475,7 +401,7 @@ const pdnpi = (function () {
                 controls.checkTypePluginPack.checked = hasFlag(typeFlags, pluginTypes.pluginPack);
             }
 
-            const foundStatus = allFoundParams.get(searchParamKeys.status)?.trim();
+            const foundStatus = params.status;
             if (foundStatus) {
                 const statusFlags = Number.parseInt(foundStatus) || 0;
                 controls.checkAnyStatus.checked = (statusFlags == 0);
@@ -489,27 +415,15 @@ const pdnpi = (function () {
                 controls.checkStatusIntegrated.checked = hasFlag(statusFlags, pluginStatuses.integrated);
             }
 
-            const foundCompat = allFoundParams.get(searchParamKeys.compat)?.trim();
-            if (foundCompat) {
-                const compatFlags = Number.parseInt(foundCompat) || 0;
-                controls.checkAnyVersion.checked = (compatFlags == 0);
-                controls.check5x.checked = hasFlag(compatFlags, pluginCompatibilities.ver5x);
-                controls.check4x.checked = hasFlag(compatFlags, pluginCompatibilities.ver4x);
-                controls.check3x.checked = hasFlag(compatFlags, pluginCompatibilities.ver3x);
-                controls.checkUntested.checked = hasFlag(compatFlags, pluginCompatibilities.untested);
-            }
-
-            const foundOrder = allFoundParams.get(searchParamKeys.order)?.trim();
-            if (foundOrder) {
-                const orderIndex = Array.from(controls.comboOrder.options).findIndex(x => x.text == foundOrder);
+            if (params.order) {
+                const orderIndex = Array.from(controls.comboOrder.options).findIndex(x => x.text == params.order);
                 if (orderIndex >= 0) {
                     controls.comboOrder.selectedIndex = orderIndex;
                 }
             }
 
-            const foundMenu = allFoundParams.get(searchParamKeys.menu)?.trim();
-            if (foundMenu) {
-                const menuIndex = Array.from(controls.comboMenu.options).findIndex(x => x.text == foundMenu);
+            if (params.menu) {
+                const menuIndex = Array.from(controls.comboMenu.options).findIndex(x => x.text == params.menu);
                 if (menuIndex >= 0) {
                     controls.comboMenu.selectedIndex = menuIndex;
                 }
@@ -544,13 +458,6 @@ const pdnpi = (function () {
             if (controls.checkStatusIntegrated.checked) statusFlags |= pluginStatuses.integrated;
             params.append(searchParamKeys.status, statusFlags);
 
-            let compatFlags = 0;
-            if (controls.check5x.checked) compatFlags |= pluginCompatibilities.ver5x;
-            if (controls.check4x.checked) compatFlags |= pluginCompatibilities.ver4x;
-            if (controls.check3x.checked) compatFlags |= pluginCompatibilities.ver3x;
-            if (controls.checkUntested.checked) compatFlags |= pluginCompatibilities.untested;
-            params.append(searchParamKeys.compat, compatFlags);
-
             params.append(searchParamKeys.order, controls.comboOrder.value);
             params.append(searchParamKeys.menu, controls.comboMenu.options[controls.comboMenu.selectedIndex].text);
 
@@ -568,55 +475,55 @@ const pdnpi = (function () {
          * - Hiding & showing each individual plugin
          */
         refreshListing: function (event) {
-            console.log("Refreshing the plugin list...");
+            try {
+                console.log("Refreshing the plugin list...");
+                
+                if (equalsIgnoreCase(event, "order")) {
+                    const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
 
-            //const fadeMs = 150;
+                    pluginIndex.sort((a, b) => {
+                        const dataA = a.getData();
+                        const dataB = b.getData();
 
-            //elements.divLoadingOverlay.fadeIn(fadeMs);
-
-            if (equalsIgnoreCase(event, "order")) {
-                const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
-
-                pluginIndex.sort((a, b) => {
-                    const dataA = a.getData();
-                    const dataB = b.getData();
-
-                    if (equalsIgnoreCase(order, "release_new")) {
-                        // order by newest first
-                        a = new Date(dataA.release);
-                        b = new Date(dataB.release);
-                        return (a < b) ? 1 : (a > b) ? -1 : 0;
-                    } else if (equalsIgnoreCase(order, "release_old")) {
-                        // order by oldest first
-                        a = new Date(dataA.release);
-                        b = new Date(dataB.release);
-                        return (a > b) ? 1 : (a < b) ? -1 : 0;
-                    } else if (equalsIgnoreCase(order, "title")) {
-                        return alphaSort(dataA.title, dataB.title);
-                    } else if (equalsIgnoreCase(order, "author")) {
-                        return alphaSort(dataA.author, dataB.author);
-                    } else if (equalsIgnoreCase(order, "menu")) {
-                        return alphaSort(dataA.menu, dataB.menu);
-                    }
-                });
-            }
-
-            let html = "";
-            let displayCount = 0;
-            for (let i = 0; i < pluginIndex.length; i++) {
-                const plugin = pluginIndex[i];
-
-                const display = shouldPluginDisplay(plugin);
-
-                if (display) {
-                    html += plugin.getHtml();
-                    displayCount++;
+                        if (equalsIgnoreCase(order, "release_new")) {
+                            // order by newest first
+                            a = new Date(dataA.release);
+                            b = new Date(dataB.release);
+                            return (a < b) ? 1 : (a > b) ? -1 : 0;
+                        } else if (equalsIgnoreCase(order, "release_old")) {
+                            // order by oldest first
+                            a = new Date(dataA.release);
+                            b = new Date(dataB.release);
+                            return (a > b) ? 1 : (a < b) ? -1 : 0;
+                        } else if (equalsIgnoreCase(order, "title")) {
+                            return alphaSort(dataA.title, dataB.title);
+                        } else if (equalsIgnoreCase(order, "author")) {
+                            return alphaSort(dataA.author, dataB.author);
+                        } else if (equalsIgnoreCase(order, "menu")) {
+                            return alphaSort(dataA.menu, dataB.menu);
+                        }
+                    });
                 }
+
+                let html = "";
+                let displayCount = 0;
+                for (let i = 0; i < pluginIndex.length; i++) {
+                    const plugin = pluginIndex[i];
+
+                    const display = shouldPluginDisplay(plugin);
+
+                    if (display) {
+                        html += plugin.getHtml();
+                        displayCount++;
+                    }
+                }
+                elements.divPluginList.replaceChildren();
+                elements.divPluginList.insertAdjacentHTML("afterbegin", html);
+                elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;
+            } catch (err) {
+                console.error("Refresh failed:", err);
+                elements.badgePluginCount.textContent = "Error";
             }
-            elements.divPluginList.replaceChildren();
-            elements.divPluginList.insertAdjacentHTML("afterbegin", html);
-            elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;
-            //elements.divLoadingOverlay.fadeOut(fadeMs * 1.75);
         }
     };
     internal.init();

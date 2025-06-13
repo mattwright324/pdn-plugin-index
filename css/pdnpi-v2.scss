@@ -52,6 +52,9 @@
 body {
   font-family: 'Open Sans', sans-serif;
   padding-top: 56px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   a {
     text-decoration: none;
@@ -131,15 +134,20 @@ body {
 }
 
 #search-menu {
-  padding-top: 15px;
+  padding-top: 1.25em;
   padding-bottom: 30px;
   background: linear-gradient(to left, rgba(127, 127, 127, 0.05), transparent);
   border-right: 1px dashed lightgray;
 
   .form-label {
-    margin-top: 1.25rem;  // Add more padding above labels
+    margin-top: 0.25rem;  // Add more padding above labels
     margin-bottom: 0;
     font-size: 1.05em;
+  }
+
+  .control.input-group {
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;  // Reduced from 0.5em
   }
 
   .menu-label {
@@ -278,7 +286,18 @@ body {
   }
 }
 
+.container-fluid {
+  flex: 1;
+}
+
+.wrapper {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
 .footer {
-  padding-bottom: 2.5%;
-  padding-top: 2.5%;
+  flex-shrink: 0;
+  margin-top: auto;
+  background: rgb(230, 230, 230);
+  padding: 1rem 0;
 }

@@ -134,6 +134,10 @@ body {
 }
 
 #search-menu {
+  position: sticky;
+  top: 70px; // Accounts for navbar height + some padding
+  max-height: calc(100vh - 70px); // Viewport height minus top offset
+  overflow-y: auto;
   padding-top: 1.25em;
   padding-bottom: 30px;
   background: linear-gradient(to left, rgba(127, 127, 127, 0.05), transparent);

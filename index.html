@@ -74,7 +74,7 @@ revision : 1 June 2025
                         <fieldset class="mb-4">
                             <legend class="form-label">Search Type</legend>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" name="keywordMatch" id="checkAnyKeywords">
+                                <input type="radio" class="form-check-input" name="keywordMatch" id="checkAnyKeywords" checked>
                                 <label class="form-check-label" for="checkAnyKeywords">Any keyword</label>
                             </div>
                             <div class="form-check">
@@ -82,7 +82,7 @@ revision : 1 June 2025
                                 <label class="form-check-label" for="checkAllKeywords">All keywords (in any order)</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" class="form-check-input" name="keywordMatch" id="checkExactMatch" checked>
+                                <input type="radio" class="form-check-input" name="keywordMatch" id="checkExactMatch" >
                                 <label class="form-check-label" for="checkExactMatch">Exact match</label>
                             </div>
                         </fieldset>
@@ -101,7 +101,7 @@ revision : 1 June 2025
                         <h2 class="form-label">Plugin Type</h2>
                         <div class="form-checks">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkAll" name="pluginType">
+                                <input type="checkbox" class="form-check-input" id="checkAll" name="pluginType" checked>
                                 <label class="form-check-label" for="checkAll">All Types</label>
                             </div>
                             <div class="form-check">
@@ -167,11 +167,9 @@ revision : 1 June 2025
                         </div>
                     </section>
 
-                    <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent
-                        Link</button>
+                    <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>
                     <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;">
-                        <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
-                            data-bs-delay="2000">
+                        <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
                             <div class="toast-body">
                             </div>
                         </div>

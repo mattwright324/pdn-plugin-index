@@ -185,6 +185,13 @@ const pdnpi = (function () {
         menu: 'menu'
     };
 
+    // Update status constants to match radio buttons
+    const pluginStatuses = {
+        new: 'new',
+        active: 'active',
+        inactive: 'inactive'
+    };
+
     function debounce(func, wait) {
         let timeout;
         return function(...args) {
@@ -354,22 +361,17 @@ const pdnpi = (function () {
                 internal.refreshListing('order');
             });
 
-            document.querySelector('#permalink-button').addEventListener('click', () => {
-                navigator.clipboard.writeText(internal.buildPermalink()).then(
-                    () => {
-                        return 'Permalink copied to the clipboard.';
-                    },
-                    (failure) => {
-                        console.error(failure);
-                        return 'Error copying Permalink to the clipboard.';
-                    }
-                )
-                    .then(x => {
-                        document.querySelector('#copiedToast .toast-body').textContent = x;
-
-                        const toastNode = document.querySelector('#copiedToast');
-                        bootstrap.Toast.getOrCreateInstance(toastNode).show();
-                    });
+            document.querySelector('#permalink-button').addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(internal.buildPermalink());
+                    document.querySelector('#copiedToast .toast-body').textContent = 'Permalink copied to the clipboard.';
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                    document.querySelector('#copiedToast .toast-body').textContent = 'Error copying Permalink to the clipboard.';
+                }
+                
+                const toastNode = document.querySelector('#copiedToast');
+                bootstrap.Toast.getOrCreateInstance(toastNode).show();
             });
 
             /**
@@ -401,6 +403,7 @@ const pdnpi = (function () {
                     return acc;
                 }, {});
 
+            // Load all URL parameters into controls
             if (params.keywords) {
                 controls.inputKeywords.value = params.keywords;
             }
@@ -426,16 +429,14 @@ const pdnpi = (function () {
 
             const foundStatus = params.status;
             if (foundStatus) {
-                const statusFlags = Number.parseInt(foundStatus) || 0;
-                controls.checkAnyStatus.checked = (statusFlags == 0);
-                controls.checkStatusActive.checked = hasFlag(statusFlags, pluginStatuses.active);
-                controls.checkStatusNew.checked = hasFlag(statusFlags, pluginStatuses.new);
-                controls.checkStatusBundled.checked = hasFlag(statusFlags, pluginStatuses.bundled);
-                controls.checkStatusDeprecated.checked = hasFlag(statusFlags, pluginStatuses.deprecated);
-                controls.checkStatusObsolete.checked = hasFlag(statusFlags, pluginStatuses.obsolete);
-                controls.checkStatusIncompatible.checked = hasFlag(statusFlags, pluginStatuses.incompatible);
-                controls.checkStatusUnsupported.checked = hasFlag(statusFlags, pluginStatuses.unsupported);
-                controls.checkStatusIntegrated.checked = hasFlag(statusFlags, pluginStatuses.integrated);
+                // Handle status as simple string value
+                if (foundStatus === pluginStatuses.new) {
+                    controls.checkStatusNew.checked = true;
+                } else if (foundStatus === pluginStatuses.inactive) {
+                    controls.checkStatusInactive.checked = true;
+                } else if (foundStatus === pluginStatuses.active) {
+                    controls.checkStatusActive.checked = true;
+                }
             }
 
             if (params.order) {
@@ -451,6 +452,11 @@ const pdnpi = (function () {
                     controls.comboMenu.selectedIndex = menuIndex;
                 }
             }
+
+            // Trigger a refresh if we have any URL parameters
+            if (Object.keys(params).length > 0) {
+                internal.refreshListing();
+            }
         },
         buildPermalink: function () {
             const params = new URLSearchParams();
@@ -460,7 +466,10 @@ const pdnpi = (function () {
                 params.append(searchParamKeys.keywords, currentKeywords);
             }
 
-            params.append(searchParamKeys.author, controls.comboAuthors.options[controls.comboAuthors.selectedIndex].text);
+            const selectedAuthor = controls.comboAuthors.options[controls.comboAuthors.selectedIndex].text;
+            if (selectedAuthor !== 'All Authors') {
+                params.append(searchParamKeys.author, selectedAuthor);
+            }
 
             let typeFlags = 0;
             if (controls.checkTypeEffect.checked) typeFlags |= pluginTypes.effect;
@@ -468,25 +477,36 @@ const pdnpi = (function () {
             if (controls.checkTypeFiletype.checked) typeFlags |= pluginTypes.filetype;
             if (controls.checkTypeExternal.checked) typeFlags |= pluginTypes.external;
             if (controls.checkTypePluginPack.checked) typeFlags |= pluginTypes.pluginPack;
-            params.append(searchParamKeys.type, typeFlags);
+            if (typeFlags > 0) {
+                params.append(searchParamKeys.type, typeFlags);
+            }
 
-            let statusFlags = 0;
-            if (controls.checkStatusActive.checked) statusFlags |= pluginStatuses.active;
-            if (controls.checkStatusNew.checked) statusFlags |= pluginStatuses.new;
-            if (controls.checkStatusBundled.checked) statusFlags |= pluginStatuses.bundled;
-            if (controls.checkStatusDeprecated.checked) statusFlags |= pluginStatuses.deprecated;
-            if (controls.checkStatusObsolete.checked) statusFlags |= pluginStatuses.obsolete;
-            if (controls.checkStatusIncompatible.checked) statusFlags |= pluginStatuses.incompatible;
-            if (controls.checkStatusUnsupported.checked) statusFlags |= pluginStatuses.unsupported;
-            if (controls.checkStatusIntegrated.checked) statusFlags |= pluginStatuses.integrated;
-            params.append(searchParamKeys.status, statusFlags);
+            // Simplified status handling using radio buttons
+            if (controls.checkStatusNew.checked) {
+                params.append(searchParamKeys.status, pluginStatuses.new);
+            } else if (controls.checkStatusInactive.checked) {
+                params.append(searchParamKeys.status, pluginStatuses.inactive);
+            } else if (controls.checkStatusActive.checked) {
+                params.append(searchParamKeys.status, pluginStatuses.active);
+            }
 
-            params.append(searchParamKeys.order, controls.comboOrder.value);
-            params.append(searchParamKeys.menu, controls.comboMenu.options[controls.comboMenu.selectedIndex].text);
+            if (controls.comboOrder.value !== 'release_new') {
+                params.append(searchParamKeys.order, controls.comboOrder.value);
+            }
 
-            const hostUrl = window !== window.parent
-                ? 'https://forums.getpaint.net/PluginIndex'
-                : window.location.origin + window.location.pathname;
+            const selectedMenu = controls.comboMenu.options[controls.comboMenu.selectedIndex].text;
+            if (selectedMenu !== 'Any Menu') {
+                params.append(searchParamKeys.menu, selectedMenu);
+            }
+
+            let hostUrl;
+            if (window !== window.parent) {
+                hostUrl = 'https://forums.getpaint.net/PluginIndex';
+            } else if (window.location.hostname === 'localhost') {
+                hostUrl = window.location.origin + window.location.pathname;
+            } else {
+                hostUrl = window.location.origin + window.location.pathname;
+            }
 
             return hostUrl + '?' + params.toString();
         },
@@ -630,5 +650,6 @@ const pdnpi = (function () {
             console.log("%cFound " + issueCount + " data issues", "font-weight:700;" +
                 (issueCount > 0 ? "color:red;" : "color:green"));
         }
-    }
+    };
 }());
+

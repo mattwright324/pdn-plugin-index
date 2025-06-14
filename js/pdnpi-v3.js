@@ -233,7 +233,8 @@ const pdnpi = (function () {
                 // Set default values
                 controls.checkAllTypes.checked = true;
                 controls.checkStatusActive.checked = true;
-                controls.checkExactMatch.checked = true;
+                controls.checkAnyKeywords.checked = true;
+                controls.checkExactMatch.checked = false;
                 
             } catch (err) {
                 console.error("Initialization failed:", err);
@@ -299,6 +300,10 @@ const pdnpi = (function () {
         setupControls: function () {
             console.log("Setting up controls...");
             
+            // Initialize Bootstrap tooltips
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
             // Add missing checkBehavior function
             function checkBehavior(allCheck, subChecks) {
                 allCheck.addEventListener("change", function () {

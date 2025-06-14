@@ -143,6 +143,10 @@ body {
   background: linear-gradient(to left, rgba(127, 127, 127, 0.05), transparent);
   border-right: 1px dashed lightgray;
 
+  .bi-info-circle {
+    color: #6c757d;  // Bootstrap's text-muted color
+  }
+
   .form-label {
     margin-top: 0.25rem;  // Add more padding above labels
     margin-bottom: 0;

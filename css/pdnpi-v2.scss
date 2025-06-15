@@ -147,6 +147,10 @@ body {
     color: #6c757d;  // Bootstrap's text-muted color
   }
 
+  .tooltip-inner {
+    white-space: pre-line;
+}
+
   .form-label {
     margin-top: 0.25rem;  // Add more padding above labels
     margin-bottom: 0;

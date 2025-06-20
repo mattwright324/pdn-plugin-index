@@ -52,6 +52,9 @@
 body {
   font-family: 'Open Sans', sans-serif;
   padding-top: 56px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
   a {
     text-decoration: none;
@@ -63,6 +66,11 @@ body {
 
   nav {
     border-top: 1px solid #a3a7a9;
+  }
+
+  .container-ic {
+    // max iframe width within forum post
+    max-width: 1094px;
   }
 
   footer {
@@ -131,10 +139,33 @@ body {
 }
 
 #search-menu {
-  padding-top: 15px;
+  position: sticky;
+  top: 70px; // Accounts for navbar height + some padding
+  max-height: calc(100vh - 70px); // Viewport height minus top offset
+  overflow-y: auto;
+  padding-top: 1.25em;
   padding-bottom: 30px;
   background: linear-gradient(to left, rgba(127, 127, 127, 0.05), transparent);
   border-right: 1px dashed lightgray;
+
+  .bi-info-circle {
+    color: #6c757d;  // Bootstrap's text-muted color
+  }
+
+  .tooltip-inner {
+    white-space: pre-line;
+}
+
+  .form-label {
+    margin-top: 0.25rem;  // Add more padding above labels
+    margin-bottom: 0;
+    font-size: 1.05em;
+  }
+
+  .control.input-group {
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;  // Reduced from 0.5em
+  }
 
   .menu-label {
     margin-top: 3px;
@@ -144,7 +175,6 @@ body {
   .selector {
     @include row;
     @include justify-content-between;
-    margin-top: 10px;
   }
 
   #author, #order, #menu-list, #release {
@@ -273,7 +303,18 @@ body {
   }
 }
 
+.container-fluid {
+  flex: 1;
+}
+
+.wrapper {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
 .footer {
-  padding-bottom: 2.5%;
-  padding-top: 2.5%;
+  flex-shrink: 0;
+  margin-top: auto;
+  background: rgb(230, 230, 230);
+  padding: 1rem 0;
 }

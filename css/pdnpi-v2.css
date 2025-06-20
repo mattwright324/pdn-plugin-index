@@ -30,7 +30,7 @@ revision : 1 June 2025
     <a href="#" id="scroll" class="fade"><span></span></a>
     <nav style="background-color: #375476!important;top: -1px!important;"
         class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-        <div class="container-fluid container-ic">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon" />
                 <span id="brand-lg">{{ page.title_lg }}</span>
@@ -44,20 +44,17 @@ revision : 1 June 2025
         </div>
     </nav>
     <div id="about" class="col">
-        <div class="container container-ic">
-            This application simplifies locating Paint.NET plugins by searching the Plugin Index.
-            The app was originally built by Matthew Wright
-            (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
-            and is maintained by he and Scott Stringer
-            (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>).
-            Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the
-            sidebar to enter search terms and filter the results.
-        </div>
-
+        This application simplifies locating Paint.NET plugins by searching the Plugin Index.
+        The app was originally built by Matthew Wright
+        (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
+        and is maintained by he and Scott Stringer
+        (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>).
+        Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the
+        sidebar to enter search terms and filter the results.
     </div>
 
     <div class="wrapper">
-        <div class="container-fluid container-ic justify-content-center">
+        <div class="container-fluid justify-content-center">
             <div class="row">
                 <div id="search-menu" class="col-md-3" style="margin:0;" role="search"
                     aria-label="Plugin search filters">
@@ -133,8 +130,10 @@ revision : 1 June 2025
                     <section class="mb-4">
                         <h2 class="form-label d-flex justify-content-between align-items-center">
                             Plugin Status
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                                class="bi bi-info-circle plugin-status-info" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16" data-bs-toggle="tooltip" data-bs-placement="right" data-html="true" 
+                            title="New: Plugins released since the last edition of the Plugin Index
+Active: Plugins which work with the latest release of Paint.NET (includes New and Bundled)
+Inactive: Plugins which do not work with the latest release of Paint.NET (Obsolete, Deprecated, Incompatible, Integrated & Unsupported)">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                 <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                             </svg>
@@ -215,20 +214,6 @@ revision : 1 June 2025
                 </span>
             </div>
         </footer>
-    </body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tooltip = new bootstrap.Tooltip('.plugin-status-info', {
-                html: true,
-                template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner text-start"></div></div>',
-                title: `<strong>New:</strong><br>
-                        Plugins appearing in the Plugin Index for the first time.<br><br>
-                        <strong>Active:</strong><br>
-                        Plugins which work with the latest release of Paint.NET (includes New and Bundled)<br><br>
-                        <strong>Inactive:</strong><br>
-                        Plugins which do not work with the latest release of Paint.NET<br>
-                        (Obsolete, Deprecated, Incompatible, Integrated & Unsupported)`
-            });
-        });
-    </script>
+</body>
+
 </html>

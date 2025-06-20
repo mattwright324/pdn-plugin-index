@@ -68,6 +68,11 @@ body {
     border-top: 1px solid #a3a7a9;
   }
 
+  .container-ic {
+    // max iframe width within forum post
+    max-width: 1094px;
+  }
+
   footer {
     @include bg(rgb(230, 230, 230));
     padding-top: 15px;

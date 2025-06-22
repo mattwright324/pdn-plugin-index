@@ -478,7 +478,7 @@ const pdnpi = (function () {
             }
 
             const status = controls.comboPluginStatus.value.trim().toLowerCase();
-            if (status !== 'any') {
+            if (status !== 'active') {
                 params.append(searchParamKeys.status, status);
             }
 

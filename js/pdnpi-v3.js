@@ -263,6 +263,9 @@ const pdnpi = (function () {
                 controls.comboKeywordStyle = document.querySelector("#keywordStyle");
                 controls.comboPluginStatus = document.querySelector("#pluginStatus");
                 controls.comboPluginType = document.querySelector("#pluginType");
+
+                controls.navIssuesButton = document.querySelector("#nav-issues");
+                elements.issuesList = document.querySelector("#issuesList");
             } catch (err) {
                 console.error("Initialization failed:", err);
                 throw err;
@@ -319,6 +322,12 @@ const pdnpi = (function () {
                 internal.useSearchParams();
                 internal.refreshListing();
 
+                const issues = internal.dataIntegrity();
+                if (issues.length) {
+                    const issuesHtml = issues.sort(alphaSort).map((issue, index) => `<li>${issue}</li>`).join("");
+                    elements.issuesList.insertAdjacentHTML("beforeend", issuesHtml);
+                    controls.navIssuesButton.style.display = "";
+                }
             }).catch(function (err) {
                 console.error("Failed to load plugin-index.json");
                 console.error(err);
@@ -549,13 +558,8 @@ const pdnpi = (function () {
                 console.error("Refresh failed:", err);
                 elements.badgePluginCount.textContent = "Error";
             }
-        }
-    };
-    internal.init();
-    internal.loadIndex();
-    internal.setupControls();
+        },
 
-    return {
         dataIntegrity: function () {
             const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
             const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
@@ -581,10 +585,11 @@ const pdnpi = (function () {
             };
 
             let issueCount = 0;
+            const issues = []
 
             function logIssue(data, value, reason) {
-                console.log(reason + " [value=" + value + "] - " + JSON.stringify(data));
-
+                issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
+                console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
                 issueCount++;
             }
 
@@ -631,7 +636,16 @@ const pdnpi = (function () {
 
             console.log("%cFound " + issueCount + " data issues", "font-weight:700;" +
                 (issueCount > 0 ? "color:red;" : "color:green"));
+
+            return issues;
         }
+    };
+    internal.init();
+    internal.loadIndex();
+    internal.setupControls();
+
+    return {
+        dataIntegrity: internal.dataIntegrity,
     };
 }());
 

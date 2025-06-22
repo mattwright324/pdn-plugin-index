@@ -109,6 +109,16 @@ a {
   color: #868e96 !important;
 }
 
+.align-baseline {
+  display: inline-block;
+  vertical-align: baseline !important;
+}
+
+.navbar-text {
+  padding-right: var(--bs-navbar-nav-link-padding-x);
+  padding-left: var(--bs-navbar-nav-link-padding-x);
+}
+
 /** Plugin container */
 #plugins {
   @include d-flex;
@@ -187,6 +197,7 @@ a {
       max-width: 200px;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-right: 4px;
     }
 
     .tag.author {

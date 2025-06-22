@@ -38,18 +38,28 @@ revision : 1 June 2025
                 <span id="brand-lg">{{ page.title_lg }}</span>
                 <span id="brand-sm">{{ page.title_sm }}</span>
             </a>
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">
-                        About
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="navbar-text">
-                    <small>Revision Date: {{ page.revision }}</small>
-                </li>
-            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                            <i class="bi bi-info-circle"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item" id="nav-issues" style="display: none">
+                        <a class="nav-link link-warning" href="#" data-bs-toggle="modal" data-bs-target="#issuesModal">
+                            <i class="bi bi-exclamation-triangle"></i> Data Issues
+                        </a>
+                    </li>
+                    <li class="navbar-text">
+                        <small><i class="bi bi-calendar-event"></i> Last Revision: {{ page.revision }}</small>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </div>
@@ -109,7 +119,7 @@ revision : 1 June 2025
                         Author
                     </label>
                     <select id="author" class="form-select form-select-sm">
-                        <option value="any" selected>Any Authors</option>
+                        <option value="any" selected>Any Author</option>
                     </select>
                 </div>
 
@@ -130,38 +140,31 @@ revision : 1 June 2025
         <div class="container-fluid pb-1 mb-1">
             <div class="row justify-content-between">
                 <div class="col-auto">
-                    <label class="form-label block-title">
+                    <label class="form-label block-title align-baseline" style="margin-right: 0.5rem">
                         <span id="count" class="badge text-bg-dark">0 / 0</span>
                         plugins found
                     </label>
-                </div>
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label class="form-label" for="order">Order by</label>
-                        </div>
-                        <div class="col-auto">
-                            <select id="order" class="form-select form-select-sm">
-                                <option value="release_new" selected>Newest</option>
-                                <option value="release_old">Oldest</option>
-                                <option value="title">Title</option>
-                                <option value="author">Author</option>
-                                <option value="menu">Menu</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light">
+                    <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light align-baseline"
+                            style="border:none">
                         <i class="bi bi-link-45deg"></i> Copy Permalink
                     </button>
-                    <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;color: black;">
+                    <div class="position-fixed bottom-0 left-0 p-3 align-baseline"
+                         style="z-index: 5; left: 0; bottom: 0;color: black;">
                         <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
                              data-bs-delay="2000">
-                            <div class="toast-body">
-                            </div>
+                            <div class="toast-body"></div>
                         </div>
                     </div>
+                </div>
+                <div class="col-auto">
+                    <label class="form-label w-auto align-baseline" for="order" style="margin: 0">Order by</label>
+                    <select id="order" class="form-select form-select-sm w-auto align-baseline">
+                        <option value="release_new" selected>Newest</option>
+                        <option value="release_old">Oldest</option>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                        <option value="menu">Menu</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -332,7 +335,7 @@ revision : 1 June 2025
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">About</h1>
+                    <h1 class="modal-title fs-5">About</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -365,6 +368,28 @@ revision : 1 June 2025
                     <p>
                         Revision Date: {{ page.revision }}
                     </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="issuesModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Data Issues</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        These are data validations highlighting things that may need to be fixed.
+                    </p>
+                    <ul id="issuesList"></ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

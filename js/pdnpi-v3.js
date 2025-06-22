@@ -392,7 +392,6 @@ const pdnpi = (function () {
              * Scroll button will take us back to the top.
              */
             window.addEventListener("scroll", function () {
-                console.log(document.documentElement.scrollTop)
                 if (document.documentElement.scrollTop > 100) {
                     controls.btnScrollToTop.classList.add("show");
                 } else {

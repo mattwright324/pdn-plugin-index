@@ -54,111 +54,112 @@ revision : 1 June 2025
     </nav>
 </div>
 
-
-<div class="theme-secondary margin-top-sticky">
-    <div class="container-fluid pt-3">
-        <div class="row pb-3 g-2">
-            <div class="col-md-4">
-                <label class="form-label">
-                    Search Keywords
-                </label>
-                <div class="input-group input-group-sm">
+<div id="filter-header">
+    <div class="theme-secondary margin-top-sticky">
+        <div class="container-fluid pt-3">
+            <div class="row pb-3 g-2">
+                <div class="col-md-4">
+                    <label class="form-label">
+                        Search Keywords
+                    </label>
+                    <div class="input-group input-group-sm">
                         <span class="input-group-text">
                             <i class="bi bi-search"></i>
                         </span>
-                    <input type="text" class="form-control form-control-sm" id="keywords"
-                           placeholder="Enter search keywords"
-                           style="border-left:none;">
-                    <select id="keywordStyle" class="form-select form-select-sm" style="max-width: 120px;">
-                        <option value="any" selected>Any word</option>
-                        <option value="all">All words</option>
-                        <option value="exact">Exact</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <label class="form-label" style="white-space: nowrap;">
-                    Plugin Status
-                    <i class="bi bi-info-circle plugin-status-info"></i>
-                </label>
-                <select id="pluginStatus" class="form-select form-select-sm">
-                    <option value="any">Any Status</option>
-                    <option value="new">New</option>
-                    <option value="active" selected>Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
-            </div>
-
-            <div class="col-md-2">
-                <label class="form-label">
-                    Plugin Type
-                </label>
-                <select id="pluginType" class="form-select form-select-sm">
-                    <option value="any" selected>Any Type</option>
-                    <option value="effect">Effect</option>
-                    <option value="adjustment">Adjustment</option>
-                    <option value="filetype">Filetype</option>
-                    <option value="plugin-pack">Plugin Pack</option>
-                    <option value="external">External</option>
-                </select>
-            </div>
-
-            <div class="col-md-2">
-                <label class="form-label">
-                    Author
-                </label>
-                <select id="author" class="form-select form-select-sm">
-                    <option value="any" selected>Any Authors</option>
-                </select>
-            </div>
-
-
-            <div class="col-md-2">
-                <label class="form-label">
-                    Menu
-                </label>
-                <select id="menu-list" class="form-select form-select-sm">
-                    <option value="any" selected>Any Menu</option>
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="theme-secondary mb-3" style="border-bottom: 1px solid lightgray">
-    <div class="container-fluid pb-1 mb-1">
-        <div class="row justify-content-between">
-            <div class="col-auto">
-                <label class="form-label block-title">
-                    <span id="count" class="badge text-bg-dark">0 / 0</span>
-                    plugins found
-                </label>
-            </div>
-            <div class="col-auto">
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label class="form-label" for="order">Order by</label>
-                    </div>
-                    <div class="col-auto">
-                        <select id="order" class="form-select form-select-sm">
-                            <option value="release_new" selected>Newest</option>
-                            <option value="release_old">Oldest</option>
-                            <option value="title">Title</option>
-                            <option value="author">Author</option>
-                            <option value="menu">Menu</option>
+                        <input type="text" class="form-control form-control-sm" id="keywords"
+                               placeholder="Enter search keywords"
+                               style="border-left:none;">
+                        <select id="keywordStyle" class="form-select form-select-sm" style="max-width: 120px;">
+                            <option value="any" selected>Any word</option>
+                            <option value="all">All words</option>
+                            <option value="exact">Exact</option>
                         </select>
                     </div>
                 </div>
+
+                <div class="col-md-2">
+                    <label class="form-label" style="white-space: nowrap;">
+                        Plugin Status
+                        <i class="bi bi-info-circle plugin-status-info"></i>
+                    </label>
+                    <select id="pluginStatus" class="form-select form-select-sm">
+                        <option value="any">Any Status</option>
+                        <option value="new">New</option>
+                        <option value="active" selected>Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">
+                        Plugin Type
+                    </label>
+                    <select id="pluginType" class="form-select form-select-sm">
+                        <option value="any" selected>Any Type</option>
+                        <option value="effect">Effect</option>
+                        <option value="adjustment">Adjustment</option>
+                        <option value="filetype">Filetype</option>
+                        <option value="plugin-pack">Plugin Pack</option>
+                        <option value="external">External</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">
+                        Author
+                    </label>
+                    <select id="author" class="form-select form-select-sm">
+                        <option value="any" selected>Any Authors</option>
+                    </select>
+                </div>
+
+
+                <div class="col-md-2">
+                    <label class="form-label">
+                        Menu
+                    </label>
+                    <select id="menu-list" class="form-select form-select-sm">
+                        <option value="any" selected>Any Menu</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-auto">
-                <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light">
-                    <i class="bi bi-link-45deg"></i> Copy Permalink
-                </button>
-                <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;color: black;">
-                    <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
-                         data-bs-delay="2000">
-                        <div class="toast-body">
+        </div>
+    </div>
+
+    <div class="theme-secondary mb-3" style="border-bottom: 1px solid lightgray">
+        <div class="container-fluid pb-1 mb-1">
+            <div class="row justify-content-between">
+                <div class="col-auto">
+                    <label class="form-label block-title">
+                        <span id="count" class="badge text-bg-dark">0 / 0</span>
+                        plugins found
+                    </label>
+                </div>
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label class="form-label" for="order">Order by</label>
+                        </div>
+                        <div class="col-auto">
+                            <select id="order" class="form-select form-select-sm">
+                                <option value="release_new" selected>Newest</option>
+                                <option value="release_old">Oldest</option>
+                                <option value="title">Title</option>
+                                <option value="author">Author</option>
+                                <option value="menu">Menu</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light">
+                        <i class="bi bi-link-45deg"></i> Copy Permalink
+                    </button>
+                    <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;color: black;">
+                        <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+                             data-bs-delay="2000">
+                            <div class="toast-body">
+                            </div>
                         </div>
                     </div>
                 </div>

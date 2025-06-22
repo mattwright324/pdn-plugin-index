@@ -19,6 +19,24 @@
   }
 }
 
+// When screen is large enough, make the header sticky.
+// Top filter section is too tall when viewed on mobile to be sticky.
+@media (min-width: 768px) {
+  #filter-header {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    margin-top: 56px;
+    width: 100%;
+  }
+  .margin-top-sticky {
+    margin-top: 0 !important;
+  }
+  #content-div {
+    margin-top: 210px;
+  }
+}
+
 body {
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }

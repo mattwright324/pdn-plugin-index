@@ -14,28 +14,37 @@ revision : 1 June 2025
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-        content="Quickly search and find Paint.NET plugins from the forums. Search for new effects, adjustments, filetypes support, external programs, and plugin packs.">
-    <link rel="icon" href="img/icon-small.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/pdnpi-v2.css?v={{ site.time | date_to_xmlschema }}" />
-    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    <script async src="js/pdnpi-v3.js?v={{ site.time | date_to_xmlschema }}" type="text/javascript"></script>
+          content="Quickly search and find Paint.NET plugins from the forums. Search for new effects, adjustments, filetypes support, external programs, and plugin packs.">
+    <link rel="icon" href="/img/icon-small.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-icons.min.css"/>
+    <link rel="stylesheet" href="/css/pdnpi-v3.css?v={{ site.time | date_to_xmlschema }}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+          rel="stylesheet">
+    <script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script async src="/js/pdnpi-v3.js?v={{ site.time | date_to_xmlschema }}" type="text/javascript"></script>
 
     <!-- Analytics -->
     <script defer data-domain="mattw.io" src="https://plausible.io/js/plausible.js"></script>
 </head>
-
 <body>
-    <a href="#" id="scroll" class="fade"><span></span></a>
-    <nav style="background-color: #375476!important;top: -1px!important;"
-        class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-        <div class="container-fluid container-ic">
+
+<div class="fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark theme-main">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon" />
+                <img src="/img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon"/>
                 <span id="brand-lg">{{ page.title_lg }}</span>
                 <span id="brand-sm">{{ page.title_sm }}</span>
             </a>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                        About
+                    </a>
+                </li>
+            </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="navbar-text">
                     <small>Revision Date: {{ page.revision }}</small>
@@ -43,192 +52,343 @@ revision : 1 June 2025
             </ul>
         </div>
     </nav>
-    <div id="about" class="col">
-        <div class="container container-ic">
-            This application simplifies locating Paint.NET plugins by searching the Plugin Index.
-            The app was originally built by Matthew Wright
-            (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
-            and is maintained by he and Scott Stringer
-            (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>).
-            Updates are published monthly, usually around the first of the month. <strong>Usage:</strong> use the
-            sidebar to enter search terms and filter the results.
+</div>
+
+
+<div class="theme-secondary margin-top-sticky">
+    <div class="container-fluid pt-3">
+        <div class="row pb-3 g-2">
+            <div class="col-md-4">
+                <label class="form-label">
+                    Search Keywords
+                </label>
+                <div class="input-group input-group-sm">
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+                    <input type="text" class="form-control form-control-sm" id="keywords"
+                           placeholder="Enter search keywords"
+                           style="border-left:none;">
+                    <select id="keywordStyle" class="form-select form-select-sm" style="max-width: 120px;">
+                        <option value="any" selected>Any word</option>
+                        <option value="all">All words</option>
+                        <option value="exact">Exact</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label" style="white-space: nowrap;">
+                    Plugin Status
+                    <i class="bi bi-info-circle plugin-status-info"></i>
+                </label>
+                <select id="pluginStatus" class="form-select form-select-sm">
+                    <option value="any">Any Status</option>
+                    <option value="new">New</option>
+                    <option value="active" selected>Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">
+                    Plugin Type
+                </label>
+                <select id="pluginType" class="form-select form-select-sm">
+                    <option value="any" selected>Any Type</option>
+                    <option value="effect">Effect</option>
+                    <option value="adjustment">Adjustment</option>
+                    <option value="filetype">Filetype</option>
+                    <option value="plugin-pack">Plugin Pack</option>
+                    <option value="external">External</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">
+                    Author
+                </label>
+                <select id="author" class="form-select form-select-sm">
+                    <option value="any" selected>Any Authors</option>
+                </select>
+            </div>
+
+
+            <div class="col-md-2">
+                <label class="form-label">
+                    Menu
+                </label>
+                <select id="menu-list" class="form-select form-select-sm">
+                    <option value="any" selected>Any Menu</option>
+                </select>
+            </div>
         </div>
-
     </div>
+</div>
 
-    <div class="wrapper">
-        <div class="container-fluid container-ic justify-content-center">
-            <div class="row">
-                <div id="search-menu" class="col-md-3" style="margin:0;" role="search"
-                    aria-label="Plugin search filters">
-                    <section>
-                        <div class="control input-group mb-3">
-                            <input type="text" class="form-control" id="keywords" placeholder="Enter search keywords"
-                                aria-labelledby="searchLabel" value="">
-                            <span class="input-group-text">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-search" viewBox="0 0 16 16">
-                                    <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                </svg>
-                            </span>
-                        </div>
-
-                        <fieldset class="mb-4">
-                            <legend class="form-label">Search Type</legend>
-                            <div class="form-check">
-                                <input type="radio" class="form-check-input" name="keywordMatch" id="checkAnyKeywords" checked>
-                                <label class="form-check-label" for="checkAnyKeywords">Any keyword</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" class="form-check-input" name="keywordMatch" id="checkAllKeywords">
-                                <label class="form-check-label" for="checkAllKeywords">All keywords (in any order)</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="radio" class="form-check-input" name="keywordMatch" id="checkExactMatch" >
-                                <label class="form-check-label" for="checkExactMatch">Exact match</label>
-                            </div>
-                        </fieldset>
-                    </section>
-
-                    <section class="mb-4">
-                        <h2 class="form-label">Author</h2>
-                        <div class="selector">
-                            <select id="author" class="form-select" aria-label="Filter by author">
-                                <option value="0" selected>All Authors</option>
-                            </select>
-                        </div>
-                    </section>
-
-                    <section class="mb-4">
-                        <h2 class="form-label">Plugin Type</h2>
-                        <div class="form-checks">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkAll" name="pluginType" checked>
-                                <label class="form-check-label" for="checkAll">All Types</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkEffect" name="pluginType">
-                                <label class="form-check-label" for="checkEffect">Effect</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkAdjustment" name="pluginType">
-                                <label class="form-check-label" for="checkAdjustment">Adjustment</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkFiletype" name="pluginType">
-                                <label class="form-check-label" for="checkFiletype">Filetype</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkExternal" name="pluginType">
-                                <label class="form-check-label" for="checkExternal">External</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="checkPack" name="pluginType">
-                                <label class="form-check-label" for="checkPack">Plugin Pack</label>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="mb-4">
-                        <h2 class="form-label d-flex justify-content-between align-items-center">
-                            Plugin Status
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                                class="bi bi-info-circle plugin-status-info" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                            </svg>
-                        </h2>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusNew">
-                            <label class="form-check-label" for="checkStatusNew">New</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusActive" checked>
-                            <label class="form-check-label" for="checkStatusActive">Active</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusInactive">
-                            <label class="form-check-label" for="checkStatusInactive">Inactive</label>
-                        </div>
-                    </section>
-
-                    <section class="mb-4">
-                        <h2 class="form-label" for="menu-list">Menu</h2>
-                        <div class="selector">
-                            <select id="menu-list" class="form-select">
-                                <option value="0" selected>Any Menu</option>
-                            </select>
-                        </div>
-                    </section>
-
-                    <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>
-                    <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;">
-                        <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
-                            <div class="toast-body">
-                            </div>
+<div class="theme-secondary mb-3" style="border-bottom: 1px solid lightgray">
+    <div class="container-fluid pb-1 mb-1">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <label class="form-label block-title">
+                    <span id="count" class="badge text-bg-dark">0 / 0</span>
+                    plugins found
+                </label>
+            </div>
+            <div class="col-auto">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label class="form-label" for="order">Order by</label>
+                    </div>
+                    <div class="col-auto">
+                        <select id="order" class="form-select form-select-sm">
+                            <option value="release_new" selected>Newest</option>
+                            <option value="release_old">Oldest</option>
+                            <option value="title">Title</option>
+                            <option value="author">Author</option>
+                            <option value="menu">Menu</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light">
+                    <i class="bi bi-link-45deg"></i> Copy Permalink
+                </button>
+                <div class="position-fixed bottom-0 left-0 p-3" style="z-index: 5; left: 0; bottom: 0;color: black;">
+                    <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true"
+                         data-bs-delay="2000">
+                        <div class="toast-body">
                         </div>
                     </div>
                 </div>
-
-                <main id="plugins" class="col-md-9" role="main">
-                    <div class="col" style="padding-right: 0;padding-left: 0;">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <label class="form-label block-title">Plugin Listing</label>
-                            </div>
-                            <div class="col-auto ms-auto d-flex align-items-center gap-3">
-                                <div class="selector">
-                                    <label class="form-label" for="order">Order by</label>
-                                    <select id="order" class="form-select form-select-sm">
-                                        <option value="release_new" selected>Newest</option>
-                                        <option value="release_old">Oldest</option>
-                                        <option value="title">Title</option>
-                                        <option value="author">Author</option>
-                                        <option value="menu">Menu</option>
-                                    </select>
-                                </div>
-                                <div class="selector">
-                                    <!-- empty selector to assist layout-->
-                                </div>
-                                <span id="count" class="badge bg-secondary">0 / 0</span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div id="plugins-list" class="col">
-
-                            </div>
-                        </div>
-                    </div>
-                </main>
             </div>
         </div>
+    </div>
+</div>
 
-        <footer class="footer">
-            <div class="container">
-                <span class="text-body-secondary">
-                    mattwright324 / Sigillatus / toehead2001 | 2024 |
-                    <a target="_blank" href="https://mattw.io">home</a> |
-                    <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> |
-                    <a target="_blank" href="https://forums.getpaint.net/topic/15260-plugin-index/">forum post</a>
-                </span>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function adjustMarginTop() {
+            const header = document.querySelector('.fixed-top');
+            const content = document.querySelector('.margin-top-sticky');
+
+            if (header && content) {
+                const headerHeight = header.offsetHeight;
+                content.style.marginTop = `${headerHeight}px`;
+            }
+        }
+
+        window.addEventListener('load', adjustMarginTop);
+        window.addEventListener('resize', adjustMarginTop);
+        const header = document.querySelector('.sticky-header');
+        if (header) {
+            const resizeObserver = new ResizeObserver(adjustMarginTop);
+            resizeObserver.observe(header);
+        }
+    });
+</script>
+
+<div id="content-div" class="container-fluid">
+    <div id="plugins-list" class="col">
+        <!-- Plugin content generated here -->
+    </div>
+</div>
+
+<div class="" hidden>
+    <div class="container-fluid container-ic justify-content-center">
+        <div class="row">
+            <div id="search-menu" class="col-md-3" style="margin:0;" role="search"
+                 aria-label="Plugin search filters" hidden>
+                <section>
+                    <div class="control input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter search keywords"
+                               aria-labelledby="searchLabel" value="">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    </div>
+
+                    <fieldset class="mb-4">
+                        <legend class="form-label">Search Type</legend>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="keywordMatch" id="checkAnyKeywords"
+                                   checked>
+                            <label class="form-check-label" for="checkAnyKeywords">Any keyword</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="keywordMatch" id="checkAllKeywords">
+                            <label class="form-check-label" for="checkAllKeywords">All keywords (in any order)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="keywordMatch" id="checkExactMatch">
+                            <label class="form-check-label" for="checkExactMatch">Exact match</label>
+                        </div>
+                    </fieldset>
+                </section>
+
+                <section class="mb-4">
+                    <h2 class="form-label">Author</h2>
+                    <div class="selector">
+                        <select class="form-select" aria-label="Filter by author">
+                            <option value="0" selected>All Authors</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section class="mb-4">
+                    <h2 class="form-label">Plugin Type</h2>
+                    <div class="form-checks">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkAll" name="pluginType" checked>
+                            <label class="form-check-label" for="checkAll">All Types</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkEffect" name="pluginType">
+                            <label class="form-check-label" for="checkEffect">Effect</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkAdjustment" name="pluginType">
+                            <label class="form-check-label" for="checkAdjustment">Adjustment</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkFiletype" name="pluginType">
+                            <label class="form-check-label" for="checkFiletype">Filetype</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkExternal" name="pluginType">
+                            <label class="form-check-label" for="checkExternal">External</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkPack" name="pluginType">
+                            <label class="form-check-label" for="checkPack">Plugin Pack</label>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-4">
+                    <h2 class="form-label d-flex justify-content-between align-items-center">
+                        Plugin Status
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-info-circle plugin-status-info" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                        </svg>
+                    </h2>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusNew">
+                        <label class="form-check-label" for="checkStatusNew">New</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusActive" checked>
+                        <label class="form-check-label" for="checkStatusActive">Active</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusInactive">
+                        <label class="form-check-label" for="checkStatusInactive">Inactive</label>
+                    </div>
+                </section>
+
+                <section class="mb-4">
+                    <h2 class="form-label" for="menu-list">Menu</h2>
+                    <div class="selector">
+                        <select class="form-select">
+                            <option value="0" selected>Any Menu</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!--                    <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>-->
+
             </div>
-        </footer>
-    </body>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tooltip = new bootstrap.Tooltip('.plugin-status-info', {
-                html: true,
-                template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner text-start"></div></div>',
-                title: `<strong>New:</strong><br>
+
+            <main id="plugins" role="main">
+                <div class="col" style="padding-right: 0;padding-left: 0;">
+
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+</div>
+
+<footer class="footer">
+    <div class="container-fluid">
+        <span class="text-body-secondary">
+            mattwright324 <i class="bi bi-dot"></i> Sigillatus <i class="bi bi-dot"></i> toehead2001 <i
+                class="bi bi-dot"></i> <script>document.write(new Date().getFullYear())</script>
+            <br>
+            <a target="_blank" href="https://mattw.io">mattw.io</a> <i class="bi bi-dot"></i>
+            <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> <i
+                class="bi bi-dot"></i>
+            <a target="_blank" href="https://forums.getpaint.net/topic/15260-plugin-index/">forum post</a>
+        </span>
+    </div>
+</footer>
+
+<div class="modal fade" id="aboutModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">About</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        This application simplifies locating Paint.NET plugins by searching the Plugin Index.
+                        Updates are published monthly, usually around the first of the month.
+                    </p>
+                    <p>
+                        Index data has been collected and curated by Scott Stringer
+                        (<a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">Ego Eram
+                        Reputo</a>)
+                        since 2009. This application was originally built by Matthew Wright
+                        (<a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
+                        in 2017 to make that data interactively searchable.
+                    </p>
+                    <p>
+                        Maintained by:
+                    </p>
+                    <ul>
+                        <li><a target="_blank" href="https://forums.getpaint.net/profile/48727-ego-eram-reputo/">
+                            Ego Eram Reputo
+                        </a></li>
+                        <li><a target="_blank" href="https://forums.getpaint.net/profile/153200-sodiumenglish/">
+                            SodiumEnglish
+                        </a></li>
+                        <li><a target="_blank" href="https://forums.getpaint.net/profile/46943-toe_head2001/">
+                            toe_head2001
+                        </a></li>
+                    </ul>
+                    <p>
+                        Revision Date: {{ page.revision }}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" id="scrollToTop" class="fade"><span></span></a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltip = new bootstrap.Tooltip('.plugin-status-info', {
+            html: true,
+            template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner text-start"></div></div>',
+            title: `<strong>New:</strong><br>
                         Plugins appearing in the Plugin Index for the first time.<br><br>
                         <strong>Active:</strong><br>
                         Plugins which work with the latest release of Paint.NET (includes New and Bundled)<br><br>
                         <strong>Inactive:</strong><br>
                         Plugins which do not work with the latest release of Paint.NET<br>
                         (Obsolete, Deprecated, Incompatible, Integrated & Unsupported)`
-            });
         });
-    </script>
+    });
+</script>
+</body>
 </html>

@@ -10,6 +10,33 @@ const pdnpi = (function () {
     /** Non-control elements */
     const elements = {};
 
+    function timeSince(date) {
+        var seconds = Math.floor((new Date() - date) / 1000);
+        var interval = seconds / 31536000;
+        if (interval > 1) {
+            return Math.floor(interval) + " year";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+            return Math.floor(interval) + " month";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+            return Math.floor(interval) + " day";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+            return Math.floor(interval) + " hour";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+            return Math.floor(interval) + " minute";
+        }
+        return Math.floor(seconds) + " second";
+    }
+
+    var aDay = 24 * 60 * 60 * 1000;
+
     const format = {
         dataToHtml: function (data) {
             const authorNameUrl = encodeURI(data.author.toLowerCase());
@@ -21,27 +48,40 @@ const pdnpi = (function () {
                            </a></sp>`
             }
 
+            const dot = `<i class="bi bi-dot"></i>`
+            const release = new Date(data.release);
+            const since = timeSince(new Date(release - aDay));
+            const dlls = data.dlls.split(/[,&\/] ?/) || [];
+            let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
+            if (dlls.length > 1) {
+                dllText = dllText + " and " + (dlls.length - 1) + " more";
+            }
             return `<div class='plugin'>
                         <div class="phead">
-                            <sp>
-                                <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-i">
-                                    ${data.title}
-                                </a></sp>&nbsp;<sp class="release">${data.release}</sp>
-                            </sp>
-                            <sp class="author">
-                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
-                                    ${data.author}
-                                </a>
-                            </sp>
+                            <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-i">
+                                ${data.title}
+                            </a></sp>
                         </div>
-                        <sp class="desc">${data.desc}</sp>
+                        <sp class="desc">${data.desc.substring(0, 450)}
+                            <sp ${data.desc.length > 450 ? '' : 'hidden'}>
+                                <sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(300)}</sp>
+                                <br>
+                                <a data-bs-toggle="collapse" href="#more-${data.topic_id}" role="button">Show more</a>
+                            </sp>
+                        </sp>
                         ${altLink}
                         <div class="tags">
-                            <sp class="tag t" title="Plugin Type">${data.type}</sp>
-                            <sp class="tag s" title="Plugin Status">${data.status}</sp>
-                            <sp class="tag c" title="Compatibility">${data.compatibility}</sp>
-                            <sp class="tag m" title="Menu Location">${data.menu}</sp>
-                            <sp class="tag d" title="DLLs">${data.dlls}</sp>
+                            <sp class="tag author">
+                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
+                                    <i class="bi bi-person-circle"></i> ${data.author}
+                                </a>
+                            </sp>${dot}
+                            <sp class="tag" title="Published on ${data.release}">${since}${since.startsWith("1 ") ? '' : 's'} ago</sp>${dot}
+                            <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
+                            <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
+                            <sp class="tag c" title="Compatibility">${data.compatibility}</sp>&nbsp;
+                            <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
+                            <sp class="tag d" title="${data.dlls}">${dllText}</sp>
                         </div>
                     </div>`.split("\n").map(s => s.trim()).join("\n");
         }
@@ -74,26 +114,25 @@ const pdnpi = (function () {
         // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
         if (keywords) {
+            const keywordStyle = (controls.comboKeywordStyle.value).trim().toLowerCase() || 'any';
+
             const upperKeywords = keywords.toUpperCase();
             const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu'];
             const searchTexts = searchableFields.map(field => String(data[field]).toUpperCase());
-            
-            // Exact match
-            if (controls.checkExactMatch.checked) {
-                if (!searchTexts.some(text => text.includes(upperKeywords))) {
-                    return false;
-                }
-            }
-            // Any/All keywords
-            else {
+
+            if (keywordStyle === 'any' || keywordStyle === 'all') {
                 const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
                 if (keywordArray.length > 0) {
-                    const matchFunc = controls.checkAllKeywords.checked ? 'every' : 'some';
-                    if (!keywordArray[matchFunc](keyword => 
+                    const matchFunc = keywordStyle === 'all' ? 'every' : 'some';
+                    if (!keywordArray[matchFunc](keyword =>
                         searchTexts.some(text => text.includes(keyword))
                     )) {
                         return false;
                     }
+                }
+            } else if (keywordStyle === 'exact') {
+                if (!searchTexts.some(text => text.includes(upperKeywords))) {
+                    return false;
                 }
             }
         }
@@ -108,13 +147,14 @@ const pdnpi = (function () {
             }
         }
 
-        if (!controls.checkAllTypes.checked) {
+        const pluginType = controls.comboPluginType.value.trim().toLowerCase();
+        if (pluginType !== 'any') {
             let hide = true;
-            if (equalsIgnoreCase(data.type, "Effect") && controls.checkTypeEffect.checked ||
-                equalsIgnoreCase(data.type, "Adjustment") && controls.checkTypeAdjustment.checked ||
-                equalsIgnoreCase(data.type, "Filetype") && controls.checkTypeFiletype.checked ||
-                equalsIgnoreCase(data.type, "External Resource") && controls.checkTypeExternal.checked ||
-                equalsIgnoreCase(data.type, "Plugin Pack") && controls.checkTypePluginPack.checked) {
+            if (equalsIgnoreCase(data.type, "Effect") && pluginType === 'effect' ||
+                equalsIgnoreCase(data.type, "Adjustment") && pluginType === 'adjustment' ||
+                equalsIgnoreCase(data.type, "Filetype") && pluginType === 'filetype' ||
+                equalsIgnoreCase(data.type, "External Resource") && pluginType === 'external' ||
+                equalsIgnoreCase(data.type, "Plugin Pack") && pluginType === 'plugin-pack') {
 
                 hide = false;
             }
@@ -124,18 +164,19 @@ const pdnpi = (function () {
             }
         }
 
+        const pluginStatus = controls.comboPluginStatus.value.trim().toLowerCase();
         // Check plugin status - case insensitive comparison
-        if (controls.checkStatusNew.checked) {
+        if (pluginStatus === 'new') {
             if (!equalsIgnoreCase(data.status, "New")) {
                 return false;
             }
-        } else if (controls.checkStatusActive.checked) {
+        } else if (pluginStatus === 'active') {
             // Show if New, Active or Bundled 
             const activeStatuses = ["New", "Active", "Bundled"];
             if (!activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
                 return false;
             }
-        } else if (controls.checkStatusInactive.checked) {
+        } else if (pluginStatus === 'inactive') {
             // Show if status is anything except New, Active or Bundled
             const activeStatuses = ["New", "Active", "Bundled"];
             if (activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
@@ -178,8 +219,9 @@ const pdnpi = (function () {
 
     const searchParamKeys = {
         keywords: 'keywords',
+        keywordStyle: 'keywordStyle',
         author: 'author',
-        type: 'type', 
+        type: 'type',
         status: 'status',
         order: 'order',
         menu: 'menu'
@@ -194,7 +236,7 @@ const pdnpi = (function () {
 
     function debounce(func, wait) {
         let timeout;
-        return function(...args) {
+        return function (...args) {
             clearTimeout(timeout);
             timeout = setTimeout(() => func.apply(this, args), wait);
         };
@@ -211,38 +253,16 @@ const pdnpi = (function () {
                 // Core elements
                 elements.badgePluginCount = document.querySelector("#count");
                 elements.divPluginList = document.querySelector("#plugins-list");
-                controls.btnScrollToTop = document.querySelector("#scroll");
+                controls.btnScrollToTop = document.querySelector("#scrollToTop");
 
                 // Search controls
                 controls.inputKeywords = document.querySelector("#keywords");
-                controls.checkExactMatch = document.querySelector("#checkExactMatch");
-                controls.checkAnyKeywords = document.querySelector("#checkAnyKeywords");
-                controls.checkAllKeywords = document.querySelector("#checkAllKeywords");
-                
-                // Dropdowns
                 controls.comboAuthors = document.querySelector("#author");
                 controls.comboOrder = document.querySelector("#order");
                 controls.comboMenu = document.querySelector("#menu-list");
-
-                // Plugin type checkboxes
-                controls.checkAllTypes = document.querySelector("#checkAll");
-                controls.checkTypeEffect = document.querySelector("#checkEffect");
-                controls.checkTypeAdjustment = document.querySelector("#checkAdjustment");
-                controls.checkTypeFiletype = document.querySelector("#checkFiletype");
-                controls.checkTypeExternal = document.querySelector("#checkExternal");
-                controls.checkTypePluginPack = document.querySelector("#checkPack");
-
-                // Status radio buttons
-                controls.checkStatusNew = document.querySelector("#checkStatusNew");
-                controls.checkStatusActive = document.querySelector("#checkStatusActive");
-                controls.checkStatusInactive = document.querySelector("#checkStatusInactive");
-
-                // Set default values
-                controls.checkAllTypes.checked = true;
-                controls.checkStatusActive.checked = true;
-                controls.checkAnyKeywords.checked = true;
-                controls.checkExactMatch.checked = false;
-                
+                controls.comboKeywordStyle = document.querySelector("#keywordStyle");
+                controls.comboPluginStatus = document.querySelector("#pluginStatus");
+                controls.comboPluginType = document.querySelector("#pluginType");
             } catch (err) {
                 console.error("Initialization failed:", err);
                 throw err;
@@ -251,7 +271,7 @@ const pdnpi = (function () {
 
         loadIndex: function () {
             fetch(
-                "index/plugin-index.json"
+                "/index/plugin-index.json"
             ).then(response => {
                 return response.json();
             }).then(function (res) {
@@ -284,14 +304,14 @@ const pdnpi = (function () {
 
                 const authorOptions = parsed.authors
                     .sort(alphaSort)
-                    .map((name, index) => `<option value="${index + 1}">${name}</option>`)
+                    .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
                     .join("");
 
                 controls.comboAuthors.insertAdjacentHTML("beforeend", authorOptions);
 
                 const menuOptions = parsed.menus
                     .sort(alphaSort)
-                    .map((menu, index) => `<option value="${index + 1}">${menu}</option>`)
+                    .map((menu, index) => `<option value="${menu.trim().toLowerCase()}">${menu}</option>`)
                     .join("");
 
                 controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
@@ -306,7 +326,7 @@ const pdnpi = (function () {
         },
         setupControls: function () {
             console.log("Setting up controls...");
-            
+
             // Initialize Bootstrap tooltips
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
             [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
@@ -332,28 +352,9 @@ const pdnpi = (function () {
             // Keyword search controls
             const debouncedRefresh = debounce(() => internal.refreshListing(), 150);
             controls.inputKeywords.addEventListener('input', debouncedRefresh);
-            [controls.checkExactMatch, controls.checkAnyKeywords, controls.checkAllKeywords]
-                .forEach(radio => radio.addEventListener('change', debouncedRefresh));
 
-            // Status radio buttons
-            [controls.checkStatusNew, controls.checkStatusActive, controls.checkStatusInactive]
-                .forEach(radio => radio.addEventListener('change', () => internal.refreshListing()));
-
-            // Plugin type checkboxes
-            checkBehavior(controls.checkAllTypes, [
-                controls.checkTypeEffect,
-                controls.checkTypeAdjustment,
-                controls.checkTypeFiletype,
-                controls.checkTypeExternal,
-                controls.checkTypePluginPack
-            ]);
-            controls.checkAllTypes.checked = true;
-
-            // Set default active status
-            controls.checkStatusActive.checked = true;
-
-            [controls.comboAuthors, controls.comboMenu].forEach(control => {
-
+            [controls.comboKeywordStyle, controls.comboPluginStatus, controls.comboPluginType,
+                controls.comboAuthors, controls.comboMenu].forEach(control => {
                 control.addEventListener("change", () => internal.refreshListing());
             });
 
@@ -369,7 +370,7 @@ const pdnpi = (function () {
                     console.error('Failed to copy:', err);
                     document.querySelector('#copiedToast .toast-body').textContent = 'Error copying Permalink to the clipboard.';
                 }
-                
+
                 const toastNode = document.querySelector('#copiedToast');
                 bootstrap.Toast.getOrCreateInstance(toastNode).show();
             });
@@ -379,6 +380,7 @@ const pdnpi = (function () {
              * Scroll button will take us back to the top.
              */
             window.addEventListener("scroll", function () {
+                console.log(document.documentElement.scrollTop)
                 if (document.documentElement.scrollTop > 100) {
                     controls.btnScrollToTop.classList.add("show");
                 } else {
@@ -402,54 +404,37 @@ const pdnpi = (function () {
                     acc[name] = allFoundParams.get(key)?.trim();
                     return acc;
                 }, {});
+            console.log('Search Params', params)
 
             // Load all URL parameters into controls
             if (params.keywords) {
                 controls.inputKeywords.value = params.keywords;
             }
-            
-            if (params.author) {
-                const authorIndex = Array.from(controls.comboAuthors.options)
-                    .findIndex(x => x.text === params.author);
-                if (authorIndex >= 0) {
-                    controls.comboAuthors.selectedIndex = authorIndex;
-                }
+
+            if (params.keywordStyle && document.querySelector(`#keywordStyle option[value='${params.keywordStyle.trim().toLowerCase()}']`)) {
+                controls.comboKeywordStyle.value = params.keywordStyle.trim().toLowerCase();
             }
 
-            const foundType = params.type;
-            if (foundType) {
-                const typeFlags = Number.parseInt(foundType) || 0;
-                controls.checkAllTypes.checked = (typeFlags == 0);
-                controls.checkTypeEffect.checked = hasFlag(typeFlags, pluginTypes.effect);
-                controls.checkTypeAdjustment.checked = hasFlag(typeFlags, pluginTypes.adjustment);
-                controls.checkTypeFiletype.checked = hasFlag(typeFlags, pluginTypes.filetype);
-                controls.checkTypeExternal.checked = hasFlag(typeFlags, pluginTypes.external);
-                controls.checkTypePluginPack.checked = hasFlag(typeFlags, pluginTypes.pluginPack);
+            if (params.status && document.querySelector(`#pluginStatus option[value='${params.status.trim().toLowerCase()}']`)) {
+                controls.comboPluginStatus.value = params.status.trim().toLowerCase();
             }
 
-            const foundStatus = params.status;
-            if (foundStatus) {
-                // Handle status as simple string value
-                if (foundStatus === pluginStatuses.new) {
-                    controls.checkStatusNew.checked = true;
-                } else if (foundStatus === pluginStatuses.inactive) {
-                    controls.checkStatusInactive.checked = true;
-                } else if (foundStatus === pluginStatuses.active) {
-                    controls.checkStatusActive.checked = true;
-                }
+            if (params.type && document.querySelector(`#pluginType option[value='${params.type.trim().toLowerCase()}']`)) {
+                controls.comboPluginType.value = params.type.trim().toLowerCase();
+            }
+
+            if (params.author && document.querySelector(`#author option[value='${params.author.trim().toLowerCase()}']`)) {
+                controls.comboAuthors.value = params.author.trim().toLowerCase();
+            }
+
+            if (params.menu && document.querySelector(`#menu-list option[value='${params.menu.trim().toLowerCase()}']`)) {
+                controls.comboMenu.value = params.menu.trim().toLowerCase();
             }
 
             if (params.order) {
                 const orderIndex = Array.from(controls.comboOrder.options).findIndex(x => x.text == params.order);
                 if (orderIndex >= 0) {
                     controls.comboOrder.selectedIndex = orderIndex;
-                }
-            }
-
-            if (params.menu) {
-                const menuIndex = Array.from(controls.comboMenu.options).findIndex(x => x.text == params.menu);
-                if (menuIndex >= 0) {
-                    controls.comboMenu.selectedIndex = menuIndex;
                 }
             }
 
@@ -466,32 +451,29 @@ const pdnpi = (function () {
                 params.append(searchParamKeys.keywords, currentKeywords);
             }
 
-            const selectedAuthor = controls.comboAuthors.options[controls.comboAuthors.selectedIndex].text;
-            if (selectedAuthor !== 'All Authors') {
-                params.append(searchParamKeys.author, selectedAuthor);
+            const keywordStyle = controls.comboKeywordStyle.value.trim().toLowerCase();
+            if (keywordStyle !== 'any') {
+                params.append(searchParamKeys.keywordStyle, keywordStyle);
             }
 
-            let typeFlags = 0;
-            if (controls.checkTypeEffect.checked) typeFlags |= pluginTypes.effect;
-            if (controls.checkTypeAdjustment.checked) typeFlags |= pluginTypes.adjustment;
-            if (controls.checkTypeFiletype.checked) typeFlags |= pluginTypes.filetype;
-            if (controls.checkTypeExternal.checked) typeFlags |= pluginTypes.external;
-            if (controls.checkTypePluginPack.checked) typeFlags |= pluginTypes.pluginPack;
-            if (typeFlags > 0) {
-                params.append(searchParamKeys.type, typeFlags);
+            const author = controls.comboAuthors.value.trim().toLowerCase();
+            if (author !== 'any') {
+                params.append(searchParamKeys.author, controls.comboAuthors.value);
             }
 
-            // Simplified status handling using radio buttons
-            if (controls.checkStatusNew.checked) {
-                params.append(searchParamKeys.status, pluginStatuses.new);
-            } else if (controls.checkStatusInactive.checked) {
-                params.append(searchParamKeys.status, pluginStatuses.inactive);
-            } else if (controls.checkStatusActive.checked) {
-                params.append(searchParamKeys.status, pluginStatuses.active);
+            const type = controls.comboPluginType.value.trim().toLowerCase();
+            if (type !== 'any') {
+                params.append(searchParamKeys.type, type);
             }
 
-            if (controls.comboOrder.value !== 'release_new') {
-                params.append(searchParamKeys.order, controls.comboOrder.value);
+            const status = controls.comboPluginStatus.value.trim().toLowerCase();
+            if (status !== 'any') {
+                params.append(searchParamKeys.status, status);
+            }
+
+            const order = controls.comboOrder.value.trim().toLowerCase();
+            if (order !== 'release_new') {
+                params.append(searchParamKeys.order, order);
             }
 
             const selectedMenu = controls.comboMenu.options[controls.comboMenu.selectedIndex].text;
@@ -520,7 +502,7 @@ const pdnpi = (function () {
         refreshListing: function (event) {
             try {
                 console.log("Refreshing the plugin list...");
-                
+
                 if (equalsIgnoreCase(event, "order")) {
                     const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
 

@@ -199,123 +199,6 @@ revision : 1 June 2025
     </div>
 </div>
 
-<div class="" hidden>
-    <div class="container-fluid container-ic justify-content-center">
-        <div class="row">
-            <div id="search-menu" class="col-md-3" style="margin:0;" role="search"
-                 aria-label="Plugin search filters" hidden>
-                <section>
-                    <div class="control input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Enter search keywords"
-                               aria-labelledby="searchLabel" value="">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
-                    </div>
-
-                    <fieldset class="mb-4">
-                        <legend class="form-label">Search Type</legend>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="keywordMatch" id="checkAnyKeywords"
-                                   checked>
-                            <label class="form-check-label" for="checkAnyKeywords">Any keyword</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="keywordMatch" id="checkAllKeywords">
-                            <label class="form-check-label" for="checkAllKeywords">All keywords (in any order)</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" class="form-check-input" name="keywordMatch" id="checkExactMatch">
-                            <label class="form-check-label" for="checkExactMatch">Exact match</label>
-                        </div>
-                    </fieldset>
-                </section>
-
-                <section class="mb-4">
-                    <h2 class="form-label">Author</h2>
-                    <div class="selector">
-                        <select class="form-select" aria-label="Filter by author">
-                            <option value="0" selected>All Authors</option>
-                        </select>
-                    </div>
-                </section>
-
-                <section class="mb-4">
-                    <h2 class="form-label">Plugin Type</h2>
-                    <div class="form-checks">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkAll" name="pluginType" checked>
-                            <label class="form-check-label" for="checkAll">All Types</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkEffect" name="pluginType">
-                            <label class="form-check-label" for="checkEffect">Effect</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkAdjustment" name="pluginType">
-                            <label class="form-check-label" for="checkAdjustment">Adjustment</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkFiletype" name="pluginType">
-                            <label class="form-check-label" for="checkFiletype">Filetype</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkExternal" name="pluginType">
-                            <label class="form-check-label" for="checkExternal">External</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="checkPack" name="pluginType">
-                            <label class="form-check-label" for="checkPack">Plugin Pack</label>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="mb-4">
-                    <h2 class="form-label d-flex justify-content-between align-items-center">
-                        Plugin Status
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-info-circle plugin-status-info" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                        </svg>
-                    </h2>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusNew">
-                        <label class="form-check-label" for="checkStatusNew">New</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusActive" checked>
-                        <label class="form-check-label" for="checkStatusActive">Active</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="statusMatch" id="checkStatusInactive">
-                        <label class="form-check-label" for="checkStatusInactive">Inactive</label>
-                    </div>
-                </section>
-
-                <section class="mb-4">
-                    <h2 class="form-label" for="menu-list">Menu</h2>
-                    <div class="selector">
-                        <select class="form-select">
-                            <option value="0" selected>Any Menu</option>
-                        </select>
-                    </div>
-                </section>
-
-                <!--                    <button id="permalink-button" type="button" class="btn btn-primary btn-md">Copy Permanent Link</button>-->
-
-            </div>
-
-            <main id="plugins" role="main">
-                <div class="col" style="padding-right: 0;padding-left: 0;">
-
-
-                </div>
-            </main>
-        </div>
-    </div>
-
-
-</div>
-
 <footer class="footer">
     <div class="container-fluid">
         <span class="text-body-secondary">
@@ -387,7 +270,7 @@ revision : 1 June 2025
                 </div>
                 <div class="modal-body">
                     <p>
-                        These are data validations highlighting things that may need to be fixed.
+                        These are data validations highlighting things that may need to be fixed by the Plugin Index maintainers.
                     </p>
                     <ul id="issuesList"></ul>
                 </div>

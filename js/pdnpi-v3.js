@@ -54,7 +54,10 @@ const pdnpi = (function () {
             const dlls = data.dlls.split(/[,&\/] ?/) || [];
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
             if (dlls.length > 1) {
-                dllText = dllText + " and " + (dlls.length - 1) + " more";
+                dllText = dllText + " <sp class='dll-2'>and " + (dlls.length - 1) + " more</sp>";
+            }
+            if (data.dlls.toLowerCase() === 'n/a') {
+                dllText = data.dlls.trim();
             }
             return `<div class='plugin'>
                         <div class="phead">

@@ -65,9 +65,7 @@ const pdnpi = (function () {
                                 ${data.title}
                             </a></sp>
                         </div>
-                        <sp class="desc">${data.desc.substring(0, 450)}
-                            <sp ${data.desc.length > 450 ? '' : 'hidden'}>
-                                <sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(300)}</sp>
+                        <sp class="desc">${data.desc.substring(0, 450)}<sp ${data.desc.length > 450 ? '' : 'hidden'}><sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(300)}</sp>
                                 <br>
                                 <a data-bs-toggle="collapse" href="#more-${data.topic_id}" role="button">Show more</a>
                             </sp>

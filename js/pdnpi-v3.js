@@ -275,7 +275,7 @@ const pdnpi = (function () {
 
         loadIndex: function () {
             fetch(
-                "/index/plugin-index.json"
+                "index/plugin-index.json"
             ).then(response => {
                 return response.json();
             }).then(function (res) {

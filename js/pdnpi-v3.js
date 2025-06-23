@@ -1,11 +1,6 @@
 /**
  * Paint.NET Plugin Index
- *
  * https://github.com/mattwright324/pdn-plugin-index
- *
- * @requires $ jquery for dom manipulation
- * @requires bootstrap uses css style classes
- * @author mattwright324
  */
 const pdnpi = (function () {
     'use strict';
@@ -14,6 +9,33 @@ const pdnpi = (function () {
     const controls = {};
     /** Non-control elements */
     const elements = {};
+
+    function timeSince(date) {
+        var seconds = Math.floor((new Date() - date) / 1000);
+        var interval = seconds / 31536000;
+        if (interval > 1) {
+            return Math.floor(interval) + " year";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+            return Math.floor(interval) + " month";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+            return Math.floor(interval) + " day";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+            return Math.floor(interval) + " hour";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+            return Math.floor(interval) + " minute";
+        }
+        return Math.floor(seconds) + " second";
+    }
+
+    var aDay = 24 * 60 * 60 * 1000;
 
     const format = {
         dataToHtml: function (data) {
@@ -26,35 +48,45 @@ const pdnpi = (function () {
                            </a></sp>`
             }
 
+            const dot = `<i class="bi bi-dot"></i>`
+            const release = new Date(data.release);
+            const since = timeSince(new Date(release - aDay));
+            const dlls = data.dlls.split(/[,&\/] ?/) || [];
+            let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
+            if (dlls.length > 1) {
+                dllText = dllText + " <sp class='dll-2'>and " + (dlls.length - 1) + " more</sp>";
+            }
+            if (data.dlls.toLowerCase() === 'n/a') {
+                dllText = data.dlls.trim();
+            }
             return `<div class='plugin'>
                         <div class="phead">
-                            <sp>
-                                <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-i">
-                                    ${data.title}
-                                </a></sp>&nbsp;<sp class="release">${data.release}</sp>
-                            </sp>
-                            <sp class="author">
-                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
-                                    ${data.author}
-                                </a>
-                            </sp>
+                            <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-i">
+                                ${data.title}
+                            </a></sp>
                         </div>
-                        <sp class="desc">${data.desc}</sp>
+                        <sp class="desc">${data.desc.substring(0, 450)}<sp ${data.desc.length > 450 ? '' : 'hidden'}><sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(300)}</sp>
+                                <br>
+                                <a data-bs-toggle="collapse" href="#more-${data.topic_id}" role="button">Show more</a>
+                            </sp>
+                        </sp>
                         ${altLink}
                         <div class="tags">
-                            <sp class="tag t" title="Plugin Type">${data.type}</sp>
-                            <sp class="tag s" title="Plugin Status">${data.status}</sp>
-                            <sp class="tag c" title="Compatibility">${data.compatibility}</sp>
-                            <sp class="tag m" title="Menu Location">${data.menu}</sp>
-                            <sp class="tag d" title="DLLs">${data.dlls}</sp>
+                            <sp class="tag author">
+                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
+                                    <i class="bi bi-person-circle"></i> ${data.author}
+                                </a>
+                            </sp>${dot}
+                            <sp class="tag" title="Published on ${data.release}">${since}${since.startsWith("1 ") ? '' : 's'} ago</sp>${dot}
+                            <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
+                            <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
+                            <sp class="tag c" title="Compatibility">${data.compatibility}</sp>&nbsp;
+                            <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
+                            <sp class="tag d" title="${data.dlls}">${dllText}</sp>
                         </div>
                     </div>`.split("\n").map(s => s.trim()).join("\n");
         }
     };
-
-    function containsIgnoreCase(text, subString) {
-        return text.toUpperCase().indexOf(subString.toUpperCase()) !== -1;
-    }
 
     function equalsIgnoreCase(a, b) {
         return String(a).toUpperCase() === String(b).toUpperCase();
@@ -80,15 +112,33 @@ const pdnpi = (function () {
     function shouldPluginDisplay(plugin) {
         const data = plugin.getData();
 
+        // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
         if (keywords) {
-            const hide = !Object.values(data).some(value => value && containsIgnoreCase(String(value), keywords));
+            const keywordStyle = (controls.comboKeywordStyle.value).trim().toLowerCase() || 'any';
 
-            if (hide) {
-                return false;
+            const upperKeywords = keywords.toUpperCase();
+            const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu'];
+            const searchTexts = searchableFields.map(field => String(data[field]).toUpperCase());
+
+            if (keywordStyle === 'any' || keywordStyle === 'all') {
+                const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
+                if (keywordArray.length > 0) {
+                    const matchFunc = keywordStyle === 'all' ? 'every' : 'some';
+                    if (!keywordArray[matchFunc](keyword =>
+                        searchTexts.some(text => text.includes(keyword))
+                    )) {
+                        return false;
+                    }
+                }
+            } else if (keywordStyle === 'exact') {
+                if (!searchTexts.some(text => text.includes(upperKeywords))) {
+                    return false;
+                }
             }
         }
 
+        // Continue with other checks
         const authorIndex = controls.comboAuthors.selectedIndex;
         if (authorIndex > 0) {
             const authorName = controls.comboAuthors.options[authorIndex].text;
@@ -98,13 +148,14 @@ const pdnpi = (function () {
             }
         }
 
-        if (!controls.checkAllTypes.checked) {
+        const pluginType = controls.comboPluginType.value.trim().toLowerCase();
+        if (pluginType !== 'any') {
             let hide = true;
-            if (equalsIgnoreCase(data.type, "Effect") && controls.checkTypeEffect.checked ||
-                equalsIgnoreCase(data.type, "Adjustment") && controls.checkTypeAdjustment.checked ||
-                equalsIgnoreCase(data.type, "Filetype") && controls.checkTypeFiletype.checked ||
-                equalsIgnoreCase(data.type, "External Resource") && controls.checkTypeExternal.checked ||
-                equalsIgnoreCase(data.type, "Plugin Pack") && controls.checkTypePluginPack.checked) {
+            if (equalsIgnoreCase(data.type, "Effect") && pluginType === 'effect' ||
+                equalsIgnoreCase(data.type, "Adjustment") && pluginType === 'adjustment' ||
+                equalsIgnoreCase(data.type, "Filetype") && pluginType === 'filetype' ||
+                equalsIgnoreCase(data.type, "External Resource") && pluginType === 'external' ||
+                equalsIgnoreCase(data.type, "Plugin Pack") && pluginType === 'plugin-pack') {
 
                 hide = false;
             }
@@ -114,35 +165,22 @@ const pdnpi = (function () {
             }
         }
 
-        if (!controls.checkAnyStatus.checked) {
-            let hide = true;
-            if (equalsIgnoreCase(data.status, "Active") && controls.checkStatusActive.checked ||
-                equalsIgnoreCase(data.status, "New") && controls.checkStatusNew.checked ||
-                equalsIgnoreCase(data.status, "Deprecated") && controls.checkStatusDeprecated.checked ||
-                equalsIgnoreCase(data.status, "Obsolete") && controls.checkStatusObsolete.checked ||
-                equalsIgnoreCase(data.status, "Incompatible") && controls.checkStatusIncompatible.checked ||
-                equalsIgnoreCase(data.status, "Unsupported") && controls.checkStatusUnsupported.checked ||
-                equalsIgnoreCase(data.status, "Integrated") && controls.checkStatusIntegrated.checked ||
-                equalsIgnoreCase(data.status, "Bundled") && controls.checkStatusBundled.checked) {
-
-                hide = false;
-            }
-
-            if (hide) {
+        const pluginStatus = controls.comboPluginStatus.value.trim().toLowerCase();
+        // Check plugin status - case insensitive comparison
+        if (pluginStatus === 'new') {
+            if (!equalsIgnoreCase(data.status, "New")) {
                 return false;
             }
-        }
-
-        if (!controls.checkAnyVersion.checked) {
-            let hide = true;
-            if (data.compatibility.match(/.*5\..*/) && controls.check5x.checked ||
-                data.compatibility.match(/.*4\..*/) && controls.check4x.checked ||
-                data.compatibility.match(/.*3\.5x*/) && controls.check3x.checked ||
-                equalsIgnoreCase(data.compatibility, "Untested") && controls.checkUntested.checked) {
-                hide = false;
+        } else if (pluginStatus === 'active') {
+            // Show if New, Active or Bundled 
+            const activeStatuses = ["New", "Active", "Bundled"];
+            if (!activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
+                return false;
             }
-
-            if (hide) {
+        } else if (pluginStatus === 'inactive') {
+            // Show if status is anything except New, Active or Bundled
+            const activeStatuses = ["New", "Active", "Bundled"];
+            if (activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
                 return false;
             }
         }
@@ -180,73 +218,64 @@ const pdnpi = (function () {
         pluginPack: 16
     };
 
-    const pluginStatuses = {
-        active: 1,
-        new: 2,
-        bundled: 4,
-        deprecated: 8,
-        obsolete: 16,
-        incompatible: 32,
-        unsupported: 64,
-        integrated: 128
-    };
-
-    const pluginCompatibilities = {
-        ver5x: 1,
-        ver4x: 2,
-        ver3x: 4,
-        untested: 8
-    };
-
     const searchParamKeys = {
         keywords: 'keywords',
+        keywordStyle: 'keywordStyle',
         author: 'author',
         type: 'type',
         status: 'status',
-        compat: 'compat',
         order: 'order',
-        menu: 'menu',
+        menu: 'menu'
+    };
+
+    // Update status constants to match radio buttons
+    const pluginStatuses = {
+        new: 'new',
+        active: 'active',
+        inactive: 'inactive'
+    };
+
+    function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
+    function hasFlag(num, flag) {
+        return (num & flag) === flag;
     }
 
     const internal = {
         init: function () {
-            console.log("Initializing");
+            try {
+                console.log("Initializing");
+                // Core elements
+                elements.badgePluginCount = document.querySelector("#count");
+                elements.divPluginList = document.querySelector("#plugins-list");
+                controls.btnScrollToTop = document.querySelector("#scrollToTop");
 
-            elements.badgePluginCount = document.querySelector("#count");
-            elements.divPluginList = document.querySelector("#plugins-list");
-            controls.btnScrollToTop = document.querySelector("#scroll");
+                // Search controls
+                controls.inputKeywords = document.querySelector("#keywords");
+                controls.comboAuthors = document.querySelector("#author");
+                controls.comboOrder = document.querySelector("#order");
+                controls.comboMenu = document.querySelector("#menu-list");
+                controls.comboKeywordStyle = document.querySelector("#keywordStyle");
+                controls.comboPluginStatus = document.querySelector("#pluginStatus");
+                controls.comboPluginType = document.querySelector("#pluginType");
 
-            controls.inputKeywords = document.querySelector("#keywords");
-            controls.comboAuthors = document.querySelector("#author");
-            controls.comboOrder = document.querySelector("#order");
-            controls.comboMenu = document.querySelector("#menu-list");
-
-            controls.checkAllTypes = document.querySelector("#checkAll");
-            controls.checkTypeEffect = document.querySelector("#checkEffect");
-            controls.checkTypeAdjustment = document.querySelector("#checkAdjustment");
-            controls.checkTypeFiletype = document.querySelector("#checkFiletype");
-            controls.checkTypeExternal = document.querySelector("#checkExternal");
-            controls.checkTypePluginPack = document.querySelector("#checkPack");
-
-            controls.checkAnyStatus = document.querySelector("#checkAny");
-            controls.checkStatusActive = document.querySelector("#checkActive");
-            controls.checkStatusNew = document.querySelector("#checkNew");
-            controls.checkStatusDeprecated = document.querySelector("#checkDeprecated");
-            controls.checkStatusObsolete = document.querySelector("#checkObsolete");
-            controls.checkStatusIncompatible = document.querySelector("#checkIncompatible");
-            controls.checkStatusUnsupported = document.querySelector("#checkUnsupported");
-            controls.checkStatusIntegrated = document.querySelector("#checkIntegrated");
-            controls.checkStatusBundled = document.querySelector("#checkBundled");
-
-            controls.checkAnyVersion = document.querySelector("#checkAnyVersion");
-            controls.check5x = document.querySelector("#check5x");
-            controls.check4x = document.querySelector("#check4x");
-            controls.check3x = document.querySelector("#check3x");
-            controls.checkUntested = document.querySelector("#checkUntested");
+                controls.navIssuesButton = document.querySelector("#nav-issues");
+                elements.issuesList = document.querySelector("#issuesList");
+            } catch (err) {
+                console.error("Initialization failed:", err);
+                throw err;
+            }
         },
+
         loadIndex: function () {
             fetch(
-                "index/plugin-index.json"
+                "/index/plugin-index.json"
             ).then(response => {
                 return response.json();
             }).then(function (res) {
@@ -279,14 +308,14 @@ const pdnpi = (function () {
 
                 const authorOptions = parsed.authors
                     .sort(alphaSort)
-                    .map((name, index) => `<option value="${index + 1}">${name}</option>`)
+                    .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
                     .join("");
 
                 controls.comboAuthors.insertAdjacentHTML("beforeend", authorOptions);
 
                 const menuOptions = parsed.menus
                     .sort(alphaSort)
-                    .map((menu, index) => `<option value="${index + 1}">${menu}</option>`)
+                    .map((menu, index) => `<option value="${menu.trim().toLowerCase()}">${menu}</option>`)
                     .join("");
 
                 controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
@@ -294,6 +323,12 @@ const pdnpi = (function () {
                 internal.useSearchParams();
                 internal.refreshListing();
 
+                const issues = internal.dataIntegrity();
+                if (issues.length) {
+                    const issuesHtml = issues.sort(alphaSort).map((issue, index) => `<li>${issue}</li>`).join("");
+                    elements.issuesList.insertAdjacentHTML("beforeend", issuesHtml);
+                    controls.navIssuesButton.style.display = "";
+                }
             }).catch(function (err) {
                 console.error("Failed to load plugin-index.json");
                 console.error(err);
@@ -302,62 +337,34 @@ const pdnpi = (function () {
         setupControls: function () {
             console.log("Setting up controls...");
 
-            /**
-             * All/Any checkbox should deselect it's encompassing sub-checkboxes.
-             *
-             * Sub-checkboxes should deselect it's parent All/Any checkbox.
-             */
+            // Initialize Bootstrap tooltips
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+            // Add missing checkBehavior function
             function checkBehavior(allCheck, subChecks) {
                 allCheck.addEventListener("change", function () {
-                    if (allCheck.checked) {
-                        subChecks.forEach(check => check.checked = false);
-                    }
+                    subChecks.forEach(check => {
+                        check.checked = !allCheck.checked;
+                    });
                     internal.refreshListing();
                 });
                 subChecks.forEach(check => check.addEventListener("change", function () {
                     if (check.checked) {
                         allCheck.checked = false;
+                    } else if (subChecks.every(c => !c.checked)) {
+                        allCheck.checked = true;
                     }
                     internal.refreshListing();
                 }));
             }
 
-            checkBehavior(controls.checkAllTypes, [
-                controls.checkTypeEffect,
-                controls.checkTypeAdjustment,
-                controls.checkTypeFiletype,
-                controls.checkTypeExternal,
-                controls.checkTypePluginPack
-            ]);
-            controls.checkAllTypes.checked = true;
+            // Keyword search controls
+            const debouncedRefresh = debounce(() => internal.refreshListing(), 150);
+            controls.inputKeywords.addEventListener('input', debouncedRefresh);
 
-            checkBehavior(controls.checkAnyStatus, [
-                controls.checkStatusActive,
-                controls.checkStatusNew,
-                controls.checkStatusDeprecated,
-                controls.checkStatusObsolete,
-                controls.checkStatusIncompatible,
-                controls.checkStatusUnsupported,
-                controls.checkStatusIntegrated,
-                controls.checkStatusBundled
-            ]);
-            controls.checkStatusActive.checked = true;
-            controls.checkStatusNew.checked = true;
-            controls.checkStatusBundled.checked = true;
-
-            checkBehavior(controls.checkAnyVersion, [
-                controls.check5x,
-                controls.check4x,
-                controls.check3x,
-                controls.checkUntested
-            ]);
-            // when 5.0 is released we can set that checkbox as the default.
-            controls.check5x.checked = true;
-            // include all 4.x plugins for the first few months....
-            controls.check4x.checked = true;
-
-            [controls.comboAuthors, controls.comboMenu].forEach(control => {
-
+            [controls.comboKeywordStyle, controls.comboPluginStatus, controls.comboPluginType,
+                controls.comboAuthors, controls.comboMenu].forEach(control => {
                 control.addEventListener("change", () => internal.refreshListing());
             });
 
@@ -365,29 +372,17 @@ const pdnpi = (function () {
                 internal.refreshListing('order');
             });
 
-            let inputTimeout = null;
-            controls.inputKeywords.addEventListener('input', function () {
-                clearTimeout(inputTimeout);
+            document.querySelector('#permalink-button').addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(internal.buildPermalink());
+                    document.querySelector('#copiedToast .toast-body').textContent = 'Permalink copied to the clipboard.';
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                    document.querySelector('#copiedToast .toast-body').textContent = 'Error copying Permalink to the clipboard.';
+                }
 
-                inputTimeout = setTimeout(internal.refreshListing, 200);
-            });
-
-            document.querySelector('#permalink-button').addEventListener('click', () => {
-                navigator.clipboard.writeText(internal.buildPermalink()).then(
-                    () => {
-                        return 'Permalink copied to the clipboard.';
-                    },
-                    (failure) => {
-                        console.error(failure);
-                        return 'Error copying Permalink to the clipboard.';
-                    }
-                )
-                    .then(x => {
-                        document.querySelector('#copiedToast .toast-body').textContent = x;
-
-                        const toastNode = document.querySelector('#copiedToast');
-                        bootstrap.Toast.getOrCreateInstance(toastNode).show();
-                    });
+                const toastNode = document.querySelector('#copiedToast');
+                bootstrap.Toast.getOrCreateInstance(toastNode).show();
             });
 
             /**
@@ -411,74 +406,50 @@ const pdnpi = (function () {
             })
         },
         useSearchParams: function () {
-            function hasFlag(num, flag) {
-                return (num & flag) == flag;
-            }
-
             const allFoundParams = new URL(window.location).searchParams;
+            const params = Object.entries(searchParamKeys)
+                .filter(([_, key]) => allFoundParams.has(key))
+                .reduce((acc, [name, key]) => {
+                    acc[name] = allFoundParams.get(key)?.trim();
+                    return acc;
+                }, {});
+            console.log('Search Params', params)
 
-            const foundKeywords = allFoundParams.get(searchParamKeys.keywords)?.trim();
-            if (foundKeywords) {
-                controls.inputKeywords.value = foundKeywords;
+            // Load all URL parameters into controls
+            if (params.keywords) {
+                controls.inputKeywords.value = params.keywords;
             }
 
-            const foundAuthor = allFoundParams.get(searchParamKeys.author)?.trim();
-            if (foundAuthor) {
-                const authorIndex = Array.from(controls.comboAuthors.options).findIndex(x => x.text == foundAuthor);
-                if (authorIndex >= 0) {
-                    controls.comboAuthors.selectedIndex = authorIndex;
-                }
+            if (params.keywordStyle && document.querySelector(`#keywordStyle option[value='${params.keywordStyle.trim().toLowerCase()}']`)) {
+                controls.comboKeywordStyle.value = params.keywordStyle.trim().toLowerCase();
             }
 
-            const foundType = allFoundParams.get(searchParamKeys.type)?.trim();
-            if (foundType) {
-                const typeFlags = Number.parseInt(foundType) || 0;
-                controls.checkAllTypes.checked = (typeFlags == 0);
-                controls.checkTypeEffect.checked = hasFlag(typeFlags, pluginTypes.effect);
-                controls.checkTypeAdjustment.checked = hasFlag(typeFlags, pluginTypes.adjustment);
-                controls.checkTypeFiletype.checked = hasFlag(typeFlags, pluginTypes.filetype);
-                controls.checkTypeExternal.checked = hasFlag(typeFlags, pluginTypes.external);
-                controls.checkTypePluginPack.checked = hasFlag(typeFlags, pluginTypes.pluginPack);
+            if (params.status && document.querySelector(`#pluginStatus option[value='${params.status.trim().toLowerCase()}']`)) {
+                controls.comboPluginStatus.value = params.status.trim().toLowerCase();
             }
 
-            const foundStatus = allFoundParams.get(searchParamKeys.status)?.trim();
-            if (foundStatus) {
-                const statusFlags = Number.parseInt(foundStatus) || 0;
-                controls.checkAnyStatus.checked = (statusFlags == 0);
-                controls.checkStatusActive.checked = hasFlag(statusFlags, pluginStatuses.active);
-                controls.checkStatusNew.checked = hasFlag(statusFlags, pluginStatuses.new);
-                controls.checkStatusBundled.checked = hasFlag(statusFlags, pluginStatuses.bundled);
-                controls.checkStatusDeprecated.checked = hasFlag(statusFlags, pluginStatuses.deprecated);
-                controls.checkStatusObsolete.checked = hasFlag(statusFlags, pluginStatuses.obsolete);
-                controls.checkStatusIncompatible.checked = hasFlag(statusFlags, pluginStatuses.incompatible);
-                controls.checkStatusUnsupported.checked = hasFlag(statusFlags, pluginStatuses.unsupported);
-                controls.checkStatusIntegrated.checked = hasFlag(statusFlags, pluginStatuses.integrated);
+            if (params.type && document.querySelector(`#pluginType option[value='${params.type.trim().toLowerCase()}']`)) {
+                controls.comboPluginType.value = params.type.trim().toLowerCase();
             }
 
-            const foundCompat = allFoundParams.get(searchParamKeys.compat)?.trim();
-            if (foundCompat) {
-                const compatFlags = Number.parseInt(foundCompat) || 0;
-                controls.checkAnyVersion.checked = (compatFlags == 0);
-                controls.check5x.checked = hasFlag(compatFlags, pluginCompatibilities.ver5x);
-                controls.check4x.checked = hasFlag(compatFlags, pluginCompatibilities.ver4x);
-                controls.check3x.checked = hasFlag(compatFlags, pluginCompatibilities.ver3x);
-                controls.checkUntested.checked = hasFlag(compatFlags, pluginCompatibilities.untested);
+            if (params.author && document.querySelector(`#author option[value='${params.author.trim().toLowerCase()}']`)) {
+                controls.comboAuthors.value = params.author.trim().toLowerCase();
             }
 
-            const foundOrder = allFoundParams.get(searchParamKeys.order)?.trim();
-            if (foundOrder) {
-                const orderIndex = Array.from(controls.comboOrder.options).findIndex(x => x.text == foundOrder);
+            if (params.menu && document.querySelector(`#menu-list option[value='${params.menu.trim().toLowerCase()}']`)) {
+                controls.comboMenu.value = params.menu.trim().toLowerCase();
+            }
+
+            if (params.order) {
+                const orderIndex = Array.from(controls.comboOrder.options).findIndex(x => x.text == params.order);
                 if (orderIndex >= 0) {
                     controls.comboOrder.selectedIndex = orderIndex;
                 }
             }
 
-            const foundMenu = allFoundParams.get(searchParamKeys.menu)?.trim();
-            if (foundMenu) {
-                const menuIndex = Array.from(controls.comboMenu.options).findIndex(x => x.text == foundMenu);
-                if (menuIndex >= 0) {
-                    controls.comboMenu.selectedIndex = menuIndex;
-                }
+            // Trigger a refresh if we have any URL parameters
+            if (Object.keys(params).length > 0) {
+                internal.refreshListing();
             }
         },
         buildPermalink: function () {
@@ -489,40 +460,44 @@ const pdnpi = (function () {
                 params.append(searchParamKeys.keywords, currentKeywords);
             }
 
-            params.append(searchParamKeys.author, controls.comboAuthors.options[controls.comboAuthors.selectedIndex].text);
+            const keywordStyle = controls.comboKeywordStyle.value.trim().toLowerCase();
+            if (keywordStyle !== 'any') {
+                params.append(searchParamKeys.keywordStyle, keywordStyle);
+            }
 
-            let typeFlags = 0;
-            if (controls.checkTypeEffect.checked) typeFlags |= pluginTypes.effect;
-            if (controls.checkTypeAdjustment.checked) typeFlags |= pluginTypes.adjustment;
-            if (controls.checkTypeFiletype.checked) typeFlags |= pluginTypes.filetype;
-            if (controls.checkTypeExternal.checked) typeFlags |= pluginTypes.external;
-            if (controls.checkTypePluginPack.checked) typeFlags |= pluginTypes.pluginPack;
-            params.append(searchParamKeys.type, typeFlags);
+            const author = controls.comboAuthors.value.trim().toLowerCase();
+            if (author !== 'any') {
+                params.append(searchParamKeys.author, controls.comboAuthors.value);
+            }
 
-            let statusFlags = 0;
-            if (controls.checkStatusActive.checked) statusFlags |= pluginStatuses.active;
-            if (controls.checkStatusNew.checked) statusFlags |= pluginStatuses.new;
-            if (controls.checkStatusBundled.checked) statusFlags |= pluginStatuses.bundled;
-            if (controls.checkStatusDeprecated.checked) statusFlags |= pluginStatuses.deprecated;
-            if (controls.checkStatusObsolete.checked) statusFlags |= pluginStatuses.obsolete;
-            if (controls.checkStatusIncompatible.checked) statusFlags |= pluginStatuses.incompatible;
-            if (controls.checkStatusUnsupported.checked) statusFlags |= pluginStatuses.unsupported;
-            if (controls.checkStatusIntegrated.checked) statusFlags |= pluginStatuses.integrated;
-            params.append(searchParamKeys.status, statusFlags);
+            const type = controls.comboPluginType.value.trim().toLowerCase();
+            if (type !== 'any') {
+                params.append(searchParamKeys.type, type);
+            }
 
-            let compatFlags = 0;
-            if (controls.check5x.checked) compatFlags |= pluginCompatibilities.ver5x;
-            if (controls.check4x.checked) compatFlags |= pluginCompatibilities.ver4x;
-            if (controls.check3x.checked) compatFlags |= pluginCompatibilities.ver3x;
-            if (controls.checkUntested.checked) compatFlags |= pluginCompatibilities.untested;
-            params.append(searchParamKeys.compat, compatFlags);
+            const status = controls.comboPluginStatus.value.trim().toLowerCase();
+            if (status !== 'active') {
+                params.append(searchParamKeys.status, status);
+            }
 
-            params.append(searchParamKeys.order, controls.comboOrder.value);
-            params.append(searchParamKeys.menu, controls.comboMenu.options[controls.comboMenu.selectedIndex].text);
+            const order = controls.comboOrder.value.trim().toLowerCase();
+            if (order !== 'release_new') {
+                params.append(searchParamKeys.order, order);
+            }
 
-            const hostUrl = window !== window.parent
-                ? 'https://forums.getpaint.net/PluginIndex'
-                : window.location.origin + window.location.pathname;
+            const selectedMenu = controls.comboMenu.options[controls.comboMenu.selectedIndex].text;
+            if (selectedMenu !== 'Any Menu') {
+                params.append(searchParamKeys.menu, selectedMenu);
+            }
+
+            let hostUrl;
+            if (window !== window.parent) {
+                hostUrl = 'https://forums.getpaint.net/PluginIndex';
+            } else if (window.location.hostname === 'localhost') {
+                hostUrl = window.location.origin + window.location.pathname;
+            } else {
+                hostUrl = window.location.origin + window.location.pathname;
+            }
 
             return hostUrl + '?' + params.toString();
         },
@@ -534,62 +509,57 @@ const pdnpi = (function () {
          * - Hiding & showing each individual plugin
          */
         refreshListing: function (event) {
-            console.log("Refreshing the plugin list...");
+            try {
+                console.log("Refreshing the plugin list...");
 
-            //const fadeMs = 150;
+                if (equalsIgnoreCase(event, "order")) {
+                    const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
 
-            //elements.divLoadingOverlay.fadeIn(fadeMs);
+                    pluginIndex.sort((a, b) => {
+                        const dataA = a.getData();
+                        const dataB = b.getData();
 
-            if (equalsIgnoreCase(event, "order")) {
-                const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
-
-                pluginIndex.sort((a, b) => {
-                    const dataA = a.getData();
-                    const dataB = b.getData();
-
-                    if (equalsIgnoreCase(order, "release_new")) {
-                        // order by newest first
-                        a = new Date(dataA.release);
-                        b = new Date(dataB.release);
-                        return (a < b) ? 1 : (a > b) ? -1 : 0;
-                    } else if (equalsIgnoreCase(order, "release_old")) {
-                        // order by oldest first
-                        a = new Date(dataA.release);
-                        b = new Date(dataB.release);
-                        return (a > b) ? 1 : (a < b) ? -1 : 0;
-                    } else if (equalsIgnoreCase(order, "title")) {
-                        return alphaSort(dataA.title, dataB.title);
-                    } else if (equalsIgnoreCase(order, "author")) {
-                        return alphaSort(dataA.author, dataB.author);
-                    } else if (equalsIgnoreCase(order, "menu")) {
-                        return alphaSort(dataA.menu, dataB.menu);
-                    }
-                });
-            }
-
-            let html = "";
-            let displayCount = 0;
-            for (let i = 0; i < pluginIndex.length; i++) {
-                const plugin = pluginIndex[i];
-
-                const display = shouldPluginDisplay(plugin);
-
-                if (display) {
-                    html += plugin.getHtml();
-                    displayCount++;
+                        if (equalsIgnoreCase(order, "release_new")) {
+                            // order by newest first
+                            a = new Date(dataA.release);
+                            b = new Date(dataB.release);
+                            return (a < b) ? 1 : (a > b) ? -1 : 0;
+                        } else if (equalsIgnoreCase(order, "release_old")) {
+                            // order by oldest first
+                            a = new Date(dataA.release);
+                            b = new Date(dataB.release);
+                            return (a > b) ? 1 : (a < b) ? -1 : 0;
+                        } else if (equalsIgnoreCase(order, "title")) {
+                            return alphaSort(dataA.title, dataB.title);
+                        } else if (equalsIgnoreCase(order, "author")) {
+                            return alphaSort(dataA.author, dataB.author);
+                        } else if (equalsIgnoreCase(order, "menu")) {
+                            return alphaSort(dataA.menu, dataB.menu);
+                        }
+                    });
                 }
-            }
-            elements.divPluginList.replaceChildren();
-            elements.divPluginList.insertAdjacentHTML("afterbegin", html);
-            elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;
-            //elements.divLoadingOverlay.fadeOut(fadeMs * 1.75);
-        }
-    };
-    internal.init();
-    internal.loadIndex();
-    internal.setupControls();
 
-    return {
+                let html = "";
+                let displayCount = 0;
+                for (let i = 0; i < pluginIndex.length; i++) {
+                    const plugin = pluginIndex[i];
+
+                    const display = shouldPluginDisplay(plugin);
+
+                    if (display) {
+                        html += plugin.getHtml();
+                        displayCount++;
+                    }
+                }
+                elements.divPluginList.replaceChildren();
+                elements.divPluginList.insertAdjacentHTML("afterbegin", html);
+                elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;
+            } catch (err) {
+                console.error("Refresh failed:", err);
+                elements.badgePluginCount.textContent = "Error";
+            }
+        },
+
         dataIntegrity: function () {
             const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
             const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
@@ -615,10 +585,11 @@ const pdnpi = (function () {
             };
 
             let issueCount = 0;
+            const issues = []
 
             function logIssue(data, value, reason) {
-                console.log(reason + " [value=" + value + "] - " + JSON.stringify(data));
-
+                issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
+                console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
                 issueCount++;
             }
 
@@ -665,6 +636,16 @@ const pdnpi = (function () {
 
             console.log("%cFound " + issueCount + " data issues", "font-weight:700;" +
                 (issueCount > 0 ? "color:red;" : "color:green"));
+
+            return issues;
         }
-    }
+    };
+    internal.init();
+    internal.loadIndex();
+    internal.setupControls();
+
+    return {
+        dataIntegrity: internal.dataIntegrity,
+    };
 }());
+

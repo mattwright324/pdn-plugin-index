@@ -132,7 +132,8 @@ const pdnpi = (function () {
                     }
                 }
             } else if (keywordStyle === 'exact') {
-                if (!searchTexts.some(text => text.includes(upperKeywords))) {
+                const exactUpper = controls.inputKeywords.value.toUpperCase();
+                if (!searchTexts.some(text => text.includes(exactUpper))) {
                     return false;
                 }
             }

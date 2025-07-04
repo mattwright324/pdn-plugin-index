@@ -143,6 +143,7 @@ const pdnpi = (function () {
                             desc: 10,
                             dlls: 2,
                         },
+                        fuzzy: true,
                     }
                 });
                 minisearch.add(data)

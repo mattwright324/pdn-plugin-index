@@ -38,7 +38,8 @@ const pdnpi = (function () {
     var aDay = 24 * 60 * 60 * 1000;
 
     const format = {
-        dataToHtml: function (data) {
+        dataToHtml: function (plugin) {
+            const data = plugin.getData();
             const authorNameUrl = encodeURI(data.author.toLowerCase());
 
             let altLink = ''
@@ -59,7 +60,7 @@ const pdnpi = (function () {
             if (data.dlls.toLowerCase() === 'n/a') {
                 dllText = data.dlls.trim();
             }
-            return `<div class='plugin'>
+            return `<div class='plugin' data-id="${data.topic_id}">
                         <div class="phead">
                             <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-i">
                                 ${data.title}
@@ -82,7 +83,8 @@ const pdnpi = (function () {
                             <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
                             <sp class="tag c" title="Compatibility">${data.compatibility}</sp>&nbsp;
                             <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
-                            <sp class="tag d" title="${data.dlls}">${dllText}</sp>
+                            <sp class="tag d" title="${data.dlls}">${dllText}</sp>${dot}
+                            <sp class="tag score" title="Search score">0</sp>
                         </div>
                     </div>`.split("\n").map(s => s.trim()).join("\n");
         }
@@ -94,7 +96,8 @@ const pdnpi = (function () {
 
     const Plugin = function (data) {
         this.data = data;
-        this.html = format.dataToHtml(this.data);
+        this.searchScore = 0;
+        this.html = format.dataToHtml(this);
     };
     Plugin.prototype = {
         getData: function () {
@@ -102,6 +105,12 @@ const pdnpi = (function () {
         },
         getHtml: function () {
             return this.html;
+        },
+        getSearchScore: function () {
+            return this.searchScore;
+        },
+        setSearchScore: function (searchScore) {
+            this.searchScore = searchScore;
         }
     };
 
@@ -111,6 +120,7 @@ const pdnpi = (function () {
      */
     function shouldPluginDisplay(plugin) {
         const data = plugin.getData();
+        plugin.setSearchScore(0)
 
         // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
@@ -118,18 +128,41 @@ const pdnpi = (function () {
             const keywordStyle = (controls.comboKeywordStyle.value).trim().toLowerCase() || 'any';
 
             const upperKeywords = keywords.toUpperCase();
-            const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu'];
+            const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu', 'dlls'];
             const searchTexts = searchableFields.map(field => String(data[field]).toUpperCase());
 
             if (keywordStyle === 'any' || keywordStyle === 'all') {
+                const minisearch = new MiniSearch({
+                    fields: searchableFields,
+                    storeFields: ['topic_id'],
+                    idField: 'topic_id',
+                    // https://lucaong.github.io/minisearch/types/MiniSearch.SearchOptions.html
+                    searchOptions: {
+                        boost: {
+                            title: 10,
+                            desc: 10,
+                            dlls: 2,
+                        },
+                    }
+                });
+                minisearch.add(data)
+
                 const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
-                if (keywordArray.length > 0) {
-                    const matchFunc = keywordStyle === 'all' ? 'every' : 'some';
-                    if (!keywordArray[matchFunc](keyword =>
-                        searchTexts.some(text => text.includes(keyword))
-                    )) {
+                let any = false;
+                console.log('keywords', keywordArray);
+                for (let i = 0; i < keywordArray.length; i++) {
+                    const word = keywordArray[i];
+                    const results = minisearch.search(word);
+                    if (results.length && results[0].score) {
+                        plugin.setSearchScore(plugin.getSearchScore() + results[0].score);
+                        any = true;
+                    }
+                    if (!results.length && keywordStyle === 'all') {
                         return false;
                     }
+                }
+                if (!any) {
+                    return false;
                 }
             } else if (keywordStyle === 'exact') {
                 const exactUpper = controls.inputKeywords.value.toUpperCase();
@@ -411,7 +444,7 @@ const pdnpi = (function () {
             const params = Object.entries(searchParamKeys)
                 .filter(([_, key]) => allFoundParams.has(key))
                 .reduce((acc, [name, key]) => {
-                    acc[name] = allFoundParams.get(key)?.trim();
+                    acc[name] = allFoundParams.get(key);
                     return acc;
                 }, {});
             console.log('Search Params', params)
@@ -456,7 +489,7 @@ const pdnpi = (function () {
         buildPermalink: function () {
             const params = new URLSearchParams();
 
-            const currentKeywords = controls.inputKeywords.value.trim();
+            const currentKeywords = controls.inputKeywords.value;
             if (currentKeywords) {
                 params.append(searchParamKeys.keywords, currentKeywords);
             }
@@ -513,14 +546,27 @@ const pdnpi = (function () {
             try {
                 console.log("Refreshing the plugin list...");
 
-                if (equalsIgnoreCase(event, "order")) {
-                    const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
+                for (let i = 0; i < pluginIndex.length; i++) {
+                    const plugin = pluginIndex[i];
+                    plugin.display = shouldPluginDisplay(plugin);
+                }
 
+                const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
+                if (equalsIgnoreCase(event, "order") || equalsIgnoreCase(order, "best")) {
                     pluginIndex.sort((a, b) => {
                         const dataA = a.getData();
                         const dataB = b.getData();
 
-                        if (equalsIgnoreCase(order, "release_new")) {
+                        if (equalsIgnoreCase(order, "best")) {
+                            if (a.getSearchScore() === b.getSearchScore()) {
+                                a = new Date(dataA.release);
+                                b = new Date(dataB.release);
+                                return (a < b) ? 1 : (a > b) ? -1 : 0;
+                            }
+                            a = a.getSearchScore();
+                            b = b.getSearchScore();
+                            return (a < b) ? 1 : (a > b) ? -1 : 0;
+                        } else if (equalsIgnoreCase(order, "release_new")) {
                             // order by newest first
                             a = new Date(dataA.release);
                             b = new Date(dataB.release);
@@ -544,10 +590,7 @@ const pdnpi = (function () {
                 let displayCount = 0;
                 for (let i = 0; i < pluginIndex.length; i++) {
                     const plugin = pluginIndex[i];
-
-                    const display = shouldPluginDisplay(plugin);
-
-                    if (display) {
+                    if (plugin.display) {
                         html += plugin.getHtml();
                         displayCount++;
                     }
@@ -555,6 +598,21 @@ const pdnpi = (function () {
                 elements.divPluginList.replaceChildren();
                 elements.divPluginList.insertAdjacentHTML("afterbegin", html);
                 elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;
+
+                for (let i = 0; i < pluginIndex.length; i++) {
+                    const plugin = pluginIndex[i];
+                    const data = plugin.getData();
+                    const tagScore = document.querySelector(`.plugin[data-id='${data.topic_id}'] .score`);
+                    if (tagScore) {
+                        tagScore.innerText = plugin.getSearchScore().toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            roundingMode: "trunc"
+                        });
+                    } else {
+                        console.log('null tagScore', plugin)
+                    }
+                }
             } catch (err) {
                 console.error("Refresh failed:", err);
                 elements.badgePluginCount.textContent = "Error";

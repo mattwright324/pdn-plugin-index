@@ -20,6 +20,7 @@ for instructions on how to build and run `pdn-plugin-index` from source.
             width: 100%;
             height: 1200px;
             overflow: hidden;
+	    box-shadow: rgba(149, 157, 165, 0.6) 0px 2px 4px;
         }
     </style>
 </p>

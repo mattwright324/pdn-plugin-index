@@ -118,7 +118,7 @@ const pdnpi = (function () {
             const keywordStyle = (controls.comboKeywordStyle.value).trim().toLowerCase() || 'any';
 
             const upperKeywords = keywords.toUpperCase();
-            const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu'];
+            const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu', 'dlls'];
             const searchTexts = searchableFields.map(field => String(data[field]).toUpperCase());
 
             if (keywordStyle === 'any' || keywordStyle === 'all') {

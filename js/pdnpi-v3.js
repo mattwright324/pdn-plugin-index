@@ -394,6 +394,20 @@ const pdnpi = (function () {
                 bootstrap.Toast.getOrCreateInstance(toastNode).show();
             });
 
+            document.querySelector('#resetFilters').addEventListener('click', function() {
+                // Reset all filters to their default values
+                controls.inputKeywords.value = '';
+                controls.comboKeywordStyle.value = 'any';
+                controls.comboPluginStatus.value = 'active';
+                controls.comboPluginType.value = 'any';
+                controls.comboAuthors.value = 'any';
+                controls.comboMenu.value = 'any';
+                controls.comboOrder.value = 'release_new';
+
+                // Force a search update by triggering the refresh listing
+                internal.refreshListing();
+            });
+
             /**
              * When we scroll down a bit, display the scroll button.
              * Scroll button will take us back to the top.

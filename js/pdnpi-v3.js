@@ -10,51 +10,42 @@ const pdnpi = (function () {
     /** Non-control elements */
     const elements = {};
 
-    function timeSince(date) {
-        var seconds = Math.floor((new Date() - date) / 1000);
-        var interval = seconds / 31536000;
+function timeSince(date) {
+  let seconds = Math.floor((new Date() - date) / 1000);
 
-        // Show complete years
-        if (interval > 1) {
-            return Math.floor(interval) + " years";
-        } else if (interval === 1) {
-            return "1 year";
-        }
+  const intervals = [
+    { label: "year", seconds: 31536000 },
+    { label: "month", seconds: 2592000 },
+    { label: "day", seconds: 86400 },
+    { label: "hour", seconds: 3600 },
+    { label: "minute", seconds: 60 },
+    { label: "second", seconds: 1 }
+  ];
 
-        // Show complete months
-        interval = seconds / 2592000;
-        if (interval > 1) {
-            return Math.floor(interval) + " months";
-        } else if (interval === 1) {
-            return "1 month";
-        }
+  const years = Math.floor(seconds / intervals[0].seconds);
+  seconds -= years * intervals[0].seconds;
 
-        // Show days
-        interval = seconds / 86400;
-        if (interval > 1) {
-            return Math.floor(interval) + " days";
-        } else if (interval === 1) {
-            return "1 day";
-        }
+  const months = Math.floor(seconds / intervals[1].seconds);
 
-        // Show hours
-        interval = seconds / 3600;
-        if (interval > 1) {
-            return Math.floor(interval) + " hours";
-        } else if (interval === 1) {
-            return "1 hour";
-        }
-
-        // Show minutes
-        interval = seconds / 60;
-        if (interval > 1) {
-            return Math.floor(interval) + " minutes";
-        } else if (interval === 1) {
-            return "1 minute";
-        }
-
-        return Math.floor(seconds) + " seconds";
+  if (years > 0) {
+    let result = "Released " + years + " year" + (years > 1 ? "s" : "");
+    if (months > 0) {
+      result += " " + months + " month" + (months > 1 ? "s" : "");
     }
+    return result + " ago";
+  }
+
+  // Fallback: normal largest unit logic
+  for (let i = 1; i < intervals.length; i++) {
+    const count = Math.floor(seconds / intervals[i].seconds);
+    if (count >= 1) {
+      return "Released " + count + " " + intervals[i].label + (count > 1 ? "s" : "") + " ago";
+    }
+  }
+
+  return "just now";
+}
+
 
     var aDay = 24 * 60 * 60 * 1000;
 
@@ -71,7 +62,7 @@ const pdnpi = (function () {
 
             const dot = `<i class="bi bi-dot"></i>`
             const release = new Date(data.release);
-            const since = timeSince(new Date(release - aDay));
+            const since = timeSince(new Date(release));
             const dlls = data.dlls.split(/[,&\/] ?/) || [];
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
             if (dlls.length > 1) {
@@ -106,7 +97,7 @@ const pdnpi = (function () {
                                     <i class="bi bi-person-circle"></i> ${data.author}
                                 </a>
                             </sp>${dot}
-                            <sp class="tag" title="Published on ${data.release}">${since}${since.startsWith("1 ") ? '' : 's'} ago</sp>${dot}
+                            <sp class="tag" title="Published on ${data.release}">${since}</sp>${dot}
                             <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
                             <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
                             <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;
@@ -364,6 +355,19 @@ const pdnpi = (function () {
                 console.error(err);
             });
         },
+        resetFilters: function() {
+            // Reset all filters to their default values
+            controls.inputKeywords.value = '';
+            controls.comboKeywordStyle.value = 'any';
+            controls.comboPluginStatus.value = 'active';
+            controls.comboPluginType.value = 'any';
+            controls.comboAuthors.value = 'any';
+            controls.comboMenu.value = 'any';
+            controls.comboOrder.value = 'release_new';
+
+            // Force a new sorted listing
+            internal.refreshListing('order');
+        },
         setupControls: function () {
             console.log("Setting up controls...");
 
@@ -416,17 +420,7 @@ const pdnpi = (function () {
             });
 
             document.querySelector('#resetFilters').addEventListener('click', function() {
-                // Reset all filters to their default values
-                controls.inputKeywords.value = '';
-                controls.comboKeywordStyle.value = 'any';
-                controls.comboPluginStatus.value = 'active';
-                controls.comboPluginType.value = 'any';
-                controls.comboAuthors.value = 'any';
-                controls.comboMenu.value = 'any';
-                controls.comboOrder.value = 'release_new';
-
-                // Force a search update by triggering the refresh listing
-                internal.refreshListing();
+                internal.resetFilters();
             });
 
             /**
@@ -692,4 +686,5 @@ const pdnpi = (function () {
         dataIntegrity: internal.dataIntegrity,
     };
 }());
+
 

@@ -164,6 +164,9 @@ revision : 1 September 2025
                             <option value="author">Author</option>
                             <option value="menu">Menu</option>
                         </select>
+                        <button id="resetFilters" class="btn btn-sm btn-dark align-baseline ms-2">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                        </button>
                     </div>
                 </div>
             </div>
@@ -302,6 +305,20 @@ revision : 1 September 2025
                         <strong>Inactive:</strong><br>
                         Plugins which do not work with the latest release of Paint.NET<br>
                         (Obsolete, Deprecated, Incompatible, Integrated & Unsupported)`
+            });
+
+            // Add reset filters functionality
+            document.getElementById('resetFilters').addEventListener('click', function() {
+                document.getElementById('keywords').value = '';
+                document.getElementById('keywordStyle').value = 'any';
+                document.getElementById('pluginStatus').value = 'active';
+                document.getElementById('pluginType').value = 'any';
+                document.getElementById('author').value = 'any';
+                document.getElementById('menu-list').value = 'any';
+                document.getElementById('order').value = 'release_new';
+                
+                // Trigger the search update
+                document.getElementById('keywords').dispatchEvent(new Event('input'));
             });
         });
     </script>

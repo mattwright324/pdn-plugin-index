@@ -42,7 +42,7 @@ const pdnpi = (function () {
             const authorNameUrl = encodeURI(data.author.toLowerCase());
 
             let altLink = ''
-            if (data.hasOwnProperty('alt_topic')) {
+            if (data.hasOwnProperty('alt_topic') && data.alt_topic !== '') {
                 altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}-i">
                                 #${data.alt_topic}
                            </a></sp>`
@@ -65,10 +65,18 @@ const pdnpi = (function () {
                                 ${data.title}
                             </a></sp>
                         </div>
-                        <sp class="desc">${data.desc.substring(0, 450)}<sp ${data.desc.length > 450 ? '' : 'hidden'}><sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(300)}</sp>
-                                <br>
-                                <a data-bs-toggle="collapse" href="#more-${data.topic_id}" role="button">Show more</a>
-                            </sp>
+                        <sp class="desc">
+    ${data.desc.substring(0, 450)}
+    <span class="ellipsis" id="ellipsis-${data.topic_id}">${data.desc.length > 450 ? '...' : ''}</span>
+    <sp ${data.desc.length > 450 ? '' : 'hidden'}>
+        <sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(450)}</sp>
+        <br>
+        <a data-bs-toggle="collapse" href="#more-${data.topic_id}" role="button" 
+     
+        onclick="this.textContent = this.textContent === 'Show more' ? 'Show less' : 'Show more';
+                    document.getElementById('ellipsis-${data.topic_id}').style.display = 
+                    this.textContent === 'Show more' ? '' : 'none';">Show more</a>
+    </sp>
                         </sp>
                         ${altLink}
                         <div class="tags">
@@ -80,9 +88,9 @@ const pdnpi = (function () {
                             <sp class="tag" title="Published on ${data.release}">${since}${since.startsWith("1 ") ? '' : 's'} ago</sp>${dot}
                             <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
                             <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
-                            <sp class="tag c" title="Compatibility">${data.compatibility}</sp>&nbsp;
+                            <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;
                             <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
-                            <sp class="tag d" title="${data.dlls}">${dllText}</sp>
+                            <sp class="tag d" title="DLL name and related file(s)">${dllText}</sp>
                         </div>
                     </div>`.split("\n").map(s => s.trim()).join("\n");
         }
@@ -365,7 +373,7 @@ const pdnpi = (function () {
             controls.inputKeywords.addEventListener('input', debouncedRefresh);
 
             [controls.comboKeywordStyle, controls.comboPluginStatus, controls.comboPluginType,
-                controls.comboAuthors, controls.comboMenu].forEach(control => {
+            controls.comboAuthors, controls.comboMenu].forEach(control => {
                 control.addEventListener("change", () => internal.refreshListing());
             });
 

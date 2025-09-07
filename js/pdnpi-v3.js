@@ -16,18 +16,44 @@ const pdnpi = (function () {
 
         // Show complete years
         if (interval > 1) {
-            return Math.floor(interval) + " year";
+            return Math.floor(interval) + " years";
+        } else if (interval === 1) {
+            return "1 year";
         }
 
         // Show complete months
         interval = seconds / 2592000;
-        if (interval >= 1) {
-            return Math.floor(interval) + " month";
+        if (interval > 1) {
+            return Math.floor(interval) + " months";
+        } else if (interval === 1) {
+            return "1 month";
         }
 
         // Show days
         interval = seconds / 86400;
-        return Math.floor(interval) + " day";
+        if (interval > 1) {
+            return Math.floor(interval) + " days";
+        } else if (interval === 1) {
+            return "1 day";
+        }
+
+        // Show hours
+        interval = seconds / 3600;
+        if (interval > 1) {
+            return Math.floor(interval) + " hours";
+        } else if (interval === 1) {
+            return "1 hour";
+        }
+
+        // Show minutes
+        interval = seconds / 60;
+        if (interval > 1) {
+            return Math.floor(interval) + " minutes";
+        } else if (interval === 1) {
+            return "1 minute";
+        }
+
+        return Math.floor(seconds) + " seconds";
     }
 
     var aDay = 24 * 60 * 60 * 1000;
@@ -661,11 +687,6 @@ const pdnpi = (function () {
     internal.init();
     internal.loadIndex();
     internal.setupControls();
-
-    return {
-        dataIntegrity: internal.dataIntegrity,
-    };
-}());
 
     return {
         dataIntegrity: internal.dataIntegrity,

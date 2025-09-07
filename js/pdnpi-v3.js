@@ -13,26 +13,21 @@ const pdnpi = (function () {
     function timeSince(date) {
         var seconds = Math.floor((new Date() - date) / 1000);
         var interval = seconds / 31536000;
+
+        // Show complete years
         if (interval > 1) {
             return Math.floor(interval) + " year";
         }
+
+        // Show complete months
         interval = seconds / 2592000;
-        if (interval > 1) {
+        if (interval >= 1) {
             return Math.floor(interval) + " month";
         }
+
+        // Show days
         interval = seconds / 86400;
-        if (interval > 1) {
-            return Math.floor(interval) + " day";
-        }
-        interval = seconds / 3600;
-        if (interval > 1) {
-            return Math.floor(interval) + " hour";
-        }
-        interval = seconds / 60;
-        if (interval > 1) {
-            return Math.floor(interval) + " minute";
-        }
-        return Math.floor(seconds) + " second";
+        return Math.floor(interval) + " day";
     }
 
     var aDay = 24 * 60 * 60 * 1000;
@@ -666,6 +661,11 @@ const pdnpi = (function () {
     internal.init();
     internal.loadIndex();
     internal.setupControls();
+
+    return {
+        dataIntegrity: internal.dataIntegrity,
+    };
+}());
 
     return {
         dataIntegrity: internal.dataIntegrity,

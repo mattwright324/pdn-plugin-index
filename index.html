@@ -89,13 +89,14 @@ revision : 1 September 2025
                     <div class="col-md-2">
                         <label class="form-label" style="white-space: nowrap;">
                             Plugin Status
-                            <i class="bi bi-info-circle plugin-status-info"></i>
+                            <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-html="true" 
+                               data-bs-title="<strong>New:</strong><br>Plugins appearing in the Plugin Index for the first time.<br><br><strong>Active:</strong><br>Plugins which work with the latest release of Paint.NET (includes New and Bundled)<br><br><strong>Inactive:</strong><br>Plugins which do not work with the latest release of Paint.NET<br>(Obsolete, Deprecated, Incompatible, Integrated & Unsupported)"></i>
                         </label>
                         <select id="pluginStatus" class="form-select form-select-sm">
-                            <option value="any">Any Status</option>
-                            <option value="new">New</option>
-                            <option value="active" selected>Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="any">Any Status (1172)</option>
+                            <option value="new">New        (1)</option>
+                            <option value="active" selected>Active         (1021)</option>
+                            <option value="inactive">Inactive      (151)</option>
                         </select>
                     </div>
 
@@ -109,7 +110,7 @@ revision : 1 September 2025
                             <option value="adjustment">Adjustment</option>
                             <option value="filetype">Filetype</option>
                             <option value="plugin-pack">Plugin Pack</option>
-                            <option value="external">External</option>
+                            <option value="external">External Resource</option>
                         </select>
                     </div>
 
@@ -295,18 +296,10 @@ revision : 1 September 2025
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const tooltip = new bootstrap.Tooltip('.plugin-status-info', {
-                html: true,
-                template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner text-start"></div></div>',
-                title: `<strong>New:</strong><br>
-                        Plugins appearing in the Plugin Index for the first time.<br><br>
-                        <strong>Active:</strong><br>
-                        Plugins which work with the latest release of Paint.NET (includes New and Bundled)<br><br>
-                        <strong>Inactive:</strong><br>
-                        Plugins which do not work with the latest release of Paint.NET<br>
-                        (Obsolete, Deprecated, Incompatible, Integrated & Unsupported)`
-            });
-
+            // Initialize all tooltips
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            
             // Add reset filters functionality
             document.getElementById('resetFilters').addEventListener('click', function() {
                 document.getElementById('keywords').value = '';

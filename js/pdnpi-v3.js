@@ -46,7 +46,6 @@ function timeSince(date) {
   return "just now";
 }
 
-
     var aDay = 24 * 60 * 60 * 1000;
 
     const format = {
@@ -102,7 +101,7 @@ function timeSince(date) {
                             <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
                             <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;
                             <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
-                            <sp class="tag d" title="DLL name and related file(s)">${dllText}</sp>
+                            <sp class="tag d" title=${dlls}>${dllText}</sp>
                         </div>
                     </div>`.split("\n").map(s => s.trim()).join("\n");
         }

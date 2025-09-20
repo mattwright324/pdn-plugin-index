@@ -62,7 +62,8 @@ function timeSince(date) {
             const dot = `<i class="bi bi-dot"></i>`
             const release = new Date(data.release);
             const since = timeSince(new Date(release));
-            const dlls = data.dlls.split(/[,&\/] ?/) || [];
+            const dlls = (data.dlls || "").split(",");
+            const hoverdlls = (data.dlls || "").replace(/,/g, "\n").trim() || "N/A";
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
             if (dlls.length > 1) {
                 dllText = dllText + " <sp class='dll-2'>and " + (dlls.length - 1) + " more</sp>";
@@ -101,7 +102,7 @@ function timeSince(date) {
                             <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
                             <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;
                             <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
-                            <sp class="tag d" title=${dlls}>${dllText}</sp>
+                            <sp class="tag d" title="${hoverdlls}">${dllText}</sp>
                         </div>
                     </div>`.split("\n").map(s => s.trim()).join("\n");
         }

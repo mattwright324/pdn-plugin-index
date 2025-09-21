@@ -72,39 +72,39 @@ function timeSince(date) {
                 dllText = data.dlls.trim();
             }
             return `<div class='plugin'>
-                        <div class="phead">
-                            <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-i">
-                                ${data.title}
-                            </a></sp>
-                        </div>
-                        <sp class="desc">
-    ${data.desc.substring(0, 450)}
-    <span class="ellipsis" id="ellipsis-${data.topic_id}">${data.desc.length > 450 ? '...' : ''}</span>
-    <sp ${data.desc.length > 450 ? '' : 'hidden'}>
-        <sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(450)}</sp>
-        <br>
-        <a data-bs-toggle="collapse" href="#more-${data.topic_id}" role="button" 
-     
-        onclick="this.textContent = this.textContent === 'Show more' ? 'Show less' : 'Show more';
-                    document.getElementById('ellipsis-${data.topic_id}').style.display = 
-                    this.textContent === 'Show more' ? '' : 'none';">Show more</a>
-    </sp>
-                        </sp>
-                        ${altLink}
-                        <div class="tags">
-                            <sp class="tag author">
-                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
+                    <div class="phead">
+                        <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id.toString()}-i">
+                            ${data.title}
+                        </a></sp>
+                    </div>
+                    <sp class="desc">
+${data.desc.substring(0, 450)}
+<span class="ellipsis" id="ellipsis-${data.topic_id.toString()}">${data.desc.length > 450 ? '...' : ''}</span>
+<sp ${data.desc.length > 450 ? '' : 'hidden'}>
+    <sp id="more-${data.topic_id.toString()}" class="collapse">${data.desc.substring(450)}</sp>
+    <br>
+    <a data-bs-toggle="collapse" href="#more-${data.topic_id.toString()}" role="button" 
+ 
+    onclick="this.textContent = this.textContent === 'Show more' ? 'Show less' : 'Show more';
+                document.getElementById('ellipsis-${data.topic_id}').style.display = 
+                this.textContent === 'Show more' ? '' : 'none';">Show more</a>
+</sp>
+                    </sp>
+                    ${altLink}
+                    <div class="tags">
+                        <sp class="tag author">
+                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id.toString()}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
                                     <i class="bi bi-person-circle"></i> ${data.author}
                                 </a>
                             </sp>${dot}
-                            <sp class="tag" title="Published on ${data.release}">${since}</sp>${dot}
-                            <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
-                            <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
-                            <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;
-                            <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
-                            <sp class="tag d" title="${hoverdlls}">${dllText}</sp>
-                        </div>
-                    </div>`.split("\n").map(s => s.trim()).join("\n");
+                        <sp class="tag" title="Published on ${data.release}">${since}</sp>${dot}
+                        <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
+                        <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
+                        <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;
+                        <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
+                        <sp class="tag d" title="${hoverdlls}">${dllText}</sp>
+                    </div>
+                </div>`.split("\n").map(s => s.trim()).join("\n");
         }
     };
 
@@ -637,13 +637,13 @@ function timeSince(date) {
                 if (!is.validDate(new Date(data.release))) {
                     logIssue(data, data.release, "INVALID DATE");
                 }
-                if (!is.validNumber(Number(data.topic_id))) {
+                if (!is.validNumber(data.topic_id)) {
                     logIssue(data, data.topic_id, "INVALID TOPIC_ID");
                 }
-                if (!is.validNumber(Number(data.author_id))) {
+                if (!is.validNumber(data.author_id)) {
                     logIssue(data, data.author_id, "INVALID AUTHOR ID");
                 }
-                if (data.alt_topic && !is.validNumber(Number(data.alt_topic))) {
+                if (data.alt_topic && !is.validNumber(data.alt_topic)) {
                     logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
                 }
                 if (!is.validType(String(data.type))) {

@@ -63,7 +63,7 @@ function timeSince(date) {
             const release = new Date(data.release);
             const since = timeSince(new Date(release));
             const dlls = (data.dlls || "").split(",");
-            const hoverdlls = (data.dlls || "").replace(/,/g, "\n").trim() || "N/A";
+            const hoverdlls = (data.dlls || "").replace(/, /g, "\n").trim() || "N/A"; // replace comma-space with newline for dll tooltip
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
             if (dlls.length > 1) {
                 dllText = dllText + " <sp class='dll-2'>and " + (dlls.length - 1) + " more</sp>";

@@ -341,6 +341,33 @@ ${data.desc.substring(0, 450)}
 
                 controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
 
+                // Update the counts on Status and Type dropdowns
+                const pluginStatuses = pluginIndex.map(plugin => plugin.getData().status);
+                const anyStatusCount = pluginStatuses.length;
+                const newCount = pluginStatuses.filter(status => equalsIgnoreCase(status, "New")).length;
+                const activeCount = pluginStatuses.filter(status => ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(status, x))).length;
+                const inactiveCount = anyStatusCount - activeCount;
+
+                controls.comboPluginStatus.options[0].text += ` (${anyStatusCount})`;
+                controls.comboPluginStatus.options[1].text += ` (${newCount})`;
+                controls.comboPluginStatus.options[2].text += ` (${activeCount})`;
+                controls.comboPluginStatus.options[3].text += ` (${inactiveCount})`;
+
+                const pluginTypes = pluginIndex.map(plugin => plugin.getData().type);
+                const anyTypeCount = pluginTypes.length;
+                const effectCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Effect")).length;
+                const adjustmentCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Adjustment")).length;
+                const filetypeCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Filetype")).length;
+                const packCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Plugin Pack")).length;
+                const externalCount = pluginTypes.filter(type => equalsIgnoreCase(type, "External Resource")).length;
+
+                controls.comboPluginType.options[0].text += ` (${anyTypeCount})`;
+                controls.comboPluginType.options[1].text += ` (${effectCount})`;
+                controls.comboPluginType.options[2].text += ` (${adjustmentCount})`;
+                controls.comboPluginType.options[3].text += ` (${filetypeCount})`;
+                controls.comboPluginType.options[4].text += ` (${packCount})`;
+                controls.comboPluginType.options[5].text += ` (${externalCount})`;
+
                 internal.useSearchParams();
                 internal.refreshListing();
 

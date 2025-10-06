@@ -162,9 +162,9 @@ ${data.desc.substring(0, 450)}
         // Continue with other checks
         const authorIndex = controls.comboAuthors.selectedIndex;
         if (authorIndex > 0) {
-            const authorName = controls.comboAuthors.options[authorIndex].text;
+            const authorName = controls.comboAuthors.options[authorIndex].value;
 
-            if (data.author !== authorName) {
+            if (!equalsIgnoreCase(data.author, authorName)) {
                 return false;
             }
         }
@@ -219,13 +219,6 @@ ${data.desc.substring(0, 450)}
 
     /** List of plugin objects */
     const pluginIndex = [];
-
-    const parsed = {
-        /** Unique list of plugin author names to populate author combo box. */
-        authors: [],
-        /** Unique list of menu locations to populate menu combo box. */
-        menus: []
-    };
 
     const alphaSort = function (a, b) {
         return a.toUpperCase().localeCompare(b.toUpperCase());
@@ -303,20 +296,63 @@ ${data.desc.substring(0, 450)}
                 console.log("Successfully loaded plugin-index.json");
                 console.log(res);
 
-                for (let i = 0; i < res["plugin_index"].length; i++) {
-                    const plugin = new Plugin(res["plugin_index"][i]);
-                    const data = plugin.getData();
+                let authorOptions;
+                let menuOptions;
 
-                    if (parsed.authors.indexOf(data.author) === -1) {
-                        parsed.authors.push(data.author);
+                if ("groupBy" in Object) {
+                    res["plugin_index"].forEach(item => pluginIndex.push(new Plugin(item)));
+
+                    const pluginData = pluginIndex.map(plugin => plugin.getData());
+
+                    const authorGroups = Object.groupBy(pluginData, ({ author }) => author);
+                    authorOptions = Object.keys(authorGroups)
+                        .sort(alphaSort)
+                        .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name} (${authorGroups[name].length})</option>`)
+                        .join("");
+
+                    const menuGroups = Object.groupBy(pluginData, ({ menu }) => menu);
+                    menuOptions = Object.keys(menuGroups)
+                        .sort(alphaSort)
+                        .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
+                        .join("");
+                } else {
+                    // for old browsers without Object.groupBy()
+
+                    const parsed = {
+                        /** Unique list of plugin author names to populate author combo box. */
+                        authors: [],
+                        /** Unique list of menu locations to populate menu combo box. */
+                        menus: []
+                    };
+
+                    for (let i = 0; i < res["plugin_index"].length; i++) {
+                        const plugin = new Plugin(res["plugin_index"][i]);
+                        const data = plugin.getData();
+
+                        if (parsed.authors.indexOf(data.author) === -1) {
+                            parsed.authors.push(data.author);
+                        }
+
+                        if (parsed.menus.indexOf(data.menu) === -1) {
+                            parsed.menus.push(data.menu);
+                        }
+
+                        pluginIndex.push(plugin);
                     }
 
-                    if (parsed.menus.indexOf(data.menu) === -1) {
-                        parsed.menus.push(data.menu);
-                    }
+                    authorOptions = parsed.authors
+                        .sort(alphaSort)
+                        .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
+                        .join("");
 
-                    pluginIndex.push(plugin);
+                    menuOptions = parsed.menus
+                        .sort(alphaSort)
+                        .map((menu, index) => `<option value="${menu.trim().toLowerCase()}">${menu}</option>`)
+                        .join("");
                 }
+
+                controls.comboAuthors.insertAdjacentHTML("beforeend", authorOptions);
+                controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
 
                 // Default listing : Sort by newest release date
                 pluginIndex.sort((a, b) => {
@@ -327,19 +363,32 @@ ${data.desc.substring(0, 450)}
                     return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0;
                 });
 
-                const authorOptions = parsed.authors
-                    .sort(alphaSort)
-                    .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
-                    .join("");
+                // Update the counts on Status and Type dropdowns
+                const pluginStatuses = pluginIndex.map(plugin => plugin.getData().status);
+                const anyStatusCount = pluginStatuses.length;
+                const newCount = pluginStatuses.filter(status => equalsIgnoreCase(status, "New")).length;
+                const activeCount = pluginStatuses.filter(status => ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(status, x))).length;
+                const inactiveCount = anyStatusCount - activeCount;
 
-                controls.comboAuthors.insertAdjacentHTML("beforeend", authorOptions);
+                controls.comboPluginStatus.options[0].text += ` (${anyStatusCount})`;
+                controls.comboPluginStatus.options[1].text += ` (${newCount})`;
+                controls.comboPluginStatus.options[2].text += ` (${activeCount})`;
+                controls.comboPluginStatus.options[3].text += ` (${inactiveCount})`;
 
-                const menuOptions = parsed.menus
-                    .sort(alphaSort)
-                    .map((menu, index) => `<option value="${menu.trim().toLowerCase()}">${menu}</option>`)
-                    .join("");
+                const pluginTypes = pluginIndex.map(plugin => plugin.getData().type);
+                const anyTypeCount = pluginTypes.length;
+                const effectCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Effect")).length;
+                const adjustmentCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Adjustment")).length;
+                const filetypeCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Filetype")).length;
+                const packCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Plugin Pack")).length;
+                const externalCount = pluginTypes.filter(type => equalsIgnoreCase(type, "External Resource")).length;
 
-                controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
+                controls.comboPluginType.options[0].text += ` (${anyTypeCount})`;
+                controls.comboPluginType.options[1].text += ` (${effectCount})`;
+                controls.comboPluginType.options[2].text += ` (${adjustmentCount})`;
+                controls.comboPluginType.options[3].text += ` (${filetypeCount})`;
+                controls.comboPluginType.options[4].text += ` (${packCount})`;
+                controls.comboPluginType.options[5].text += ` (${externalCount})`;
 
                 internal.useSearchParams();
                 internal.refreshListing();

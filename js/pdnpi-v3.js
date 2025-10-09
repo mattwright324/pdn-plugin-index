@@ -456,16 +456,27 @@ ${data.desc.substring(0, 450)}
             });
 
             document.querySelector('#permalink-button').addEventListener('click', async () => {
+                const permalinkTooltip = bootstrap.Tooltip.getInstance('#permalink-button');
+                const permalinkIcon = document.querySelector('#permalink-icon');
+
                 try {
                     await navigator.clipboard.writeText(internal.buildPermalink());
-                    document.querySelector('#copiedToast .toast-body').textContent = 'Permalink copied to the clipboard.';
+                    permalinkTooltip.setContent({ '.tooltip-inner': 'Copied!' });
+                    permalinkIcon.classList.remove('bi-link-45deg', 'bi-check-lg', 'bi-x-circle');
+                    permalinkIcon.classList.add('bi-check-lg');
                 } catch (err) {
                     console.error('Failed to copy:', err);
-                    document.querySelector('#copiedToast .toast-body').textContent = 'Error copying Permalink to the clipboard.';
+                    permalinkTooltip.setContent({ '.tooltip-inner': 'Failed to copy' });
+                    permalinkIcon.classList.remove('bi-link-45deg', 'bi-check-lg', 'bi-x-circle');
+                    permalinkIcon.classList.add('bi-x-circle');
                 }
 
-                const toastNode = document.querySelector('#copiedToast');
-                bootstrap.Toast.getOrCreateInstance(toastNode).show();
+                // reset icon and tooltip after 2 seconds
+                setTimeout(() => {
+                    permalinkTooltip.setContent({ '.tooltip-inner': 'Copy Permalink' });
+                    permalinkIcon.classList.remove('bi-link-45deg', 'bi-check-lg', 'bi-x-circle');
+                    permalinkIcon.classList.add('bi-link-45deg');
+                }, 2000);
             });
 
             document.querySelector('#resetFilters').addEventListener('click', function() {

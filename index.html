@@ -145,16 +145,9 @@ revision : 1 October 2025
                             plugins found
                         </label>
                         <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light align-baseline"
-                            style="border:none">
-                            <i class="bi bi-link-45deg"></i> Copy Permalink
+                            style="border:none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Copy Permalink">
+                            <i id="permalink-icon" class="bi bi-link-45deg"></i>
                         </button>
-                        <div class="position-fixed bottom-0 left-0 p-3 align-baseline"
-                            style="z-index: 5; left: 0; bottom: 0;color: black;">
-                            <div id="copiedToast" class="toast hide" role="alert" aria-live="assertive"
-                                aria-atomic="true" data-bs-delay="2000">
-                                <div class="toast-body"></div>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-auto">
                         <label class="form-label w-auto align-baseline" for="order" style="margin: 0">Order by</label>

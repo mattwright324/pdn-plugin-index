@@ -471,6 +471,13 @@ ${data.desc.substring(0, 450)}
                     permalinkIcon.classList.add('bi-x-circle');
                 }
 
+                // remove focus after 1.9 seconds.
+                // this gives the tooltip's fade animation a head start of 100 ms.
+                // otherwise the tooltip text will change during the animation.
+                setTimeout(() => {
+                    permalinkIcon.parentElement.blur();
+                }, 1900);
+                
                 // reset icon and tooltip after 2 seconds
                 setTimeout(() => {
                     permalinkTooltip.setContent({ '.tooltip-inner': 'Copy Permalink' });

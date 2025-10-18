@@ -10,46 +10,49 @@ const pdnpi = (function () {
     /** Non-control elements */
     const elements = {};
 
-function timeSince(date) {
-  let seconds = Math.floor((new Date() - date) / 1000);
+    class Plugin {
+        constructor(data) {
+            this.data = data;
+            this.html = this.#dataToHtml(this.data);
+        }
 
-  const intervals = [
-    { label: "year", seconds: 31536000 },
-    { label: "month", seconds: 2592000 },
-    { label: "day", seconds: 86400 },
-    { label: "hour", seconds: 3600 },
-    { label: "minute", seconds: 60 },
-    { label: "second", seconds: 1 }
-  ];
+        #timeSince(date) {
+            let seconds = Math.floor((new Date() - date) / 1000);
 
-  const years = Math.floor(seconds / intervals[0].seconds);
-  seconds -= years * intervals[0].seconds;
+            const intervals = [
+                { label: "year", seconds: 31536000 },
+                { label: "month", seconds: 2592000 },
+                { label: "day", seconds: 86400 },
+                { label: "hour", seconds: 3600 },
+                { label: "minute", seconds: 60 },
+                { label: "second", seconds: 1 }
+            ];
 
-  const months = Math.floor(seconds / intervals[1].seconds);
+            const years = Math.floor(seconds / intervals[0].seconds);
+            seconds -= years * intervals[0].seconds;
 
-  if (years > 0) {
-    let result = "Released " + years + " year" + (years > 1 ? "s" : "");
-    if (months > 0) {
-      result += " " + months + " month" + (months > 1 ? "s" : "");
-    }
-    return result + " ago";
-  }
+            const months = Math.floor(seconds / intervals[1].seconds);
 
-  // Fallback: normal largest unit logic
-  for (let i = 1; i < intervals.length; i++) {
-    const count = Math.floor(seconds / intervals[i].seconds);
-    if (count >= 1) {
-      return "Released " + count + " " + intervals[i].label + (count > 1 ? "s" : "") + " ago";
-    }
-  }
+            if (years > 0) {
+                let result = "Released " + years + " year" + (years > 1 ? "s" : "");
+                if (months > 0) {
+                    result += " " + months + " month" + (months > 1 ? "s" : "");
+                }
+                return result + " ago";
+            }
 
-  return "just now";
-}
+            // Fallback: normal largest unit logic
+            for (let i = 1; i < intervals.length; i++) {
+                const count = Math.floor(seconds / intervals[i].seconds);
+                if (count >= 1) {
+                    return "Released " + count + " " + intervals[i].label + (count > 1 ? "s" : "") + " ago";
+                }
+            }
 
-    var aDay = 24 * 60 * 60 * 1000;
+            return "just now";
+        }
 
-    const format = {
-        dataToHtml: function (data) {
+        #dataToHtml(data) {
             const authorNameUrl = encodeURI(data.author.toLowerCase());
 
             let altLink = ''
@@ -61,7 +64,7 @@ function timeSince(date) {
 
             const dot = `<i class="bi bi-dot"></i>`
             const release = new Date(data.release);
-            const since = timeSince(new Date(release));
+            const since = this.#timeSince(new Date(release));
             const dlls = (data.dlls || "").split(",");
             const hoverdlls = (data.dlls || "").replace(/, /g, "\n").trim() || "N/A"; // replace comma-space with newline for dll tooltip
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
@@ -106,31 +109,18 @@ ${data.desc.substring(0, 450)}
                     </div>
                 </div>`.split("\n").map(s => s.trim()).join("\n");
         }
-    };
+    }
 
     function equalsIgnoreCase(a, b) {
         return String(a).toUpperCase() === String(b).toUpperCase();
     }
-
-    const Plugin = function (data) {
-        this.data = data;
-        this.html = format.dataToHtml(this.data);
-    };
-    Plugin.prototype = {
-        getData: function () {
-            return this.data;
-        },
-        getHtml: function () {
-            return this.html;
-        }
-    };
 
     /**
      * Disqualifying pattern, the first option that the plugin doesn't meet
      * returns false without checking the rest.
      */
     function shouldPluginDisplay(plugin) {
-        const data = plugin.getData();
+        const data = plugin.data;
 
         // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
@@ -302,7 +292,7 @@ ${data.desc.substring(0, 450)}
                 if ("groupBy" in Object) {
                     res["plugin_index"].forEach(item => pluginIndex.push(new Plugin(item)));
 
-                    const pluginData = pluginIndex.map(plugin => plugin.getData());
+                    const pluginData = pluginIndex.map(plugin => plugin.data);
 
                     const authorGroups = Object.groupBy(pluginData, ({ author }) => author);
                     authorOptions = Object.keys(authorGroups)
@@ -327,7 +317,7 @@ ${data.desc.substring(0, 450)}
 
                     for (let i = 0; i < res["plugin_index"].length; i++) {
                         const plugin = new Plugin(res["plugin_index"][i]);
-                        const data = plugin.getData();
+                        const data = plugin.data;
 
                         if (parsed.authors.indexOf(data.author) === -1) {
                             parsed.authors.push(data.author);
@@ -356,15 +346,15 @@ ${data.desc.substring(0, 450)}
 
                 // Default listing : Sort by newest release date
                 pluginIndex.sort((a, b) => {
-                    const dataA = a.getData();
-                    const dataB = b.getData();
+                    const dataA = a.data;
+                    const dataB = b.data;
                     const dateA = new Date(dataA.release);
                     const dateB = new Date(dataB.release);
                     return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0;
                 });
 
                 // Update the counts on Status and Type dropdowns
-                const pluginStatuses = pluginIndex.map(plugin => plugin.getData().status);
+                const pluginStatuses = pluginIndex.map(plugin => plugin.data.status);
                 const anyStatusCount = pluginStatuses.length;
                 const newCount = pluginStatuses.filter(status => equalsIgnoreCase(status, "New")).length;
                 const activeCount = pluginStatuses.filter(status => ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(status, x))).length;
@@ -375,7 +365,7 @@ ${data.desc.substring(0, 450)}
                 controls.comboPluginStatus.options[2].text += ` (${activeCount})`;
                 controls.comboPluginStatus.options[3].text += ` (${inactiveCount})`;
 
-                const pluginTypes = pluginIndex.map(plugin => plugin.getData().type);
+                const pluginTypes = pluginIndex.map(plugin => plugin.data.type);
                 const anyTypeCount = pluginTypes.length;
                 const effectCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Effect")).length;
                 const adjustmentCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Adjustment")).length;
@@ -621,8 +611,8 @@ ${data.desc.substring(0, 450)}
                     const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
 
                     pluginIndex.sort((a, b) => {
-                        const dataA = a.getData();
-                        const dataB = b.getData();
+                        const dataA = a.data;
+                        const dataB = b.data;
 
                         if (equalsIgnoreCase(order, "release_new")) {
                             // order by newest first
@@ -652,7 +642,7 @@ ${data.desc.substring(0, 450)}
                     const display = shouldPluginDisplay(plugin);
 
                     if (display) {
-                        html += plugin.getHtml();
+                        html += plugin.html;
                         displayCount++;
                     }
                 }
@@ -699,7 +689,7 @@ ${data.desc.substring(0, 450)}
             }
 
             pluginIndex.forEach(plugin => {
-                const data = plugin.getData();
+                const data = plugin.data;
 
                 if (!is.validDate(new Date(data.release))) {
                     logIssue(data, data.release, "INVALID DATE");

@@ -132,6 +132,7 @@ ${data.desc.substring(0, 450)}
     /**
      * Disqualifying pattern, the first option that the plugin doesn't meet
      * returns false without checking the rest.
+     * @param {Plugin} plugin
      */
     function shouldPluginDisplay(plugin) {
         // Check keywords if entered
@@ -219,7 +220,10 @@ ${data.desc.substring(0, 450)}
         return true;
     }
 
-    /** List of plugin objects */
+    /**
+     * List of plugin objects
+     * @type {Array.<Plugin>}
+     */
     const pluginIndex = [];
 
     const alphaSort = function (a, b) {

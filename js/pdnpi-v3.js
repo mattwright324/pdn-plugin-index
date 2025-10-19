@@ -12,9 +12,22 @@ const pdnpi = (function () {
 
     class Plugin {
         constructor(data) {
-            this.data = data;
-            this.html = this.#dataToHtml(this.data);
+            this.#data = data;
+            this.#html = this.#dataToHtml();
         }
+
+        #data;
+        #html;
+
+        get data() { return this.#data; }
+        get html() { return this.#html; }
+
+        get author() { return this.#data.author; }
+        get menu() { return this.#data.menu; }
+        get type() { return this.#data.type; }
+        get release() { return new Date(this.#data.release); }
+        get status() { return this.#data.status; }
+        get title() { return this.#data.title; }
 
         #timeSince(date) {
             let seconds = Math.floor((new Date() - date) / 1000);
@@ -52,7 +65,8 @@ const pdnpi = (function () {
             return "just now";
         }
 
-        #dataToHtml(data) {
+        #dataToHtml() {
+            const data = this.#data;
             const authorNameUrl = encodeURI(data.author.toLowerCase());
 
             let altLink = ''
@@ -120,8 +134,6 @@ ${data.desc.substring(0, 450)}
      * returns false without checking the rest.
      */
     function shouldPluginDisplay(plugin) {
-        const data = plugin.data;
-
         // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
         if (keywords) {
@@ -129,7 +141,7 @@ ${data.desc.substring(0, 450)}
 
             const upperKeywords = keywords.toUpperCase();
             const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu', 'dlls'];
-            const searchTexts = searchableFields.map(field => String(data[field]).toUpperCase());
+            const searchTexts = searchableFields.map(field => String(plugin.data[field]).toUpperCase());
 
             if (keywordStyle === 'any' || keywordStyle === 'all') {
                 const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
@@ -154,7 +166,7 @@ ${data.desc.substring(0, 450)}
         if (authorIndex > 0) {
             const authorName = controls.comboAuthors.options[authorIndex].value;
 
-            if (!equalsIgnoreCase(data.author, authorName)) {
+            if (!equalsIgnoreCase(plugin.author, authorName)) {
                 return false;
             }
         }
@@ -162,11 +174,11 @@ ${data.desc.substring(0, 450)}
         const pluginType = controls.comboPluginType.value.trim().toLowerCase();
         if (pluginType !== 'any') {
             let hide = true;
-            if (equalsIgnoreCase(data.type, "Effect") && pluginType === 'effect' ||
-                equalsIgnoreCase(data.type, "Adjustment") && pluginType === 'adjustment' ||
-                equalsIgnoreCase(data.type, "Filetype") && pluginType === 'filetype' ||
-                equalsIgnoreCase(data.type, "External Resource") && pluginType === 'external' ||
-                equalsIgnoreCase(data.type, "Plugin Pack") && pluginType === 'plugin-pack') {
+            if (equalsIgnoreCase(plugin.type, "Effect") && pluginType === 'effect' ||
+                equalsIgnoreCase(plugin.type, "Adjustment") && pluginType === 'adjustment' ||
+                equalsIgnoreCase(plugin.type, "Filetype") && pluginType === 'filetype' ||
+                equalsIgnoreCase(plugin.type, "External Resource") && pluginType === 'external' ||
+                equalsIgnoreCase(plugin.type, "Plugin Pack") && pluginType === 'plugin-pack') {
 
                 hide = false;
             }
@@ -179,19 +191,19 @@ ${data.desc.substring(0, 450)}
         const pluginStatus = controls.comboPluginStatus.value.trim().toLowerCase();
         // Check plugin status - case insensitive comparison
         if (pluginStatus === 'new') {
-            if (!equalsIgnoreCase(data.status, "New")) {
+            if (!equalsIgnoreCase(plugin.status, "New")) {
                 return false;
             }
         } else if (pluginStatus === 'active') {
             // Show if New, Active or Bundled 
             const activeStatuses = ["New", "Active", "Bundled"];
-            if (!activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
+            if (!activeStatuses.some(status => equalsIgnoreCase(plugin.status, status))) {
                 return false;
             }
         } else if (pluginStatus === 'inactive') {
             // Show if status is anything except New, Active or Bundled
             const activeStatuses = ["New", "Active", "Bundled"];
-            if (activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
+            if (activeStatuses.some(status => equalsIgnoreCase(plugin.status, status))) {
                 return false;
             }
         }
@@ -200,7 +212,7 @@ ${data.desc.substring(0, 450)}
         if (menuIndex > 0) {
             const menuText = controls.comboMenu.options[menuIndex].text;
 
-            if (!equalsIgnoreCase(data.menu, menuText)) {
+            if (!equalsIgnoreCase(plugin.menu, menuText)) {
                 return false;
             }
         }
@@ -292,15 +304,13 @@ ${data.desc.substring(0, 450)}
                 if ("groupBy" in Object) {
                     res["plugin_index"].forEach(item => pluginIndex.push(new Plugin(item)));
 
-                    const pluginData = pluginIndex.map(plugin => plugin.data);
-
-                    const authorGroups = Object.groupBy(pluginData, ({ author }) => author);
+                    const authorGroups = Object.groupBy(pluginIndex, ({ author }) => author);
                     authorOptions = Object.keys(authorGroups)
                         .sort(alphaSort)
                         .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name} (${authorGroups[name].length})</option>`)
                         .join("");
 
-                    const menuGroups = Object.groupBy(pluginData, ({ menu }) => menu);
+                    const menuGroups = Object.groupBy(pluginIndex, ({ menu }) => menu);
                     menuOptions = Object.keys(menuGroups)
                         .sort(alphaSort)
                         .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
@@ -317,14 +327,13 @@ ${data.desc.substring(0, 450)}
 
                     for (let i = 0; i < res["plugin_index"].length; i++) {
                         const plugin = new Plugin(res["plugin_index"][i]);
-                        const data = plugin.data;
 
-                        if (parsed.authors.indexOf(data.author) === -1) {
-                            parsed.authors.push(data.author);
+                        if (parsed.authors.indexOf(plugin.author) === -1) {
+                            parsed.authors.push(plugin.author);
                         }
 
-                        if (parsed.menus.indexOf(data.menu) === -1) {
-                            parsed.menus.push(data.menu);
+                        if (parsed.menus.indexOf(plugin.menu) === -1) {
+                            parsed.menus.push(plugin.menu);
                         }
 
                         pluginIndex.push(plugin);
@@ -346,15 +355,11 @@ ${data.desc.substring(0, 450)}
 
                 // Default listing : Sort by newest release date
                 pluginIndex.sort((a, b) => {
-                    const dataA = a.data;
-                    const dataB = b.data;
-                    const dateA = new Date(dataA.release);
-                    const dateB = new Date(dataB.release);
-                    return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0;
+                    return (a.release < b.release) ? 1 : (a.release > b.release) ? -1 : 0;
                 });
 
                 // Update the counts on Status and Type dropdowns
-                const pluginStatuses = pluginIndex.map(plugin => plugin.data.status);
+                const pluginStatuses = pluginIndex.map(plugin => plugin.status);
                 const anyStatusCount = pluginStatuses.length;
                 const newCount = pluginStatuses.filter(status => equalsIgnoreCase(status, "New")).length;
                 const activeCount = pluginStatuses.filter(status => ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(status, x))).length;
@@ -365,7 +370,7 @@ ${data.desc.substring(0, 450)}
                 controls.comboPluginStatus.options[2].text += ` (${activeCount})`;
                 controls.comboPluginStatus.options[3].text += ` (${inactiveCount})`;
 
-                const pluginTypes = pluginIndex.map(plugin => plugin.data.type);
+                const pluginTypes = pluginIndex.map(plugin => plugin.type);
                 const anyTypeCount = pluginTypes.length;
                 const effectCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Effect")).length;
                 const adjustmentCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Adjustment")).length;
@@ -611,25 +616,18 @@ ${data.desc.substring(0, 450)}
                     const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
 
                     pluginIndex.sort((a, b) => {
-                        const dataA = a.data;
-                        const dataB = b.data;
-
                         if (equalsIgnoreCase(order, "release_new")) {
                             // order by newest first
-                            a = new Date(dataA.release);
-                            b = new Date(dataB.release);
-                            return (a < b) ? 1 : (a > b) ? -1 : 0;
+                            return (a.release < b.release) ? 1 : (a.release > b.release) ? -1 : 0;
                         } else if (equalsIgnoreCase(order, "release_old")) {
                             // order by oldest first
-                            a = new Date(dataA.release);
-                            b = new Date(dataB.release);
-                            return (a > b) ? 1 : (a < b) ? -1 : 0;
+                            return (a.release > b.release) ? 1 : (a.release < b.release) ? -1 : 0;
                         } else if (equalsIgnoreCase(order, "title")) {
-                            return alphaSort(dataA.title, dataB.title);
+                            return alphaSort(a.title, b.title);
                         } else if (equalsIgnoreCase(order, "author")) {
-                            return alphaSort(dataA.author, dataB.author);
+                            return alphaSort(a.author, b.author);
                         } else if (equalsIgnoreCase(order, "menu")) {
-                            return alphaSort(dataA.menu, dataB.menu);
+                            return alphaSort(a.menu, b.menu);
                         }
                     });
                 }

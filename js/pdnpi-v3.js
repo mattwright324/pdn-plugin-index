@@ -29,6 +29,9 @@ const pdnpi = (function () {
         get status() { return this.#data.status; }
         get title() { return this.#data.title; }
 
+        get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }
+        get isActive() { return ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(this.#data.status, x)); }
+
         #timeSince(date) {
             let seconds = Math.floor((new Date() - date) / 1000);
 
@@ -190,21 +193,18 @@ ${data.desc.substring(0, 450)}
         }
 
         const pluginStatus = controls.comboPluginStatus.value.trim().toLowerCase();
-        // Check plugin status - case insensitive comparison
         if (pluginStatus === 'new') {
-            if (!equalsIgnoreCase(plugin.status, "New")) {
+            if (!plugin.isNew) {
                 return false;
             }
         } else if (pluginStatus === 'active') {
             // Show if New, Active or Bundled 
-            const activeStatuses = ["New", "Active", "Bundled"];
-            if (!activeStatuses.some(status => equalsIgnoreCase(plugin.status, status))) {
+            if (!plugin.isActive) {
                 return false;
             }
         } else if (pluginStatus === 'inactive') {
             // Show if status is anything except New, Active or Bundled
-            const activeStatuses = ["New", "Active", "Bundled"];
-            if (activeStatuses.some(status => equalsIgnoreCase(plugin.status, status))) {
+            if (plugin.isActive) {
                 return false;
             }
         }
@@ -363,26 +363,24 @@ ${data.desc.substring(0, 450)}
                 });
 
                 // Update the counts on Status and Type dropdowns
-                const pluginStatuses = pluginIndex.map(plugin => plugin.status);
-                const anyStatusCount = pluginStatuses.length;
-                const newCount = pluginStatuses.filter(status => equalsIgnoreCase(status, "New")).length;
-                const activeCount = pluginStatuses.filter(status => ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(status, x))).length;
-                const inactiveCount = anyStatusCount - activeCount;
+                const anyCount = pluginIndex.length;
 
-                controls.comboPluginStatus.options[0].text += ` (${anyStatusCount})`;
+                const newCount = pluginIndex.filter(plugin => plugin.isNew).length;
+                const activeCount = pluginIndex.filter(plugin => plugin.isActive).length;
+                const inactiveCount = anyCount - activeCount;
+
+                controls.comboPluginStatus.options[0].text += ` (${anyCount})`;
                 controls.comboPluginStatus.options[1].text += ` (${newCount})`;
                 controls.comboPluginStatus.options[2].text += ` (${activeCount})`;
                 controls.comboPluginStatus.options[3].text += ` (${inactiveCount})`;
 
-                const pluginTypes = pluginIndex.map(plugin => plugin.type);
-                const anyTypeCount = pluginTypes.length;
-                const effectCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Effect")).length;
-                const adjustmentCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Adjustment")).length;
-                const filetypeCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Filetype")).length;
-                const packCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Plugin Pack")).length;
-                const externalCount = pluginTypes.filter(type => equalsIgnoreCase(type, "External Resource")).length;
+                const effectCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Effect")).length;
+                const adjustmentCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Adjustment")).length;
+                const filetypeCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Filetype")).length;
+                const packCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Plugin Pack")).length;
+                const externalCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "External Resource")).length;
 
-                controls.comboPluginType.options[0].text += ` (${anyTypeCount})`;
+                controls.comboPluginType.options[0].text += ` (${anyCount})`;
                 controls.comboPluginType.options[1].text += ` (${effectCount})`;
                 controls.comboPluginType.options[2].text += ` (${adjustmentCount})`;
                 controls.comboPluginType.options[3].text += ` (${filetypeCount})`;

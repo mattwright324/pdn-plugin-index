@@ -26,7 +26,6 @@ const pdnpi = (function () {
         get menu() { return this.#data.menu; }
         get type() { return this.#data.type; }
         get release() { return new Date(this.#data.release); }
-        get status() { return this.#data.status; }
         get title() { return this.#data.title; }
 
         get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }

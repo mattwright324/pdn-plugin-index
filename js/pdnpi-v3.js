@@ -31,7 +31,7 @@ const pdnpi = (function () {
         get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }
         get isActive() { return ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(this.#data.status, x)); }
 
-        #timeSince(date) {
+        static #timeSince(date) {
             let seconds = Math.floor((new Date() - date) / 1000);
 
             const intervals = [
@@ -80,7 +80,7 @@ const pdnpi = (function () {
 
             const dot = `<i class="bi bi-dot"></i>`
             const release = new Date(data.release);
-            const since = this.#timeSince(new Date(release));
+            const since = Plugin.#timeSince(new Date(release));
             const dlls = (data.dlls || "").split(",");
             const hoverdlls = (data.dlls || "").replace(/, /g, "\n").trim() || "N/A"; // replace comma-space with newline for dll tooltip
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;

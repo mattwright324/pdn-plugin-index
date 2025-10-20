@@ -31,6 +31,79 @@ const pdnpi = (function () {
         get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }
         get isActive() { return ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(this.#data.status, x)); }
 
+        validate() {
+            const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
+            const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
+            const is = {
+                validNumber(value) {
+                    return typeof value === "number" && !isNaN(value) && value > 0;
+                },
+                validDate(value) {
+                    return value instanceof Date && !isNaN(value);
+                },
+                validType(value) {
+                    return typeof value === "string" && types.has(value.toLowerCase());
+                },
+                validStatus(value) {
+                    return typeof value === "string" && statuses.has(value.toLowerCase());
+                },
+                emptyString(value) {
+                    // Source: https://stackoverflow.com/a/36328062/2650847
+                    return typeof value === 'undefined' || !value ||
+                        value.length === 0 || value === "" || !/[^\s]/.test(value) ||
+                        /^\s*$/.test(value) || value.replace(/\s/g, "") === "";
+                }
+            };
+
+            const issues = []
+
+            const logIssue = (data, value, reason) => {
+                issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
+                console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
+            }
+
+            const data = this.#data;
+
+            if (!is.validDate(new Date(data.release))) {
+                logIssue(data, data.release, "INVALID DATE");
+            }
+            if (!is.validNumber(data.topic_id)) {
+                logIssue(data, data.topic_id, "INVALID TOPIC_ID");
+            }
+            if (!is.validNumber(data.author_id)) {
+                logIssue(data, data.author_id, "INVALID AUTHOR ID");
+            }
+            if (data.alt_topic && !is.validNumber(data.alt_topic)) {
+                logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
+            }
+            if (!is.validType(String(data.type))) {
+                logIssue(data, data.type, "INVALID TYPE");
+            }
+            if (!is.validStatus(String(data.status))) {
+                logIssue(data, data.status, "INVALID STATUS");
+            }
+            if (is.emptyString(String(data.title))) {
+                logIssue(data, data.title, "EMPTY TITLE");
+            }
+            if (is.emptyString(String(data.author))) {
+                logIssue(data, data.author, "EMPTY AUTHOR");
+            }
+            if (is.emptyString(String(data.desc))) {
+                logIssue(data, data.author, "EMPTY DESC");
+            }
+            if (is.emptyString(String(data.compatibility))) {
+                logIssue(data, data.compatibility, "EMPTY COMPAT");
+            }
+            if (is.emptyString(String(data.menu))) {
+                logIssue(data, data.menu, "EMPTY MENU");
+            }
+            if (is.emptyString(String(data.dlls))) {
+                logIssue(data, data.dlls, "EMPTY DLLS");
+            }
+
+            return issues;
+        }
+
         static #timeSince(date) {
             let seconds = Math.floor((new Date() - date) / 1000);
 
@@ -655,81 +728,12 @@ ${data.desc.substring(0, 450)}
         },
 
         dataIntegrity: function () {
-            const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
-            const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
-            const is = {
-                validNumber(value) {
-                    return typeof value === "number" && !isNaN(value) && value > 0;
-                },
-                validDate(value) {
-                    return value instanceof Date && !isNaN(value);
-                },
-                validType(value) {
-                    return typeof value === "string" && types.has(value.toLowerCase());
-                },
-                validStatus(value) {
-                    return typeof value === "string" && statuses.has(value.toLowerCase());
-                },
-                emptyString(value) {
-                    // Source: https://stackoverflow.com/a/36328062/2650847
-                    return typeof value === 'undefined' || !value ||
-                        value.length === 0 || value === "" || !/[^\s]/.test(value) ||
-                        /^\s*$/.test(value) || value.replace(/\s/g, "") === "";
-                }
-            };
+            const issues = pluginIndex
+                .map(plugin => plugin.validate())
+                .flat();
 
-            let issueCount = 0;
-            const issues = []
-
-            function logIssue(data, value, reason) {
-                issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
-                console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
-                issueCount++;
-            }
-
-            pluginIndex.forEach(plugin => {
-                const data = plugin.data;
-
-                if (!is.validDate(new Date(data.release))) {
-                    logIssue(data, data.release, "INVALID DATE");
-                }
-                if (!is.validNumber(data.topic_id)) {
-                    logIssue(data, data.topic_id, "INVALID TOPIC_ID");
-                }
-                if (!is.validNumber(data.author_id)) {
-                    logIssue(data, data.author_id, "INVALID AUTHOR ID");
-                }
-                if (data.alt_topic && !is.validNumber(data.alt_topic)) {
-                    logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
-                }
-                if (!is.validType(String(data.type))) {
-                    logIssue(data, data.type, "INVALID TYPE");
-                }
-                if (!is.validStatus(String(data.status))) {
-                    logIssue(data, data.status, "INVALID STATUS");
-                }
-                if (is.emptyString(String(data.title))) {
-                    logIssue(data, data.title, "EMPTY TITLE");
-                }
-                if (is.emptyString(String(data.author))) {
-                    logIssue(data, data.author, "EMPTY AUTHOR");
-                }
-                if (is.emptyString(String(data.desc))) {
-                    logIssue(data, data.author, "EMPTY DESC");
-                }
-                if (is.emptyString(String(data.compatibility))) {
-                    logIssue(data, data.compatibility, "EMPTY COMPAT");
-                }
-                if (is.emptyString(String(data.menu))) {
-                    logIssue(data, data.menu, "EMPTY MENU");
-                }
-                if (is.emptyString(String(data.dlls))) {
-                    logIssue(data, data.dlls, "EMPTY DLLS");
-                }
-            });
-
-            console.log("%cFound " + issueCount + " data issues", "font-weight:700;" +
-                (issueCount > 0 ? "color:red;" : "color:green"));
+            console.log("%cFound " + issues.length + " data issues", "font-weight:700;" +
+                (issues.length > 0 ? "color:red;" : "color:green"));
 
             return issues;
         }

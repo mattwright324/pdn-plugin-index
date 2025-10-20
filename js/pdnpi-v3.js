@@ -19,10 +19,11 @@ const pdnpi = (function () {
         #data;
         #html;
 
-        get data() { return this.#data; }
         get html() { return this.#html; }
 
+        // a few of these have 0 references, but do get called through bracket notation. i.e. plugin['fieldName']
         get author() { return this.#data.author; }
+        get desc() { return this.#data.desc; }
         get menu() { return this.#data.menu; }
         get type() { return this.#data.type; }
         get release() { return new Date(this.#data.release); }
@@ -217,7 +218,6 @@ ${data.desc.substring(0, 450)}
 
             const upperKeywords = keywords.toUpperCase();
             const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu', 'dlls'];
-            const searchTexts = searchableFields.map(field => String(plugin.data[field]).toUpperCase());
 
             if (keywordStyle === 'any' || keywordStyle === 'all') {
                 const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);

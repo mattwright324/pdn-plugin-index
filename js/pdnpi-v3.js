@@ -145,14 +145,14 @@ const pdnpi = (function () {
             const data = this.#data;
             const authorNameUrl = encodeURI(data.author.toLowerCase());
 
-            let altLink = ''
+            let altLink = '';
             if (data.hasOwnProperty('alt_topic') && data.alt_topic !== '') {
                 altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}-i">
                                 #${data.alt_topic}
-                           </a></sp>`
+                           </a></sp>`;
             }
 
-            const dot = `<i class="bi bi-dot"></i>`
+            const dot = `<i class="bi bi-dot"></i>`;
             const release = new Date(data.release);
             const since = Plugin.#timeSince(new Date(release));
             const dlls = (data.dlls || "").split(",");
@@ -303,14 +303,6 @@ ${data.desc.substring(0, 450)}
         return a.toUpperCase().localeCompare(b.toUpperCase());
     };
 
-    const pluginTypes = {
-        effect: 1,
-        adjustment: 2,
-        filetype: 4,
-        external: 8,
-        pluginPack: 16
-    };
-
     const searchParamKeys = {
         keywords: 'keywords',
         keywordStyle: 'keywordStyle',
@@ -321,23 +313,12 @@ ${data.desc.substring(0, 450)}
         menu: 'menu'
     };
 
-    // Update status constants to match radio buttons
-    const pluginStatuses = {
-        new: 'new',
-        active: 'active',
-        inactive: 'inactive'
-    };
-
     function debounce(func, wait) {
         let timeout;
         return function (...args) {
             clearTimeout(timeout);
             timeout = setTimeout(() => func.apply(this, args), wait);
         };
-    }
-
-    function hasFlag(num, flag) {
-        return (num & flag) === flag;
     }
 
     const internal = {
@@ -494,24 +475,6 @@ ${data.desc.substring(0, 450)}
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
             [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-            // Add missing checkBehavior function
-            function checkBehavior(allCheck, subChecks) {
-                allCheck.addEventListener("change", function () {
-                    subChecks.forEach(check => {
-                        check.checked = !allCheck.checked;
-                    });
-                    internal.refreshListing();
-                });
-                subChecks.forEach(check => check.addEventListener("change", function () {
-                    if (check.checked) {
-                        allCheck.checked = false;
-                    } else if (subChecks.every(c => !c.checked)) {
-                        allCheck.checked = true;
-                    }
-                    internal.refreshListing();
-                }));
-            }
-
             // Keyword search controls
             const debouncedRefresh = debounce(() => internal.refreshListing(), 150);
             controls.inputKeywords.addEventListener('input', debouncedRefresh);
@@ -578,7 +541,7 @@ ${data.desc.substring(0, 450)}
                     left: 0,
                     behavior: "smooth",
                 });
-            })
+            });
         },
         useSearchParams: function () {
             const allFoundParams = new URL(window.location).searchParams;
@@ -588,7 +551,7 @@ ${data.desc.substring(0, 450)}
                     acc[name] = allFoundParams.get(key)?.trim();
                     return acc;
                 }, {});
-            console.log('Search Params', params)
+            console.log('Search Params', params);
 
             // Load all URL parameters into controls
             if (params.keywords) {
@@ -707,18 +670,13 @@ ${data.desc.substring(0, 450)}
                     });
                 }
 
-                let html = "";
-                let displayCount = 0;
-                for (let i = 0; i < pluginIndex.length; i++) {
-                    const plugin = pluginIndex[i];
+                const pluginsToDisplay = pluginIndex
+                    .filter(plugin => shouldPluginDisplay(plugin))
+                    .map(plugin => plugin.html);
 
-                    const display = shouldPluginDisplay(plugin);
+                const html = pluginsToDisplay.join("");
+                const displayCount = pluginsToDisplay.length;
 
-                    if (display) {
-                        html += plugin.html;
-                        displayCount++;
-                    }
-                }
                 elements.divPluginList.replaceChildren();
                 elements.divPluginList.insertAdjacentHTML("afterbegin", html);
                 elements.badgePluginCount.textContent = `${displayCount} / ${pluginIndex.length}`;

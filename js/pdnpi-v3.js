@@ -19,20 +19,18 @@ const pdnpi = (function () {
         #data;
         #html;
 
-        get html() { return this.#html; }
-
         // a few of these have 0 references, but do get called through bracket notation. i.e. plugin['fieldName']
         get author() { return this.#data.author; }
         get desc() { return this.#data.desc; }
         get dlls() { return this.#data.dlls; }
-        get menu() { return this.#data.menu; }
-        get status() { return this.#data.status; }
-        get type() { return this.#data.type; }
-        get release() { return new Date(this.#data.release); }
-        get title() { return this.#data.title; }
-
-        get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }
+        get html() { return this.#html; }
         get isActive() { return ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(this.#data.status, x)); }
+        get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }
+        get menu() { return this.#data.menu; }
+        get release() { return new Date(this.#data.release); }
+        get status() { return this.#data.status; }
+        get title() { return this.#data.title; }
+        get type() { return this.#data.type; }
 
         validate() {
             const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
@@ -58,12 +56,12 @@ const pdnpi = (function () {
                 }
             };
 
-            const issues = []
+            const issues = [];
 
             const logIssue = (data, value, reason) => {
                 issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
                 console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
-            }
+            };
 
             const data = this.#data;
 

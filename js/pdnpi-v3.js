@@ -10,46 +10,139 @@ const pdnpi = (function () {
     /** Non-control elements */
     const elements = {};
 
-function timeSince(date) {
-  let seconds = Math.floor((new Date() - date) / 1000);
+    class Plugin {
+        constructor(data) {
+            this.#data = data;
+            this.#html = this.#dataToHtml();
+        }
 
-  const intervals = [
-    { label: "year", seconds: 31536000 },
-    { label: "month", seconds: 2592000 },
-    { label: "day", seconds: 86400 },
-    { label: "hour", seconds: 3600 },
-    { label: "minute", seconds: 60 },
-    { label: "second", seconds: 1 }
-  ];
+        #data;
+        #html;
 
-  const years = Math.floor(seconds / intervals[0].seconds);
-  seconds -= years * intervals[0].seconds;
+        // a few of these have 0 references, but do get called through bracket notation. i.e. plugin['fieldName']
+        get author() { return this.#data.author; }
+        get desc() { return this.#data.desc; }
+        get dlls() { return this.#data.dlls; }
+        get html() { return this.#html; }
+        get isActive() { return ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(this.#data.status, x)); }
+        get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }
+        get menu() { return this.#data.menu; }
+        get release() { return new Date(this.#data.release); }
+        get status() { return this.#data.status; }
+        get title() { return this.#data.title; }
+        get type() { return this.#data.type; }
 
-  const months = Math.floor(seconds / intervals[1].seconds);
+        validate() {
+            const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
+            const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
+            const is = {
+                validNumber(value) {
+                    return typeof value === "number" && !isNaN(value) && value > 0;
+                },
+                validDate(value) {
+                    return value instanceof Date && !isNaN(value);
+                },
+                validType(value) {
+                    return typeof value === "string" && types.has(value.toLowerCase());
+                },
+                validStatus(value) {
+                    return typeof value === "string" && statuses.has(value.toLowerCase());
+                },
+                emptyString(value) {
+                    // Source: https://stackoverflow.com/a/36328062/2650847
+                    return typeof value === 'undefined' || !value ||
+                        value.length === 0 || value === "" || !/[^\s]/.test(value) ||
+                        /^\s*$/.test(value) || value.replace(/\s/g, "") === "";
+                }
+            };
 
-  if (years > 0) {
-    let result = "Released " + years + " year" + (years > 1 ? "s" : "");
-    if (months > 0) {
-      result += " " + months + " month" + (months > 1 ? "s" : "");
-    }
-    return result + " ago";
-  }
+            const issues = [];
 
-  // Fallback: normal largest unit logic
-  for (let i = 1; i < intervals.length; i++) {
-    const count = Math.floor(seconds / intervals[i].seconds);
-    if (count >= 1) {
-      return "Released " + count + " " + intervals[i].label + (count > 1 ? "s" : "") + " ago";
-    }
-  }
+            const logIssue = (data, value, reason) => {
+                issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
+                console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
+            };
 
-  return "just now";
-}
+            const data = this.#data;
 
-    var aDay = 24 * 60 * 60 * 1000;
+            if (!is.validDate(new Date(data.release))) {
+                logIssue(data, data.release, "INVALID DATE");
+            }
+            if (!is.validNumber(data.topic_id)) {
+                logIssue(data, data.topic_id, "INVALID TOPIC_ID");
+            }
+            if (!is.validNumber(data.author_id)) {
+                logIssue(data, data.author_id, "INVALID AUTHOR ID");
+            }
+            if (data.alt_topic && !is.validNumber(data.alt_topic)) {
+                logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
+            }
+            if (!is.validType(String(data.type))) {
+                logIssue(data, data.type, "INVALID TYPE");
+            }
+            if (!is.validStatus(String(data.status))) {
+                logIssue(data, data.status, "INVALID STATUS");
+            }
+            if (is.emptyString(String(data.title))) {
+                logIssue(data, data.title, "EMPTY TITLE");
+            }
+            if (is.emptyString(String(data.author))) {
+                logIssue(data, data.author, "EMPTY AUTHOR");
+            }
+            if (is.emptyString(String(data.desc))) {
+                logIssue(data, data.author, "EMPTY DESC");
+            }
+            if (is.emptyString(String(data.compatibility))) {
+                logIssue(data, data.compatibility, "EMPTY COMPAT");
+            }
+            if (is.emptyString(String(data.menu))) {
+                logIssue(data, data.menu, "EMPTY MENU");
+            }
+            if (is.emptyString(String(data.dlls))) {
+                logIssue(data, data.dlls, "EMPTY DLLS");
+            }
 
-    const format = {
-        dataToHtml: function (data) {
+            return issues;
+        }
+
+        static #timeSince(date) {
+            let seconds = Math.floor((new Date() - date) / 1000);
+
+            const intervals = [
+                { label: "year", seconds: 31536000 },
+                { label: "month", seconds: 2592000 },
+                { label: "day", seconds: 86400 },
+                { label: "hour", seconds: 3600 },
+                { label: "minute", seconds: 60 },
+                { label: "second", seconds: 1 }
+            ];
+
+            const years = Math.floor(seconds / intervals[0].seconds);
+            seconds -= years * intervals[0].seconds;
+
+            const months = Math.floor(seconds / intervals[1].seconds);
+
+            if (years > 0) {
+                let result = "Released " + years + " year" + (years > 1 ? "s" : "");
+                if (months > 0) {
+                    result += " " + months + " month" + (months > 1 ? "s" : "");
+                }
+                return result + " ago";
+            }
+
+            // Fallback: normal largest unit logic
+            for (let i = 1; i < intervals.length; i++) {
+                const count = Math.floor(seconds / intervals[i].seconds);
+                if (count >= 1) {
+                    return "Released " + count + " " + intervals[i].label + (count > 1 ? "s" : "") + " ago";
+                }
+            }
+
+            return "just now";
+        }
+
+        #dataToHtml() {
+            const data = this.#data;
             const authorNameUrl = encodeURI(data.author.toLowerCase());
 
             let altLink = ''
@@ -61,7 +154,7 @@ function timeSince(date) {
 
             const dot = `<i class="bi bi-dot"></i>`
             const release = new Date(data.release);
-            const since = timeSince(new Date(release));
+            const since = Plugin.#timeSince(new Date(release));
             const dlls = (data.dlls || "").split(",");
             const hoverdlls = (data.dlls || "").replace(/, /g, "\n").trim() || "N/A"; // replace comma-space with newline for dll tooltip
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
@@ -106,32 +199,18 @@ ${data.desc.substring(0, 450)}
                     </div>
                 </div>`.split("\n").map(s => s.trim()).join("\n");
         }
-    };
+    }
 
     function equalsIgnoreCase(a, b) {
         return String(a).toUpperCase() === String(b).toUpperCase();
     }
 
-    const Plugin = function (data) {
-        this.data = data;
-        this.html = format.dataToHtml(this.data);
-    };
-    Plugin.prototype = {
-        getData: function () {
-            return this.data;
-        },
-        getHtml: function () {
-            return this.html;
-        }
-    };
-
     /**
      * Disqualifying pattern, the first option that the plugin doesn't meet
      * returns false without checking the rest.
+     * @param {Plugin} plugin
      */
     function shouldPluginDisplay(plugin) {
-        const data = plugin.getData();
-
         // Check keywords if entered
         const keywords = controls.inputKeywords.value.trim();
         if (keywords) {
@@ -139,7 +218,7 @@ ${data.desc.substring(0, 450)}
 
             const upperKeywords = keywords.toUpperCase();
             const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu', 'dlls'];
-            const searchTexts = searchableFields.map(field => String(data[field]).toUpperCase());
+            const searchTexts = searchableFields.map(field => String(plugin[field]).toUpperCase());
 
             if (keywordStyle === 'any' || keywordStyle === 'all') {
                 const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
@@ -164,7 +243,7 @@ ${data.desc.substring(0, 450)}
         if (authorIndex > 0) {
             const authorName = controls.comboAuthors.options[authorIndex].value;
 
-            if (!equalsIgnoreCase(data.author, authorName)) {
+            if (!equalsIgnoreCase(plugin.author, authorName)) {
                 return false;
             }
         }
@@ -172,11 +251,11 @@ ${data.desc.substring(0, 450)}
         const pluginType = controls.comboPluginType.value.trim().toLowerCase();
         if (pluginType !== 'any') {
             let hide = true;
-            if (equalsIgnoreCase(data.type, "Effect") && pluginType === 'effect' ||
-                equalsIgnoreCase(data.type, "Adjustment") && pluginType === 'adjustment' ||
-                equalsIgnoreCase(data.type, "Filetype") && pluginType === 'filetype' ||
-                equalsIgnoreCase(data.type, "External Resource") && pluginType === 'external' ||
-                equalsIgnoreCase(data.type, "Plugin Pack") && pluginType === 'plugin-pack') {
+            if (equalsIgnoreCase(plugin.type, "Effect") && pluginType === 'effect' ||
+                equalsIgnoreCase(plugin.type, "Adjustment") && pluginType === 'adjustment' ||
+                equalsIgnoreCase(plugin.type, "Filetype") && pluginType === 'filetype' ||
+                equalsIgnoreCase(plugin.type, "External Resource") && pluginType === 'external' ||
+                equalsIgnoreCase(plugin.type, "Plugin Pack") && pluginType === 'plugin-pack') {
 
                 hide = false;
             }
@@ -187,21 +266,18 @@ ${data.desc.substring(0, 450)}
         }
 
         const pluginStatus = controls.comboPluginStatus.value.trim().toLowerCase();
-        // Check plugin status - case insensitive comparison
         if (pluginStatus === 'new') {
-            if (!equalsIgnoreCase(data.status, "New")) {
+            if (!plugin.isNew) {
                 return false;
             }
         } else if (pluginStatus === 'active') {
             // Show if New, Active or Bundled 
-            const activeStatuses = ["New", "Active", "Bundled"];
-            if (!activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
+            if (!plugin.isActive) {
                 return false;
             }
         } else if (pluginStatus === 'inactive') {
             // Show if status is anything except New, Active or Bundled
-            const activeStatuses = ["New", "Active", "Bundled"];
-            if (activeStatuses.some(status => equalsIgnoreCase(data.status, status))) {
+            if (plugin.isActive) {
                 return false;
             }
         }
@@ -210,14 +286,17 @@ ${data.desc.substring(0, 450)}
         if (menuIndex > 0) {
             const menuText = controls.comboMenu.options[menuIndex].text;
 
-            if (!equalsIgnoreCase(data.menu, menuText)) {
+            if (!equalsIgnoreCase(plugin.menu, menuText)) {
                 return false;
             }
         }
         return true;
     }
 
-    /** List of plugin objects */
+    /**
+     * List of plugin objects
+     * @type {Array.<Plugin>}
+     */
     const pluginIndex = [];
 
     const alphaSort = function (a, b) {
@@ -302,15 +381,13 @@ ${data.desc.substring(0, 450)}
                 if ("groupBy" in Object) {
                     res["plugin_index"].forEach(item => pluginIndex.push(new Plugin(item)));
 
-                    const pluginData = pluginIndex.map(plugin => plugin.getData());
-
-                    const authorGroups = Object.groupBy(pluginData, ({ author }) => author);
+                    const authorGroups = Object.groupBy(pluginIndex, ({ author }) => author);
                     authorOptions = Object.keys(authorGroups)
                         .sort(alphaSort)
                         .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name} (${authorGroups[name].length})</option>`)
                         .join("");
 
-                    const menuGroups = Object.groupBy(pluginData, ({ menu }) => menu);
+                    const menuGroups = Object.groupBy(pluginIndex, ({ menu }) => menu);
                     menuOptions = Object.keys(menuGroups)
                         .sort(alphaSort)
                         .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
@@ -327,14 +404,13 @@ ${data.desc.substring(0, 450)}
 
                     for (let i = 0; i < res["plugin_index"].length; i++) {
                         const plugin = new Plugin(res["plugin_index"][i]);
-                        const data = plugin.getData();
 
-                        if (parsed.authors.indexOf(data.author) === -1) {
-                            parsed.authors.push(data.author);
+                        if (parsed.authors.indexOf(plugin.author) === -1) {
+                            parsed.authors.push(plugin.author);
                         }
 
-                        if (parsed.menus.indexOf(data.menu) === -1) {
-                            parsed.menus.push(data.menu);
+                        if (parsed.menus.indexOf(plugin.menu) === -1) {
+                            parsed.menus.push(plugin.menu);
                         }
 
                         pluginIndex.push(plugin);
@@ -356,34 +432,28 @@ ${data.desc.substring(0, 450)}
 
                 // Default listing : Sort by newest release date
                 pluginIndex.sort((a, b) => {
-                    const dataA = a.getData();
-                    const dataB = b.getData();
-                    const dateA = new Date(dataA.release);
-                    const dateB = new Date(dataB.release);
-                    return (dateA < dateB) ? 1 : (dateA > dateB) ? -1 : 0;
+                    return (a.release < b.release) ? 1 : (a.release > b.release) ? -1 : 0;
                 });
 
                 // Update the counts on Status and Type dropdowns
-                const pluginStatuses = pluginIndex.map(plugin => plugin.getData().status);
-                const anyStatusCount = pluginStatuses.length;
-                const newCount = pluginStatuses.filter(status => equalsIgnoreCase(status, "New")).length;
-                const activeCount = pluginStatuses.filter(status => ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(status, x))).length;
-                const inactiveCount = anyStatusCount - activeCount;
+                const anyCount = pluginIndex.length;
 
-                controls.comboPluginStatus.options[0].text += ` (${anyStatusCount})`;
+                const newCount = pluginIndex.filter(plugin => plugin.isNew).length;
+                const activeCount = pluginIndex.filter(plugin => plugin.isActive).length;
+                const inactiveCount = anyCount - activeCount;
+
+                controls.comboPluginStatus.options[0].text += ` (${anyCount})`;
                 controls.comboPluginStatus.options[1].text += ` (${newCount})`;
                 controls.comboPluginStatus.options[2].text += ` (${activeCount})`;
                 controls.comboPluginStatus.options[3].text += ` (${inactiveCount})`;
 
-                const pluginTypes = pluginIndex.map(plugin => plugin.getData().type);
-                const anyTypeCount = pluginTypes.length;
-                const effectCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Effect")).length;
-                const adjustmentCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Adjustment")).length;
-                const filetypeCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Filetype")).length;
-                const packCount = pluginTypes.filter(type => equalsIgnoreCase(type, "Plugin Pack")).length;
-                const externalCount = pluginTypes.filter(type => equalsIgnoreCase(type, "External Resource")).length;
+                const effectCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Effect")).length;
+                const adjustmentCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Adjustment")).length;
+                const filetypeCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Filetype")).length;
+                const packCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "Plugin Pack")).length;
+                const externalCount = pluginIndex.filter(plugin => equalsIgnoreCase(plugin.type, "External Resource")).length;
 
-                controls.comboPluginType.options[0].text += ` (${anyTypeCount})`;
+                controls.comboPluginType.options[0].text += ` (${anyCount})`;
                 controls.comboPluginType.options[1].text += ` (${effectCount})`;
                 controls.comboPluginType.options[2].text += ` (${adjustmentCount})`;
                 controls.comboPluginType.options[3].text += ` (${filetypeCount})`;
@@ -621,25 +691,18 @@ ${data.desc.substring(0, 450)}
                     const order = controls.comboOrder.options[controls.comboOrder.selectedIndex].value;
 
                     pluginIndex.sort((a, b) => {
-                        const dataA = a.getData();
-                        const dataB = b.getData();
-
                         if (equalsIgnoreCase(order, "release_new")) {
                             // order by newest first
-                            a = new Date(dataA.release);
-                            b = new Date(dataB.release);
-                            return (a < b) ? 1 : (a > b) ? -1 : 0;
+                            return (a.release < b.release) ? 1 : (a.release > b.release) ? -1 : 0;
                         } else if (equalsIgnoreCase(order, "release_old")) {
                             // order by oldest first
-                            a = new Date(dataA.release);
-                            b = new Date(dataB.release);
-                            return (a > b) ? 1 : (a < b) ? -1 : 0;
+                            return (a.release > b.release) ? 1 : (a.release < b.release) ? -1 : 0;
                         } else if (equalsIgnoreCase(order, "title")) {
-                            return alphaSort(dataA.title, dataB.title);
+                            return alphaSort(a.title, b.title);
                         } else if (equalsIgnoreCase(order, "author")) {
-                            return alphaSort(dataA.author, dataB.author);
+                            return alphaSort(a.author, b.author);
                         } else if (equalsIgnoreCase(order, "menu")) {
-                            return alphaSort(dataA.menu, dataB.menu);
+                            return alphaSort(a.menu, b.menu);
                         }
                     });
                 }
@@ -652,7 +715,7 @@ ${data.desc.substring(0, 450)}
                     const display = shouldPluginDisplay(plugin);
 
                     if (display) {
-                        html += plugin.getHtml();
+                        html += plugin.html;
                         displayCount++;
                     }
                 }
@@ -666,81 +729,12 @@ ${data.desc.substring(0, 450)}
         },
 
         dataIntegrity: function () {
-            const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
-            const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
-            const is = {
-                validNumber(value) {
-                    return typeof value === "number" && !isNaN(value) && value > 0;
-                },
-                validDate(value) {
-                    return value instanceof Date && !isNaN(value);
-                },
-                validType(value) {
-                    return typeof value === "string" && types.has(value.toLowerCase());
-                },
-                validStatus(value) {
-                    return typeof value === "string" && statuses.has(value.toLowerCase());
-                },
-                emptyString(value) {
-                    // Source: https://stackoverflow.com/a/36328062/2650847
-                    return typeof value === 'undefined' || !value ||
-                        value.length === 0 || value === "" || !/[^\s]/.test(value) ||
-                        /^\s*$/.test(value) || value.replace(/\s/g, "") === "";
-                }
-            };
+            const issues = pluginIndex
+                .map(plugin => plugin.validate())
+                .flat();
 
-            let issueCount = 0;
-            const issues = []
-
-            function logIssue(data, value, reason) {
-                issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
-                console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
-                issueCount++;
-            }
-
-            pluginIndex.forEach(plugin => {
-                const data = plugin.getData();
-
-                if (!is.validDate(new Date(data.release))) {
-                    logIssue(data, data.release, "INVALID DATE");
-                }
-                if (!is.validNumber(data.topic_id)) {
-                    logIssue(data, data.topic_id, "INVALID TOPIC_ID");
-                }
-                if (!is.validNumber(data.author_id)) {
-                    logIssue(data, data.author_id, "INVALID AUTHOR ID");
-                }
-                if (data.alt_topic && !is.validNumber(data.alt_topic)) {
-                    logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
-                }
-                if (!is.validType(String(data.type))) {
-                    logIssue(data, data.type, "INVALID TYPE");
-                }
-                if (!is.validStatus(String(data.status))) {
-                    logIssue(data, data.status, "INVALID STATUS");
-                }
-                if (is.emptyString(String(data.title))) {
-                    logIssue(data, data.title, "EMPTY TITLE");
-                }
-                if (is.emptyString(String(data.author))) {
-                    logIssue(data, data.author, "EMPTY AUTHOR");
-                }
-                if (is.emptyString(String(data.desc))) {
-                    logIssue(data, data.author, "EMPTY DESC");
-                }
-                if (is.emptyString(String(data.compatibility))) {
-                    logIssue(data, data.compatibility, "EMPTY COMPAT");
-                }
-                if (is.emptyString(String(data.menu))) {
-                    logIssue(data, data.menu, "EMPTY MENU");
-                }
-                if (is.emptyString(String(data.dlls))) {
-                    logIssue(data, data.dlls, "EMPTY DLLS");
-                }
-            });
-
-            console.log("%cFound " + issueCount + " data issues", "font-weight:700;" +
-                (issueCount > 0 ? "color:red;" : "color:green"));
+            console.log("%cFound " + issues.length + " data issues", "font-weight:700;" +
+                (issues.length > 0 ? "color:red;" : "color:green"));
 
             return issues;
         }

@@ -106,6 +106,19 @@ const pdnpi = (function () {
         }
 
         static #timeSince(date) {
+            const temporalSupported = (typeof Temporal === 'object' && 'PlainDate' in Temporal && 'Now' in Temporal && 'Duration' in Temporal);
+            if (temporalSupported) {
+                const asPlainDate = new Temporal.PlainDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+                const since = Temporal.Now.plainDateISO().since(asPlainDate, { largestUnit: "years", smallestUnit: "days" });
+
+                return (since.years > 0 && since.months > 0)
+                    ? `Released ${since.years} year${since.years > 1 ? "s" : ""} ${since.months} month${since.months > 1 ? "s" : ""} ago` : (since.years > 0)
+                    ? `Released ${since.years} year${since.years > 1 ? "s" : ""} ago` : (since.months > 0)
+                    ? `Released ${since.months} month${since.months > 1 ? "s" : ""} ago` : (since.days > 0)
+                    ? `Released ${since.days} day${since.days > 1 ? "s" : ""} ago`
+                    : `Released today`;
+            }
+
             let seconds = Math.floor((new Date() - date) / 1000);
 
             const intervals = [
@@ -303,6 +316,10 @@ ${data.desc.substring(0, 450)}
         return a.toUpperCase().localeCompare(b.toUpperCase());
     };
 
+    const numericCompare = (a, b) => {
+        return (a < b) ? 1 : (a > b) ? -1 : 0;
+    };
+
     const searchParamKeys = {
         keywords: 'keywords',
         keywordStyle: 'keywordStyle',
@@ -412,9 +429,7 @@ ${data.desc.substring(0, 450)}
                 controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
 
                 // Default listing : Sort by newest release date
-                pluginIndex.sort((a, b) => {
-                    return (a.release < b.release) ? 1 : (a.release > b.release) ? -1 : 0;
-                });
+                pluginIndex.sort((a, b) => numericCompare(a.release, b.release));
 
                 // Update the counts on Status and Type dropdowns
                 const anyCount = pluginIndex.length;
@@ -656,10 +671,10 @@ ${data.desc.substring(0, 450)}
                     pluginIndex.sort((a, b) => {
                         if (equalsIgnoreCase(order, "release_new")) {
                             // order by newest first
-                            return (a.release < b.release) ? 1 : (a.release > b.release) ? -1 : 0;
+                            return numericCompare(a.release, b.release);
                         } else if (equalsIgnoreCase(order, "release_old")) {
                             // order by oldest first
-                            return (a.release > b.release) ? 1 : (a.release < b.release) ? -1 : 0;
+                            return numericCompare(b.release, a.release);
                         } else if (equalsIgnoreCase(order, "title")) {
                             return alphaSort(a.title, b.title);
                         } else if (equalsIgnoreCase(order, "author")) {

@@ -13,10 +13,12 @@ const pdnpi = (function () {
     class Plugin {
         constructor(data) {
             this.#data = data;
+            this.#releaseAsDate = new Date(this.#data.release);
             this.#html = this.#dataToHtml();
         }
 
         #data;
+        #releaseAsDate;
         #html;
 
         // a few of these have 0 references, but do get called through bracket notation. i.e. plugin['fieldName']
@@ -27,7 +29,7 @@ const pdnpi = (function () {
         get isActive() { return ["New", "Active", "Bundled"].some(x => equalsIgnoreCase(this.#data.status, x)); }
         get isNew() { return equalsIgnoreCase(this.#data.status, "New"); }
         get menu() { return this.#data.menu; }
-        get release() { return new Date(this.#data.release); }
+        get release() { return this.#releaseAsDate; }
         get status() { return this.#data.status; }
         get title() { return this.#data.title; }
         get type() { return this.#data.type; }
@@ -166,8 +168,7 @@ const pdnpi = (function () {
             }
 
             const dot = `<i class="bi bi-dot"></i>`;
-            const release = new Date(data.release);
-            const since = Plugin.#timeSince(new Date(release));
+            const since = Plugin.#timeSince(this.#releaseAsDate);
             const dlls = (data.dlls || "").split(",");
             const hoverdlls = (data.dlls || "").replace(/, /g, "\n").trim() || "N/A"; // replace comma-space with newline for dll tooltip
             let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;

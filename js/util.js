@@ -1,8 +1,8 @@
-export function equalsIgnoreCase(a, b) {
+export const equalsIgnoreCase = (a, b) => {
     return String(a).toUpperCase() === String(b).toUpperCase();
 }
 
-export const alphaSort = function (a, b) {
+export const alphaSort = (a, b) => {
     return a.toUpperCase().localeCompare(b.toUpperCase());
 };
 
@@ -10,7 +10,7 @@ export const numericCompare = (a, b) => {
     return (a < b) ? 1 : (a > b) ? -1 : 0;
 };
 
-export function debounce(func, wait) {
+export const debounce = (func, wait) => {
     let timeout;
     return function (...args) {
         clearTimeout(timeout);
@@ -18,7 +18,7 @@ export function debounce(func, wait) {
     };
 }
 
-export function slugify(text) {
+export const slugify = (text) => {
     return String(text)
         .normalize('NFKD') // split accented characters into their base characters and diacritical marks
         .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.

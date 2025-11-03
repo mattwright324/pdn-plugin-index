@@ -31,12 +31,10 @@ export async function dom_ready() {
 
     await doc_ready();
 
-    // Core elements
     elements.badgePluginCount = document.querySelector("#count");
     elements.divPluginList = document.querySelector("#plugins-list");
     controls.btnScrollToTop = document.querySelector("#scrollToTop");
 
-    // Search controls
     controls.inputKeywords = document.querySelector("#keywords");
     controls.comboAuthors = document.querySelector("#author");
     controls.comboOrder = document.querySelector("#order");

@@ -281,7 +281,6 @@ export class Plugin {
 
     #dataToHtml() {
         const data = this.#data;
-        const authorNameUrl = encodeURI(data.author.toLowerCase());
 
         let altLink = '';
         if (data.hasOwnProperty('alt_topic') && data.alt_topic !== '') {
@@ -323,7 +322,7 @@ ${data.desc.substring(0, 450)}
                     ${altLink}
                     <div class="tags">
                         <sp class="tag author">
-                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${authorNameUrl}" title="View ${data.author}&apos;s profile">
+                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${util.slugify(data.author)}" title="View ${data.author}&apos;s profile">
                                     <i class="bi bi-person-circle"></i> ${data.author}
                                 </a>
                             </sp>${dot}

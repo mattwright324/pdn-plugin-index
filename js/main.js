@@ -1,5 +1,4 @@
 import * as polyfills from "polyfills";
-import * as dom from "dom";
 import {controls, dom_ready, elements} from "dom";
 import * as events from "events";
 import * as util from "util";

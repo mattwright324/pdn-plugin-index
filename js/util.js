@@ -28,3 +28,5 @@ export const slugify = (text) => {
         .replace(/\s+/g, '-') // replace spaces with hyphens
         .replace(/-+/g, '-'); // remove consecutive hyphens
 }
+
+export const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));

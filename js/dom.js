@@ -2,7 +2,7 @@
  * Wait for the DOM to be ready.
  * Alternate to $(document).ready()
  */
-export async function doc_ready() {
+export const doc_ready =  async () => {
     return new Promise(resolve => {
         if (document.readyState !== "loading") {
             resolve();
@@ -18,17 +18,25 @@ export async function doc_ready() {
 export const controls = {}
 export const elements = {}
 
-let domReady = false;
+let readyState;
+let readyPromise;
 
 /**
  * Extension of doc_ready() to load required DOM elements and controls.
  */
-export async function dom_ready() {
-    if (domReady) {
+export const dom_ready = async () => {
+    if (readyState === 'ready') {
         return;
     }
-    domReady = true;
+    if (readyState === 'loading') {
+        return readyPromise;
+    }
+    readyState = 'loading';
 
+    return readyPromise = dom_load();
+}
+
+const dom_load = async () => {
     await doc_ready();
 
     elements.badgePluginCount = document.querySelector("#count");

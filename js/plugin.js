@@ -4,7 +4,6 @@ export class Plugin {
     constructor(data) {
         this.#data = Object.assign({}, data);
         this.#releaseAsDate = new Date(this.#data.release);
-        this.#html = this.#dataToHtml();
     }
 
     /**
@@ -44,6 +43,9 @@ export class Plugin {
     }
 
     get html() {
+        if (!this.#html) {
+            this.#html = this.#dataToHtml();
+        }
         return this.#html;
     }
 
@@ -284,8 +286,11 @@ export class Plugin {
 
         let altLink = '';
         if (data.hasOwnProperty('alt_topic') && data.alt_topic !== '') {
-            altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}-alt-topic">
-                                #${data.alt_topic}
+            const altPlugin = index.plugins.find(p => p.topicId === data.alt_topic);
+            const altTitle = altPlugin ? altPlugin.title : 'unknown';
+            const altDisplay = altPlugin ? altPlugin.title : "#" + data.alt_topic;
+            altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}-${util.slugify(altTitle)}">
+                                ${altDisplay}
                            </a></sp>`;
         }
 

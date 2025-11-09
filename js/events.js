@@ -135,7 +135,7 @@ const appUrlParams = {
     keywords: {
         // Build permalink
         value: () => controls.inputKeywords.value.trim(),
-        shouldParam: () => this.value(),
+        shouldParam: (value) => value,
         // Use value from permalink
         useParam: (value) => {
             controls.inputKeywords.value = value;
@@ -143,7 +143,7 @@ const appUrlParams = {
     },
     keywordStyle: {
         value: () => controls.comboKeywordStyle.value.trim().toLowerCase(),
-        shouldParam: () => this.value() !== 'any',
+        shouldParam: (value) => value !== 'any',
         useParam: (value) => {
             if (controls.comboKeywordStyle.querySelector(`option[value='${value}']`)) {
                 controls.comboKeywordStyle.value = value;
@@ -152,7 +152,7 @@ const appUrlParams = {
     },
     author: {
         value: () => controls.comboAuthors.value.trim().toLowerCase(),
-        shouldParam: () => this.value() !== 'any',
+        shouldParam: (value) => value !== 'any',
         useParam: (value) => {
             if (controls.comboAuthors.querySelector(`option[value='${value}']`)) {
                 controls.comboAuthors.value = value;
@@ -161,7 +161,7 @@ const appUrlParams = {
     },
     type: {
         value: () => controls.comboPluginType.value.trim().toLowerCase(),
-        shouldParam: () => this.value() !== 'any',
+        shouldParam: (value) => value !== 'any',
         useParam: (value) => {
             if (controls.comboPluginType.querySelector(`option[value='${value}']`)) {
                 controls.comboPluginType.value = value;
@@ -170,7 +170,7 @@ const appUrlParams = {
     },
     status: {
         value: () => controls.comboPluginStatus.value.trim().toLowerCase(),
-        shouldParam: () => this.value() !== 'active',
+        shouldParam: (value) => value !== 'active',
         useParam: (value) => {
             if (controls.comboPluginStatus.querySelector(`option[value='${value}']`)) {
                 controls.comboPluginStatus.value = value;
@@ -179,7 +179,7 @@ const appUrlParams = {
     },
     menu: {
         value: () => controls.comboMenu.options[controls.comboMenu.selectedIndex].text.trim().toLowerCase(),
-        shouldParam: () => this.value() !== 'Any Menu',
+        shouldParam: (value) => value !== 'Any Menu',
         useParam: (value) => {
             const menuOption = controls.comboMenu.querySelector(`option[value='${value}']`);
             if (menuOption) {
@@ -189,7 +189,7 @@ const appUrlParams = {
     },
     order: {
         value: () => controls.comboOrder.value.trim().toLowerCase(),
-        shouldParam: () => this.value() !== 'release_new',
+        shouldParam: (value) => value !== 'release_new',
         useParam: (value) => {
             if (controls.comboOrder.querySelector(`option[value='${value}']`)) {
                 controls.comboOrder.value = value;
@@ -200,9 +200,10 @@ const appUrlParams = {
 
 export function buildPermalink() {
     const params = new URLSearchParams();
-    Object.entries(params).forEach(([key]) => {
+
+    Object.keys(appUrlParams).forEach(key => {
         const value = appUrlParams[key].value();
-        if (appUrlParams[key].shouldParam()) {
+        if (appUrlParams[key].shouldParam(value)) {
             params.append(key, value);
         }
     })

@@ -43,10 +43,7 @@ export class Plugin {
     }
 
     get html() {
-        if (!this.#html) {
-            this.#html = this.#dataToHtml();
-        }
-        return this.#html;
+        return this.#html ??= this.#dataToHtml();
     }
 
     get isActive() {

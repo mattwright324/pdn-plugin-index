@@ -68,6 +68,26 @@ export function initEventListeners() {
     document.querySelector('#resetFilters').addEventListener('click', function () {
         resetFilters();
     });
+
+    /**
+     * When we scroll down a bit, display the scroll button.
+     * Scroll button will take us back to the top.
+     */
+    window.addEventListener("scroll", () => {
+        if (document.documentElement.scrollTop > 100) {
+            controls.btnScrollToTop.classList.add("show");
+        } else {
+            controls.btnScrollToTop.classList.remove("show");
+        }
+    });
+    controls.btnScrollToTop.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.documentElement.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+        });
+    });
 }
 
 export async function resetFilters() {

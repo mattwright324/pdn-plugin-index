@@ -178,8 +178,8 @@ const appUrlParams = {
         }
     },
     menu: {
-        value: () => controls.comboMenu.options[controls.comboMenu.selectedIndex].text.trim().toLowerCase(),
-        shouldParam: (value) => value !== 'Any Menu',
+        value: () => controls.comboMenu.value.trim().toLowerCase(),
+        shouldParam: (value) => value !== 'any',
         useParam: (value) => {
             const menuOption = controls.comboMenu.querySelector(`option[value='${value}']`);
             if (menuOption) {
@@ -224,10 +224,9 @@ export function useSearchParams() {
     console.log('Search Params', urlSearchParams);
 
     for (const [key, value] of urlSearchParams) {
-        const keyLower = key.trim().toLowerCase();
         const lowerValue = value.trim().toLowerCase();
 
-        appUrlParams[keyLower]?.useParam(lowerValue);
+        appUrlParams[key]?.useParam(lowerValue);
     }
 
     // Trigger a refresh if we have any URL parameters

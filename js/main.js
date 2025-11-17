@@ -20,12 +20,8 @@ import {Plugin} from "plugin";
         const response = await fetch("index/plugin-index.json");
         const json = Object.assign({plugin_index: []}, await response.json());
 
-        json.plugin_index.forEach(item => {
-            const plugin = new Plugin(item);
-
-            index.plugins.push(plugin);
-            index.pluginMap[plugin.topicId] = plugin;
-        });
+        json.plugin_index.forEach(item => index.plugins.push(new Plugin(item)));
+        index.pluginMap = Object.groupBy(index.plugins, plugin => plugin.topicId);
 
         console.log(`Loaded ${index.plugins.length} plugins from index/plugin-index.json`, index);
 

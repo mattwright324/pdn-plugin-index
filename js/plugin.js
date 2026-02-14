@@ -328,7 +328,7 @@ ${data.desc.substring(0, 450)}
                                     <i class="bi bi-person-circle"></i> ${data.author}
                                 </a>
                             </sp>${dot}
-                        <sp class="tag" title="Published on ${data.release}">${since}</sp>${dot}
+                        <sp class="tag" title="Published on ${this.#releaseAsDate.toLocaleDateString()}">${since}</sp>${dot}
                         <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
                         <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
                         <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;

@@ -278,12 +278,24 @@ export class Plugin {
         return "just now";
     }
 
+    #findAltPlugin() {
+        const plugins = index.pluginMap[this.#data.alt_topic];
+        if (!plugins) return;
+
+        const filtered = plugins.filter(p => p.title !== this.title);
+        if (filtered.length === 0) return;
+        if (filtered.length === 1) return filtered[0];
+
+        const pack = filtered.find(p => util.equalsIgnoreCase(p.type, "Plugin Pack"));
+        return pack || filtered[0];
+    }
+
     #dataToHtml() {
         const data = this.#data;
 
         let altLink = '';
         if (data.hasOwnProperty('alt_topic') && data.alt_topic !== '') {
-            const altPlugin = index.plugins.find(p => p.topicId === data.alt_topic);
+            const altPlugin = this.#findAltPlugin();
             const altTitle = altPlugin ? altPlugin.title : 'unknown';
             const altDisplay = altPlugin ? altPlugin.title : "#" + data.alt_topic;
             altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}-${util.slugify(altTitle)}">

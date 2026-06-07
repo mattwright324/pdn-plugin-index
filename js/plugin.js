@@ -298,7 +298,7 @@ export class Plugin {
             const altPlugin = this.#findAltPlugin();
             const altTitle = altPlugin ? altPlugin.title : 'unknown';
             const altDisplay = altPlugin ? altPlugin.title : "#" + data.alt_topic;
-            altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.getpaint.net/topic/${data.alt_topic}-${util.slugify(altTitle)}">
+            altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.paint.net/topic/${data.alt_topic}-${util.slugify(altTitle)}">
                                 ${altDisplay}
                            </a></sp>`;
         }
@@ -316,7 +316,7 @@ export class Plugin {
         }
         return `<div class='plugin'>
                     <div class="phead">
-                        <sp class='title'><a target="_blank" href="https://forums.getpaint.net/topic/${data.topic_id}-${util.slugify(data.title)}">
+                        <sp class='title'><a target="_blank" href="https://forums.paint.net/topic/${data.topic_id}-${util.slugify(data.title)}">
                             ${data.title}
                         </a></sp>
                     </div>
@@ -336,7 +336,7 @@ ${data.desc.substring(0, 450)}
                     ${altLink}
                     <div class="tags">
                         <sp class="tag author">
-                                <a target="_blank" href="https://forums.getpaint.net/profile/${data.author_id}-${util.slugify(data.author)}" title="View ${data.author}&apos;s profile">
+                                <a target="_blank" href="https://forums.paint.net/profile/${data.author_id}-${util.slugify(data.author)}" title="View ${data.author}&apos;s profile">
                                     <i class="bi bi-person-circle"></i> ${data.author}
                                 </a>
                             </sp>${dot}

@@ -230,7 +230,7 @@ export function buildPermalink() {
 
     let hostUrl;
     if (window !== window.parent) {
-        hostUrl = 'https://forums.getpaint.net/PluginIndex';
+        hostUrl = 'https://forums.paint.net/PluginIndex';
     } else {
         hostUrl = window.location.origin + window.location.pathname;
     }

@@ -1,6 +1,7 @@
 import {ui} from "dom";
 import * as util from "util";
-import {DEFAULTS, normalizeFilters} from "filters";
+import {normalizeFilters} from "filters";
+import {searchKeywords} from "search";
 
 const SORTS = {
     release_new: (a, b) => b.release - a.release,
@@ -10,8 +11,17 @@ const SORTS = {
     menu: (a, b) => util.alphaSort(a.menu, b.menu),
 };
 
+/** "Best match": highest search score first, then newest. */
+const relevanceSort = (results) => (a, b) =>
+    ((results?.get(b)?.score ?? 0) - (results?.get(a)?.score ?? 0)) || SORTS.release_new(a, b);
+
+/** Add ?debug to the URL to show search scores, and what matched on hover. */
+const SHOW_SCORES = new URL(window.location).searchParams.has("debug");
+
 /** @type {Plugin[]} */
 let plugins = [];
+/** The search the current "Best match" order was sorted for. */
+let sortedSearch = null;
 
 /** @param {Plugin[]} list - the plugins to list; sorted in place */
 export function setPlugins(list) {
@@ -28,16 +38,25 @@ export function refreshListing(reorder = false) {
     try {
         const list = ui.pluginList;
         const filters = normalizeFilters();
+        const results = searchKeywords(filters.keywords, filters.keywordStyle);
 
         let displayCount = 0;
         for (const plugin of plugins) {
-            const show = plugin.shouldDisplay(filters);
+            const show = (!results || results.has(plugin)) && plugin.matchesFilters(filters);
             plugin.element.hidden = !show;
             displayCount += show ? 1 : 0;
+
+            if (SHOW_SCORES && show) {
+                showScore(plugin, results?.get(plugin));
+            }
         }
 
-        if (reorder || list.childElementCount !== plugins.length) {
-            plugins.sort(SORTS[ui.comboOrder.value] ?? SORTS[DEFAULTS.order]);
+        const byRelevance = filters.order === "relevance";
+        const search = `${filters.keywordStyle}:${filters.keywords}`;
+        if (reorder || (byRelevance && search !== sortedSearch) || list.childElementCount !== plugins.length) {
+            plugins.sort(byRelevance ? relevanceSort(results) : SORTS[filters.order]);
+            sortedSearch = search;
+
             const fragment = document.createDocumentFragment();
             plugins.forEach(plugin => fragment.appendChild(plugin.element));
             list.replaceChildren(fragment);
@@ -48,4 +67,17 @@ export function refreshListing(reorder = false) {
         console.error("Refresh failed:", err);
         ui.pluginCount.textContent = "Error";
     }
+}
+
+/** @param result - from searchKeywords(); undefined without keywords */
+function showScore(plugin, result) {
+    let tag = plugin.element.querySelector(".tag-score");
+    if (!tag) {
+        tag = plugin.element.querySelector(".tags").appendChild(document.createElement("span"));
+        tag.className = "tag tag-score";
+    }
+
+    const matches = Object.entries(result?.match ?? {}).map(([term, fields]) => `${term}: ${fields.join(", ")}`);
+    tag.innerHTML = `<i class="bi bi-dot" aria-hidden="true"></i>${(result?.score ?? 0).toFixed(2)}`;
+    tag.title = ["Search score", ...matches].join("\n");
 }

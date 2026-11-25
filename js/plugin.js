@@ -1,7 +1,7 @@
 import * as util from "util";
 
 /** Plugin Type dropdown value -> lowercase plugin type. */
-export const TYPE_FILTERS = {
+const TYPE_FILTERS = {
     "effect": "effect",
     "adjustment": "adjustment",
     "filetype": "filetype",
@@ -12,7 +12,6 @@ export const TYPE_FILTERS = {
 const ACTIVE_STATUSES = new Set(["new", "active", "bundled"]);
 const VALID_STATUSES = new Set([...ACTIVE_STATUSES, "deprecated", "obsolete", "incompatible", "unsupported", "integrated"]);
 const VALID_TYPES = new Set(Object.values(TYPE_FILTERS));
-const SEARCH_FIELDS = ["title", "desc", "author", "type", "status", "menu", "dlls"];
 const DESC_PREVIEW_LENGTH = 450;
 
 let instanceCount = 0;
@@ -20,16 +19,11 @@ let instanceCount = 0;
 const isBlank = (value) => value == null || String(value).trim() === "";
 const isPositiveNumber = (value) => typeof value === "number" && value > 0;
 const plural = (count, unit) => `${count} ${unit}${count === 1 ? "" : "s"}`;
-const lower = (value) => String(value ?? "").trim().toLowerCase();
 
-/**
- * Descriptions intentionally contain <br> tags. Escape everything else.
- */
+/** Descriptions contain <br> tags. Escape everything else. */
 const formatDesc = (text) => util.escapeHtml(text).replace(/&lt;br\s*\/?&gt;/gi, "<br>");
 
-/**
- * Find where to cut a description for the preview without splitting a tag or a word.
- */
+/** Where to cut a description for the preview, without splitting a tag or a word. */
 function previewCutIndex(desc) {
     let cut = DESC_PREVIEW_LENGTH;
     const lastOpen = desc.lastIndexOf("<", cut - 1);
@@ -43,49 +37,48 @@ function previewCutIndex(desc) {
     return cut;
 }
 
+/**
+ * @typedef {Object} RawPluginData - a plugin in index/plugin-index.json
+ * @property {string} title
+ * @property {string} author
+ * @property {number} author_id - forum profile ID
+ * @property {number} topic_id - forum topic ID
+ * @property {string} desc - may contain <br>
+ * @property {string} type - e.g. "Effect", "Adjustment"
+ * @property {string} release - date
+ * @property {string} status - e.g. "Active", "New"
+ * @property {string} compatibility - Paint.NET versions
+ * @property {string} dlls - comma-separated
+ * @property {string} menu
+ * @property {number} [alt_topic] - "See also" topic ID
+ */
+
 export class Plugin {
-    /**
-     * @typedef {Object} RawPluginData - Data as loaded from the JSON file
-     * @property {string} title - The plugin title
-     * @property {string} author - The author's name
-     * @property {number} author_id - The author's forum ID
-     * @property {number} topic_id - The forum topic ID
-     * @property {string} desc - The plugin description (may contain <br>)
-     * @property {string} type - The plugin type (e.g., "Effect", "Adjustment")
-     * @property {string} release - The release date as a string
-     * @property {string} status - The plugin status (e.g., "Active", "New")
-     * @property {string} compatibility - The Paint.NET version compatibility
-     * @property {string} dlls - Comma-separated list of DLL files
-     * @property {string} menu - The menu location
-     * @property {number} [alt_topic] - Optional alternative topic ID
-     */
     #data;
-    #id;
+    #id = ++instanceCount;
     #release;
-    #searchText;
     #altPlugin;
     #element;
 
-    /** Lowercase keys used for filtering. */
-    authorKey;
-    menuKey;
-    typeKey;
-    statusKey;
+    // Lowercase, for filtering
+    #authorKey;
+    #menuKey;
+    #typeKey;
+    #statusKey;
 
     /** @param {RawPluginData} data */
     constructor(data) {
-        this.#data = Object.assign({}, data);
-        this.#id = ++instanceCount;
-        this.#release = new Date(this.#data.release);
-        this.#searchText = SEARCH_FIELDS
-            .map(field => String(this.#data[field] ?? "").replace(/<br\s*\/?>/gi, " "))
-            .join("\n")
-            .toUpperCase();
+        this.#data = {...data};
+        this.#release = new Date(data.release);
+        this.#authorKey = util.lower(data.author);
+        this.#menuKey = util.lower(data.menu);
+        this.#typeKey = util.lower(data.type);
+        this.#statusKey = util.lower(data.status);
+    }
 
-        this.authorKey = lower(this.#data.author);
-        this.menuKey = lower(this.#data.menu);
-        this.typeKey = lower(this.#data.type);
-        this.statusKey = lower(this.#data.status);
+    /** Unique, unlike topic IDs: a plugin pack shares its topic with its plugins. */
+    get id() {
+        return this.#id;
     }
 
     get topicId() {
@@ -109,14 +102,14 @@ export class Plugin {
     }
 
     get isActive() {
-        return ACTIVE_STATUSES.has(this.statusKey);
+        return ACTIVE_STATUSES.has(this.#statusKey);
     }
 
     get isNew() {
-        return this.statusKey === "new";
+        return this.#statusKey === "new";
     }
 
-    /** The plugin's DOM element, built on first access. */
+    /** Built on first access. */
     get element() {
         return this.#element ??= util.htmlToElement(this.#toHtml());
     }
@@ -143,13 +136,18 @@ export class Plugin {
         return days > 0 ? `Released ${plural(days, "day")} ago` : "Released today";
     }
 
+    /** @param {keyof RawPluginData} name */
+    field(name) {
+        return String(this.#data[name] ?? "");
+    }
+
     /**
-     * Resolve the "See also" plugin for alt_topic. Call once all plugins are loaded.
+     * Find the "See also" plugin for alt_topic.
      * @param {Object<number, Plugin[]>} pluginsByTopic
      */
     resolveAltPlugin(pluginsByTopic) {
         const candidates = (pluginsByTopic[this.#data.alt_topic] || []).filter(p => p.title !== this.title);
-        this.#altPlugin = candidates.find(p => p.typeKey === "plugin pack") || candidates[0];
+        this.#altPlugin = candidates.find(p => p.#typeKey === "plugin pack") || candidates[0];
     }
 
     /** @param {string} filterStatus - any | new | active | inactive */
@@ -168,32 +166,18 @@ export class Plugin {
 
     /** @param {string} filterType - "any" or a key of TYPE_FILTERS */
     matchesType(filterType) {
-        return filterType === "any" || this.typeKey === TYPE_FILTERS[filterType];
+        return filterType === "any" || this.#typeKey === TYPE_FILTERS[filterType];
     }
 
-    /**
-     * @param filters - result of normalizeFilters() in filters.js
-     */
-    shouldDisplay(filters) {
-        if (filters.terms.length) {
-            const contains = term => this.#searchText.includes(term);
-            const matched = filters.keywordStyle === "all"
-                ? filters.terms.every(contains)
-                : filters.terms.some(contains);
-            if (!matched) {
-                return false;
-            }
-        }
-
+    /** The dropdown filters, from normalizeFilters(). Keywords are matched in search.js. */
+    matchesFilters(filters) {
         return this.matchesStatus(filters.status)
             && this.matchesType(filters.type)
-            && (filters.author === "any" || this.authorKey === filters.author)
-            && (filters.menu === "any" || this.menuKey === filters.menu);
+            && (filters.author === "any" || this.#authorKey === filters.author)
+            && (filters.menu === "any" || this.#menuKey === filters.menu);
     }
 
-    /**
-     * @returns {string[]} HTML-safe issue descriptions
-     */
+    /** @returns {string[]} HTML-safe issue descriptions */
     validate() {
         const data = this.#data;
         const issues = [];
@@ -216,10 +200,10 @@ export class Plugin {
         if (data.alt_topic && !isPositiveNumber(data.alt_topic)) {
             logIssue(data.alt_topic, "INVALID ALT_TOPIC");
         }
-        if (!VALID_TYPES.has(this.typeKey)) {
+        if (!VALID_TYPES.has(this.#typeKey)) {
             logIssue(data.type, "INVALID TYPE");
         }
-        if (!VALID_STATUSES.has(this.statusKey)) {
+        if (!VALID_STATUSES.has(this.#statusKey)) {
             logIssue(data.status, "INVALID STATUS");
         }
         for (const field of ["title", "author", "desc", "compatibility", "menu", "dlls"]) {
@@ -235,7 +219,7 @@ export class Plugin {
         const data = this.#data;
         const esc = util.escapeHtml;
         const id = this.#id;
-        const desc = String(data.desc ?? "");
+        const desc = this.field("desc");
 
         let descHtml = formatDesc(desc);
         if (desc.length > DESC_PREVIEW_LENGTH) {
@@ -253,9 +237,9 @@ export class Plugin {
             altHtml = `<div class="alt">See also: <a target="_blank" href="${altUrl}">${esc(alt ? alt.title : "#" + data.alt_topic)}</a></div>`;
         }
 
-        const dllList = String(data.dlls ?? "").split(",").map(s => s.trim()).filter(Boolean);
+        const dllList = this.field("dlls").split(",").map(s => s.trim()).filter(Boolean);
         let dllHtml = "N/A";
-        if (dllList.length && lower(data.dlls) !== "n/a") {
+        if (dllList.length && util.lower(data.dlls) !== "n/a") {
             dllHtml = `<span class="dll-name">${esc(dllList[0])}</span>`
                 + (dllList.length > 1 ? ` <span class="dll-more">and ${dllList.length - 1} more</span>` : "");
         }

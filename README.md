@@ -5,7 +5,7 @@ An interactive site to quickly search and find Paint.NET plugins in the forums.
 
 ### Building
 
-Refer to [BUILD.md](https://github.com/mattwright324/pdn-plugin-index/blob/master/BUILD.md)
+Refer to [BUILD.md](BUILD.md)
 for instructions on how to build and run `pdn-plugin-index` from source.
 
 ### Forum Integration

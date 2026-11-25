@@ -1,8 +1,8 @@
-import "polyfills"; // first, so polyfills are installed before the other modules run
 import {ui} from "dom";
 import * as events from "events";
 import * as filters from "filters";
 import * as listing from "listing";
+import * as search from "search";
 import * as util from "util";
 import {Plugin} from "plugin";
 
@@ -13,16 +13,16 @@ try {
     if (!response.ok) {
         throw new Error(`HTTP ${response.status} loading plugin index`);
     }
-    const json = Object.assign({plugin_index: []}, await response.json());
 
-    const plugins = json.plugin_index.map(item => new Plugin(item));
-    const pluginsByTopic = Object.groupBy(plugins, plugin => plugin.topicId);
+    const plugins = ((await response.json()).plugin_index ?? []).map(item => new Plugin(item));
+    const pluginsByTopic = util.groupBy(plugins, plugin => plugin.topicId);
     plugins.forEach(plugin => plugin.resolveAltPlugin(pluginsByTopic));
 
     window.index = {plugins, pluginsByTopic};
-    console.log(`Loaded ${plugins.length} plugins from index/plugin-index.json`, window.index);
+    console.log(`Loaded ${plugins.length} plugins`, window.index);
 
     showIssues(plugins);
+    search.buildSearchIndex(plugins);
     filters.initFilterOptions(plugins);
     filters.applyUrlParams();
 
@@ -36,12 +36,10 @@ try {
         `<div class="alert alert-danger mt-3">Failed to load the plugin index.</div>`);
 }
 
-/** List data validation issues in the Data Issues dialog, and show its nav link if there are any. */
+/** List data validation issues in the Data Issues dialog. */
 function showIssues(plugins) {
     const issues = plugins.flatMap(plugin => plugin.validate());
-
-    console.log("%cFound " + issues.length + " data issues",
-        "font-weight:700;" + (issues.length > 0 ? "color:red;" : "color:green"));
+    console.log(`%cFound ${issues.length} data issues`, `font-weight:700;color:${issues.length ? "red" : "green"}`);
 
     if (issues.length) {
         ui.issuesList.insertAdjacentHTML("beforeend", issues

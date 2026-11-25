@@ -4,14 +4,13 @@
 $filter-bg: #1265A1;
 $nav-bg: darken($filter-bg, 10%);
 
-// Plugin tag colors: between the original pastel tags and fully saturated ones.
-// White text is ~3.1:1 on each (WCAG AA for bold/large text and UI components; 4.5:1 would need darker colors).
-$tag-type: #6691e5;     // cornflower blue
-$tag-new: #40a372;      // green
-$tag-inactive: #d77a33; // amber
-$tag-compat: #8e9295;   // grey
-$tag-menu: #e86a6a;     // red
-$tag-dll: #af76f3;      // purple
+// White text is ~3.1:1 on each tag color: WCAG AA for bold text, not for normal text (4.5:1).
+$tag-type: #6691e5;
+$tag-new: #40a372;
+$tag-inactive: #d77a33;
+$tag-compat: #8e9295;
+$tag-menu: #e86a6a;
+$tag-dll: #af76f3;
 
 /* Header */
 #brand-sm {
@@ -27,13 +26,11 @@ $tag-dll: #af76f3;      // purple
   }
 }
 
-// On small screens only the navbar sticks (the filters are too tall).
-// `display: contents` lets the navbar's sticky-top apply against the page rather than this wrapper.
+// On small screens only the navbar sticks, against the page rather than this wrapper: the filters are too tall.
 .app-header {
   display: contents;
 }
 
-// When the screen is large enough, the navbar and filters stick together.
 @media (min-width: 768px) {
   .app-header {
     display: block;
@@ -57,7 +54,7 @@ $tag-dll: #af76f3;      // purple
 }
 
 .container-fluid {
-  max-width: 1094px; // container content matches max-width of embedded forum post
+  max-width: 1094px; // the embedded forum post's width
 }
 
 .form-label {
@@ -93,7 +90,6 @@ footer {
   padding: 0.5rem 0.25rem 1rem;
   margin-bottom: 0.5rem;
 
-  // Skip layout/paint for plugins that are off-screen.
   content-visibility: auto;
   contain-intrinsic-size: auto 110px;
 
@@ -189,14 +185,18 @@ footer {
       margin-left: 2px;
     }
   }
+
+  .tag-score {
+    color: var(--bs-secondary-color);
+    font-family: var(--bs-font-monospace);
+  }
 }
 
 /* Scroll to top */
 #scrollToTop {
   position: fixed;
   right: 1.25rem;
-  // Mid-height, not the bottom corner: the embed iframe is taller than most screens,
-  // so a bottom-anchored button would be below the visible part of the page.
+  // Not the bottom corner: the embed iframe is taller than most screens.
   bottom: 40%;
   z-index: 1030;
   width: 2.75rem;

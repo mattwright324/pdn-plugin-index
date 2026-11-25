@@ -31,7 +31,9 @@ revision : 1 November 2026
             "listing": "./js/listing.js?v={{ cache_buster }}",
             "util": "./js/util.js?v={{ cache_buster }}",
             "plugin": "./js/plugin.js?v={{ cache_buster }}",
-            "polyfills": "./js/polyfills.js?v={{ cache_buster }}"
+            "search": "./js/search.js?v={{ cache_buster }}",
+            "spelling": "./js/spelling.js?v={{ cache_buster }}",
+            "minisearch": "https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/es/index.js"
         }}
     </script>
     <script type="module" src="./js/main.js?v={{ cache_buster }}"></script>
@@ -135,7 +137,6 @@ revision : 1 November 2026
                             </select>
                         </div>
 
-
                         <div class="col-md-2">
                             <label class="form-label" for="menu-list">
                                 Menu
@@ -152,7 +153,7 @@ revision : 1 November 2026
                 <div class="container-fluid pb-1 mb-1">
                     <div class="row justify-content-between">
                         <div class="col-auto">
-                            <label class="form-label block-title align-baseline" style="margin-right: 0.5rem">
+                            <label class="form-label align-baseline" style="margin-right: 0.5rem">
                                 <span id="count" class="badge text-bg-dark">0 / 0</span>
                                 plugins found
                             </label>
@@ -165,7 +166,8 @@ revision : 1 November 2026
                         <div class="col-auto">
                             <label class="form-label w-auto align-baseline" for="order" style="margin: 0">Order by</label>
                             <select id="order" class="form-select form-select-sm w-auto align-baseline">
-                                <option value="release_new" selected>Newest</option>
+                                <option value="relevance" selected>Best match</option>
+                                <option value="release_new">Newest</option>
                                 <option value="release_old">Oldest</option>
                                 <option value="title">Title</option>
                                 <option value="author">Author</option>
@@ -182,21 +184,17 @@ revision : 1 November 2026
     </div>
 
     <main id="content-div" class="container-fluid">
-        <div id="plugins-list" class="col">
-            <!-- Plugin content generated here -->
-        </div>
+        <div id="plugins-list" class="col"></div>
     </main>
 
     <footer class="footer">
         <div class="container-fluid">
             <span class="text-body-secondary">
-                mattwright324 <i class="bi bi-dot"></i> Sigillatus <i class="bi bi-dot"></i> toehead2001 <i
-                    class="bi bi-dot"></i>
+                mattwright324 <i class="bi bi-dot"></i> Sigillatus <i class="bi bi-dot"></i> toehead2001 <i class="bi bi-dot"></i>
                 {{ site.time | date: "%Y" }}
                 <br>
                 <a target="_blank" href="https://mattw.io">mattw.io</a> <i class="bi bi-dot"></i>
-                <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> <i
-                    class="bi bi-dot"></i>
+                <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> <i class="bi bi-dot"></i>
                 <a target="_blank" href="https://forums.paint.net/topic/15260-plugin-index/">forum post</a>
             </span>
         </div>
@@ -216,12 +214,9 @@ revision : 1 November 2026
                     </p>
                     <p>
                         Index data has been collected and curated by Scott Stringer
-                        (<a target="_blank" href="https://forums.paint.net/profile/48727-ego-eram-reputo/">Ego
-                            Eram
-                            Reputo</a>)
+                        (<a target="_blank" href="https://forums.paint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>)
                         since 2009. This application was originally built by Matthew Wright
-                        (<a target="_blank"
-                            href="https://forums.paint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
+                        (<a target="_blank" href="https://forums.paint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
                         in 2017 to make that data interactively searchable.
                     </p>
                     <p>

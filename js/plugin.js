@@ -1,18 +1,56 @@
 import * as util from "util";
 
-export class Plugin {
-    constructor(data) {
-        this.#data = Object.assign({}, data);
-        this.#releaseAsDate = new Date(this.#data.release);
-    }
+/** Plugin Type dropdown value -> lowercase plugin type. */
+export const TYPE_FILTERS = {
+    "effect": "effect",
+    "adjustment": "adjustment",
+    "filetype": "filetype",
+    "plugin-pack": "plugin pack",
+    "external": "external resource",
+};
 
+const ACTIVE_STATUSES = new Set(["new", "active", "bundled"]);
+const VALID_STATUSES = new Set([...ACTIVE_STATUSES, "deprecated", "obsolete", "incompatible", "unsupported", "integrated"]);
+const VALID_TYPES = new Set(Object.values(TYPE_FILTERS));
+const SEARCH_FIELDS = ["title", "desc", "author", "type", "status", "menu", "dlls"];
+const DESC_PREVIEW_LENGTH = 450;
+
+let instanceCount = 0;
+
+const isBlank = (value) => value == null || String(value).trim() === "";
+const isPositiveNumber = (value) => typeof value === "number" && value > 0;
+const plural = (count, unit) => `${count} ${unit}${count === 1 ? "" : "s"}`;
+const lower = (value) => String(value ?? "").trim().toLowerCase();
+
+/**
+ * Descriptions intentionally contain <br> tags. Escape everything else.
+ */
+const formatDesc = (text) => util.escapeHtml(text).replace(/&lt;br\s*\/?&gt;/gi, "<br>");
+
+/**
+ * Find where to cut a description for the preview without splitting a tag or a word.
+ */
+function previewCutIndex(desc) {
+    let cut = DESC_PREVIEW_LENGTH;
+    const lastOpen = desc.lastIndexOf("<", cut - 1);
+    if (lastOpen > desc.lastIndexOf(">", cut - 1)) {
+        cut = lastOpen;
+    }
+    const lastSpace = desc.lastIndexOf(" ", cut);
+    if (lastSpace > cut - 40) {
+        cut = lastSpace;
+    }
+    return cut;
+}
+
+export class Plugin {
     /**
      * @typedef {Object} RawPluginData - Data as loaded from the JSON file
      * @property {string} title - The plugin title
      * @property {string} author - The author's name
      * @property {number} author_id - The author's forum ID
      * @property {number} topic_id - The forum topic ID
-     * @property {string} desc - The plugin description
+     * @property {string} desc - The plugin description (may contain <br>)
      * @property {string} type - The plugin type (e.g., "Effect", "Adjustment")
      * @property {string} release - The release date as a string
      * @property {string} status - The plugin status (e.g., "Active", "New")
@@ -22,36 +60,44 @@ export class Plugin {
      * @property {number} [alt_topic] - Optional alternative topic ID
      */
     #data;
-    #releaseAsDate;
-    #html;
+    #id;
+    #release;
+    #searchText;
+    #altPlugin;
+    #element;
 
-    // a few of these have 0 references, but do get called through bracket notation. i.e. plugin['fieldName']
+    /** Lowercase keys used for filtering. */
+    authorKey;
+    menuKey;
+    typeKey;
+    statusKey;
+
+    /** @param {RawPluginData} data */
+    constructor(data) {
+        this.#data = Object.assign({}, data);
+        this.#id = ++instanceCount;
+        this.#release = new Date(this.#data.release);
+        this.#searchText = SEARCH_FIELDS
+            .map(field => String(this.#data[field] ?? "").replace(/<br\s*\/?>/gi, " "))
+            .join("\n")
+            .toUpperCase();
+
+        this.authorKey = lower(this.#data.author);
+        this.menuKey = lower(this.#data.menu);
+        this.typeKey = lower(this.#data.type);
+        this.statusKey = lower(this.#data.status);
+    }
+
     get topicId() {
         return this.#data.topic_id;
     }
 
+    get title() {
+        return this.#data.title;
+    }
+
     get author() {
         return this.#data.author;
-    }
-
-    get desc() {
-        return this.#data.desc;
-    }
-
-    get dlls() {
-        return this.#data.dlls;
-    }
-
-    get html() {
-        return this.#html ??= this.#dataToHtml();
-    }
-
-    get isActive() {
-        return ["New", "Active", "Bundled"].some(x => util.equalsIgnoreCase(this.#data.status, x));
-    }
-
-    get isNew() {
-        return util.equalsIgnoreCase(this.#data.status, "New");
     }
 
     get menu() {
@@ -59,294 +105,179 @@ export class Plugin {
     }
 
     get release() {
-        return this.#releaseAsDate;
+        return this.#release;
     }
 
-    get status() {
-        return this.#data.status;
+    get isActive() {
+        return ACTIVE_STATUSES.has(this.statusKey);
     }
 
-    get title() {
-        return this.#data.title;
+    get isNew() {
+        return this.statusKey === "new";
     }
 
-    get type() {
-        return this.#data.type;
+    /** The plugin's DOM element, built on first access. */
+    get element() {
+        return this.#element ??= util.htmlToElement(this.#toHtml());
     }
 
+    static #timeSince(date, now = new Date()) {
+        if (isNaN(date)) {
+            return "Release date unknown";
+        }
+
+        let months = (now.getFullYear() - date.getFullYear()) * 12 + (now.getMonth() - date.getMonth());
+        if (now.getDate() < date.getDate()) {
+            months--;
+        }
+        const years = Math.floor(months / 12);
+        months %= 12;
+
+        if (years > 0 || months > 0) {
+            const parts = [years > 0 && plural(years, "year"), months > 0 && plural(months, "month")].filter(Boolean);
+            return `Released ${parts.join(" ")} ago`;
+        }
+
+        const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        const days = Math.round((startOfDay(now) - startOfDay(date)) / 86_400_000);
+        return days > 0 ? `Released ${plural(days, "day")} ago` : "Released today";
+    }
+
+    /**
+     * Resolve the "See also" plugin for alt_topic. Call once all plugins are loaded.
+     * @param {Object<number, Plugin[]>} pluginsByTopic
+     */
+    resolveAltPlugin(pluginsByTopic) {
+        const candidates = (pluginsByTopic[this.#data.alt_topic] || []).filter(p => p.title !== this.title);
+        this.#altPlugin = candidates.find(p => p.typeKey === "plugin pack") || candidates[0];
+    }
+
+    /** @param {string} filterStatus - any | new | active | inactive */
+    matchesStatus(filterStatus) {
+        switch (filterStatus) {
+            case "new":
+                return this.isNew;
+            case "active":
+                return this.isActive;
+            case "inactive":
+                return !this.isActive;
+            default:
+                return true;
+        }
+    }
+
+    /** @param {string} filterType - "any" or a key of TYPE_FILTERS */
+    matchesType(filterType) {
+        return filterType === "any" || this.typeKey === TYPE_FILTERS[filterType];
+    }
+
+    /**
+     * @param filters - result of normalizeFilters() in filters.js
+     */
     shouldDisplay(filters) {
-        filters = Object.assign({
-            keywords: "",
-            keywordStyle: "any",
-            status: "active",
-            type: "any",
-            author: "any",
-            menu: "any",
-        }, filters);
-
-        if (filters.keywords) {
-            const keywordStyle = filters.keywordStyle.toLowerCase();
-            const upperKeywords = filters.keywords.toUpperCase();
-            const searchableFields = ['title', 'desc', 'author', 'type', 'status', 'menu', 'dlls'];
-            const searchTexts = searchableFields.map(field => String(this[field]).toUpperCase());
-
-            if (keywordStyle === 'any' || keywordStyle === 'all') {
-                const keywordArray = upperKeywords.split(/\s+/).filter(k => k.length > 0);
-                if (keywordArray.length > 0) {
-                    const matchFunc = keywordStyle === 'all' ? 'every' : 'some';
-                    if (!keywordArray[matchFunc](keyword =>
-                        searchTexts.some(text => text.includes(keyword))
-                    )) {
-                        return false;
-                    }
-                }
-            } else if (keywordStyle === 'exact') {
-                if (!searchTexts.some(text => text.includes(upperKeywords))) {
-                    return false;
-                }
-            }
-        }
-
-        const filterStatus = filters.status.trim().toLowerCase();
-        if (filterStatus === 'new') {
-            if (!this.isNew) {
-                return false;
-            }
-        } else if (filterStatus === 'active') {
-            // Show if New, Active or Bundled
-            if (!this.isActive) {
-                return false;
-            }
-        } else if (filterStatus === 'inactive') {
-            // Show if status is anything except New, Active or Bundled
-            if (this.isActive) {
+        if (filters.terms.length) {
+            const contains = term => this.#searchText.includes(term);
+            const matched = filters.keywordStyle === "all"
+                ? filters.terms.every(contains)
+                : filters.terms.some(contains);
+            if (!matched) {
                 return false;
             }
         }
 
-        const filterType = filters.type.trim().toLowerCase();
-        if (filterType !== 'any') {
-            let hide = true;
-            if (util.equalsIgnoreCase(this.type, "Effect") && filterType === 'effect' ||
-                util.equalsIgnoreCase(this.type, "Adjustment") && filterType === 'adjustment' ||
-                util.equalsIgnoreCase(this.type, "Filetype") && filterType === 'filetype' ||
-                util.equalsIgnoreCase(this.type, "External Resource") && filterType === 'external' ||
-                util.equalsIgnoreCase(this.type, "Plugin Pack") && filterType === 'plugin-pack') {
-
-                hide = false;
-            }
-
-            if (hide) {
-                return false;
-            }
-        }
-
-        if (filters.author && filters.author !== "any") {
-            if (!util.equalsIgnoreCase(this.author, filters.author)) {
-                return false;
-            }
-        }
-
-        if (filters.menu && filters.menu !== "any") {
-            if (!util.equalsIgnoreCase(this.menu, filters.menu)) {
-                return false;
-            }
-        }
-
-        return true;
+        return this.matchesStatus(filters.status)
+            && this.matchesType(filters.type)
+            && (filters.author === "any" || this.authorKey === filters.author)
+            && (filters.menu === "any" || this.menuKey === filters.menu);
     }
 
+    /**
+     * @returns {string[]} HTML-safe issue descriptions
+     */
     validate() {
-        const types = new Set(["effect", "adjustment", "filetype", "external resource", "plugin pack"]);
-        const statuses = new Set(["active", "new", "deprecated", "obsolete", "incompatible", "unsupported", "integrated", "bundled"]);
-        const is = {
-            validNumber(value) {
-                return typeof value === "number" && !isNaN(value) && value > 0;
-            },
-            validDate(value) {
-                return value instanceof Date && !isNaN(value);
-            },
-            validType(value) {
-                return typeof value === "string" && types.has(value.toLowerCase());
-            },
-            validStatus(value) {
-                return typeof value === "string" && statuses.has(value.toLowerCase());
-            },
-            emptyString(value) {
-                // Source: https://stackoverflow.com/a/36328062/2650847
-                return typeof value === 'undefined' || !value ||
-                    value.length === 0 || value === "" || !/[^\s]/.test(value) ||
-                    /^\s*$/.test(value) || value.replace(/\s/g, "") === "";
-            }
-        };
-
+        const data = this.#data;
         const issues = [];
 
-        const logIssue = (data, value, reason) => {
-            issues.push(`Plugin [topic_id=${data.topic_id} title=${data.title}]<br>Issue ${reason} [value=${value}]`);
+        const logIssue = (value, reason) => {
+            issues.push(`Plugin [topic_id=${util.escapeHtml(data.topic_id)} title=${util.escapeHtml(data.title)}]<br>`
+                + `Issue ${reason} [value=${util.escapeHtml(value)}]`);
             console.log(`${reason} [value=${value}] - ${JSON.stringify(data)}`);
         };
 
-        const data = this.#data;
-
-        if (!is.validDate(new Date(data.release))) {
-            logIssue(data, data.release, "INVALID DATE");
+        if (isNaN(this.#release)) {
+            logIssue(data.release, "INVALID DATE");
         }
-        if (!is.validNumber(data.topic_id)) {
-            logIssue(data, data.topic_id, "INVALID TOPIC_ID");
+        if (!isPositiveNumber(data.topic_id)) {
+            logIssue(data.topic_id, "INVALID TOPIC_ID");
         }
-        if (!is.validNumber(data.author_id)) {
-            logIssue(data, data.author_id, "INVALID AUTHOR ID");
+        if (!isPositiveNumber(data.author_id)) {
+            logIssue(data.author_id, "INVALID AUTHOR ID");
         }
-        if (data.alt_topic && !is.validNumber(data.alt_topic)) {
-            logIssue(data, data.alt_topic, "INVALID ALT_TOPIC");
+        if (data.alt_topic && !isPositiveNumber(data.alt_topic)) {
+            logIssue(data.alt_topic, "INVALID ALT_TOPIC");
         }
-        if (!is.validType(String(data.type))) {
-            logIssue(data, data.type, "INVALID TYPE");
+        if (!VALID_TYPES.has(this.typeKey)) {
+            logIssue(data.type, "INVALID TYPE");
         }
-        if (!is.validStatus(String(data.status))) {
-            logIssue(data, data.status, "INVALID STATUS");
+        if (!VALID_STATUSES.has(this.statusKey)) {
+            logIssue(data.status, "INVALID STATUS");
         }
-        if (is.emptyString(String(data.title))) {
-            logIssue(data, data.title, "EMPTY TITLE");
-        }
-        if (is.emptyString(String(data.author))) {
-            logIssue(data, data.author, "EMPTY AUTHOR");
-        }
-        if (is.emptyString(String(data.desc))) {
-            logIssue(data, data.author, "EMPTY DESC");
-        }
-        if (is.emptyString(String(data.compatibility))) {
-            logIssue(data, data.compatibility, "EMPTY COMPAT");
-        }
-        if (is.emptyString(String(data.menu))) {
-            logIssue(data, data.menu, "EMPTY MENU");
-        }
-        if (is.emptyString(String(data.dlls))) {
-            logIssue(data, data.dlls, "EMPTY DLLS");
+        for (const field of ["title", "author", "desc", "compatibility", "menu", "dlls"]) {
+            if (isBlank(data[field])) {
+                logIssue(data[field], `EMPTY ${field === "compatibility" ? "COMPAT" : field.toUpperCase()}`);
+            }
         }
 
         return issues;
     }
 
-    static #timeSince(date) {
-        const temporalSupported = (typeof Temporal === 'object' && 'PlainDate' in Temporal && 'Now' in Temporal && 'Duration' in Temporal);
-        if (temporalSupported) {
-            const asPlainDate = new Temporal.PlainDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
-            const since = Temporal.Now.plainDateISO().since(asPlainDate, {largestUnit: "years", smallestUnit: "days"});
-
-            return (since.years > 0 && since.months > 0)
-                ? `Released ${since.years} year${since.years > 1 ? "s" : ""} ${since.months} month${since.months > 1 ? "s" : ""} ago` : (since.years > 0)
-                    ? `Released ${since.years} year${since.years > 1 ? "s" : ""} ago` : (since.months > 0)
-                        ? `Released ${since.months} month${since.months > 1 ? "s" : ""} ago` : (since.days > 0)
-                            ? `Released ${since.days} day${since.days > 1 ? "s" : ""} ago`
-                            : `Released today`;
-        }
-
-        let seconds = Math.floor((new Date() - date) / 1000);
-
-        const intervals = [
-            {label: "year", seconds: 31536000},
-            {label: "month", seconds: 2592000},
-            {label: "day", seconds: 86400},
-            {label: "hour", seconds: 3600},
-            {label: "minute", seconds: 60},
-            {label: "second", seconds: 1}
-        ];
-
-        const years = Math.floor(seconds / intervals[0].seconds);
-        seconds -= years * intervals[0].seconds;
-
-        const months = Math.floor(seconds / intervals[1].seconds);
-
-        if (years > 0) {
-            let result = "Released " + years + " year" + (years > 1 ? "s" : "");
-            if (months > 0) {
-                result += " " + months + " month" + (months > 1 ? "s" : "");
-            }
-            return result + " ago";
-        }
-
-        // Fallback: normal largest unit logic
-        for (let i = 1; i < intervals.length; i++) {
-            const count = Math.floor(seconds / intervals[i].seconds);
-            if (count >= 1) {
-                return "Released " + count + " " + intervals[i].label + (count > 1 ? "s" : "") + " ago";
-            }
-        }
-
-        return "just now";
-    }
-
-    #findAltPlugin() {
-        const plugins = index.pluginMap[this.#data.alt_topic];
-        if (!plugins) return;
-
-        const filtered = plugins.filter(p => p.title !== this.title);
-        if (filtered.length === 0) return;
-        if (filtered.length === 1) return filtered[0];
-
-        const pack = filtered.find(p => util.equalsIgnoreCase(p.type, "Plugin Pack"));
-        return pack || filtered[0];
-    }
-
-    #dataToHtml() {
+    #toHtml() {
         const data = this.#data;
+        const esc = util.escapeHtml;
+        const id = this.#id;
+        const desc = String(data.desc ?? "");
 
-        let altLink = '';
-        if (data.hasOwnProperty('alt_topic') && data.alt_topic !== '') {
-            const altPlugin = this.#findAltPlugin();
-            const altTitle = altPlugin ? altPlugin.title : 'unknown';
-            const altDisplay = altPlugin ? altPlugin.title : "#" + data.alt_topic;
-            altLink = `<sp class='alt'>See also: <a target="_blank" href="https://forums.paint.net/topic/${data.alt_topic}-${util.slugify(altTitle)}">
-                                ${altDisplay}
-                           </a></sp>`;
+        let descHtml = formatDesc(desc);
+        if (desc.length > DESC_PREVIEW_LENGTH) {
+            const cut = previewCutIndex(desc);
+            descHtml = `${formatDesc(desc.substring(0, cut))}<span class="ellipsis">...</span>`
+                + `<span id="plugin-more-${id}" class="desc-more">${formatDesc(desc.substring(cut))}</span><br>`
+                + `<button type="button" class="btn btn-link p-0 desc-toggle" `
+                + `aria-expanded="false" aria-controls="plugin-more-${id}">Show more</button>`;
         }
 
-        const dot = `<i class="bi bi-dot"></i>`;
-        const since = Plugin.#timeSince(this.#releaseAsDate);
-        const dlls = (data.dlls || "").split(",");
-        const dllsHover = (data.dlls || "").replace(/, /g, "\n").trim() || "N/A"; // replace comma-space with newline for dll tooltip
-        let dllText = `<sp class='dll-1'>${dlls[0] || 'N/A'}</sp>`;
-        if (dlls.length > 1) {
-            dllText = dllText + " <sp class='dll-2'>and " + (dlls.length - 1) + " more</sp>";
+        let altHtml = "";
+        if (!isBlank(data.alt_topic)) {
+            const alt = this.#altPlugin;
+            const altUrl = `https://forums.paint.net/topic/${esc(data.alt_topic)}-${util.slugify(alt ? alt.title : "unknown")}`;
+            altHtml = `<div class="alt">See also: <a target="_blank" href="${altUrl}">${esc(alt ? alt.title : "#" + data.alt_topic)}</a></div>`;
         }
-        if (data.dlls.toLowerCase() === 'n/a') {
-            dllText = data.dlls.trim();
+
+        const dllList = String(data.dlls ?? "").split(",").map(s => s.trim()).filter(Boolean);
+        let dllHtml = "N/A";
+        if (dllList.length && lower(data.dlls) !== "n/a") {
+            dllHtml = `<span class="dll-name">${esc(dllList[0])}</span>`
+                + (dllList.length > 1 ? ` <span class="dll-more">and ${dllList.length - 1} more</span>` : "");
         }
-        return `<div class='plugin'>
-                    <div class="phead">
-                        <sp class='title'><a target="_blank" href="https://forums.paint.net/topic/${data.topic_id}-${util.slugify(data.title)}">
-                            ${data.title}
-                        </a></sp>
-                    </div>
-                    <sp class="desc">
-${data.desc.substring(0, 450)}
-<span class="ellipsis" id="ellipsis-${data.topic_id}">${data.desc.length > 450 ? '...' : ''}</span>
-<sp ${data.desc.length > 450 ? '' : 'hidden'}>
-    <sp id="more-${data.topic_id}" class="collapse">${data.desc.substring(450)}</sp>
-    <br>
-    <a data-bs-toggle="collapse" href="#more-${data.topic_id}" role="button" 
- 
-    onclick="this.textContent = this.textContent === 'Show more' ? 'Show less' : 'Show more';
-                document.getElementById('ellipsis-${data.topic_id}').style.display = 
-                this.textContent === 'Show more' ? '' : 'none';">Show more</a>
-</sp>
-                    </sp>
-                    ${altLink}
-                    <div class="tags">
-                        <sp class="tag author">
-                                <a target="_blank" href="https://forums.paint.net/profile/${data.author_id}-${util.slugify(data.author)}" title="View ${data.author}&apos;s profile">
-                                    <i class="bi bi-person-circle"></i> ${data.author}
-                                </a>
-                            </sp>${dot}
-                        <sp class="tag" title="Published on ${this.#releaseAsDate.toLocaleDateString()}">${since}</sp>${dot}
-                        <sp class="tag t" title="Plugin Type">${data.type}</sp>&nbsp;
-                        <sp class="tag s" title="Plugin Status">${data.status}</sp>&nbsp;
-                        <sp class="tag c" title="Released under PDN version&hellip;">${data.compatibility}</sp>&nbsp;
-                        <sp class="tag m" title="Menu Location">${data.menu || 'N/A'}</sp>&nbsp;
-                        <sp class="tag d" title="${dllsHover}">${dllText}</sp>
-                    </div>
-                </div>`.split("\n").map(s => s.trim()).join("\n");
+
+        const statusClass = this.isNew ? "is-new" : this.isActive ? "" : "is-inactive";
+        const dot = `<i class="bi bi-dot" aria-hidden="true"></i>`;
+        const authorUrl = `https://forums.paint.net/profile/${esc(data.author_id)}-${util.slugify(data.author)}`;
+        const topicUrl = `https://forums.paint.net/topic/${esc(data.topic_id)}-${util.slugify(data.title)}`;
+
+        return `<article class="plugin">
+            <h2 class="title"><a target="_blank" href="${topicUrl}">${esc(data.title)}</a></h2>
+            <p class="desc">${descHtml}</p>
+            ${altHtml}
+            <div class="tags">
+                <span class="tag tag-author"><a target="_blank" href="${authorUrl}" title="View ${esc(data.author)}'s profile"><i class="bi bi-person-circle"></i> ${esc(data.author)}</a></span>${dot}
+                <span class="tag tag-date" title="Published on ${esc(this.#release.toLocaleDateString())}">${Plugin.#timeSince(this.#release)}</span>${dot}
+                <span class="tag tag-type" title="Plugin Type">${esc(data.type)}</span>
+                <span class="tag tag-status ${statusClass}" title="Plugin Status">${esc(data.status)}</span>
+                <span class="tag tag-compat" title="Released under PDN version&hellip;">${esc(data.compatibility)}</span>
+                <span class="tag tag-menu" title="Menu Location">${esc(data.menu || "N/A")}</span>
+                <span class="tag tag-dll" title="${esc(dllList.join("\n") || "N/A")}">${dllHtml}</span>
+            </div>
+        </article>`;
     }
 }

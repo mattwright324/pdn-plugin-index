@@ -1,14 +1,7 @@
-export const equalsIgnoreCase = (a, b) => {
-    return String(a).toUpperCase() === String(b).toUpperCase();
-}
+const collator = new Intl.Collator(undefined, {sensitivity: "base"});
 
-export const alphaSort = (a, b) => {
-    return a.toUpperCase().localeCompare(b.toUpperCase());
-};
-
-export const numericCompare = (a, b) => {
-    return (a < b) ? 1 : (a > b) ? -1 : 0;
-};
+/** Case- and accent-insensitive string comparison, for Array.sort(). */
+export const alphaSort = (a, b) => collator.compare(a, b);
 
 export const debounce = (func, wait) => {
     let timeout;
@@ -29,4 +22,28 @@ export const slugify = (text) => {
         .replace(/-+/g, '-'); // remove consecutive hyphens
 }
 
-export const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const HTML_ESCAPES = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"};
+
+/**
+ * Escape text for safe use in HTML content and quoted attribute values.
+ */
+export const escapeHtml = (text) => {
+    return String(text ?? "").replace(/[&<>"']/g, ch => HTML_ESCAPES[ch]);
+}
+
+/**
+ * Parse an HTML string containing a single root element.
+ */
+export const htmlToElement = (html) => {
+    const template = document.createElement("template");
+    template.innerHTML = html.trim();
+    return template.content.firstElementChild;
+}
+
+/**
+ * Whether a <select> has an option with exactly this value.
+ * Avoids building a CSS selector from untrusted input.
+ */
+export const hasOption = (select, value) => {
+    return Array.from(select.options).some(option => option.value === value);
+}

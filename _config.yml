@@ -1,14 +1,6 @@
+host: 0.0.0.0
 encoding: UTF-8
 data_dir: index
-exclude : [.idea]
-compress_html:
-  clippings: all
-  comments: [""]
-  endings: [html, head, body, li, dt, dd, rt, rp, optgroup, option, colgroup, caption, thead, tbody, tfoot, tr, td, th]
-  profile: false
-  blanklines: false
-  ignore:
-    envs: []
+exclude: [.idea, Gemfile, Gemfile.lock, README.md, BUILD.md, LICENSE]
 sass:
-  sass_dir: css
   style: compressed

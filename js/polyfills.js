@@ -28,12 +28,14 @@ function groupBy() {
     }
 }
 
-export async function load() {
-    [groupBy].forEach(fn => {
-        try {
-            fn()
-        } catch (e) {
-            console.log("Error loading polyfill", e)
-        }
-    });
-}
+/*
+ * Polyfills install when this module is imported. Import it first in main.js:
+ * static imports run in order, so they are in place before any other module runs.
+ */
+[groupBy].forEach(fn => {
+    try {
+        fn()
+    } catch (e) {
+        console.log("Error loading polyfill", e)
+    }
+});

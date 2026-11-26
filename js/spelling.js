@@ -83,36 +83,50 @@ const isLongEnough = (stem) => stem.length >= MIN_STEM_LENGTH;
  * Suffixes that keep the meaning of the rest of the word, and when a stem can have them. Longest first.
  * Not -er: "better" isn't "bet", nor "letter" "let". Nor -y or -al, but as below: "party" isn't "part".
  */
+/** "transparent", "transparency" -> "transparen-"; "distant", "distance" -> "distan-". Not "event" -> "even-". */
+const isEntOrAntStem = (stem) => stem.length >= 5 && /[ae]n$/.test(stem);
+
 const SUFFIX_RULES = [
+    ["cies", isEntOrAntStem],                                          // "frequencies"
     ...["izations", "ization", "ments", "izing", "ment", "ness", "ions", "ings", "ized", "izes", "able", "ible",
         "less", "ize", "ion", "ing", "ful", "ity", "ive", "ies", "ied", "ed"].map(suffix => [suffix, isLongEnough]),
     ["ly", stem => isLongEnough(stem) && !stem.endsWith("p")],           // not "comply"
     ["es", stem => stem.length >= 3 && /(ch|sh|ss|[xz])$/.test(stem)],  // "boxes"; "lines" is "line" + "s"
     ["en", stem => isLongEnough(stem) && /[^aeiou]$/.test(stem)],      // "darken"; not "screen"
     ["al", stem => /(ion|ic)$/.test(stem)],                            // "directional", "symmetrical"
+    ["ce", isEntOrAntStem],                                            // "difference", "distance"
+    ["cy", isEntOrAntStem],                                            // "transparency"
     ["y", stem => stem.endsWith("if")],                                // "modify"
     ["s", stem => isLongEnough(stem) && !stem.endsWith("s")],          // not "gloss"
+    ["t", isEntOrAntStem],                                             // "transparent", "distant"
     ["e", stem => isLongEnough(stem) && /[^ei]$/.test(stem)],          // "animate" -> "animat-"; not "free"
 ];
 /** A plural is always the last suffix: "canvases" -> "canvas", not "canva". */
 const NON_PLURAL_RULES = SUFFIX_RULES.filter(([suffix]) => suffix !== "s" && suffix !== "es");
+/** Nothing more is removed after these: "transparen-" isn't "transpar-", nor "presen-" (present) "pres-". */
+const LAST_SUFFIXES = new Set(["cies", "ce", "cy", "t"]);
 const UNDOUBLES = new Set(["ed", "ing", "ings", "en"]);
 
+/** @returns {[string, string?]} the stem, and the suffix removed if any */
 const removeOneSuffix = (term, rules) => {
     const [suffix] = rules.find(([suffix, isStem]) =>
         term.endsWith(suffix) && isStem(term.slice(0, -suffix.length))) ?? [];
     if (!suffix) {
-        return term;
+        return [term];
     }
     const stem = term.slice(0, -suffix.length);
-    return UNDOUBLES.has(suffix) ? stem.replace(/([bdgmnprt])\1$/, "$1") : stem; // "blurring" -> "blur"
+    return [UNDOUBLES.has(suffix) ? stem.replace(/([bdgmnprt])\1$/, "$1") : stem, suffix]; // "blurring" -> "blur"
 };
 
 /** Remove suffixes until none are left: "creates" -> "create" -> "creat-", which also finds "creation". */
 export function removeSuffix(term) {
     let rules = SUFFIX_RULES;
-    for (let stem; (stem = removeOneSuffix(term, rules)) !== term; rules = NON_PLURAL_RULES) {
+    for (;;) {
+        const [stem, suffix] = removeOneSuffix(term, rules);
+        if (!suffix || LAST_SUFFIXES.has(suffix)) {
+            return stem;
+        }
         term = stem;
+        rules = NON_PLURAL_RULES;
     }
-    return term;
 }

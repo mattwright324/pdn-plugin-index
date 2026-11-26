@@ -20,6 +20,9 @@ const isBlank = (value) => value == null || String(value).trim() === "";
 const isPositiveNumber = (value) => typeof value === "number" && value > 0;
 const plural = (count, unit) => `${count} ${unit}${count === 1 ? "" : "s"}`;
 
+/** A forum topic or profile URL, e.g. https://forums.paint.net/topic/16643-1px-expansion */
+const forumUrl = (path, id, name) => `https://forums.paint.net/${path}/${util.escapeHtml(id)}-${util.slugify(name)}`;
+
 /** Descriptions contain <br> tags. Escape everything else. */
 const formatDesc = (text) => util.escapeHtml(text).replace(/&lt;br\s*\/?&gt;/gi, "<br>");
 
@@ -218,50 +221,56 @@ export class Plugin {
     #toHtml() {
         const data = this.#data;
         const esc = util.escapeHtml;
-        const id = this.#id;
-        const desc = this.field("desc");
-
-        let descHtml = formatDesc(desc);
-        if (desc.length > DESC_PREVIEW_LENGTH) {
-            const cut = previewCutIndex(desc);
-            descHtml = `${formatDesc(desc.substring(0, cut))}<span class="ellipsis">...</span>`
-                + `<span id="plugin-more-${id}" class="desc-more">${formatDesc(desc.substring(cut))}</span><br>`
-                + `<button type="button" class="btn btn-link p-0 desc-toggle" `
-                + `aria-expanded="false" aria-controls="plugin-more-${id}">Show more</button>`;
-        }
-
-        let altHtml = "";
-        if (!isBlank(data.alt_topic)) {
-            const alt = this.#altPlugin;
-            const altUrl = `https://forums.paint.net/topic/${esc(data.alt_topic)}-${util.slugify(alt ? alt.title : "unknown")}`;
-            altHtml = `<div class="alt">See also: <a target="_blank" href="${altUrl}">${esc(alt ? alt.title : "#" + data.alt_topic)}</a></div>`;
-        }
-
-        const dllList = this.field("dlls").split(",").map(s => s.trim()).filter(Boolean);
-        let dllHtml = "N/A";
-        if (dllList.length && util.lower(data.dlls) !== "n/a") {
-            dllHtml = `<span class="dll-name">${esc(dllList[0])}</span>`
-                + (dllList.length > 1 ? ` <span class="dll-more">and ${dllList.length - 1} more</span>` : "");
-        }
-
+        const dlls = this.field("dlls").split(",").map(s => s.trim()).filter(Boolean);
         const statusClass = this.isNew ? "is-new" : this.isActive ? "" : "is-inactive";
         const dot = `<i class="bi bi-dot" aria-hidden="true"></i>`;
-        const authorUrl = `https://forums.paint.net/profile/${esc(data.author_id)}-${util.slugify(data.author)}`;
-        const topicUrl = `https://forums.paint.net/topic/${esc(data.topic_id)}-${util.slugify(data.title)}`;
 
         return `<article class="plugin">
-            <h2 class="title"><a target="_blank" href="${topicUrl}">${esc(data.title)}</a></h2>
-            <p class="desc">${descHtml}</p>
-            ${altHtml}
+            <h2 class="title"><a target="_blank" href="${forumUrl("topic", data.topic_id, data.title)}">${esc(data.title)}</a></h2>
+            <p class="desc">${this.#descHtml()}</p>
+            ${this.#altHtml()}
             <div class="tags">
-                <span class="tag tag-author"><a target="_blank" href="${authorUrl}" title="View ${esc(data.author)}'s profile"><i class="bi bi-person-circle"></i> ${esc(data.author)}</a></span>${dot}
+                <span class="tag tag-author"><a target="_blank" href="${forumUrl("profile", data.author_id, data.author)}" title="View ${esc(data.author)}'s profile"><i class="bi bi-person-circle"></i> ${esc(data.author)}</a></span>${dot}
                 <span class="tag tag-date" title="Published on ${esc(this.#release.toLocaleDateString())}">${Plugin.#timeSince(this.#release)}</span>${dot}
                 <span class="tag tag-type" title="Plugin Type">${esc(data.type)}</span>
                 <span class="tag tag-status ${statusClass}" title="Plugin Status">${esc(data.status)}</span>
                 <span class="tag tag-compat" title="Released under PDN version&hellip;">${esc(data.compatibility)}</span>
                 <span class="tag tag-menu" title="Menu Location">${esc(data.menu || "N/A")}</span>
-                <span class="tag tag-dll" title="${esc(dllList.join("\n") || "N/A")}">${dllHtml}</span>
+                <span class="tag tag-dll" title="${esc(dlls.join("\n") || "N/A")}">${Plugin.#dllHtml(dlls)}</span>
             </div>
         </article>`;
+    }
+
+    /** Long descriptions are cut, with a "Show more" button for the rest. */
+    #descHtml() {
+        const desc = this.field("desc");
+        if (desc.length <= DESC_PREVIEW_LENGTH) {
+            return formatDesc(desc);
+        }
+        const cut = previewCutIndex(desc);
+        const moreId = `plugin-more-${this.#id}`;
+        return `${formatDesc(desc.substring(0, cut))}<span class="ellipsis">...</span>`
+            + `<span id="${moreId}" class="desc-more">${formatDesc(desc.substring(cut))}</span><br>`
+            + `<button type="button" class="btn btn-link p-0 desc-toggle" `
+            + `aria-expanded="false" aria-controls="${moreId}">Show more</button>`;
+    }
+
+    #altHtml() {
+        const altTopic = this.#data.alt_topic;
+        if (isBlank(altTopic)) {
+            return "";
+        }
+        const title = this.#altPlugin?.title;
+        const url = forumUrl("topic", altTopic, title ?? "unknown");
+        return `<div class="alt">See also: <a target="_blank" href="${url}">${util.escapeHtml(title ?? "#" + altTopic)}</a></div>`;
+    }
+
+    /** The first DLL, and how many more there are. */
+    static #dllHtml(dlls) {
+        if (!dlls.length || dlls.join().toLowerCase() === "n/a") {
+            return "N/A";
+        }
+        const more = dlls.length > 1 ? ` <span class="dll-more">and ${dlls.length - 1} more</span>` : "";
+        return `<span class="dll-name">${util.escapeHtml(dlls[0])}</span>${more}`;
     }
 }

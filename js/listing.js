@@ -1,7 +1,7 @@
 import {ui} from "dom";
 import * as util from "util";
 import {normalizeFilters} from "filters";
-import {searchKeywords} from "search";
+import {searchBoost, searchKeywords} from "search";
 
 const SORTS = {
     release_new: (a, b) => b.release - a.release,
@@ -79,5 +79,5 @@ function showScore(plugin, result) {
 
     const matches = Object.entries(result?.match ?? {}).map(([term, fields]) => `${term}: ${fields.join(", ")}`);
     tag.innerHTML = `<i class="bi bi-dot" aria-hidden="true"></i>${(result?.score ?? 0).toFixed(2)}`;
-    tag.title = ["Search score", ...matches].join("\n");
+    tag.title = [`Search score, including ×${searchBoost(plugin).toFixed(3)} for being newer`, ...matches].join("\n");
 }

@@ -24,7 +24,7 @@ export const debounce = (func, wait) => {
 
 export const slugify = (text) => String(text)
     .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "") // accents
+    .replace(/\p{M}/gu, "") // accents
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9 -]/g, "")

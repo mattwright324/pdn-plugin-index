@@ -22,7 +22,8 @@ const CONTROLS = Object.freeze({
     order: ui.comboOrder,
 });
 
-const readFilters = () => Object.fromEntries(Object.entries(CONTROLS).map(([key, control]) => [key, control.value.trim()]));
+const readFilters = () =>
+    Object.fromEntries(Object.entries(CONTROLS).map(([key, control]) => [key, control.value.trim()]));
 
 export function resetFilters() {
     for (const [key, control] of Object.entries(CONTROLS)) {
@@ -70,7 +71,8 @@ export function applyUrlParams() {
 
 /** A link to the current filters: to the forum post when embedded, otherwise to this page. */
 export function buildPermalink() {
-    const params = new URLSearchParams(Object.entries(readFilters()).filter(([key, value]) => value !== DEFAULTS[key]));
+    const changed = Object.entries(readFilters()).filter(([key, value]) => value !== DEFAULTS[key]);
+    const params = new URLSearchParams(changed);
     const hostUrl = window !== window.parent
         ? "https://forums.paint.net/PluginIndex"
         : window.location.origin + window.location.pathname;

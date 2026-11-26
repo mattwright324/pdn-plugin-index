@@ -1,5 +1,5 @@
 // Module scripts are deferred, so the document is already parsed when this runs.
-const selector = selector => document.querySelector(selector);
+const selector = (css) => document.querySelector(css);
 
 export const ui = Object.freeze({
     pluginList: selector("#plugins-list"),

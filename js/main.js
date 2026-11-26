@@ -1,99 +1,51 @@
-import * as polyfills from "polyfills";
-import {controls, dom_ready, elements} from "dom";
+import {ui} from "dom";
 import * as events from "events";
+import * as filters from "filters";
+import * as listing from "listing";
+import * as search from "search";
 import * as util from "util";
 import {Plugin} from "plugin";
 
-(async function () {
-    'use strict';
+try {
+    events.enableDynamicTooltips();
 
-    window.index = {
-        plugins: [],
-        pluginMap: {},
+    const response = await fetch("index/plugin-index.json");
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status} loading plugin index`);
     }
 
-    try {
-        await polyfills.load();
-        await dom_ready();
-        events.enableDynamicTooltips();
+    const plugins = ((await response.json()).plugin_index ?? []).map(item => new Plugin(item));
+    const pluginsByTopic = util.groupBy(plugins, plugin => plugin.topicId);
+    plugins.forEach(plugin => plugin.resolveAltPlugin(pluginsByTopic));
 
-        const response = await fetch("index/plugin-index.json");
-        const json = Object.assign({plugin_index: []}, await response.json());
+    window.index = {plugins, pluginsByTopic};
+    console.log(`Loaded ${plugins.length} plugins`, window.index);
 
-        json.plugin_index.forEach(item => index.plugins.push(new Plugin(item)));
-        index.pluginMap = Object.groupBy(index.plugins, plugin => plugin.topicId);
+    showIssues(plugins);
+    search.buildSearchIndex(plugins);
+    filters.initFilterOptions(plugins);
+    filters.applyUrlParams();
 
-        console.log(`Loaded ${index.plugins.length} plugins from index/plugin-index.json`, index);
+    listing.setPlugins(plugins);
+    events.initEventListeners();
+    listing.refreshListing(true);
+} catch (error) {
+    console.error("Failed to initialize:", error);
+    ui.pluginCount.textContent = "Error";
+    ui.pluginList.insertAdjacentHTML("beforeend",
+        `<div class="alert alert-danger mt-3">Failed to load the plugin index.</div>`);
+}
 
-        const authorGroups = Object.groupBy(index.plugins, ({author}) => author);
-        const authorOptions = Object.keys(authorGroups)
+/** List data validation issues in the Data Issues dialog. */
+function showIssues(plugins) {
+    const issues = plugins.flatMap(plugin => plugin.validate());
+    console.log(`%cFound ${issues.length} data issues`, `font-weight:700;color:${issues.length ? "red" : "green"}`);
+
+    if (issues.length) {
+        ui.issuesList.insertAdjacentHTML("beforeend", issues
             .sort(util.alphaSort)
-            .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name} (${authorGroups[name].length})</option>`)
-            .join("");
-
-        const menuGroups = Object.groupBy(index.plugins, ({menu}) => menu);
-        const menuOptions = Object.keys(menuGroups)
-            .sort(util.alphaSort)
-            .map((name, index) => `<option value="${name.trim().toLowerCase()}">${name}</option>`)
-            .join("");
-
-        controls.comboAuthors.insertAdjacentHTML("beforeend", authorOptions);
-        controls.comboMenu.insertAdjacentHTML("beforeend", menuOptions);
-
-        const issues = validatePlugins();
-        if (issues.length) {
-            const issuesHtml = issues
-                .sort(util.alphaSort)
-                .map(issue => `<li>${issue}</li>`)
-                .join("");
-            elements.issuesList.insertAdjacentHTML("beforeend", issuesHtml);
-            controls.navIssuesButton.style.display = "";
-        }
-
-        index.plugins.sort((a, b) => util.numericCompare(a.release, b.release));
-
-        updateDropdownCounts();
-
-        events.initEventListeners();
-        events.useSearchParams();
-        events.refreshListing();
-    } catch (error) {
-        console.error("Failed to initialize:", error);
+            .map(issue => `<li>${issue}</li>`)
+            .join(""));
+        ui.navIssues.hidden = false;
     }
-
-    function validatePlugins() {
-        const issues = index.plugins.map(plugin => plugin.validate()).flat();
-
-        console.log("%cFound " + issues.length + " data issues",
-            "font-weight:700;" + (issues.length > 0 ? "color:red;" : "color:green"));
-
-        return issues;
-    }
-
-    function updateDropdownCounts() {
-        const plugins = index.plugins;
-        const anyCount = plugins.length;
-
-        const newCount = plugins.filter(p => p.isNew).length;
-        const activeCount = plugins.filter(p => p.isActive).length;
-        const inactiveCount = anyCount - activeCount;
-
-        controls.comboPluginStatus.options[0].text += ` (${anyCount})`;
-        controls.comboPluginStatus.options[1].text += ` (${newCount})`;
-        controls.comboPluginStatus.options[2].text += ` (${activeCount})`;
-        controls.comboPluginStatus.options[3].text += ` (${inactiveCount})`;
-
-        const effectCount = plugins.filter(p => util.equalsIgnoreCase(p.type, "Effect")).length;
-        const adjustmentCount = plugins.filter(p => util.equalsIgnoreCase(p.type, "Adjustment")).length;
-        const filetypeCount = plugins.filter(p => util.equalsIgnoreCase(p.type, "Filetype")).length;
-        const packCount = plugins.filter(p => util.equalsIgnoreCase(p.type, "Plugin Pack")).length;
-        const externalCount = plugins.filter(p => util.equalsIgnoreCase(p.type, "External Resource")).length;
-
-        controls.comboPluginType.options[0].text += ` (${anyCount})`;
-        controls.comboPluginType.options[1].text += ` (${effectCount})`;
-        controls.comboPluginType.options[2].text += ` (${adjustmentCount})`;
-        controls.comboPluginType.options[3].text += ` (${filetypeCount})`;
-        controls.comboPluginType.options[4].text += ` (${packCount})`;
-        controls.comboPluginType.options[5].text += ` (${externalCount})`;
-    }
-}());
+}

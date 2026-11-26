@@ -1,32 +1,47 @@
-export const equalsIgnoreCase = (a, b) => {
-    return String(a).toUpperCase() === String(b).toUpperCase();
-}
+const collator = new Intl.Collator(undefined, {sensitivity: "base"});
 
-export const alphaSort = (a, b) => {
-    return a.toUpperCase().localeCompare(b.toUpperCase());
-};
+/** Case- and accent-insensitive comparison, for Array.sort(). */
+export const alphaSort = (a, b) => collator.compare(a, b);
 
-export const numericCompare = (a, b) => {
-    return (a < b) ? 1 : (a > b) ? -1 : 0;
+export const lower = (value) => String(value ?? "").trim().toLowerCase();
+
+/** Like Object.groupBy(), which older browsers lack. */
+export const groupBy = (items, keyOf) => {
+    const groups = {};
+    for (const item of items) {
+        (groups[keyOf(item)] ??= []).push(item);
+    }
+    return groups;
 };
 
 export const debounce = (func, wait) => {
     let timeout;
-    return function (...args) {
+    return (...args) => {
         clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
+        timeout = setTimeout(() => func(...args), wait);
     };
-}
+};
 
-export const slugify = (text) => {
-    return String(text)
-        .normalize('NFKD') // split accented characters into their base characters and diacritical marks
-        .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
-        .trim() // trim leading or trailing whitespace
-        .toLowerCase() // convert to lowercase
-        .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
-        .replace(/\s+/g, '-') // replace spaces with hyphens
-        .replace(/-+/g, '-'); // remove consecutive hyphens
-}
+export const slugify = (text) => String(text)
+    .normalize("NFKD")
+    .replace(/\p{M}/gu, "") // accents
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9 -]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
 
-export const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const HTML_ESCAPES = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"};
+
+/** Escape text for HTML content and quoted attribute values. */
+export const escapeHtml = (text) => String(text ?? "").replace(/[&<>"']/g, ch => HTML_ESCAPES[ch]);
+
+/** Parse HTML with a single root element. */
+export const htmlToElement = (html) => {
+    const template = document.createElement("template");
+    template.innerHTML = html.trim();
+    return template.content.firstElementChild;
+};
+
+/** Whether a <select> has an option with this value, without building a selector from untrusted input. */
+export const hasOption = (select, value) => Array.from(select.options).some(option => option.value === value);

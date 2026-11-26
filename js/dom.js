@@ -1,58 +1,21 @@
-/**
- * Wait for the DOM to be ready.
- * Alternate to $(document).ready()
- */
-export const doc_ready =  async () => {
-    return new Promise(resolve => {
-        if (document.readyState !== "loading") {
-            resolve();
-        } else {
-            document.addEventListener("DOMContentLoaded", resolve);
-        }
-    })
-}
+// Module scripts are deferred, so the document is already parsed when this runs.
+const selector = (css) => document.querySelector(css);
 
-/**
- * Store all DOM elements and controls here.
- */
-export const controls = {}
-export const elements = {}
+export const ui = Object.freeze({
+    pluginList: selector("#plugins-list"),
+    pluginCount: selector("#count"),
+    issuesList: selector("#issuesList"),
+    navIssues: selector("#nav-issues"),
 
-let readyState;
-let readyPromise;
+    btnScrollToTop: selector("#scrollToTop"),
+    btnPermalink: selector("#permalink-button"),
+    btnResetFilters: selector("#resetFilters"),
 
-/**
- * Extension of doc_ready() to load required DOM elements and controls.
- */
-export const dom_ready = async () => {
-    if (readyState === 'ready') {
-        return;
-    }
-    if (readyState === 'loading') {
-        return readyPromise;
-    }
-    readyState = 'loading';
-
-    return readyPromise = dom_load();
-}
-
-const dom_load = async () => {
-    await doc_ready();
-
-    elements.badgePluginCount = document.querySelector("#count");
-    elements.divPluginList = document.querySelector("#plugins-list");
-    controls.btnScrollToTop = document.querySelector("#scrollToTop");
-
-    controls.inputKeywords = document.querySelector("#keywords");
-    controls.comboAuthors = document.querySelector("#author");
-    controls.comboOrder = document.querySelector("#order");
-    controls.comboMenu = document.querySelector("#menu-list");
-    controls.comboKeywordStyle = document.querySelector("#keywordStyle");
-    controls.comboPluginStatus = document.querySelector("#pluginStatus");
-    controls.comboPluginType = document.querySelector("#pluginType");
-
-    controls.navIssuesButton = document.querySelector("#nav-issues");
-    elements.issuesList = document.querySelector("#issuesList");
-
-    console.log("Loaded [controls:", controls, "] [elements:", elements, "]")
-}
+    inputKeywords: selector("#keywords"),
+    comboKeywordStyle: selector("#keywordStyle"),
+    comboStatus: selector("#pluginStatus"),
+    comboType: selector("#pluginType"),
+    comboAuthor: selector("#author"),
+    comboMenu: selector("#menu-list"),
+    comboOrder: selector("#order"),
+});

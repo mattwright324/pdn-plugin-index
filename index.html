@@ -1,5 +1,4 @@
 ---
-layout : compress
 title_sm : PDNPI
 title_lg : Paint.NET Plugin Index
 subtitle : Search the Paint.NET plugin index
@@ -18,18 +17,23 @@ revision : 1 November 2026
     <meta name="description"
         content="Quickly search and find Paint.NET plugins from the forums. Search for new effects, adjustments, filetypes support, external programs, and plugin packs.">
     <link rel="icon" href="img/icon-small.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-icons.min.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="css/pdnpi-v3.css?v={{ cache_buster }}" />
-    <script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
     <script type="importmap">
         {"imports": {
             "dom": "./js/dom.js?v={{ cache_buster }}",
             "events": "./js/events.js?v={{ cache_buster }}",
+            "filters": "./js/filters.js?v={{ cache_buster }}",
+            "listing": "./js/listing.js?v={{ cache_buster }}",
             "util": "./js/util.js?v={{ cache_buster }}",
             "plugin": "./js/plugin.js?v={{ cache_buster }}",
-            "polyfills": "./js/polyfills.js?v={{ cache_buster }}"
+            "search": "./js/search.js?v={{ cache_buster }}",
+            "spelling": "./js/spelling.js?v={{ cache_buster }}",
+            "minisearch": "https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/es/index.js"
         }}
     </script>
     <script type="module" src="./js/main.js?v={{ cache_buster }}"></script>
@@ -40,8 +44,8 @@ revision : 1 November 2026
 
 <body>
 
-    <div class="fixed-top">
-        <nav class="navbar navbar-expand-md navbar-dark theme-main">
+    <div class="app-header">
+        <nav class="navbar navbar-expand-md theme-main sticky-top" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="img/icon-small.png" width="30" height="30" class="d-inline-block align-top" alt="Icon" />
@@ -60,7 +64,7 @@ revision : 1 November 2026
                                 <i class="bi bi-info-circle"></i> About
                             </a>
                         </li>
-                        <li class="nav-item" id="nav-issues" style="display: none">
+                        <li class="nav-item" id="nav-issues" hidden>
                             <a class="nav-link link-warning" href="#" data-bs-toggle="modal"
                                 data-bs-target="#issuesModal">
                                 <i class="bi bi-exclamation-triangle"></i> Data Issues
@@ -73,230 +77,201 @@ revision : 1 November 2026
                 </div>
             </div>
         </nav>
-    </div>
 
-    <div id="filter-header">
-        <div class="theme-secondary margin-top-sticky">
-            <div class="container-fluid pt-3">
-                <div class="row pb-3 g-2">
-                    <div class="col-md-4">
-                        <label class="form-label">
-                            Search Keywords
-                        </label>
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text">
-                                <i class="bi bi-search"></i>
-                            </span>
-                            <input type="text" class="form-control form-control-sm" id="keywords"
-                                placeholder="Enter search keywords" style="border-left:none;">
-                            <select id="keywordStyle" class="form-select form-select-sm" style="max-width: 120px;">
-                                <option value="any" selected>Any word</option>
-                                <option value="all">All words</option>
-                                <option value="exact">Exact match</option>
+        <div id="filter-header">
+            <div class="theme-secondary">
+                <div class="container-fluid pt-3">
+                    <div class="row pb-3 g-2">
+                        <div class="col-md-4">
+                            <label class="form-label" for="keywords">
+                                Search Keywords
+                            </label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="search" class="form-control form-control-sm" id="keywords"
+                                    placeholder="Enter search keywords" style="border-left:none;">
+                                <select id="keywordStyle" class="form-select form-select-sm" style="max-width: 120px;" aria-label="Keyword match style">
+                                    <option value="all" selected>All words</option>
+                                    <option value="any">Any word</option>
+                                    <option value="exact">Exact match</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label" for="pluginStatus" style="white-space: nowrap;">
+                                Plugin Status
+                                <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-html="true" 
+                                   data-bs-title="<strong>New:</strong><br>Plugins appearing in the Plugin Index for the first time.<br><br><strong>Active:</strong><br>Plugins which work with the latest release of Paint.NET (includes New and Bundled)<br><br><strong>Inactive:</strong><br>Plugins which do not work with the latest release of Paint.NET<br>(Obsolete, Deprecated, Incompatible, Integrated & Unsupported)"></i>
+                            </label>
+                            <select id="pluginStatus" class="form-select form-select-sm">
+                                <option value="any">Any Status</option>
+                                <option value="new">New</option>
+                                <option value="active" selected>Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label" for="pluginType">
+                                Plugin Type
+                            </label>
+                            <select id="pluginType" class="form-select form-select-sm">
+                                <option value="any" selected>Any Type</option>
+                                <option value="effect">Effect</option>
+                                <option value="adjustment">Adjustment</option>
+                                <option value="filetype">Filetype</option>
+                                <option value="plugin-pack">Plugin Pack</option>
+                                <option value="external">External Resource</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label" for="author">
+                                Author
+                            </label>
+                            <select id="author" class="form-select form-select-sm">
+                                <option value="any" selected>Any Author</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="form-label" for="menu-list">
+                                Menu
+                            </label>
+                            <select id="menu-list" class="form-select form-select-sm">
+                                <option value="any" selected>Any Menu</option>
                             </select>
                         </div>
                     </div>
-
-                    <div class="col-md-2">
-                        <label class="form-label" style="white-space: nowrap;">
-                            Plugin Status
-                            <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-html="true" 
-                               data-bs-title="<strong>New:</strong><br>Plugins appearing in the Plugin Index for the first time.<br><br><strong>Active:</strong><br>Plugins which work with the latest release of Paint.NET (includes New and Bundled)<br><br><strong>Inactive:</strong><br>Plugins which do not work with the latest release of Paint.NET<br>(Obsolete, Deprecated, Incompatible, Integrated & Unsupported)"></i>
-                        </label>
-                        <select id="pluginStatus" class="form-select form-select-sm">
-                            <option value="any">Any Status</option>
-                            <option value="new">New</option>
-                            <option value="active" selected>Active</option>
-                            <option value="inactive">Inactive</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label class="form-label">
-                            Plugin Type
-                        </label>
-                        <select id="pluginType" class="form-select form-select-sm">
-                            <option value="any" selected>Any Type</option>
-                            <option value="effect">Effect</option>
-                            <option value="adjustment">Adjustment</option>
-                            <option value="filetype">Filetype</option>
-                            <option value="plugin-pack">Plugin Pack</option>
-                            <option value="external">External Resource</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label class="form-label">
-                            Author
-                        </label>
-                        <select id="author" class="form-select form-select-sm">
-                            <option value="any" selected>Any Author</option>
-                        </select>
-                    </div>
-
-
-                    <div class="col-md-2">
-                        <label class="form-label">
-                            Menu
-                        </label>
-                        <select id="menu-list" class="form-select form-select-sm">
-                            <option value="any" selected>Any Menu</option>
-                        </select>
-                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="theme-secondary mb-3" style="border-bottom: 1px solid lightgray">
-            <div class="container-fluid pb-1 mb-1">
-                <div class="row justify-content-between">
-                    <div class="col-auto">
-                        <label class="form-label block-title align-baseline" style="margin-right: 0.5rem">
-                            <span id="count" class="badge text-bg-dark">0 / 0</span>
-                            plugins found
-                        </label>
-                        <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light align-baseline"
-                            style="border:none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Copy Permalink">
-                            <i id="permalink-icon" class="bi bi-link-45deg"></i>
-                        </button>
-                    </div>
-                    <div class="col-auto">
-                        <label class="form-label w-auto align-baseline" for="order" style="margin: 0">Order by</label>
-                        <select id="order" class="form-select form-select-sm w-auto align-baseline">
-                            <option value="release_new" selected>Newest</option>
-                            <option value="release_old">Oldest</option>
-                            <option value="title">Title</option>
-                            <option value="author">Author</option>
-                            <option value="menu">Menu</option>
-                        </select>
-                        <button id="resetFilters" class="btn btn-sm btn-dark align-baseline ms-2">
-                            <i class="bi bi-arrow-counterclockwise"></i> Reset
-                        </button>
+            <div class="theme-secondary filter-bar-bottom mb-3">
+                <div class="container-fluid pb-1 mb-1">
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            <label class="form-label align-baseline" style="margin-right: 0.5rem">
+                                <span id="count" class="badge text-bg-dark">0 / 0</span>
+                                plugins found
+                            </label>
+                            <button id="permalink-button" type="button" class="btn btn-sm btn-outline-light align-baseline"
+                                style="border:none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Copy Permalink"
+                                aria-label="Copy Permalink">
+                                <i id="permalink-icon" class="bi bi-link-45deg"></i>
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <label class="form-label w-auto align-baseline" for="order" style="margin: 0">Order by</label>
+                            <select id="order" class="form-select form-select-sm w-auto align-baseline">
+                                <option value="relevance" selected>Best match</option>
+                                <option value="release_new">Newest</option>
+                                <option value="release_old">Oldest</option>
+                                <option value="title">Title</option>
+                                <option value="author">Author</option>
+                                <option value="menu">Menu</option>
+                            </select>
+                            <button id="resetFilters" class="btn btn-sm btn-dark align-baseline ms-2">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reset
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            function adjustMarginTop() {
-                const header = document.querySelector('.fixed-top');
-                const content = document.querySelector('.margin-top-sticky');
-
-                if (header && content) {
-                    const headerHeight = header.offsetHeight;
-                    content.style.marginTop = `${headerHeight}px`;
-                }
-            }
-
-            window.addEventListener('load', adjustMarginTop);
-            window.addEventListener('resize', adjustMarginTop);
-            const header = document.querySelector('.sticky-header');
-            if (header) {
-                const resizeObserver = new ResizeObserver(adjustMarginTop);
-                resizeObserver.observe(header);
-            }
-        });
-    </script>
-
-    <div id="content-div" class="container-fluid">
-        <div id="plugins-list" class="col">
-            <!-- Plugin content generated here -->
-        </div>
-    </div>
+    <main id="content-div" class="container-fluid">
+        <div id="plugins-list" class="col"></div>
+    </main>
 
     <footer class="footer">
         <div class="container-fluid">
             <span class="text-body-secondary">
-                mattwright324 <i class="bi bi-dot"></i> Sigillatus <i class="bi bi-dot"></i> toehead2001 <i
-                    class="bi bi-dot"></i>
-                <script>document.write(new Date().getFullYear())</script>
+                mattwright324 <i class="bi bi-dot"></i> Sigillatus <i class="bi bi-dot"></i> toehead2001 <i class="bi bi-dot"></i>
+                {{ site.time | date: "%Y" }}
                 <br>
                 <a target="_blank" href="https://mattw.io">mattw.io</a> <i class="bi bi-dot"></i>
-                <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> <i
-                    class="bi bi-dot"></i>
+                <a target="_blank" href="https://github.com/mattwright324/pdn-plugin-index">pdn-plugin-index</a> <i class="bi bi-dot"></i>
                 <a target="_blank" href="https://forums.paint.net/topic/15260-plugin-index/">forum post</a>
             </span>
         </div>
     </footer>
 
-    <div class="modal fade" id="aboutModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5">About</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            This application simplifies locating Paint.NET plugins by searching the Plugin Index.
-                            Updates are published monthly, usually around the first of the month.
-                        </p>
-                        <p>
-                            Index data has been collected and curated by Scott Stringer
-                            (<a target="_blank" href="https://forums.paint.net/profile/48727-ego-eram-reputo/">Ego
-                                Eram
-                                Reputo</a>)
-                            since 2009. This application was originally built by Matthew Wright
-                            (<a target="_blank"
-                                href="https://forums.paint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
-                            in 2017 to make that data interactively searchable.
-                        </p>
-                        <p>
-                            Maintained by:
-                        </p>
-                        <ul>
-                            <li><a target="_blank" href="https://forums.paint.net/profile/48727-ego-eram-reputo/">
-                                    Ego Eram Reputo
-                                </a></li>
-                            <li><a target="_blank" href="https://forums.paint.net/profile/153200-sodiumenglish/">
-                                    SodiumEnglish
-                                </a></li>
-                            <li><a target="_blank" href="https://forums.paint.net/profile/46943-toe_head2001/">
-                                    toe_head2001
-                                </a></li>
-                            <li><a target="_blank" href="https://forums.paint.net/profile/162722-tactilis/">
-                                    Tactilis
-                                </a></li>
-                        </ul>
-                        <p>
-                            Revision Date: {{ page.revision }}
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="aboutModalTitle">About</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        This application simplifies locating Paint.NET plugins by searching the Plugin Index.
+                        Updates are published monthly, usually around the first of the month.
+                    </p>
+                    <p>
+                        Index data has been collected and curated by Scott Stringer
+                        (<a target="_blank" href="https://forums.paint.net/profile/48727-ego-eram-reputo/">Ego Eram Reputo</a>)
+                        since 2009. This application was originally built by Matthew Wright
+                        (<a target="_blank" href="https://forums.paint.net/profile/153200-sodiumenglish/">SodiumEnglish</a>)
+                        in 2017 to make that data interactively searchable.
+                    </p>
+                    <p>
+                        Maintained by:
+                    </p>
+                    <ul>
+                        <li><a target="_blank" href="https://forums.paint.net/profile/48727-ego-eram-reputo/">
+                                Ego Eram Reputo
+                            </a></li>
+                        <li><a target="_blank" href="https://forums.paint.net/profile/153200-sodiumenglish/">
+                                SodiumEnglish
+                            </a></li>
+                        <li><a target="_blank" href="https://forums.paint.net/profile/46943-toe_head2001/">
+                                toe_head2001
+                            </a></li>
+                        <li><a target="_blank" href="https://forums.paint.net/profile/162722-tactilis/">
+                                Tactilis
+                            </a></li>
+                    </ul>
+                    <p>
+                        Revision Date: {{ page.revision }}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="issuesModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5">Data Issues</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            These are data validations highlighting things that may need to be fixed by the Plugin Index
-                            maintainers.
-                        </p>
-                        <ul id="issuesList"></ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+    <div class="modal fade" id="issuesModal" tabindex="-1" aria-labelledby="issuesModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="issuesModalTitle">Data Issues</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        These are data validations highlighting things that may need to be fixed by the Plugin Index
+                        maintainers.
+                    </p>
+                    <ul id="issuesList"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <a href="#" id="scrollToTop" class="fade" title="Scroll to Top"><span></span></a>
+    <button type="button" id="scrollToTop" class="btn btn-primary rounded-circle shadow" title="Scroll to Top"
+        aria-label="Scroll to Top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
 </body>
 
 </html>
